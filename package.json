@@ -6,7 +6,8 @@
   "engines": {
     "node": "16.x"
   },
-  "dependencies": {
+  "dependencies": 
+    "@react-google-maps/api": "^2.12.1",
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
     "@mui/icons-material": "^5.8.4",
