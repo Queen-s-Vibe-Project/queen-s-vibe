@@ -29,7 +29,7 @@ function Nav() {
         )}
       </PopupState>
 
-      <h3>QV-KV</h3>
+      <h3>QV-KC</h3>
       <img className="nav-logo" src={Logo} alt="Logo" />
     </div>
   );
