@@ -39,7 +39,7 @@ const Map = () => {
     
 
     const {isLoaded, loadError} = useLoadScript({
-        googleMapsApiKey: "AIzaSyBAIS7OMRkL4_RrQ54DL9UEsyycOwtpcxE",
+        googleMapsApiKey: "key goes here",
         libraries
     })
 
