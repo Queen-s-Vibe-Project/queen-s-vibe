@@ -2,6 +2,7 @@ const express = require("express");
 const pool = require("../modules/pool");
 const router = express.Router();
 
+//get tags for autocomplete
 router.get("/tags", (req, res) => {
   const sqlQuery = `
     SELECT * FROM "tags"
@@ -18,7 +19,9 @@ router.get("/tags", (req, res) => {
 });
 
 //search results based of tags -Alex
-router.get("/", (req, res) => {
+router.post("/", (req, res) => {
+  const tags = req.body.searchTags;
+
   const sqlQueryInsert = (tags) => {
     let queryInsert = [];
     for (let i = 0; i < tags.length; i++) {
@@ -26,7 +29,8 @@ router.get("/", (req, res) => {
     }
     return queryInsert.join();
   };
-  let queryValues = sqlQueryInsert(req.body.tags);
+  let queryValues = sqlQueryInsert(tags);
+  console.log(queryValues);
   const sqlParamsInsert = (tags) => {
     let paramsInsert = [];
     for (let i = 0; i < tags.length; i++) {
@@ -36,16 +40,16 @@ router.get("/", (req, res) => {
   };
 
   const sqlQuery = `
-  SELECT "user".id, "user".username, JSON_AGG("tags".tag_name) as tags FROM "user"
-  JOIN "user_tags" ON "user_tags".user_id = "user".id
-  JOIN "tags" ON "user_tags".tags_id = "tags".id
-  WHERE "tags".id IN (${queryValues})
-  GROUP BY "user".id 
-  HAVING count(*) >=3
-  ORDER BY count(tags) DESC;
-  `;
-  const sqlParams = sqlParamsInsert(req.body.tags);
-
+    SELECT "user".id, "user".username, JSON_AGG("tags".tag_name) as tags FROM "user"
+    JOIN "user_tags" ON "user_tags".user_id = "user".id
+    JOIN "tags" ON "user_tags".tags_id = "tags".id
+    WHERE "tags".id IN (${queryValues})
+    GROUP BY "user".id
+    HAVING count(*) >=1
+    ORDER BY count(tags) DESC;
+    `;
+  const sqlParams = sqlParamsInsert(tags);
+  console.log(sqlParams);
   pool
     .query(sqlQuery, sqlParams)
     .then((dbRes) => {

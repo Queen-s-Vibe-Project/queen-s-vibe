@@ -1,5 +1,5 @@
 
--- Database name is 'gym'
+-- Database name is 'gym'3
 -- Otherwise you will have errors!
 CREATE TABLE "user" (
     "id" SERIAL PRIMARY KEY,

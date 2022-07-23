@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector  } from 'react-redux';
 import Chip from '@mui/material/Chip';
 import Autocomplete from '@mui/material/Autocomplete';
@@ -13,8 +13,19 @@ const SearchBar = () => {
             type: "FETCH_TAGS"
         })
     }, [])
-    const tags = useSelector((store) => store.tags)
+    const tags = useSelector((store) => store.search.tags)
     const dispatch = useDispatch()
+    const [searchTags, setSearchTags] = useState([])
+    const handleSubmit = (evt) => {
+        evt.preventDefault()
+        dispatch({
+            type: "FETCH_SEARCH_RESULTS",
+            payload: {
+                searchTags
+            }
+        })
+    }
+
 
 
     return (
@@ -25,7 +36,8 @@ const SearchBar = () => {
         multiple
         id="tags-standard"
         options={tags}
-        getOptionLabel={(option) => option.tagName}
+        getOptionLabel={(option) => option.tag_name}
+        onChange={(event, value) => setSearchTags(value)}
         renderInput={(params) => (
           <TextField
             {...params}
