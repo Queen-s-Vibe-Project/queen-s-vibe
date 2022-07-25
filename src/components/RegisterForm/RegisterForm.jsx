@@ -3,12 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import "../App/App.css";
 
 function RegisterForm() {
+  const [userTyper, setUserType] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
   const [pronouns, setPronouns] = useState("");
   const errors = useSelector((store) => store.errors);
+  const [tags, setTags] = useState("");
   const dispatch = useDispatch();
 
   const registerUser = (event) => {
@@ -20,8 +21,8 @@ function RegisterForm() {
         email: email,
         password: password,
         name: name,
-        phone: phone,
         pronouns: pronouns,
+        tags: tags,
       },
     });
   }; // end registerUser
@@ -103,6 +104,17 @@ function RegisterForm() {
             onChange={(event) => setPronouns(event.target.value)}
           />
         </label>
+      </div>
+
+      {/* Tags */}
+      <div>
+        <label htmlFor="tags">
+          <div className="user-tag">Select Tags</div>
+        </label>
+        <select className="user-tag-box" id="tag" name="tag">
+          <option value={tags}>LGBQT</option>
+          <option value={tags}>SeniorFriendly</option>
+        </select>
       </div>
 
       <div>

@@ -17,11 +17,18 @@
 }
 
 .user-type {
-  padding-bottom: 10px;
+  padding-bottom: 5px;
 }
 
-.user-type-box {
+.user-type-box,
+.user-tag-box {
   width: 20rem;
   height: 2.25rem;
   font-size: 1rem;
+  margin-top: 0.5rem;
+}
+
+.user-tag {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
 }
