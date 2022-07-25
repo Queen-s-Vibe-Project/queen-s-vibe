@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import Avatar from "@mui/material/Avatar";
+import "./InstructorDetail.css";
 
 function InstructorDetail() {
   return (
@@ -8,11 +9,16 @@ function InstructorDetail() {
       <h1> InstructorDetail </h1>
       <div>
         <Avatar alt="Profile Photo" />
+        <div> Edan </div>
+        <div> He/Him </div>
+        <div> Instagram, Facebook, Twitter </div>
+        <div className="chip"> Ace Certification </div>
       </div>
       <div>
         <h3> Classes </h3>
       </div>
       <h3> Tags </h3>
+      <div className="chip">LGBTQ Friendly</div>
       <div>
         <h3> About </h3>
       </div>
