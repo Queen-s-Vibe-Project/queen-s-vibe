@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { GoogleMap, useLoadScript } from '@react-google-maps/api';
-import mapStyles from './mapStyles';'./mapStyles'
+// import mapStyles from './mapStyles';
 
 
 
@@ -12,7 +12,7 @@ const containerStyle = {
 };
 
 const options = {
-    styles: mapStyles,
+    //styles: mapStyles,
     disableDefaultUI: true,
 }
 
