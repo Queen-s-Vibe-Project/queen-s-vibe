@@ -27,9 +27,13 @@
 .profileHeader{
     background-color: plum;
     width: 262px;
-    height: 213px; 
+    height: 213px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 .containerProfile{
     text-align: center;
     margin-top: 50px;
 }
+
