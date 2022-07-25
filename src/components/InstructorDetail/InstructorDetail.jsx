@@ -6,18 +6,27 @@ import InstructorClasses from "./InstructorClasses";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
+import Chip from "@mui/material/Chip";
+import Stack from '@mui/material/Stack';
+
 
 function InstructorDetail() {
   return (
     <>
-      <h1> InstructorDetail </h1>
+      <h1> Instructor Detail </h1>
       <div className="profileHeader">
-        <Avatar alt="Profile Photo" />
+        <div className="pic">
+          <Avatar 
+          // sx={{ width: 100, height: 100 }}
+          alt="Profile Photo" />
+        </div>
+
         <div className="containerProfile">
           <div> Edan </div>
           <div> He/Him </div>
           <div>
-            <InstagramIcon color="primary" /> <FacebookIcon color="primary" />
+            <InstagramIcon color="primary" /> 
+            <FacebookIcon color="primary" />
             <TwitterIcon color="primary" />
           </div>
           <div className="chip"> Ace Certification </div>
@@ -28,14 +37,18 @@ function InstructorDetail() {
         <InstructorClasses />
       </div>
       <h3> Tags </h3>
-      <div className="chip">LGBTQ Friendly</div>
+      <Stack direction="row" spacing={1}>
+        <Chip label="LGBTQ Friendly" />
+        <Chip label="POC" />
+        <Chip label="Cardio" />
+      </Stack>
       <div>
         <h3> About </h3>
       </div>
-      <textarea name="" id="" cols="30" rows="10">
+      <p>
         Hello World! My name is Edan and I have been a trainer for about 10
         years. I love help people achieve their fitness goals....
-      </textarea>
+      </p>
     </>
   );
 }
