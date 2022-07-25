@@ -1,0 +1,27 @@
+.registration-header,
+.registration-text {
+  text-align: center;
+}
+
+.registration-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.registration-input {
+  width: 20rem;
+  height: 1.75rem;
+  margin-top: 0.5rem;
+}
+
+.user-type {
+  padding-bottom: 10px;
+}
+
+.user-type-box {
+  width: 20rem;
+  height: 2.25rem;
+  font-size: 1rem;
+}

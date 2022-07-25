@@ -12,15 +12,22 @@
   margin-bottom: 3rem;
 }
 
-.login-input,
-.test {
+.form-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.login-input {
   width: 20rem;
   margin: 0.5rem 2rem;
   height: 1.75rem;
 }
 
-.login-label,
-.login-btn {
+.login-btn,
+.registrater-btn {
   margin-left: 2rem;
   margin-bottom: 2rem;
 }
@@ -35,15 +42,16 @@
   background-color: white;
 }
 
-.login-btn:hover {
+.login-btn:hover,
+.register-btn:hover {
   background-color: rgb(205, 201, 201);
 }
 
-.register-header {
+.not-registered,
+.register-text {
   text-align: center;
 }
 
-.register-text {
-  margin: 0 3rem;
-  text-align: center;
+.input-label {
+  margin-left: 2rem;
 }
