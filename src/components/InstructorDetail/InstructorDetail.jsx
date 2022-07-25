@@ -3,11 +3,11 @@ import { useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import "./InstructorDetail.css";
 import InstructorClasses from "./InstructorClasses";
+import InstructorTags from "./InstructorTags";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
-import Chip from "@mui/material/Chip";
-import Stack from '@mui/material/Stack';
+
 
 
 function InstructorDetail() {
@@ -37,11 +37,7 @@ function InstructorDetail() {
         <InstructorClasses />
       </div>
       <h3> Tags </h3>
-      <Stack direction="row" spacing={1}>
-        <Chip label="LGBTQ Friendly" />
-        <Chip label="POC" />
-        <Chip label="Cardio" />
-      </Stack>
+     <InstructorTags />
       <div>
         <h3> About </h3>
       </div>
