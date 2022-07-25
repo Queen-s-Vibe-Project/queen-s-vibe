@@ -7,3 +7,19 @@
     border-radius: 25px;
     background-color: lightgray;
 }
+
+.card{
+    display: inline-block;
+    height: 150px;
+    width: 122px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 5px; 
+    background-color: lightgray;
+
+}
+
+.container{
+    padding: 35px;
+    margin-top: 50px;  
+    text-align: center;
+}

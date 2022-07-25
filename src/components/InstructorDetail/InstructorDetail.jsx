@@ -16,6 +16,13 @@ function InstructorDetail() {
       </div>
       <div>
         <h3> Classes </h3>
+        <div className="card">
+          <div className="container">
+          <div> HIT </div>
+          <div> Monday </div>
+          <div> 7:00pm </div>
+          </div>
+        </div>
       </div>
       <h3> Tags </h3>
       <div className="chip">LGBTQ Friendly</div>
