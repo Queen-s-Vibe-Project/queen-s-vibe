@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import "../App/App.css";
 
 function RegisterForm() {
-  const [userTyper, setUserType] = useState("");
+  const [userType, setUserType] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -23,7 +23,7 @@ function RegisterForm() {
         name: name,
         pronouns: pronouns,
         tags: tags,
-
+        userType: userType
       },
     });
   }; // end registerUser
@@ -41,7 +41,13 @@ function RegisterForm() {
         <label htmlFor="type">
           <div className="user-type">User Type</div>
         </label>
-        <select className="user-type-box" id="type" name="type">
+        <select
+          onChange={(evt)=>{
+            setUserType(evt.target.value)
+          }} 
+          className="user-type-box" 
+          id="type" 
+          name="type">
           <option value="gym-goer">Gym Goer</option>
           <option value="instructor">Instructor</option>
         </select>
