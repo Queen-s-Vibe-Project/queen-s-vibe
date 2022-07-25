@@ -118,7 +118,7 @@ function App() {
 
           <Route 
           exact
-          path="/instrcutorDetail">
+          path="/instructorDetail">
             <InstructorDetail />
 
           </Route>
