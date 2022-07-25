@@ -5,6 +5,7 @@ import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import Avatar from '@mui/material/Avatar';
 
 
+
 const PhotoUpload = () => {
     const [profilePhoto, setProfilePhoto] = useState({
         file:[],
