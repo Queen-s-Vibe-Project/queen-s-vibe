@@ -12,7 +12,8 @@
   margin-bottom: 3rem;
 }
 
-.login-input {
+.login-input,
+.test {
   width: 20rem;
   margin: 0.5rem 2rem;
   height: 1.75rem;
@@ -43,5 +44,10 @@
 }
 
 .register-text {
-  margin: 0 3rem 1rem 3rem;
+  margin: 0 3rem;
+  text-align: center;
+}
+
+.test {
+  background-color: rgb(94, 137, 174);
 }
