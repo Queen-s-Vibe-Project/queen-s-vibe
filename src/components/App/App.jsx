@@ -21,6 +21,7 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import Map from '../Map/Map';
 import SearchBar from '../SearchBar/SearchBar';
+import PhotoUpload from '../PhotoUpload/PhotoUpload';
 
 import './App.css';
 
@@ -37,6 +38,7 @@ function App() {
     <Router>
       <div>
         <SearchBar />
+        <PhotoUpload />
         <Nav />
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
