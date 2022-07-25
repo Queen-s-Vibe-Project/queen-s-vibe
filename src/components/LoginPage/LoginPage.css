@@ -19,6 +19,9 @@
   align-items: center;
   gap: 5px;
 }
+.login-label {
+  margin-left: 2rem;
+}
 
 .login-input {
   width: 20rem;
@@ -50,8 +53,4 @@
 .not-registered,
 .register-text {
   text-align: center;
-}
-
-.input-label {
-  margin-left: 2rem;
 }
