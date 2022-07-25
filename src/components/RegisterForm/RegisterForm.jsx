@@ -16,9 +16,10 @@ function RegisterForm() {
     dispatch({
       type: "REGISTER",
       payload: {
-        email: email,
+        username: username,
         password: password,
         name: name,
+        pronouns:pronouns
       },
     });
   }; // end registerUser
