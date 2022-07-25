@@ -20,7 +20,7 @@ import LandingPage from "../LandingPage/LandingPage";
 import LoginPage from "../LoginPage/LoginPage";
 import RegisterPage from "../RegisterPage/RegisterPage";
 // import Map from '../Map/Map';
-// import SearchBar from '../SearchBar/SearchBar';
+import SearchBar from '../SearchBar/SearchBar';
 // import PhotoUpload from '../PhotoUpload/PhotoUpload';
 
 import "./App.css";
@@ -38,8 +38,8 @@ function App() {
     <Router>
       <div>
 
-        {/* <SearchBar />
-        <PhotoUpload /> */}
+        <SearchBar />
+        {/* <PhotoUpload /> */} 
 
         <Nav />
         <Switch>
