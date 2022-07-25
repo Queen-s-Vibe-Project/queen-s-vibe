@@ -2,25 +2,30 @@ import React from "react";
 import { useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import "./InstructorDetail.css";
+import InstagramIcon from '@mui/icons-material/Instagram';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import TwitterIcon from '@mui/icons-material/Twitter';
 
 function InstructorDetail() {
   return (
     <>
       <h1> InstructorDetail </h1>
-      <div>
+      <div className="profileHeader">
         <Avatar alt="Profile Photo" />
-        <div> Edan </div>
-        <div> He/Him </div>
-        <div> Instagram, Facebook, Twitter </div>
-        <div className="chip"> Ace Certification </div>
+        <div className="containerProfile">
+          <div> Edan </div>
+          <div> He/Him </div>
+          <div> <InstagramIcon /> <FacebookIcon /> <TwitterIcon /> </div>
+          <div className="chip"> Ace Certification </div>
+        </div>
       </div>
       <div>
         <h3> Classes </h3>
         <div className="card">
           <div className="container">
-          <div> HIT </div>
-          <div> Monday </div>
-          <div> 7:00pm </div>
+            <div> HIT </div>
+            <div> Monday </div>
+            <div> 7:00pm </div>
           </div>
         </div>
       </div>

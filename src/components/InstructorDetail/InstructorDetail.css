@@ -13,7 +13,7 @@
     height: 150px;
     width: 122px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    border-radius: 5px; 
+    border-radius: 10px; 
     background-color: lightgray;
 
 }
@@ -22,4 +22,14 @@
     padding: 35px;
     margin-top: 50px;  
     text-align: center;
+}
+
+.profileHeader{
+    background-color: plum;
+    width: 262px;
+    height: 213px; 
+}
+.containerProfile{
+    text-align: center;
+    margin-top: 50px;
 }
