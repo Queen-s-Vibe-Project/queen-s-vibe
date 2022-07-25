@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import "../App/App.css";
 
 function RegisterForm() {
+  const [userTyper, setUserType] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
   const [pronouns, setPronouns] = useState("");
   const errors = useSelector((store) => store.errors);
+  const [tags, setTags] = useState("");
   const dispatch = useDispatch();
 
   const registerUser = (event) => {
@@ -19,13 +21,15 @@ function RegisterForm() {
         username: username,
         password: password,
         name: name,
-        pronouns:pronouns
+        pronouns: pronouns,
+        tags: tags,
+
       },
     });
   }; // end registerUser
 
   return (
-    <form className="formPanel" onSubmit={registerUser}>
+    <form className="registration-container" onSubmit={registerUser}>
       <h2>Queen Vibes KC</h2>
       {errors.registrationMessage && (
         <h3 className="alert" role="alert">
@@ -35,9 +39,9 @@ function RegisterForm() {
 
       <div>
         <label htmlFor="type">
-          <div>User Type</div>
+          <div className="user-type">User Type</div>
         </label>
-        <select id="type" name="type">
+        <select className="user-type-box" id="type" name="type">
           <option value="gym-goer">Gym Goer</option>
           <option value="instructor">Instructor</option>
         </select>
@@ -45,9 +49,10 @@ function RegisterForm() {
 
       {/* Email input */}
       <div>
-        <label htmlFor="username">
+        <label className="input-label" htmlFor="username">
           <div>Email</div>
           <input
+            className="registration-input"
             type="text"
             name="username"
             value={username}
@@ -59,9 +64,10 @@ function RegisterForm() {
 
       {/* Password input */}
       <div>
-        <label htmlFor="password">
+        <label className="input-label" htmlFor="password">
           <div>Password</div>
           <input
+            className="registration-input"
             type="password"
             name="password"
             value={password}
@@ -73,10 +79,10 @@ function RegisterForm() {
 
       {/* Name input */}
       <div>
-        <label htmlFor="name">
+        <label className="input-label" htmlFor="name">
           <div>Name</div>
-
           <input
+            className="registration-input"
             type="name"
             name="name"
             value={name}
@@ -86,25 +92,12 @@ function RegisterForm() {
         </label>
       </div>
 
-      {/* Phone input */}
-      <div>
-        <label htmlFor="phone">
-          <div>Phone</div>
-          <input
-            type="phone"
-            name="phone"
-            value={phone}
-            required
-            onChange={(event) => setPhone(event.target.value)}
-          />
-        </label>
-      </div>
-
       {/* Pronouns input */}
       <div>
-        <label htmlFor="pronouns">
+        <label className="input-label" htmlFor="pronouns">
           <div>Pronouns</div>
           <input
+            className="registration-input"
             type="pronouns"
             name="pronouns"
             value={pronouns}
@@ -114,8 +107,24 @@ function RegisterForm() {
         </label>
       </div>
 
+      {/* Tags */}
       <div>
-        <input className="btn" type="submit" name="submit" value="Register" />
+        <label htmlFor="tags">
+          <div className="user-tag">Select Tags</div>
+        </label>
+        <select className="user-tag-box" id="tag" name="tag">
+          <option value={tags}>LGBQT</option>
+          <option value={tags}>SeniorFriendly</option>
+        </select>
+      </div>
+
+      <div>
+        <input
+          className="register-btn"
+          type="submit"
+          name="submit"
+          value="Register"
+        />
       </div>
     </form>
   );
