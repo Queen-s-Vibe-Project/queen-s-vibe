@@ -1,5 +1,5 @@
 import Chip from "@mui/material/Chip";
-import Stack from '@mui/material/Stack';
+import Stack from "@mui/material/Stack";
 
 function InstructorTags() {
   return (
