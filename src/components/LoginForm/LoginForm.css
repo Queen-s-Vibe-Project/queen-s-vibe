@@ -1,0 +1,49 @@
+.login-form-header {
+  text-align: center;
+  margin-top: 10%;
+}
+
+.login-header {
+  margin-bottom: 5px;
+}
+
+.login-text {
+  margin-top: 0.5rem;
+  margin-bottom: 3rem;
+}
+
+.login-input,
+.test {
+  width: 20rem;
+  margin: 0.5rem 2rem;
+  height: 1.75rem;
+}
+
+.login-label,
+.login-btn {
+  margin-left: 2rem;
+  margin-bottom: 2rem;
+}
+
+.login-btn,
+.register-btn {
+  margin: 2rem;
+  width: 20rem;
+  height: 2.16rem;
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: white;
+}
+
+.login-btn:hover {
+  background-color: rgb(205, 201, 201);
+}
+
+.register-header {
+  text-align: center;
+}
+
+.register-text {
+  margin: 0 3rem;
+  text-align: center;
+}
