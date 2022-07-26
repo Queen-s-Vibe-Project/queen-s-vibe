@@ -3,10 +3,12 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import EditIcon from '@mui/icons-material/Edit';
 
 function InstructorProfile() {
   return (
     <>
+    <div className="editIcon"> <EditIcon /> </div>
       <div className="profileHeader">
         <div className="pic">
           <Avatar
@@ -15,6 +17,7 @@ function InstructorProfile() {
           />
          
         </div>
+
         <div className="favoriteHeart">
             <FavoriteIcon />
           </div>
