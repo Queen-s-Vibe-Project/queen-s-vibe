@@ -1,0 +1,36 @@
+.registration-header,
+.registration-text {
+  text-align: center;
+}
+
+.registration-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.registration-input {
+  width: 20rem;
+  height: 1.75rem;
+  margin-top: 0.5rem;
+}
+
+.user-type {
+  padding-bottom: 5px;
+}
+
+.user-type-box,
+.user-tag-box {
+  width: 20rem;
+  height: 2.25rem;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.user-tag {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}

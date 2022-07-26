@@ -36,7 +36,7 @@ const SearchBar = () => {
         multiple
         id="tags-standard"
         options={tags}
-        getOptionLabel={(option) => option.tag_name}
+        getOptionLabel={(option) => option.tagName}
         onChange={(event, value) => setSearchTags(value)}
         renderInput={(params) => (
           <TextField

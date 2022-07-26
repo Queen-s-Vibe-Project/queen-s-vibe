@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import "./LoginForm.css";
+import "../LoginPage/LoginPage.css";
 
 function LoginForm() {
   const [username, setUsername] = useState("");
@@ -26,7 +26,7 @@ function LoginForm() {
   }; // end login
 
   return (
-    <>
+    <div className="login-container">
       <div className="login-form-header">
         <h2 className="login-header">Welcome Back</h2>
         <h5 className="login-text">Stay active. Stay healthy. Sign up!</h5>
@@ -39,32 +39,32 @@ function LoginForm() {
         )}
 
         <div>
-          <label className="login-label" htmlFor="username">
-            Email
+          <label htmlFor="username">
+            <div className="login-label">Email</div>
+            <input
+              className="login-input"
+              type="text"
+              name="username"
+              required
+              value={username}
+              onChange={(event) => setUsername(event.target.value)}
+            />{" "}
           </label>
         </div>
-        <input
-          className="login-input"
-          type="text"
-          name="username"
-          required
-          value={username}
-          onChange={(event) => setUsername(event.target.value)}
-        />
 
         <div>
-          <label className="login-label" htmlFor="password">
-            Password
+          <label htmlFor="password">
+            <div className="login-label">Password</div>
+            <input
+              className="login-input"
+              type="password"
+              name="password"
+              required
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+            />{" "}
           </label>
         </div>
-        <input
-          className="login-input"
-          type="password"
-          name="password"
-          required
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
-        />
 
         <div>
           <input
@@ -76,11 +76,11 @@ function LoginForm() {
         </div>
       </form>
 
-      <h4 className="register-header">Not registered yet?</h4>
+      <h4 className="not-registered">Not registered yet?</h4>
       <p className="register-text">
         Sign up to get access to hundreds of qualified instructors.
       </p>
-    </>
+    </div>
   );
 }
 
