@@ -1,0 +1,59 @@
+.profile-container {
+  /* border: 1px solid black; */
+  display: flex;
+  align-items: center;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  margin-bottom: 2rem;
+}
+
+.profile-img {
+  width: 50%;
+  border-radius: 50%;
+  margin-bottom: 0.25rem;
+}
+
+.left-profile {
+  width: 50%;
+  height: auto;
+  justify-content: center;
+  align-items: center;
+}
+
+.view-more-btn {
+  cursor: pointer;
+  background-color: rgb(226, 216, 241);
+  border: 1px solid rgb(206, 183, 242);
+  border-radius: 5px;
+  color: rgb(86, 81, 81);
+  font-size: 0.75rem;
+}
+
+.view-more-btn:hover {
+  background-color: rgb(208, 185, 242);
+}
+
+.right-profile {
+  border: 1px solid rgb(174, 166, 166);
+  border-radius: 10px;
+  width: 60%;
+  padding-left: 10px;
+}
+
+.right-name,
+.right-tag {
+  font-size: 0.75rem;
+}
+
+.pill-tags {
+  display: flex;
+  gap: 5px;
+}
+
+.profile-icons {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 1rem;
+  padding-bottom: 1rem;
+}
