@@ -20,10 +20,9 @@ import LandingPage from "../LandingPage/LandingPage";
 import LoginPage from "../LoginPage/LoginPage";
 import RegisterPage from "../RegisterPage/RegisterPage";
 // import Map from '../Map/Map';
-import SearchBar from '../SearchBar/SearchBar';
-import PhotoUpload from '../PhotoUpload/PhotoUpload';
-import InstructorDetail from '../InstructorDetail/InstructorDetail';
-
+import SearchBar from "../SearchBar/SearchBar";
+import PhotoUpload from "../PhotoUpload/PhotoUpload";
+import InstructorDetail from "../InstructorDetail/InstructorDetail";
 
 import "./App.css";
 
@@ -39,9 +38,8 @@ function App() {
   return (
     <Router>
       <div>
-
-        <SearchBar />
-        {/* <PhotoUpload /> */} 
+        {/* <SearchBar /> */}
+        {/* <PhotoUpload /> */}
 
         <Nav />
         <Switch>
@@ -110,11 +108,8 @@ function App() {
             )}
           </Route>
 
-          <Route 
-          exact
-          path="/instructorDetail">
+          <Route exact path="/instructorDetail">
             <InstructorDetail />
-
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}

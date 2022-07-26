@@ -1,6 +1,12 @@
 import React from "react";
 import Me from "./me.JPG";
 import "./InstructorCard.css";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import Chip from "@mui/material/Chip";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";
@@ -8,26 +14,38 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 function InstructorCard() {
   return (
     <>
-      <div className="profile-container">
-        {/* Left side of profile  */}
-        <div className="left-profile">
-          <img className="profile-img" src={Me} alt="Me" />
-          <div className="view-more">
-            <button className="view-more-btn">View More</button>
+      <div className="featured-container">
+        <div className="left-side">
+          <div>
+            <img className="featured-img" src={Me} alt="Savon img" />
+          </div>
+          <div>
+            <button className="featured-btn">View More</button>
           </div>
         </div>
-        {/* Right side of profile */}
-        <div className="right-profile">
-          <p className="right-name">Alexander Ratanas</p>
-          <div className="pill-tags">
-            <p className="right-tag">Diverse/POC</p>
-            <p className="right-tag">Senior</p>
-          </div>
-          <div className="profile-icons">
-            <FacebookIcon />
-            <InstagramIcon />
-            <TwitterIcon />
-          </div>
+        {/* Right side */}
+        <div>
+          <Card className="right-card">
+            <CardContent className="rt-card">
+              <Typography variant="p" component="div">
+                Alexander Ratanas
+              </Typography>
+
+              <Stack direction="row" spacing={0.5}>
+                <Chip
+                  className="chip-pill"
+                  label="Diverse"
+                  variant="outlined"
+                />
+                <Chip className="chip-pill" label="LGBQT" variant="outlined" />
+              </Stack>
+              <div className="icon-container">
+                <FacebookIcon className="featured-icon" />
+                <InstagramIcon className="featured-icon" />
+                <TwitterIcon className="featured-icon" />
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </>
