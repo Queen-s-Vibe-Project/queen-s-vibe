@@ -9,7 +9,7 @@ function InstructorProfile() {
       <div className="profileHeader">
         <div className="pic">
           <Avatar
-            // sx={{ width: 100, height: 100 }}
+            // sx={{ width: 100, height: 100 }} to adjust the height 
             alt="Profile Photo"
           />
         </div>

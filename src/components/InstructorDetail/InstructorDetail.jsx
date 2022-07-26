@@ -4,8 +4,6 @@ import InstructorProfile from "./InstructorProfile";
 import InstructorClasses from "./InstructorClasses";
 import InstructorTags from "./InstructorTags";
 
-
-
 function InstructorDetail() {
   return (
     <>
@@ -15,8 +13,8 @@ function InstructorDetail() {
         <h3> Classes </h3>
         <InstructorClasses />
       </div>
-        <h3> Tags </h3>
-        <InstructorTags />
+      <h3> Tags </h3>
+      <InstructorTags />
       <div>
         <h3> About </h3>
       </div>
