@@ -20,6 +20,7 @@ router.get("/tags", (req, res) => {
 
 //search results based of tags -Alex
 router.post("/", (req, res) => {
+  const responseObject = {};
   const tags = req.body.searchTags;
 
   const sqlQueryInsert = (tags) => {
@@ -40,13 +41,13 @@ router.post("/", (req, res) => {
   };
 
   const sqlQuery = `
-    SELECT "user".id, "user".username, JSON_AGG("tags".tag_name) as tags FROM "user"
-    JOIN "user_tags" ON "user_tags".user_id = "user".id
-    JOIN "tags" ON "user_tags".tags_id = "tags".id
-    WHERE "tags".id IN (${queryValues})
-    GROUP BY "user".id
-    HAVING count(*) >=1
-    ORDER BY count(tags) DESC;
+    SELECT "user".id, "user".username, JSON_AGG("tags"."tagName") as tags, "user".avatar, "user"."adminLevel", "user".facebook, "user".instagram, "user".twitter, "user".website FROM "user"
+	    JOIN "userTags" on "userTags"."userId" = "user".id
+	    JOIN "tags" on "userTags"."tagId" = "tags".id
+	    WHERE "tags".id IN (${queryValues})
+	    GROUP BY "user".id
+	    HAVING count(*) >= 1
+	    ORDER BY count(tags) DESC;
     `;
   const sqlParams = sqlParamsInsert(tags);
   console.log(sqlParams);
@@ -54,7 +55,29 @@ router.post("/", (req, res) => {
     .query(sqlQuery, sqlParams)
     .then((dbRes) => {
       res.send(dbRes.rows);
+      //responseObject.instructorRecommendations = dbRes.rows
+      //return dbRes.rows
     })
+    // .then((recommended) => {
+    //   const sqlQueryInsert = (response) => {
+    //     let queryInsert = [];
+    //     for (let i = 0; i < response.row.length; i++) {
+    //       queryInsert.push(response.row[i].id);
+    //     }
+    //     return queryInsert;
+    //   };
+    //   let queryValues = sqlQueryInsert(recommended);
+    //   const sqlQuery = `
+    //   SELECT "availableClass".location, "user".id, "activities".activity FROM "user"
+    //   JOIN  "availableClass" ON "availableClass"."instructorId" = "user".id
+    //   JOIN  "activities" ON "activities".id = "availableClass"."activityId"
+    //     WHERE "user".id IN (${queryValues});
+    //   `;
+    //   pool.query(sqlQuery).then((dbRes)=>{
+    //     responseObject.mappedClasses = dbRes.rows
+    //     res.send(responseObject)
+    //   })
+    // })
     .catch((err) => {
       console.log("error in GET/search", err);
       res.sendStatus(500);
