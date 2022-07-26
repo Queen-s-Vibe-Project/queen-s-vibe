@@ -23,16 +23,35 @@ router.post('/register', (req, res, next) => {
 
   console.log(req.body);
 
-  const queryText = `INSERT INTO "user" (username, password, name, pronouns)
-    VALUES ($1, $2, $3, $4) RETURNING id`;
+  const queryText = `INSERT INTO "user" (username, password, name, pronouns, "adminLevel")
+    VALUES ($1, $2, $3, $4, $5) RETURNING id`;
   pool
-    .query(queryText, [username, password, req.body.name, req.body.pronouns ])
-    .then((debRes) => res.sendStatus(201))
+    .query(queryText, [username, password, req.body.name, req.body.pronouns, req.body.adminLevel ])
+    .then((debRes) => {
+      
+      console.log('id', debRes.rows[0].id);
+      
+      //res.sendStatus(201)
+      return debRes.rows[0].id
+    }).then((id)=>{
+
+      const insertQuery = `
+      INSERT INTO "userTags" ("userId","tagId")
+      VALUES (${id},$1);
+      `
+
+      pool.query(insertQuery, [req.body.tags])
+        .then(()=>{
+          res.sendStatus(201)
+        })
+    })
     .catch((err) => {
       console.log('User registration failed: ', err);
       res.sendStatus(500);
     });
 
+  
+ 
 });
 
 // Handles login form authenticate/login POST
