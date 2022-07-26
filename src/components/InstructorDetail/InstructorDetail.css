@@ -21,7 +21,7 @@
 
 .container{
     padding: 35px;
-    margin-top: 50px;  
+    margin-top: 20px;
     text-align: center;
 }
 
@@ -54,4 +54,8 @@
 }
 .editIcon{
     margin-left: 327px;
+}
+
+.deleteIcon{
+    margin-left: 93px;
 }

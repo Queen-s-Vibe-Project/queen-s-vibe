@@ -1,8 +1,11 @@
+import ClearIcon from "@mui/icons-material/Clear";
+
 function instructorClasses() {
   return (
     <>
       <div className="classOrder">
         <div className="card">
+        <div className="deleteIcon"> <ClearIcon /> </div>
           <div className="container">
             <div> HIT </div>
             <div> Monday </div>
@@ -10,6 +13,7 @@ function instructorClasses() {
           </div>
         </div>
         <div className="card">
+        <div className="deleteIcon"> <ClearIcon /> </div>
           <div className="container">
             <div> Yoga </div>
             <div> Thursday </div>
@@ -17,6 +21,7 @@ function instructorClasses() {
           </div>
         </div>
         <div className="card">
+        <div className="deleteIcon"> <ClearIcon /> </div>
           <div className="container">
             <div> Boxing </div>
             <div> Friday </div>
