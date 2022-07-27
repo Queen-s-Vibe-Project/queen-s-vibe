@@ -22,6 +22,7 @@ import RegisterPage from "../RegisterPage/RegisterPage";
 // import Map from '../Map/Map';
 import SearchBar from '../SearchBar/SearchBar';
 // import PhotoUpload from '../PhotoUpload/PhotoUpload';
+import AddClass from "../AddClass/AddClass";
 
 import "./App.css";
 
@@ -37,7 +38,7 @@ function App() {
   return (
     <Router>
       <div>
-
+        <AddClass />
         <SearchBar />
         {/* <PhotoUpload /> */} 
 
