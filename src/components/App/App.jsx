@@ -9,7 +9,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 // Components
 import Nav from "../Nav/Nav";
-import Footer from "../Footer/Footer";
+//import Footer from "../Footer/Footer";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import UserPage from "../UserPage/UserPage";
 import LandingPage from "../LandingPage/LandingPage";
@@ -101,10 +101,10 @@ function App() {
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>
-            <h1>404</h1>
+            <h1>4041</h1>
           </Route>
         </Switch>
-        <Footer />
+        
       </div>
     </Router>
   );
