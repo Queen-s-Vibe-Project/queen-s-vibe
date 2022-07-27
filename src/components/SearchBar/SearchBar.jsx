@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useDispatch, useSelector  } from 'react-redux';
 import Chip from '@mui/material/Chip';
 import Autocomplete from '@mui/material/Autocomplete';
@@ -13,9 +13,18 @@ const SearchBar = () => {
             type: "FETCH_TAGS"
         })
     }, [])
+    const limit = 6;
     const tags = useSelector((store) => store.search.tags)
     const dispatch = useDispatch()
     const [searchTags, setSearchTags] = useState([])
+    const [limitReached, setLimitReached] = useState(false);
+    const onSelect = useCallback((event, value) => {
+      setSearchTags(value);
+      setLimitReached(value.length >= limit);
+  }, [limit]);
+
+  const checkDisable = useCallback(option => limitReached && !searchTags.includes(option), [limitReached, searchTags]);
+
     const handleSubmit = (evt) => {
         evt.preventDefault()
         dispatch({
@@ -26,8 +35,6 @@ const SearchBar = () => {
         })
     }
 
-
-
     return (
         <div>
     <h1>Search Bar</h1>
@@ -36,21 +43,26 @@ const SearchBar = () => {
         multiple
         id="tags-standard"
         options={tags}
+        getOptionDisabled={checkDisable}
         getOptionLabel={(option) => option.tagName}
-        onChange={(event, value) => setSearchTags(value)}
+        onChange={onSelect}
         renderInput={(params) => (
           <TextField
             {...params}
             variant="standard"
             label="Search"
-            placeholder="Search By Tags"
+            placeholder={limitReached ? "Tag Limit Reached" : "Search By Tags"}
+            helperText= {limitReached && "Tag Limit Reached"}
           />
         )}
       />
-      <Button type="submit" variant="contained">Contained</Button>
+      <Button type="submit" variant="contained">Search</Button>
       </form>
-      </div>
-    )
+    </div>
+
+)
+
 }
 
-export default SearchBar
+
+export default SearchBar;

@@ -1,16 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "../App/App.css";
+import SearchBar from '../SearchBar/SearchBar';
 
 function RegisterForm() {
-  const [userTyper, setUserType] = useState("");
+  const [userType, setUserType] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [pronouns, setPronouns] = useState("");
   const errors = useSelector((store) => store.errors);
+  const listOfTags = useSelector((store)=> store.search.tags);
   const [tags, setTags] = useState("");
   const dispatch = useDispatch();
+
+    if(listOfTags){
+      console.log(listOfTags);
+    }
+  useEffect(()=>{
+
+    dispatch({
+      type: 'FETCH_TAGS'
+    })
+
+  },[])
 
   const registerUser = (event) => {
     event.preventDefault();
@@ -23,7 +36,7 @@ function RegisterForm() {
         name: name,
         pronouns: pronouns,
         tags: tags,
-
+        adminLevel: userType
       },
     });
   }; // end registerUser
@@ -41,7 +54,15 @@ function RegisterForm() {
         <label htmlFor="type">
           <div className="user-type">User Type</div>
         </label>
-        <select className="user-type-box" id="type" name="type">
+        <select
+          onChange={(evt)=>{
+            setUserType(evt.target.value)
+          }} 
+          className="user-type-box" 
+          id="type" 
+          name="type"
+          >
+          <option value='' >--Gym Goer or Instructor--</option>
           <option value="gym-goer">Gym Goer</option>
           <option value="instructor">Instructor</option>
         </select>
@@ -112,9 +133,15 @@ function RegisterForm() {
         <label htmlFor="tags">
           <div className="user-tag">Select Tags</div>
         </label>
-        <select className="user-tag-box" id="tag" name="tag">
-          <option value={tags}>LGBQT</option>
-          <option value={tags}>SeniorFriendly</option>
+        <select
+          onChange={(evt) => setTags(evt.target.value)} 
+          className="user-tag-box" 
+          id="tag" 
+          name="tag" 
+          >
+          { listOfTags && listOfTags.map((tag)=>(
+            <option value={tag.id}>{tag.tagName}</option>
+          ))}
         </select>
       </div>
 

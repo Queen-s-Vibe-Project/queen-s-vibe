@@ -7,22 +7,27 @@ import {
 } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
-
+// Components
 import Nav from "../Nav/Nav";
-import Footer from "../Footer/Footer";
-
+//import Footer from "../Footer/Footer";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
-
-import AboutPage from "../AboutPage/AboutPage";
 import UserPage from "../UserPage/UserPage";
-import InfoPage from "../InfoPage/InfoPage";
 import LandingPage from "../LandingPage/LandingPage";
 import LoginPage from "../LoginPage/LoginPage";
 import RegisterPage from "../RegisterPage/RegisterPage";
+
+
+import RecommendInstructors from "../RecommendInstructors/RecommendInstructors";
 // import Map from '../Map/Map';
 import SearchBar from '../SearchBar/SearchBar';
-// import PhotoUpload from '../PhotoUpload/PhotoUpload';
+
+
 import AddClass from "../AddClass/AddClass";
+
+import PhotoUpload from '../PhotoUpload/PhotoUpload';
+import InstructorDetail from '../InstructorDetail/InstructorDetail';
+
+
 
 import "./App.css";
 
@@ -38,22 +43,17 @@ function App() {
   return (
     <Router>
       <div>
-        <AddClass />
-        <SearchBar />
-        {/* <PhotoUpload /> */} 
+
 
         <Nav />
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
           <Redirect exact from="/" to="/home" />
 
-          {/* Visiting localhost:3000/about will show the about page. */}
-          <Route
-            // shows AboutPage at all times (logged in or not)
-            exact
-            path="/about"
-          >
-            <AboutPage />
+          {/* Visiting localhost:3000/about will show the Landing page. */}
+
+          <Route exact path="/home">
+            <LandingPage />
           </Route>
 
           {/* For protected routes, the view could show one of several things on the same route.
@@ -66,14 +66,6 @@ function App() {
             path="/user"
           >
             <UserPage />
-          </ProtectedRoute>
-
-          <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
-            exact
-            path="/info"
-          >
-            <InfoPage />
           </ProtectedRoute>
 
           <Route exact path="/login">
@@ -102,19 +94,23 @@ function App() {
             {user.id ? (
               // If the user is already logged in,
               // redirect them to the /user page
-              <Redirect to="/user" />
+              <Redirect to="/home" />
             ) : (
               // Otherwise, show the Landing page
               <LandingPage />
             )}
           </Route>
 
+          <Route exact path="/instructorDetail">
+            <InstructorDetail />
+          </Route>
+
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>
-            <h1>404</h1>
+            <h1>4041</h1>
           </Route>
         </Switch>
-        <Footer />
+        
       </div>
     </Router>
   );

@@ -1,0 +1,25 @@
+.upcomingClasses-section{
+    overflow: scroll;
+    height: 16.5rem;
+}
+
+.class-card{
+    border: 1px solid black;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1rem;
+    
+}
+
+.class-card-text{
+    line-height: .5;
+}
+
+.image{
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+    margin-right: 2rem;
+    width: 7.5rem;
+    height: 7.5rem;
+}
