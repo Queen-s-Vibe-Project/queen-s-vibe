@@ -59,7 +59,10 @@ const SearchBar = () => {
       <Button type="submit" variant="contained">Search</Button>
       </form>
     </div>
+
 )
+
 }
+
 
 export default SearchBar;
