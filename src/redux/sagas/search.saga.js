@@ -4,6 +4,7 @@ import axios from "axios";
 function* fetchSearchResults(action) {
   console.log("fetchSearchResults", action.payload);
   const response = yield axios.post("/search", action.payload);
+  console.log(response.data);
   // const mapResponse = yield axios.post("/search/map", response.data);
   // console.log(mapResponse);
   yield put({ type: "SET_SEARCH_RESULTS", payload: response.data });
