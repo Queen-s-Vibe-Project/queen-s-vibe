@@ -101,7 +101,7 @@ function App() {
             )}
           </Route>
 
-          <Route exact path="/instructorDetail">
+          <Route exact path="/instructorDetail/:id">
             <InstructorDetail />
           </Route>
 

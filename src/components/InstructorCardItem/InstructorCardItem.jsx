@@ -1,6 +1,7 @@
 import React from "react";
 import "./InstructorCardItem.css";
 import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -17,6 +18,7 @@ import Avatar from "@mui/material/Avatar";
 
 function InstructorCardItem({ item }) {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const goToInstructorDetail = () => {
     console.log(item.id)
@@ -24,7 +26,7 @@ function InstructorCardItem({ item }) {
     type: 'FETCH_INSTRUCTOR_DETAIL',
     payload: item.id
   })
-  
+  history.push(`/instructorDetail/${item.id}`)
   
 }
 
