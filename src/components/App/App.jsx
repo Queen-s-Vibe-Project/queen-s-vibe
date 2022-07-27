@@ -19,6 +19,7 @@ import InfoPage from "../InfoPage/InfoPage";
 import LandingPage from "../LandingPage/LandingPage";
 import LoginPage from "../LoginPage/LoginPage";
 import RegisterPage from "../RegisterPage/RegisterPage";
+import RecommendInstructors from "../RecommendInstructors/RecommendInstructors";
 // import Map from '../Map/Map';
 import SearchBar from '../SearchBar/SearchBar';
 import PhotoUpload from '../PhotoUpload/PhotoUpload';

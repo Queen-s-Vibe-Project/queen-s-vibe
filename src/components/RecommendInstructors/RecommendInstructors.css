@@ -1,0 +1,38 @@
+
+
+.RC-container {
+    border: 1px solid red;
+    display: flex;
+    overflow: scroll;
+    flex-direction: row;
+    gap: 10px;
+    
+}
+
+.card{
+    text-align: center;
+    border: 1px solid blue;
+    
+}
+
+.RC-card{
+    margin-right: 20px;
+}
+
+
+
+.RC-card-text{
+    font-size: 14px;
+    text-align: left;
+    line-height: 0.2;
+    margin-left: 1rem;
+
+}
+
+
+
+.avator{
+    
+    border-radius: 70%;
+}
+
