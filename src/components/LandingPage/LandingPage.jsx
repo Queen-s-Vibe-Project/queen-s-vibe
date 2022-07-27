@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import "./LandingPage.css";
 import SearchBar from "../SearchBar/SearchBar";
 
-import InstructorCard from "../InstructorCard/InstructorCard";
+import InstructorCardList from '../InstructoCardList/InstructorCardList'
 import RecommendInstructors from "../RecommendInstructors/RecommendInstructors";
 
 
