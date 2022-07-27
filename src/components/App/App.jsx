@@ -38,21 +38,15 @@ function App() {
   return (
     <Router>
       <div>
-        {/* <SearchBar /> */}
-        {/* <PhotoUpload /> */}
-
         <Nav />
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
           <Redirect exact from="/" to="/home" />
 
-          {/* Visiting localhost:3000/about will show the about page. */}
-          <Route
-            // shows AboutPage at all times (logged in or not)
-            exact
-            path="/about"
-          >
-            <AboutPage />
+          {/* Visiting localhost:3000/about will show the Landing page. */}
+
+          <Route exact path="/home">
+            <LandingPage />
           </Route>
 
           {/* For protected routes, the view could show one of several things on the same route.
@@ -70,7 +64,7 @@ function App() {
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
-            path="/info"
+            path="/instructor"
           >
             <InfoPage />
           </ProtectedRoute>
@@ -101,7 +95,7 @@ function App() {
             {user.id ? (
               // If the user is already logged in,
               // redirect them to the /user page
-              <Redirect to="/user" />
+              <Redirect to="/home" />
             ) : (
               // Otherwise, show the Landing page
               <LandingPage />

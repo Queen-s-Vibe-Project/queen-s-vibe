@@ -58,3 +58,8 @@
 .nav-logo {
   padding-right: 1.875rem;
 }
+
+.nav-link {
+  text-decoration: none;
+  color: black;
+}

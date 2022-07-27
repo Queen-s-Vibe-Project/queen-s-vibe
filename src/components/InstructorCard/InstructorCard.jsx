@@ -1,5 +1,7 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import Me from "./me.JPG";
+import Beyonce from "./beyonce.jpeg";
 import "./InstructorCard.css";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -12,6 +14,8 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";
 
 function InstructorCard() {
+  const user = useSelector((store) => store.user);
+
   return (
     <>
       <div className="featured-container">
@@ -31,7 +35,7 @@ function InstructorCard() {
                 Alexander Ratanas
               </Typography>
 
-              <Stack direction="row" spacing={0.5}>
+              <Stack className="chip-container" direction="row" spacing={0.5}>
                 <Chip
                   className="chip-pill"
                   label="Diverse"
