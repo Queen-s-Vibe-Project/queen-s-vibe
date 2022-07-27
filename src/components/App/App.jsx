@@ -21,7 +21,9 @@ import LoginPage from "../LoginPage/LoginPage";
 import RegisterPage from "../RegisterPage/RegisterPage";
 // import Map from '../Map/Map';
 import SearchBar from '../SearchBar/SearchBar';
-// import PhotoUpload from '../PhotoUpload/PhotoUpload';
+import PhotoUpload from '../PhotoUpload/PhotoUpload';
+import InstructorDetail from '../InstructorDetail/InstructorDetail';
+
 
 import "./App.css";
 
@@ -106,6 +108,13 @@ function App() {
               // Otherwise, show the Landing page
               <LandingPage />
             )}
+          </Route>
+
+          <Route 
+          exact
+          path="/instructorDetail">
+            <InstructorDetail />
+
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}
