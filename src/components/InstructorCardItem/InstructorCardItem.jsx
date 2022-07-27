@@ -1,5 +1,6 @@
 import React from "react";
 import "./InstructorCardItem.css";
+import { useSelector } from "react-redux";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -12,17 +13,26 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import Avatar from "@mui/material/Avatar";
 
 function InstructorCardItem({ item }) {
+  // Loop over 'item' prop to get individual tags
+  // for (let tag of item) {
+  //   console.log("tag is:", tag);
+  // }
+
   return (
     <>
       <div className="featured-container">
         {/* Left side */}
-        <Stack direction="row" spacing={1}>
-          <Avatar
-            alt={item.name}
-            src={item.avatar}
-            sx={{ width: 75, height: 75 }}
-          />
-        </Stack>
+        <div>
+          <Stack direction="row" spacing={1}>
+            <Avatar
+              alt={item.name}
+              src={item.avatar}
+              sx={{ width: 75, height: 75 }}
+            />
+          </Stack>
+          <button className="view-more-btn">View More</button>
+        </div>
+
         {/* Right side */}
         <div>
           <Card className="right-card">
@@ -34,10 +44,9 @@ function InstructorCardItem({ item }) {
               <Stack className="chip-container" direction="row" spacing={0.5}>
                 <Chip
                   className="chip-pill"
-                  label="Diverse"
+                  label={item.tags}
                   variant="outlined"
                 />
-                <Chip className="chip-pill" label="LGBQT" variant="outlined" />
               </Stack>
               <div className="icon-container">
                 <FacebookIcon className="featured-icon" />

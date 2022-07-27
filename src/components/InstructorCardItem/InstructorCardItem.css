@@ -7,12 +7,21 @@
 }
 
 /* Left side of featured instructors */
+.view-more-btn {
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  background-color: rgb(205, 205, 212);
+  border: 0.5px solid grey;
+  border-radius: 5px;
+  cursor: pointer;
+  color: rgb(58, 64, 86);
+}
+
+.view-more-btn:hover {
+  background-color: rgb(246, 239, 239);
+}
 
 /* Right side of featured instructors */
-/* .right-card {
-  padding: 16px;
-} */
-
 .rt-card {
   display: flex;
   flex-direction: column;
