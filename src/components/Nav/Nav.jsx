@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import LogOutButton from "../LogOutButton/LogOutButton";
 import "./Nav.css";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
@@ -12,60 +12,75 @@ import Logo from "./qv-logo.png";
 
 function Nav() {
   const user = useSelector((store) => store.user);
+  const dispatch = useDispatch();
 
   return (
-    <div className="nav">
-      <PopupState variant="popover" popupId="demo-popup-menu">
-        {(popupState) => (
-          <React.Fragment>
-            <MenuIcon className="menu-bar" {...bindTrigger(popupState)} />
+    <>
+      {/* If user is not logged in, show these links in NavBar */}
+      {!user.id && (
+        <div className="nav">
+          <PopupState variant="popover" popupId="demo-popup-menu">
+            {(popupState) => (
+              <React.Fragment>
+                <MenuIcon className="menu-bar" {...bindTrigger(popupState)} />
+                <Menu {...bindMenu(popupState)}>
+                  <Link className="nav-link" to="/home">
+                    <MenuItem onClick={popupState.close}>Home</MenuItem>
+                  </Link>
 
-            <Menu {...bindMenu(popupState)}>
-              <MenuItem onClick={popupState.close}>Home</MenuItem>
-              <MenuItem onClick={popupState.close}>My Profile</MenuItem>
-              <MenuItem onClick={popupState.close}>Log in</MenuItem>
-            </Menu>
-          </React.Fragment>
-        )}
-      </PopupState>
+                  <Link className="nav-link" to="/login">
+                    <MenuItem onClick={popupState.close}>
+                      Login/Register
+                    </MenuItem>
+                  </Link>
+                </Menu>
+              </React.Fragment>
+            )}
+          </PopupState>
+          {/* NavBar company name */}
+          <h3>Groupy</h3>
+          {/* NavBar company logo, will go back to home page if clicked */}
+          <Link to="/home">
+            <img className="nav-logo" src={Logo} alt="Logo" />
+          </Link>
+        </div>
+      )}
 
-      <h3>QV-KC</h3>
-      <img className="nav-logo" src={Logo} alt="Logo" />
-    </div>
+      {/* If user is logged in, show these links in NavBar */}
+      {user.id && (
+        <div className="nav">
+          <PopupState variant="popover" popupId="demo-popup-menu">
+            {(popupState) => (
+              <React.Fragment>
+                <MenuIcon className="menu-bar" {...bindTrigger(popupState)} />
+                <Menu {...bindMenu(popupState)}>
+                  <Link className="nav-link" to="/home">
+                    <MenuItem onClick={popupState.close}>Home</MenuItem>
+                  </Link>
+
+                  <Link className="nav-link" to="/user">
+                    <MenuItem onClick={popupState.close}>My Profile</MenuItem>
+                  </Link>
+                  {/* Clicking Log Out will log user out and show Log In view */}
+                  <Link className="nav-link" to="/user">
+                    <MenuItem onClick={() => dispatch({ type: "LOGOUT" })}>
+                      Log out
+                    </MenuItem>
+                  </Link>
+                </Menu>
+              </React.Fragment>
+            )}
+          </PopupState>
+          {/* NavBar company name */}
+          <h3>Groupy</h3>
+          {/* NavBar company logo, will go back to home page if clicked */}
+          <Link to="/home">
+            <img className="nav-logo" src={Logo} alt="Logo" />
+          </Link>
+        </div>
+      )}
+    </>
   );
 }
 
 export default Nav;
-{
-  /* <Link to="/home">
-        <h2 className="nav-title">Prime Solo Project</h2>
-      </Link>
-      <div>
-        If no user is logged in, show these links
-        {!user.id && (
-          If there's no user, show login/registration links
-          <Link className="navLink" to="/login">
-            Login / Register
-          </Link>
-        )}
-
-        If a user is logged in, show these links
-        {user.id && (
-          <>
-            <Link className="navLink" to="/user">
-              Home
-            </Link>
-
-            <Link className="navLink" to="/info">
-              Info Page
-            </Link>
-
-            <LogOutButton className="navLink" />
-          </>
-        )}
-
-        <Link className="navLink" to="/about">
-          About
-        </Link>
-      </div> */
-}

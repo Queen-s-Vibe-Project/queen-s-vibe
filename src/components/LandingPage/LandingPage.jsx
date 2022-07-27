@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import "./LandingPage.css";
 import SearchBar from "../SearchBar/SearchBar";
+
 import InstructorCard from "../InstructorCard/InstructorCard";
 import RecommendInstructors from "../RecommendInstructors/RecommendInstructors";
+
 
 function LandingPage() {
   return (
@@ -14,9 +16,7 @@ function LandingPage() {
 
       <RecommendInstructors/>
       <h3 className="featured-instructors">Featured Instructors</h3>
-      <InstructorCard />
-      <InstructorCard />
-      <InstructorCard />
+      <InstructorCardList />
     </>
   );
 }
