@@ -67,3 +67,10 @@
   flex-direction: row;
   flex-basis: auto;
 }
+
+/* about section */
+.about-section {
+  text-align: center;
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
