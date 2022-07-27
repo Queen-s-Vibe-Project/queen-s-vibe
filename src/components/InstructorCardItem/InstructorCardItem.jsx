@@ -12,7 +12,14 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import Avatar from "@mui/material/Avatar";
 
+
 function InstructorCardItem({ item }) {
+
+  const goToInstructorDetail = () => {
+  console.log('inside Instructor detail')
+  
+}
+
   return (
     <>
       <div className="featured-container">
@@ -25,7 +32,9 @@ function InstructorCardItem({ item }) {
               sx={{ width: 75, height: 75 }}
             />
           </Stack>
-          <button className="view-more-btn">View More</button>
+          <button 
+          onClick={goToInstructorDetail}
+          className="view-more-btn">View More</button>
         </div>
 
         {/* Right side */}
