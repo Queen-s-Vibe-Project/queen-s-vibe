@@ -26,7 +26,7 @@ router.get('/', (req, res) => {
         })
 });
 
-router.get('/id',(req, res) => {
+router.get('/:id',(req, res) => {
     const queryText = `
     SELECT "user".name, JSON_AGG("tags"."tagName") as tags, "user".avatar, "user"."adminLevel", "user".about, "user".pronouns, "user".facebook, "user".instagram, "user".twitter, "user".website, ARRAY_AGG("availableClass") as classes FROM "user"
 	JOIN "userTags" on "userTags"."userId" = "user".id
