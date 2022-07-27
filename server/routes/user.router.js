@@ -26,14 +26,14 @@ router.post('/register', (req, res, next) => {
   const queryText = `INSERT INTO "user" (username, password, name, pronouns, "adminLevel")
     VALUES ($1, $2, $3, $4, $5) RETURNING id`;
   pool
-    .query(queryText, [username, password, req.body.name, req.body.pronouns, req.body.adminLevel ])
+    .query(queryText, [username, password, req.body.name, req.body.pronouns, req.body.adminLevel])
     .then((debRes) => {
-      
+
       console.log('id', debRes.rows[0].id);
-      
+
       //res.sendStatus(201)
       return debRes.rows[0].id
-    }).then((id)=>{
+    }).then((id) => {
 
       const insertQuery = `
       INSERT INTO "userTags" ("userId","tagId")
@@ -41,7 +41,7 @@ router.post('/register', (req, res, next) => {
       `
 
       pool.query(insertQuery, [req.body.tags])
-        .then(()=>{
+        .then(() => {
           res.sendStatus(201)
         })
     })
@@ -50,8 +50,8 @@ router.post('/register', (req, res, next) => {
       res.sendStatus(500);
     });
 
-  
- 
+
+
 });
 
 // Handles login form authenticate/login POST

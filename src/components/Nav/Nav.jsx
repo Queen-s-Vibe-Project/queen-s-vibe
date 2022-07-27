@@ -61,7 +61,7 @@ function Nav() {
                   <Link className="nav-link" to="/user">
                     <MenuItem onClick={popupState.close}>My Profile</MenuItem>
                   </Link>
-
+                  {/* Clicking Log Out will log user out and show Log In view */}
                   <Link className="nav-link" to="/user">
                     <MenuItem onClick={() => dispatch({ type: "LOGOUT" })}>
                       Log out

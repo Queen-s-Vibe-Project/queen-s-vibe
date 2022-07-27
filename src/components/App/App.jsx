@@ -7,21 +7,14 @@ import {
 } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
-
+// Components
 import Nav from "../Nav/Nav";
 import Footer from "../Footer/Footer";
-
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
-
-import AboutPage from "../AboutPage/AboutPage";
 import UserPage from "../UserPage/UserPage";
-import InfoPage from "../InfoPage/InfoPage";
 import LandingPage from "../LandingPage/LandingPage";
 import LoginPage from "../LoginPage/LoginPage";
 import RegisterPage from "../RegisterPage/RegisterPage";
-// import Map from '../Map/Map';
-import SearchBar from "../SearchBar/SearchBar";
-import PhotoUpload from "../PhotoUpload/PhotoUpload";
 import InstructorDetail from "../InstructorDetail/InstructorDetail";
 
 import "./App.css";
@@ -59,14 +52,6 @@ function App() {
             path="/user"
           >
             <UserPage />
-          </ProtectedRoute>
-
-          <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
-            exact
-            path="/instructor"
-          >
-            <InfoPage />
           </ProtectedRoute>
 
           <Route exact path="/login">

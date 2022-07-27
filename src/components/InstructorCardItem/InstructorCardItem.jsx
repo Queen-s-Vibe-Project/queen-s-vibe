@@ -1,8 +1,7 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import Me from "./me.JPG";
-import Beyonce from "./beyonce.jpeg";
-import "./InstructorCard.css";
+import Photo1 from "./photo3.jpg";
+import "./InstructorCardItem.css";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -13,15 +12,17 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";
 
-function InstructorCard() {
-  const user = useSelector((store) => store.user);
-
+function InstructorCardItem({ item }) {
   return (
     <>
       <div className="featured-container">
         <div className="left-side">
           <div>
-            <img className="featured-img" src={Me} alt="Savon img" />
+            <img
+              className="featured-img"
+              src={item.avatar}
+              alt="Instructor Photo"
+            />
           </div>
           <div>
             <button className="featured-btn">View More</button>
@@ -32,7 +33,7 @@ function InstructorCard() {
           <Card className="right-card">
             <CardContent className="rt-card">
               <Typography variant="p" component="div">
-                Alexander Ratanas
+                {item.name}
               </Typography>
 
               <Stack className="chip-container" direction="row" spacing={0.5}>
@@ -56,4 +57,4 @@ function InstructorCard() {
   );
 }
 
-export default InstructorCard;
+export default InstructorCardItem;
