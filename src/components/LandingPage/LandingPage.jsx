@@ -12,7 +12,7 @@ function LandingPage() {
       <h4 className="popular-tags">Search for instructors by tags</h4>
       <SearchBar />
 
-      <RecommendInstructors />
+      
       <h3 className="featured-instructors">Featured Instructors</h3>
       <InstructorCardList />
     </>
