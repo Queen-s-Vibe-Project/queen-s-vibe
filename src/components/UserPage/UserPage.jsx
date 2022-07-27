@@ -3,6 +3,7 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 import RecommendInstructors from '../RecommendInstructors/RecommendInstructors';
 import {useSelector} from 'react-redux';
 import SearchBar from '../SearchBar/SearchBar';
+import UpcomingClasses from '../UpcomingClasses/UpcomingClasses';
 
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
@@ -12,7 +13,7 @@ function UserPage() {
       <h2>Welcome, {user.username}!</h2>
         <SearchBar/>
         <RecommendInstructors/>
-      
+        <UpcomingClasses/>
       <p>Your ID is: {user.id}</p>
       <LogOutButton className="btn" />
     </div>
