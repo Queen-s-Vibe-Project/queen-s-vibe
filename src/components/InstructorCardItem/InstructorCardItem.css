@@ -57,7 +57,7 @@
 }
 
 .chip-pill {
-  width: 50% !important;
+  /* width: 50% !important; */
   height: 75% !important;
   font-size: 0.75rem !important;
 }

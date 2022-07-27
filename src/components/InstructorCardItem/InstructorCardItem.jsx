@@ -13,11 +13,6 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import Avatar from "@mui/material/Avatar";
 
 function InstructorCardItem({ item }) {
-  // Loop over 'item' prop to get individual tags
-  // for (let tag of item) {
-  //   console.log("tag is:", tag);
-  // }
-
   return (
     <>
       <div className="featured-container">
@@ -42,9 +37,10 @@ function InstructorCardItem({ item }) {
               </Typography>
 
               <Stack className="chip-container" direction="row" spacing={0.5}>
+                <Chip className="chip-pill" label="LGBQT" variant="outlined" />
                 <Chip
                   className="chip-pill"
-                  label={item.tags}
+                  label="SeniorFriendly"
                   variant="outlined"
                 />
               </Stack>
