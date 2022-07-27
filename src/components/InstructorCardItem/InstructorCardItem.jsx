@@ -1,6 +1,6 @@
 import React from "react";
 import "./InstructorCardItem.css";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -13,10 +13,17 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import Avatar from "@mui/material/Avatar";
 
 
+
+
 function InstructorCardItem({ item }) {
+  const dispatch = useDispatch();
 
   const goToInstructorDetail = () => {
-  console.log('inside Instructor detail')
+    console.log(item.id)
+  dispatch({
+    type: 'FETCH_INSTRUCTOR_DETAIL',
+    payload: item.id
+  })
   
 }
 

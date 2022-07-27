@@ -7,7 +7,7 @@ const router = express.Router();
 // get array of object for tag name
 router.get('/', (req, res) => {
     console.log('/user GET route');
-    const queryText = `SELECT "user".name, "user"."adminLevel", "user".avatar, array_agg(tags."tagName") AS tags
+    const queryText = `SELECT "user".id, "user".name, "user"."adminLevel", "user".avatar, array_agg(tags."tagName") AS tags
 	                    FROM "user"
 	                    JOIN "userTags"
 	                    ON "userTags"."userId" = "user".id

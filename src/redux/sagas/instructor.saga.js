@@ -17,9 +17,25 @@ function* fetchAllInstructors() {
     }
 }
 
+function* fetchInstructorDetail(action){
+    //Get InstructorDetail(name, classes, etc.)
+    try{
+        const res = yield axios.get(`/instructor/${action.payload}`)
+        console.log('Instructor Detail is', res.data)
+        yield put({
+            type:'SET_INSTRUCTOR_DETAIL',
+            payload: res.data
+        })
+    }
+    catch (error) {
+        console.error('Get instructor detail failed', error)
+    }
+}
+
 // Watcher saga
 function* instructorSaga() {
     yield takeEvery('FETCH_INSTRUCTORS', fetchAllInstructors);
+    yield takeEvery('FETCH_INSTRUCTOR_DETAIL', fetchInstructorDetail);
 }
 
 export default instructorSaga;
