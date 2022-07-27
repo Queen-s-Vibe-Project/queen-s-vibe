@@ -2,13 +2,13 @@ import axios from 'axios';
 import { put, takeEvery } from 'redux-saga/effects';
 
 function* fetchAllInstructors() {
-    // Get all cakes
+    // Get all instructors
     console.log('In fetchAllInstructors saga');
     try {
         const res = yield axios.get('/instructor')
         console.log('Get all instructors:', res.data);
         yield put({
-            type: 'SET_INSTRUCTOR',
+            type: 'SET_INSTRUCTORS',
             payload: res.data
         })
     }
@@ -16,7 +16,6 @@ function* fetchAllInstructors() {
         console.log('GET instructors request failed', error);
     }
 }
-
 
 // Watcher saga
 function* instructorSaga() {

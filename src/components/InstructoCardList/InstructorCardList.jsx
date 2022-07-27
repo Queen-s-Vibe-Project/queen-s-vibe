@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 function InstructorCardList() {
   const dispatch = useDispatch();
   // Need to bring in instructor from redux store
-  // const instructor = useSelector((store) => store.instructor);
+  const instructor = useSelector((store) => store.instructor);
 
   // useEffect to fetch instructors on page load
   // dispatch 'FETCH_INSTRUCTORS' to trigger saga
@@ -18,7 +18,7 @@ function InstructorCardList() {
 
   return (
     <>
-      {user.map((item) => {
+      {instructor.map((item) => {
         return <InstructorCardItem key={item.id} item={item} />;
       })}
     </>
