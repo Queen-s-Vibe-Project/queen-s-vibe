@@ -8,6 +8,7 @@ function InstructorDetail() {
   return (
     <>
       <h1> Instructor Detail </h1>
+      <button> Back </button>
       <InstructorProfile />
       <div>
         <h3> Classes </h3>

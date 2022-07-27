@@ -54,30 +54,30 @@ router.post("/", (req, res) => {
   pool
     .query(sqlQuery, sqlParams)
     .then((dbRes) => {
-      res.send(dbRes.rows);
-      //responseObject.instructorRecommendations = dbRes.rows
-      //return dbRes.rows
+      // res.send(dbRes.rows);
+      responseObject.instructorRecommendations = dbRes.rows;
+      return dbRes.rows;
     })
-    // .then((recommended) => {
-    //   const sqlQueryInsert = (response) => {
-    //     let queryInsert = [];
-    //     for (let i = 0; i < response.row.length; i++) {
-    //       queryInsert.push(response.row[i].id);
-    //     }
-    //     return queryInsert;
-    //   };
-    //   let queryValues = sqlQueryInsert(recommended);
-    //   const sqlQuery = `
-    //   SELECT "availableClass".location, "user".id, "activities".activity FROM "user"
-    //   JOIN  "availableClass" ON "availableClass"."instructorId" = "user".id
-    //   JOIN  "activities" ON "activities".id = "availableClass"."activityId"
-    //     WHERE "user".id IN (${queryValues});
-    //   `;
-    //   pool.query(sqlQuery).then((dbRes)=>{
-    //     responseObject.mappedClasses = dbRes.rows
-    //     res.send(responseObject)
-    //   })
-    // })
+    .then((recommended) => {
+      console.log(recommended);
+      const sqlQueryInsert = (response) => {
+        let queryInsert = [];
+        for (let i = 0; i < response.length; i++) {
+          queryInsert.push(response[i].id);
+        }
+        return queryInsert;
+      };
+      let queryValues = sqlQueryInsert(recommended);
+      const sqlQuery = `
+      SELECT "availableClass".location, "user".username, "user".id FROM "user"
+      JOIN  "availableClass" ON "availableClass"."instructorId" = "user".id
+        WHERE "user".id IN (${queryValues});
+      `;
+      pool.query(sqlQuery).then((dbRes) => {
+        responseObject.mappedClasses = dbRes.rows;
+        res.send(responseObject);
+      });
+    })
     .catch((err) => {
       console.log("error in GET/search", err);
       res.sendStatus(500);
