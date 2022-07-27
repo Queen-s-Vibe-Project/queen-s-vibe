@@ -75,7 +75,6 @@ router.post("/", (req, res) => {
       `;
       pool.query(sqlQuery).then((dbRes) => {
         responseObject.mappedClasses = dbRes.rows;
-        console.log(responseObject);
         res.send(responseObject);
       });
     })
