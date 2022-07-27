@@ -38,7 +38,7 @@ function Nav() {
             )}
           </PopupState>
           {/* NavBar company name */}
-          <h3>Groupy</h3>
+          <h3>Groupii</h3>
           {/* NavBar company logo, will go back to home page if clicked */}
           <Link to="/home">
             <img className="nav-logo" src={Logo} alt="Logo" />
@@ -72,7 +72,7 @@ function Nav() {
             )}
           </PopupState>
           {/* NavBar company name */}
-          <h3>Groupy</h3>
+          <h3>Groupii</h3>
           {/* NavBar company logo, will go back to home page if clicked */}
           <Link to="/home">
             <img className="nav-logo" src={Logo} alt="Logo" />
