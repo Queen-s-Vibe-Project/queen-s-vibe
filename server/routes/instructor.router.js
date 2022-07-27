@@ -5,7 +5,7 @@ const router = express.Router();
 // GET all users without authentication
 router.get('/', (req, res) => {
     console.log('/user GET route');
-    const queryText = `SELECT * FROM "user" ORDER BY name ASC ;`;
+    const queryText = `SELECT * FROM "user" ORDER BY name ASC LIMIT 5;`;
 
     pool.query(queryText)
         .then((result) => {

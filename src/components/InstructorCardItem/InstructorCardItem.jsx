@@ -1,6 +1,4 @@
 import React from "react";
-import Me from "./me.JPG";
-import Photo1 from "./photo3.jpg";
 import "./InstructorCardItem.css";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -11,23 +9,20 @@ import Typography from "@mui/material/Typography";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";
+import Avatar from "@mui/material/Avatar";
 
 function InstructorCardItem({ item }) {
   return (
     <>
       <div className="featured-container">
-        <div className="left-side">
-          <div>
-            <img
-              className="featured-img"
-              src={item.avatar}
-              alt="Instructor Photo"
-            />
-          </div>
-          <div>
-            <button className="featured-btn">View More</button>
-          </div>
-        </div>
+        {/* Left side */}
+        <Stack direction="row" spacing={1}>
+          <Avatar
+            alt={item.name}
+            src={item.avatar}
+            sx={{ width: 75, height: 75 }}
+          />
+        </Stack>
         {/* Right side */}
         <div>
           <Card className="right-card">

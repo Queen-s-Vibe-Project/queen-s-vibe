@@ -3,7 +3,6 @@ import { useHistory } from "react-router-dom";
 import "./LandingPage.css";
 import SearchBar from "../SearchBar/SearchBar";
 import InstructorCardList from "../InstructoCardList/InstructorCardList";
-import RecommendInstructors from "../RecommendInstructors/RecommendInstructors";
 
 function LandingPage() {
   return (
@@ -12,7 +11,6 @@ function LandingPage() {
       <h4 className="popular-tags">Search for instructors by tags</h4>
       <SearchBar />
 
-      <RecommendInstructors />
       <h3 className="featured-instructors">Featured Instructors</h3>
       <InstructorCardList />
     </>

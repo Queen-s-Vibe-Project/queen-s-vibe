@@ -1,21 +1,12 @@
 .featured-container {
   display: flex;
-  margin-bottom: 2rem;
-  margin-right: 2rem;
-  position: static;
+  margin: 2rem;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Left side of featured instructors */
-.left-side {
-  text-align: center;
-  margin: auto;
-}
-
-.featured-img {
-  width: 35%;
-  border-radius: 50%;
-  text-align: center;
-}
 
 /* Right side of featured instructors */
 /* .right-card {
