@@ -42,7 +42,7 @@ export default function AddClass() {
     },
     {
       key: "thursday",
-      label: "Th"
+      label: "T"
     },
     {
       key: "friday",
@@ -58,8 +58,8 @@ export default function AddClass() {
 
   const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({theme}) => ({
     '& .MuiToggleButtonGroup-grouped': {
-      margin: theme.spacing(1),
-      padding: theme.spacing(0, 1),
+      margin: theme.spacing(1.5),
+      padding: theme.spacing(0, 1.5),
       "&:not(:first-of-type)": {
         border: "2px solid",
         borderColor: "#692B7C",
@@ -76,7 +76,7 @@ export default function AddClass() {
   const StyledToggle = styled(ToggleButton)(({ theme }) => ({
     '& .MuiToggleButton': {
       color: "#692B7C",
-      "&$selected": {
+      ".Mui-selected": {
         color: "white",
         background: "#692B7C"
       },
@@ -84,18 +84,17 @@ export default function AddClass() {
         borderColor: "#BA9BC3",
         background: "#BA9BC3"
       },
-      "&:hover$selected": {
+      "&.Mui-selected:hover": {
         borderColor: "#BA9BC3",
-        background: "#BA9BC3"
-      },
-      minWidth: 32,
-      maxWidth: 32,
-      height: 40,
-      textTransform: "unset",
-      fontSize: "0.75rem"
+        backgroundColor: "#BA9BC3"
+      }
     },
     selected: {}
   }))
+  const handleSubmit = (evt) => {
+    evt.preventDefault()
+    console.log(days)
+  }
 
 
   return (
@@ -104,64 +103,37 @@ export default function AddClass() {
         Open form dialog
       </Button>
       <Dialog open={open} onClose={handleClose}>
+        <form onSubmit={handleSubmit}>
         <DialogTitle>Add a Class</DialogTitle>
         <DialogContent>
           <DialogContentText>
             
           </DialogContentText>
-    <ToggleButtonGroup
+    <StyledToggleButtonGroup
         size="small"
         arial-label="Days of the week"
         value={days}
         sx={{
-            
+            m:2
         }}
         onChange={(event, days) => setDays(days)}
       >
         {DAYS.map((day, index) => (
-          <ToggleButton key={day.key} value={day.label} aria-label={day.key}
+          <StyledToggle key={day.key} value={day.key} aria-label={day.key}
             sx={{
-                border: "2px solid",
-                borderColor: "#692B7C",
-                borderRadius: "50%"
+               
             }}
           >
             {day.label}
-          </ToggleButton>
+          </StyledToggle>
         ))}
-      </ToggleButtonGroup >
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Address"
-            type="address"
-            fullWidth
-            variant="standard"
-          />
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Email Address"
-            type="email"
-            fullWidth
-            variant="standard"
-          />
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Email Address"
-            type="email"
-            fullWidth
-            variant="standard"
-          />
+      </StyledToggleButtonGroup >
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Subscribe</Button>
+          <Button type="submit" >Subscribe</Button>
         </DialogActions>
+        </form>
       </Dialog>
     </div>
   );
