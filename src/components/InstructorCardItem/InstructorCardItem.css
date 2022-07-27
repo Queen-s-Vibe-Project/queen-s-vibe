@@ -1,27 +1,27 @@
 .featured-container {
   display: flex;
-  margin-bottom: 2rem;
-  margin-right: 2rem;
-  position: static;
+  margin: 2rem;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Left side of featured instructors */
-.left-side {
-  text-align: center;
-  margin: auto;
+.view-more-btn {
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  background-color: rgb(205, 205, 212);
+  border: 0.5px solid grey;
+  border-radius: 5px;
+  cursor: pointer;
+  color: rgb(58, 64, 86);
 }
 
-.featured-img {
-  width: 35%;
-  border-radius: 50%;
-  text-align: center;
+.view-more-btn:hover {
+  background-color: rgb(246, 239, 239);
 }
 
 /* Right side of featured instructors */
-/* .right-card {
-  padding: 16px;
-} */
-
 .rt-card {
   display: flex;
   flex-direction: column;
@@ -57,7 +57,7 @@
 }
 
 .chip-pill {
-  width: 50% !important;
+  /* width: 50% !important; */
   height: 75% !important;
   font-size: 0.75rem !important;
 }
@@ -66,4 +66,11 @@
   display: flex;
   flex-direction: row;
   flex-basis: auto;
+}
+
+/* about section */
+.about-section {
+  text-align: center;
+  margin-left: 2rem;
+  margin-right: 2rem;
 }

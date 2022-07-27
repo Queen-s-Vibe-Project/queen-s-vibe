@@ -1,7 +1,6 @@
 import React from "react";
-import Me from "./me.JPG";
-import Photo1 from "./photo3.jpg";
 import "./InstructorCardItem.css";
+import { useSelector } from "react-redux";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -11,23 +10,24 @@ import Typography from "@mui/material/Typography";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";
+import Avatar from "@mui/material/Avatar";
 
 function InstructorCardItem({ item }) {
   return (
     <>
       <div className="featured-container">
-        <div className="left-side">
-          <div>
-            <img
-              className="featured-img"
+        {/* Left side */}
+        <div>
+          <Stack direction="row" spacing={1}>
+            <Avatar
+              alt={item.name}
               src={item.avatar}
-              alt="Instructor Photo"
+              sx={{ width: 75, height: 75 }}
             />
-          </div>
-          <div>
-            <button className="featured-btn">View More</button>
-          </div>
+          </Stack>
+          <button className="view-more-btn">View More</button>
         </div>
+
         {/* Right side */}
         <div>
           <Card className="right-card">
@@ -37,12 +37,12 @@ function InstructorCardItem({ item }) {
               </Typography>
 
               <Stack className="chip-container" direction="row" spacing={0.5}>
+                <Chip className="chip-pill" label="LGBQT" variant="outlined" />
                 <Chip
                   className="chip-pill"
-                  label="Diverse"
+                  label="SeniorFriendly"
                   variant="outlined"
                 />
-                <Chip className="chip-pill" label="LGBQT" variant="outlined" />
               </Stack>
               <div className="icon-container">
                 <FacebookIcon className="featured-icon" />
