@@ -5,6 +5,7 @@ import InstructorClasses from "./InstructorClasses";
 import InstructorTags from "./InstructorTags";
 import InstructorAbout from "./InstructorAbout";
 import { useSelector } from "react-redux";
+import { Link, useHistory } from "react-router-dom";
 
 function InstructorDetail() {
 
@@ -15,6 +16,21 @@ function InstructorDetail() {
       <h1> Instructor Detail </h1>
       <button> Back </button>
       {instructor && <InstructorProfile key={instructor} instructor={instructor} />}
+
+function InstructorDetail() {
+  const history = useHistory();
+
+  const handleClick = () => {
+    history.push("/");
+  };
+
+  return (
+    <>
+      <h1> Instructor Detail </h1>
+
+      <button onClick={handleClick}> Back </button>
+
+      <InstructorProfile />
       <div>
         <h3> Classes </h3>
             {instructor && <InstructorClasses key={instructor} instructor={instructor} />}

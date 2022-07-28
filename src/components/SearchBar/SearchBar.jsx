@@ -5,8 +5,16 @@ import Chip from "@mui/material/Chip";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
+import { Link, useHistory } from "react-router-dom";
 
 const SearchBar = () => {
+  // useHistory to handle Search button
+  const history = useHistory();
+
+  const handleSearchBtn = () => {
+    history.push("/search/result");
+  };
+
   useEffect(() => {
     dispatch({
       type: "FETCH_TAGS",
@@ -42,7 +50,6 @@ const SearchBar = () => {
 
   return (
     <div>
-      <h1>Search Bar</h1>
       <form onSubmit={handleSubmit}>
         <Autocomplete
           multiple
@@ -63,17 +70,12 @@ const SearchBar = () => {
             />
           )}
         />
-        <Button type="submit" variant="contained">
+        <Button onClick={handleSearchBtn} type="submit" variant="contained">
           Search
         </Button>
       </form>
     </div>
-
   );
 };
-
-
-
-
 
 export default SearchBar;

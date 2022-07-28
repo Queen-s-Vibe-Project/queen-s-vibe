@@ -9,25 +9,19 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 // Components
 import Nav from "../Nav/Nav";
-//import Footer from "../Footer/Footer";
+import Footer from "../Footer/Footer";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import UserPage from "../UserPage/UserPage";
 import LandingPage from "../LandingPage/LandingPage";
 import LoginPage from "../LoginPage/LoginPage";
 import RegisterPage from "../RegisterPage/RegisterPage";
-
-
 import RecommendInstructors from "../RecommendInstructors/RecommendInstructors";
-// import Map from '../Map/Map';
-import SearchBar from '../SearchBar/SearchBar';
-
-
-import AddClass from "../AddClass/AddClass";
-
-import PhotoUpload from '../PhotoUpload/PhotoUpload';
-import InstructorDetail from '../InstructorDetail/InstructorDetail';
-
-
+import SearchBar from "../SearchBar/SearchBar";
+import AddClass from "../AddClass/AddClass"
+import PhotoUpload from "../PhotoUpload/PhotoUpload";
+import InstructorDetail from "../InstructorDetail/InstructorDetail";
+import Map from "../Map/Map";
+import SearchResult from "../SearchResult/SearchResult";
 
 import "./App.css";
 
@@ -43,8 +37,6 @@ function App() {
   return (
     <Router>
       <div>
-
-
         <Nav />
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
@@ -101,16 +93,20 @@ function App() {
             )}
           </Route>
 
-          <Route exact path="/instructorDetail/:id">
+          <Route exact path="/instructor/:id">
             <InstructorDetail />
           </Route>
+
+          <Router exact path="/search/result">
+            <SearchResult />
+          </Router>
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>
             <h1>4041</h1>
           </Route>
         </Switch>
-        
+        <Footer />
       </div>
     </Router>
   );

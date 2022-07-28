@@ -17,7 +17,8 @@ CREATE TABLE "user" (
 
 
 INSERT INTO "user" ("username", "password", "avatar", "pronouns", "about", "adminLevel", "name")
-VALUES ('derick', 123, 'https://queenvibesprofilephotos.s3.us-east-2.amazonaws.com/uploads/annie-spratt-oQfSHQ2Uaic-unsplash.jpg', 'he/him', 'Facing his greatest fear, he ate his first marshmallow.', 'instructor', 'derick'),('Tracy', 123, 'https://queenvibesprofilephotos.s3.us-east-2.amazonaws.com/uploads/bruce-mars-HHXdPG_eTIQ-unsplash.jpg', 'she/her', 'The knives were out and she was sharpening hers.', 'instructor', 'Tracy'),('BobbyDogs', 123, 'https://queenvibesprofilephotos.s3.us-east-2.amazonaws.com/uploads/graham-mansfield-E8VOttj22s4-unsplash.jpg', 'they/them', 'He stomped on his fruit loops and thus became a cereal killer. I used to practice weaving with spaghetti three hours a day but stopped because I didnt want to die alone.', 'instructor', 'Bobby'),('TrainerTerry', 123, 'https://queenvibesprofilephotos.s3.us-east-2.amazonaws.com/uploads/jonathan-borba-R0y_bEUjiOM-unsplash.jpg', 'They/Them', 'He dreamed of eating green apples with worms. He created a pig burger out of beef.', 'instructor', 'Terry'),('FabioTheWeightLifter', 123, 'https://queenvibesprofilephotos.s3.us-east-2.amazonaws.com/uploads/logan-weaver-lgnwvr-sPiMBrdGG9c-unsplash.jpg', 'He/Him', 'He fumbled in the darkness looking for the light switch, but when he finally found it there was someone already there. The llama couldnt resist trying the lemonade.', 'instructor', 'Fabio');
+	VALUES 
+		('Derek Jeter', 123, 'https://queenvibesprofilephotos.s3.us-east-2.amazonaws.com/uploads/annie-spratt-oQfSHQ2Uaic-unsplash.jpg', 'he/him', 'Facing his greatest fear, he ate his first marshmallow.', 'instructor', 'derick'),('Tracy', 123, 'https://queenvibesprofilephotos.s3.us-east-2.amazonaws.com/uploads/bruce-mars-HHXdPG_eTIQ-unsplash.jpg', 'she/her', 'The knives were out and she was sharpening hers.', 'instructor', 'Tracy'),('BobbyDogs', 123, 'https://queenvibesprofilephotos.s3.us-east-2.amazonaws.com/uploads/graham-mansfield-E8VOttj22s4-unsplash.jpg', 'they/them', 'He stomped on his fruit loops and thus became a cereal killer. I used to practice weaving with spaghetti three hours a day but stopped because I didnt want to die alone.', 'instructor', 'Bobby'),('TrainerTerry', 123, 'https://queenvibesprofilephotos.s3.us-east-2.amazonaws.com/uploads/jonathan-borba-R0y_bEUjiOM-unsplash.jpg', 'They/Them', 'He dreamed of eating green apples with worms. He created a pig burger out of beef.', 'instructor', 'Terry'),('FabioTheWeightLifter', 123, 'https://queenvibesprofilephotos.s3.us-east-2.amazonaws.com/uploads/logan-weaver-lgnwvr-sPiMBrdGG9c-unsplash.jpg', 'He/Him', 'He fumbled in the darkness looking for the light switch, but when he finally found it there was someone already there. The llama couldnt resist trying the lemonade.', 'instructor', 'Fabio');
 
 
 DROP TABLE "tags";
@@ -29,9 +30,10 @@ CREATE TABLE "tags" (
 
 
 INSERT INTO "tags" ("tagName")
-	VALUES ('LGBTQ Friendly'),('Senior Fitness'),('Body Inclusivity'),('Diverse/POC'),('Low Impact'),
-	('Adaptive Fitness'),('Corrective Exercise'),('Sports Injury Recovery'),('Maternity/New Mom'),('Beginner Friendly'),
-	('Veterans'),('Chronic Illness'),('Community/Free'),('Outdoor'),('Elite Athletes'); 
+	VALUES 
+		('LGBTQ Friendly'),('Senior Fitness'),('Body Inclusivity'),('Diverse/POC'),('Low Impact'),
+		('Adaptive Fitness'),('Corrective Exercise'),('Sports Injury Recovery'),('Maternity/New Mom'),('Beginner Friendly'),
+		('Veterans'),('Chronic Illness'),('Community/Free'),('Outdoor'),('Elite Athletes'); 
 
 DROP TABLE "activities";
 
@@ -41,9 +43,10 @@ CREATE TABLE "activities" (
 );
 
 INSERT INTO "activities" ("activity")
-	VALUES ('Aerobics'),('Cardio Dance'),('Strength and/or Conditioning'),('Cycling'),('HIIT'),('Yoga'),
-	('Sculpt'),('Barre'),('Boot Camp'),('Martial Arts'),('Sports Training'),('Pilates'),('Water Aerobics'),
-	('Boxing');
+	VALUES 
+		('Aerobics'),('Cardio Dance'),('Strength and/or Conditioning'),('Cycling'),('HIIT'),('Yoga'),
+		('Sculpt'),('Barre'),('Boot Camp'),('Martial Arts'),('Sports Training'),('Pilates'),('Water Aerobics'), ('Boxing')
+;
 
 DROP TABLE "userTags";
 
@@ -64,7 +67,7 @@ CREATE TABLE "availableClass"(
 	"dateOfWeek" INTEGER,
 	"startTime" TIMESTAMP,
 	"location" VARCHAR,
-	"activity" VARCHAR
+	"activityId" INT
 );
 
 INSERT INTO "availableClass"("instructorId", "location")
@@ -97,37 +100,49 @@ SELECT "user".id, "user".username, JSON_AGG("tags"."tagName") as tags, "user".av
 	ORDER BY count(tags) DESC;
 
 --Test
-SELECT "availableClass".location, "user".username, "user".id FROM "user"
-JOIN  "availableClass" ON "availableClass"."instructorId" = "user".id
+SELECT "availableClass".location, "user".username, "user".id 
+	FROM "user"
+	JOIN "availableClass" 
+	ON "availableClass"."instructorId" = "user".id
 	WHERE "user".id IN (1,2,3,4);
 
 
 --test
-
-SELECT "user".id, "user".username, JSON_AGG("tags"."tagName") as tags, "user".avatar, "user"."adminLevel", "user".facebook, "user".instagram, "user".twitter, "user".website  FROM "user"
-	JOIN "userTags" on "userTags"."userId" = "user".id
-	JOIN "tags" on "userTags"."tagId" = "tags".id
+SELECT "user".id, "user".username, JSON_AGG("tags"."tagName") as tags, "user".avatar, "user"."adminLevel", "user".facebook, "user".instagram, "user".twitter, "user".website  
+	FROM "user"
+	JOIN "userTags" 
+	ON "userTags"."userId" = "user".id
+	JOIN "tags" 
+	ON "userTags"."tagId" = "tags".id
 	WHERE "tags".id IN (1,2 ,15)
 	GROUP BY "user".id
 	HAVING count(*) >= 1
 	ORDER BY count(tags) DESC;
 	
 --test
-
-SELECT "user".id,  JSON_AGG("tags"."tagName") , JSON_AGG("availableClass".location) FROM "user"
-JOIN "userTags" ON "user".id = "userTags"."userId"
-JOIN "availableClass" on "availableClass"."instructorId" = "user".id
-JOIN "tags" ON "tags".id = "userTags"."tagId"
-WHERE "tags".id IN (15, 11, 10, 2) 
+SELECT "user".id,  JSON_AGG("tags"."tagName") , JSON_AGG("availableClass".location) 
+	FROM "user"
+	JOIN "userTags" 
+	ON "user".id = "userTags"."userId"
+	JOIN "availableClass" 
+	ON "availableClass"."instructorId" = "user".id
+	JOIN "tags" 
+	ON "tags".id = "userTags"."tagId"
+	WHERE "tags".id 
+	IN (15, 11, 10, 2) 
 	GROUP BY "user".id
 	HAVING count(tags) >= 1
 	ORDER BY count("tags") DESC;
 
 --test
-SELECT "user".id, "user".username, JSON_AGG("tags"."tagName") as tags, "user".avatar, "user"."adminLevel", "user".facebook, "user".instagram, "user".twitter, "user".website, JSON_AGG("availableClass".location)  FROM "user"
-	JOIN "userTags" on "userTags"."userId" = "user".id
-	JOIN "availableClass" on "availableClass"."instructorId" = "user".id
-	JOIN "tags" on "userTags"."tagId" = "tags".id
+SELECT "user".id, "user".username, JSON_AGG("tags"."tagName") as tags, "user".avatar, "user"."adminLevel", "user".facebook, "user".instagram, "user".twitter, "user".website, JSON_AGG("availableClass".location)  
+	FROM "user"
+	JOIN "userTags" 
+	ON "userTags"."userId" = "user".id
+	JOIN "availableClass" 
+	ON "availableClass"."instructorId" = "user".id
+	JOIN "tags" 
+	ON "userTags"."tagId" = "tags".id
 	WHERE "tags".id IN (1,2 ,15)
 	GROUP BY "user".id
 	HAVING count(*) >= 1

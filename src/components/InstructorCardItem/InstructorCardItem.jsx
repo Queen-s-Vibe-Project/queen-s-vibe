@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./InstructorCardItem.css";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -26,7 +27,7 @@ function InstructorCardItem({ item }) {
     type: 'FETCH_INSTRUCTOR_DETAIL',
     payload: item.id
   })
-  history.push(`/instructorDetail/${item.id}`)
+  history.push(`/instructor/${item.id}`)
 }
 
   return (
@@ -44,23 +45,40 @@ function InstructorCardItem({ item }) {
           <button 
           onClick={goToInstructorDetail}
           className="view-more-btn">View More</button>
+
+          <Link to={`/instructor/${item.id}`}>
+            <button className="view-more-btn">View More</button>
+          </Link>
+
         </div>
 
         {/* Right side */}
         <div>
           <Card className="right-card">
             <CardContent className="rt-card">
-              <Typography variant="p" component="div">
+              <Typography
+                className="instructor-name"
+                variant="p"
+                component="div"
+              >
                 {item.name}
               </Typography>
 
-              <Stack className="chip-container" direction="row" spacing={0.5}>
-                <Chip className="chip-pill" label="LGBQT" variant="outlined" />
-                <Chip
-                  className="chip-pill"
-                  label="SeniorFriendly"
-                  variant="outlined"
-                />
+              {/* Map over instructor tags */}
+              <Stack>
+                <span className="chip-container">
+                  {item.tags.map((tag, i) => {
+                    return (
+                      <li className="tag-list" key={i}>
+                        <Chip
+                          className="chip-pill"
+                          label={tag}
+                          variant="outlined"
+                        />
+                      </li>
+                    );
+                  })}
+                </span>
               </Stack>
               <div className="icon-container">
                 <FacebookIcon className="featured-icon" />

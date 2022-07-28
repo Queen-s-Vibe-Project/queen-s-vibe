@@ -1,7 +1,7 @@
 import './RecommendInstructors.css'
 
 
-export default function RecommendCard() {
+export default function RecommendCard({instructor}) {
     return(
         <div>
             <div className="card RC-card">
@@ -13,9 +13,9 @@ export default function RecommendCard() {
                 height={75}
             />
             <div className='RC-card-text'>
-                <p>Sara</p>
-                <p>She/her</p>
-                <p>#POC</p>
+                <p>{instructor.name}</p>
+                <p>{instructor.pronouns}</p>
+                <p>#{instructor.tagName}</p>
             </div>
             </div>
         </div>

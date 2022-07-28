@@ -18,7 +18,7 @@ function Footer() {
           </div>
         </div>
         {/* copyright */}
-        <div className="copyright">&copy; Queen Vibes KC</div>
+        <div className="copyright">&copy; Groupii</div>
         {/* Company info */}
         <div className="company-info">
           <div>Company</div>
