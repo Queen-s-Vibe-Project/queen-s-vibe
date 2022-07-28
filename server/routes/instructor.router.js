@@ -98,11 +98,11 @@ router.get('/recommend', (req, res) => {
     .then((listOfTags) => {
         console.log(listOfTags);
       const recommendInstructorQuery = `
-            SELECT "user".name, "user".pronouns , JSON_AGG("tags"."tagName"), COUNT("user".name),"user".avatar FROM "user"
+            SELECT "user".id, "user".name, "user".pronouns , JSON_AGG("tags"."tagName"), COUNT("user".name),"user".avatar FROM "user"
             JOIN "userTags" on "user".id = "userTags"."userId"
             JOIN "tags" on "tags".id = "userTags"."tagId"
             WHERE "user"."adminLevel" = 'instructor' AND "tags"."tagName" IN (${listOfTags})
-            GROUP BY "user".name, "user".pronouns, "user".avatar 
+            GROUP BY "user".id, "user".name, "user".pronouns, "user".avatar 
             ORDER BY COUNT("user".name) DESC
             LIMIT 5;
             `
@@ -127,12 +127,12 @@ router.get('/favorite', (req, res) => {
   console.log(userId);
 
   const getFavoriteInstructorQuery = `
-        Select "favoriteInstuctor".id, "favoriteInstuctor"."instructorId", "user".name, "user".pronouns, "user".instagram, "user".facebook, "user".twitter, JSON_agg("tags"."tagName") as "tags" FROM "favoriteInstuctor"
+        Select "favoriteInstuctor".id, "favoriteInstuctor"."instructorId", "user".name, "user".pronouns, "user".avatar,  "user".instagram, "user".facebook, "user".twitter, JSON_agg("tags"."tagName") as "tags" FROM "favoriteInstuctor"
         JOIN "user" on "user".id ="favoriteInstuctor"."instructorId"
         JOIN "userTags" on "userTags"."userId" = "user".id
         JOIN "tags" on "tags".id = "userTags"."tagId"
         WHERE "favoriteInstuctor"."userId" = $1
-        GROUP BY "favoriteInstuctor".id, "favoriteInstuctor"."instructorId", "user".name, "user".pronouns, "user".instagram, "user".facebook, "user".twitter;
+        GROUP BY "favoriteInstuctor".id, "favoriteInstuctor"."instructorId", "user".name, "user".pronouns,"user".avatar,  "user".instagram, "user".facebook, "user".twitter;
     `
 
   pool.query(getFavoriteInstructorQuery, [userId])

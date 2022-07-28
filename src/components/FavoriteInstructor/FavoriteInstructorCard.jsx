@@ -20,7 +20,7 @@ function FavoriteInstructorCard({ instructor }) {
           <Stack direction="row" spacing={1}>
             <Avatar
               alt={instructor.name}
-              src=''
+              src={instructor.avatar}
               sx={{ width: 75, height: 75 }}
             />
           </Stack>
