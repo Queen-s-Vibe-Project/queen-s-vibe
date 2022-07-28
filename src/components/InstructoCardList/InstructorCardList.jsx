@@ -7,13 +7,7 @@ function InstructorCardList() {
   // Need to bring in instructor from redux store
   const instructor = useSelector((store) => store.instructor);
 
-  // useEffect to fetch instructors on page load
-  // dispatch 'FETCH_INSTRUCTORS' to trigger saga
-  useEffect(() => {
-    dispatch({
-      type: "FETCH_INSTRUCTORS",
-    });
-  }, []);
+
 
   return (
     <>
