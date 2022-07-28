@@ -5,29 +5,28 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import EditIcon from '@mui/icons-material/Edit';
 
-function InstructorProfile() {
+function InstructorProfile( {instructor} ) {
+  console.log('did it come', instructor)
   return (
     <>
     <div className="editIcon"> <EditIcon /> </div>
       <div className="profileHeader">
         <div className="pic">
           <Avatar
-            // sx={{ width: 100, height: 100 }} to adjust the height
-            alt="Profile Photo"
+            src={instructor.avatar}
+            alt={instructor.name}
           />
-         
         </div>
-
         <div className="favoriteHeart">
             <FavoriteIcon />
           </div>
         <div className="containerProfile">
-          <div> Edan </div>
-          <div> He/Him </div>
+          <div> {instructor.name} </div>
+          <div> {instructor.pronouns} </div>
           <div>
-            <InstagramIcon color="primary" />
-            <FacebookIcon color="primary" />
-            <TwitterIcon color="primary" />
+            <InstagramIcon src={instructor.instagram} color="primary" />
+            <FacebookIcon src={instructor.facbook} color="primary" />
+            <TwitterIcon src={instructor.twitter} color="primary" />
           </div>
           <div className="chip"> Ace Certification </div>
         </div>

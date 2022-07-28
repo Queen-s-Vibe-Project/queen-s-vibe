@@ -17,9 +17,21 @@ function* fetchAllInstructors() {
     }
 }
 
+function* fetchInstructorDetail(action){
+    //Get InstructorDetail(name, classes, etc.)
+    console.log('waht is action.payload', action.payload)
+    try{
+        const res = yield axios.get(`/instructor/${action.payload}`)
+        console.log('Instructor Detail is', res.data)
+        yield put({
+            type:'SET_INSTRUCTOR_DETAIL',
+            payload: res.data
+        })
+    }
+    catch (error) {
+        console.error('Get instructor detail failed', error)
 function* fetchRecommendInstructor(){
     try {
-
         const res = yield axios.get('/instructor/recommend')
         console.log(res.data);
         
@@ -46,6 +58,7 @@ function* fetchFavoriteInstructor(){
 // Watcher saga
 function* instructorSaga() {
     yield takeEvery('FETCH_INSTRUCTORS', fetchAllInstructors);
+    yield takeEvery('FETCH_INSTRUCTOR_DETAIL', fetchInstructorDetail);
     yield takeEvery('FETCH_RECOMMEND_INSTRUCTOR', fetchRecommendInstructor);
     yield takeEvery('FETCH_FAVORITE_INSTRUCTOR', fetchFavoriteInstructor)
 }

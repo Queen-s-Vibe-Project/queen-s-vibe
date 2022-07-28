@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./InstructorCardItem.css";
+import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -12,7 +14,22 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import Avatar from "@mui/material/Avatar";
 
+
+
+
 function InstructorCardItem({ item }) {
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const goToInstructorDetail = () => {
+    console.log(item.id)
+    dispatch({
+    type: 'FETCH_INSTRUCTOR_DETAIL',
+    payload: item.id
+  })
+  history.push(`/instructor/${item.id}`)
+}
+
   return (
     <>
       <div className="featured-container">
@@ -25,9 +42,14 @@ function InstructorCardItem({ item }) {
               sx={{ width: 75, height: 75 }}
             />
           </Stack>
+          <button 
+          onClick={goToInstructorDetail}
+          className="view-more-btn">View More</button>
+
           <Link to={`/instructor/${item.id}`}>
             <button className="view-more-btn">View More</button>
           </Link>
+
         </div>
 
         {/* Right side */}

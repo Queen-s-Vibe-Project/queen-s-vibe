@@ -3,7 +3,19 @@ import "./InstructorDetail.css";
 import InstructorProfile from "./InstructorProfile";
 import InstructorClasses from "./InstructorClasses";
 import InstructorTags from "./InstructorTags";
+import InstructorAbout from "./InstructorAbout";
+import { useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
+
+function InstructorDetail() {
+
+  const instructor = useSelector((store) => store.instructorDetail[0]);
+  
+  return (
+    <>
+      <h1> Instructor Detail </h1>
+      <button> Back </button>
+      {instructor && <InstructorProfile key={instructor} instructor={instructor} />}
 
 function InstructorDetail() {
   const history = useHistory();
@@ -21,17 +33,16 @@ function InstructorDetail() {
       <InstructorProfile />
       <div>
         <h3> Classes </h3>
-        <InstructorClasses />
+            {instructor && <InstructorClasses key={instructor} instructor={instructor} />}
       </div>
-      <h3> Tags </h3>
-      <InstructorTags />
+        <h3> Tags </h3>
+      <div className="tags">
+         {instructor && <InstructorTags key={instructor} instructor={instructor} /> } 
+      </div>
       <div>
         <h3> About </h3>
       </div>
-      <p>
-        Hello World! My name is Edan and I have been a trainer for about 10
-        years. I love help people achieve their fitness goals....
-      </p>
+         {instructor && <InstructorAbout key={instructor} instructor={instructor} /> }
     </>
   );
 }

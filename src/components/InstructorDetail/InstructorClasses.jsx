@@ -1,39 +1,19 @@
 import ClearIcon from "@mui/icons-material/Clear";
 import AddIcon from '@mui/icons-material/Add';
 
-function instructorClasses() {
+function instructorClasses({instructor}) {
   return (
-    <>
       <div className="classOrder">
-        {/* The commentted out code is dummy data */}
-        
-        {/* <div className="card">
-        <div className="deleteIcon"> <ClearIcon /> </div>
-          <div className="container">
-            <div> HIT </div>
-            <div> Monday </div>
-            <div> 7:00pm </div>
-          </div>
-        </div> */}
         <div className="addIcon"> <AddIcon/> </div>
         <div className="card">
         <div className="deleteIcon"> <ClearIcon /> </div>
           <div className="container">
-            <div> Yoga </div>
-            <div> Thursday </div>
-            <div> 4:00pm </div>
-          </div>
-        </div>
-        <div className="card">
-        <div className="deleteIcon"> <ClearIcon /> </div>
-          <div className="container">
-            <div> Boxing </div>
-            <div> Friday </div>
-            <div> 2:00pm </div>
+            <div> {instructor.activity} </div>
+            <div> {instructor.dateOfWeek} </div>
+            <div> {instructor.startTime} </div>
           </div>
         </div>
       </div>
-    </>
   );
 }
 
