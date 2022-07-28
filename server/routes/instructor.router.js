@@ -6,6 +6,7 @@ const router = express.Router();
 // JOIN user, userTags, and tags tables and use array-agg to
 // get array of object for tag name
 
+
 router.get('/', (req, res) => {
   console.log('/user GET route');
   const queryText = `SELECT "user".id, "user".name, "user"."adminLevel", "user".avatar, array_agg(tags."tagName") AS tags
