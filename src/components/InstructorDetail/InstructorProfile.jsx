@@ -13,12 +13,10 @@ function InstructorProfile( {item} ) {
       <div className="profileHeader">
         <div className="pic">
           <Avatar
-            src={item.Avatar}
+            src={item.avatar}
             alt={item.name}
           />
-         
         </div>
-
         <div className="favoriteHeart">
             <FavoriteIcon />
           </div>
@@ -26,9 +24,9 @@ function InstructorProfile( {item} ) {
           <div> {item.name} </div>
           <div> {item.pronouns} </div>
           <div>
-            <InstagramIcon color="primary" />
-            <FacebookIcon color="primary" />
-            <TwitterIcon color="primary" />
+            <InstagramIcon src={item.instagram} color="primary" />
+            <FacebookIcon src={item.facbook} color="primary" />
+            <TwitterIcon src={item.twitter} color="primary" />
           </div>
           <div className="chip"> Ace Certification </div>
         </div>

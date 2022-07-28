@@ -5,18 +5,14 @@ import AddIcon from '@mui/icons-material/Add';
 function InstructorTags( {item} ) {
   return (
     <>
+     <div> <AddIcon /> </div>
       {item.tags.map((tags) => {
-        return <Stack direction="row" spacing={1}>
-              <Chip label={tags} />
-              
-            </Stack>
+        return <div>
+              <Stack direction="row" spacing={1}>
+               <Chip label={tags} />
+              </Stack>
+              </div>       
       })}
-       {/* <Stack direction="row" spacing={1}>
-         <Chip label={item.tags} />
-         <Chip label="POC" />
-         <Chip label="Cardio" /> */}
-        <div> <AddIcon /> </div>
-      {/* </Stack> */}
     </>
   );
 }
