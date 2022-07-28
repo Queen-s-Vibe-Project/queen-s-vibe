@@ -1,7 +1,6 @@
 
 
 .RC-container {
-    border: 1px solid red;
     display: flex;
     overflow: scroll;
     flex-direction: row;

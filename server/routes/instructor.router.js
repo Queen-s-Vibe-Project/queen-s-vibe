@@ -64,4 +64,26 @@ router.get('/recommend',(req,res)=>{
    
 })
 
+router.get('/favorite',(req,res)=>{
+    const userId = req.user.id
+
+    console.log(userId);
+
+    const getFavoriteInstructorQuery = `
+        Select "favoriteInstuctor".id, "favoriteInstuctor"."instructorId", "user".name, "user".pronouns, "user".instagram, "user".facebook, "user".twitter, JSON_agg("tags"."tagName")  FROM "favoriteInstuctor"
+        JOIN "user" on "user".id ="favoriteInstuctor"."instructorId"
+        JOIN "userTags" on "userTags"."userId" = "user".id
+        JOIN "tags" on "tags".id = "userTags"."tagId"
+        WHERE "favoriteInstuctor"."userId" = $1
+        GROUP BY "favoriteInstuctor".id, "favoriteInstuctor"."instructorId", "user".name, "user".pronouns, "user".instagram, "user".facebook, "user".twitter;
+    `
+
+    pool.query(getFavoriteInstructorQuery,[userId])
+        .then((dbRes)=>{
+            console.log(dbRes.rows)
+        })
+
+    res.sendStatus(200)
+})
+
 module.exports = router;
