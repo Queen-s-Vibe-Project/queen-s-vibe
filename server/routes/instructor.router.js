@@ -6,16 +6,6 @@ const router = express.Router();
 // JOIN user, userTags, and tags tables and use array-agg to
 // get array of object for tag name
 
-router.get("/", (req, res) => {
-  console.log("/user GET route");
-  const queryText = `SELECT "user".id, "user".name, "user"."adminLevel", "user".about, "user".pronouns, "user".avatar, array_agg(tags."tagName") AS tags,  "user"."adminLevel", "user".facebook, "user".instagram, "user".twitter, "user".website 
-    FROM "user"
-    JOIN "userTags"
-    ON "userTags"."userId" = "user".id
-    JOIN tags
-    ON "userTags"."tagId" = tags.id
-    WHERE "user"."adminLevel" = 'instructor'
-    GROUP BY "user".id;`;
 
 router.get('/', (req, res) => {
     console.log('/user GET route');
