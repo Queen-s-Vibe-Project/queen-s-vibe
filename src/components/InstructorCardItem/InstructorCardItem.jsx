@@ -14,21 +14,18 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import Avatar from "@mui/material/Avatar";
 
-
-
-
 function InstructorCardItem({ item }) {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const goToInstructorDetail = () => {
-    console.log(item.id)
-    dispatch({
-    type: 'FETCH_INSTRUCTOR_DETAIL',
-    payload: item.id
-  })
-  history.push(`/instructor/${item.id}`)
-}
+  // const goToInstructorDetail = () => {
+  //   console.log(item.id);
+  //   dispatch({
+  //     type: "FETCH_INSTRUCTOR_DETAIL",
+  //     payload: item.id,
+  //   });
+  //   history.push(`/instructor/${item.id}`);
+  // };
 
   return (
     <>
@@ -42,14 +39,13 @@ function InstructorCardItem({ item }) {
               sx={{ width: 75, height: 75 }}
             />
           </Stack>
-          <button 
-          onClick={goToInstructorDetail}
-          className="view-more-btn">View More</button>
+          {/* <button onClick={goToInstructorDetail} className="view-more-btn">
+            View More
+          </button> */}
 
           <Link to={`/instructor/${item.id}`}>
             <button className="view-more-btn">View More</button>
           </Link>
-
         </div>
 
         {/* Right side */}

@@ -17,14 +17,14 @@ function* fetchAllInstructors() {
     }
 }
 
-function* fetchInstructorDetail(action){
+function* fetchActiveInstructor(action) {
     //Get InstructorDetail(name, classes, etc.)
     console.log('waht is action.payload', action.payload)
-    try{
+    try {
         const res = yield axios.get(`/instructor/${action.payload}`)
         console.log('Instructor Detail is', res.data)
         yield put({
-            type:'SET_INSTRUCTOR_DETAIL',
+            type: 'SET_ACTIVE_INSTRUCTOR',
             payload: res.data
         })
     }
@@ -33,26 +33,26 @@ function* fetchInstructorDetail(action){
     }
 }
 
-function* fetchRecommendInstructor(){
+function* fetchRecommendInstructor() {
     try {
         const res = yield axios.get('/instructor/recommend')
         console.log(res.data);
-        
-        yield put({ type:'SET_RECOMMEND_INSTRUCTOR', payload: res.data})
-        
+
+        yield put({ type: 'SET_RECOMMEND_INSTRUCTOR', payload: res.data })
+
     } catch (error) {
         console.error(`${error}`);
     }
 }
 
-function* fetchFavoriteInstructor(){
+function* fetchFavoriteInstructor() {
     try {
 
         const res = yield axios.get('/instructor/favorite')
         console.log(res.data);
 
-        yield put({ type: 'SET_FAVORITE_INSTRUCTOR', payload: res.data})
-        
+        yield put({ type: 'SET_FAVORITE_INSTRUCTOR', payload: res.data })
+
     } catch (error) {
         console.error(error);
     }
@@ -61,7 +61,7 @@ function* fetchFavoriteInstructor(){
 // Watcher saga
 function* instructorSaga() {
     yield takeEvery('FETCH_INSTRUCTORS', fetchAllInstructors);
-    yield takeEvery('FETCH_INSTRUCTOR_DETAIL', fetchInstructorDetail);
+    yield takeEvery('FETCH_ACTIVE_INSTRUCTOR', fetchActiveInstructor);
     yield takeEvery('FETCH_RECOMMEND_INSTRUCTOR', fetchRecommendInstructor);
     yield takeEvery('FETCH_FAVORITE_INSTRUCTOR', fetchFavoriteInstructor)
 }
