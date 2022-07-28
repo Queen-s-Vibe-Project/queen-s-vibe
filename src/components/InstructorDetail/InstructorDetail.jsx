@@ -3,13 +3,18 @@ import "./InstructorDetail.css";
 import InstructorProfile from "./InstructorProfile";
 import InstructorClasses from "./InstructorClasses";
 import InstructorTags from "./InstructorTags";
+import { useSelector} from "react-redux";
 
 function InstructorDetail() {
+  
+  const item = useSelector(store => store.instructor)
+
+
   return (
     <>
       <h1> Instructor Detail </h1>
       <button> Back </button>
-      <InstructorProfile />
+        <InstructorProfile />
       <div>
         <h3> Classes </h3>
         <InstructorClasses />

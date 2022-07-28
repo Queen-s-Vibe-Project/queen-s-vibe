@@ -5,7 +5,8 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import EditIcon from '@mui/icons-material/Edit';
 
-function InstructorProfile() {
+function InstructorProfile( ) {
+  
   return (
     <>
     <div className="editIcon"> <EditIcon /> </div>
@@ -22,7 +23,7 @@ function InstructorProfile() {
             <FavoriteIcon />
           </div>
         <div className="containerProfile">
-          <div> Edan </div>
+          <div>  </div>
           <div> He/Him </div>
           <div>
             <InstagramIcon color="primary" />

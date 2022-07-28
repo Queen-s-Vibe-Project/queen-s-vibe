@@ -19,6 +19,7 @@ function* fetchAllInstructors() {
 
 function* fetchInstructorDetail(action){
     //Get InstructorDetail(name, classes, etc.)
+    console.log('waht is action.payload', action.payload)
     try{
         const res = yield axios.get(`/instructor/${action.payload}`)
         console.log('Instructor Detail is', res.data)

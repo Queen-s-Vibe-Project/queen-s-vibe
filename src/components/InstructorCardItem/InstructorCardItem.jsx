@@ -22,12 +22,11 @@ function InstructorCardItem({ item }) {
 
   const goToInstructorDetail = () => {
     console.log(item.id)
-  dispatch({
+    dispatch({
     type: 'FETCH_INSTRUCTOR_DETAIL',
     payload: item.id
   })
   history.push(`/instructorDetail/${item.id}`)
-  
 }
 
   return (
