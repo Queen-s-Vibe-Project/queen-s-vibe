@@ -11,10 +11,6 @@ const SearchBar = () => {
   // useHistory to handle Search button
   const history = useHistory();
 
-  const handleSearchBtn = () => {
-    history.push("/search/result");
-  };
-
   useEffect(() => {
     dispatch({
       type: "FETCH_TAGS",
@@ -46,6 +42,7 @@ const SearchBar = () => {
         searchTags,
       },
     });
+    history.push("/search/result");
   };
 
   return (
@@ -70,7 +67,7 @@ const SearchBar = () => {
             />
           )}
         />
-        <Button onClick={handleSearchBtn} type="submit" variant="contained">
+        <Button type="submit" variant="contained">
           Search
         </Button>
       </form>
