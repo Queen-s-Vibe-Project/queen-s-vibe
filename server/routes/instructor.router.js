@@ -26,4 +26,19 @@ router.get('/', (req, res) => {
         })
 });
 
+router.get('/recommend',(req,res)=>{
+    const userId = req.user.id
+    console.log(userId);
+
+    const tagQuery = `
+        SELECT "tags"."tagName" FROM "userTags"
+        JOIN "tags" on "tags".id = "userTags"."tagId" 
+        WHERE "userTags"."userId" = $1;
+    `
+
+    pool.query()
+
+    res.sendStatus(200)
+})
+
 module.exports = router;
