@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { recommendInstructor } from "./instructor.reducer.js";
+import { recommendInstructor,favoriteInstructor } from "./instructor.reducer.js";
 import errors from "./errors.reducer";
 import search from "./search.reducer";
 import user from "./user.reducer";
@@ -16,7 +16,8 @@ const rootReducer = combineReducers({
   user, // will have an id and username if someone is logged in
   search, // contains tags and results
   instructor, // contains all user info
-  recommendInstructor // list of recommend instructor base on gym goer's tag
+  recommendInstructor, // list of recommend instructor base on gym goer's tag
+  favoriteInstructor // get list of gym goer's favorite instructors 
 });
 
 export default rootReducer;

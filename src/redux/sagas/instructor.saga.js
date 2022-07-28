@@ -30,10 +30,24 @@ function* fetchRecommendInstructor(){
     }
 }
 
+function* fetchFavoriteInstructor(){
+    try {
+
+        const res = yield axios.get('/instructor/favorite')
+        console.log(res.data);
+
+        yield put({ type: 'SET_FAVORITE_INSTRUCTOR', payload: res.data})
+        
+    } catch (error) {
+        console.error(error);
+    }
+}
+
 // Watcher saga
 function* instructorSaga() {
     yield takeEvery('FETCH_INSTRUCTORS', fetchAllInstructors);
-    yield takeEvery('FETCH_RECOMMEND_INSTRUCTOR', fetchRecommendInstructor)
+    yield takeEvery('FETCH_RECOMMEND_INSTRUCTOR', fetchRecommendInstructor);
+    yield takeEvery('FETCH_FAVORITE_INSTRUCTOR', fetchFavoriteInstructor)
 }
 
 export default instructorSaga;

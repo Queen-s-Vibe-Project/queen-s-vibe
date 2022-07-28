@@ -4,6 +4,7 @@ import RecommendInstructors from '../RecommendInstructors/RecommendInstructors';
 import {useSelector} from 'react-redux';
 import SearchBar from '../SearchBar/SearchBar';
 import UpcomingClasses from '../UpcomingClasses/UpcomingClasses';
+import FavoriteInstructor from '../FavoriteInstructor/FavoriteInstructor';
 
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
@@ -14,6 +15,7 @@ function UserPage() {
         <SearchBar/>
         <RecommendInstructors/>
         <UpcomingClasses/>
+        <FavoriteInstructor/>
       <p>Your ID is: {user.id}</p>
       <LogOutButton className="btn" />
     </div>
