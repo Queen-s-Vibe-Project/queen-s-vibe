@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import InstructorCardItem from "../InstructorCardItem/InstructorCardItem";
-import { useSelector } from "react-redux";
 
 function InstructorCardList() {
   const dispatch = useDispatch();
