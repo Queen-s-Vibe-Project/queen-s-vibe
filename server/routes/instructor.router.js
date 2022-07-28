@@ -127,12 +127,12 @@ router.get('/favorite', (req, res) => {
   console.log(userId);
 
   const getFavoriteInstructorQuery = `
-        Select "favoriteInstuctor".id, "favoriteInstuctor"."instructorId", "user".name, "user".pronouns, "user".instagram, "user".facebook, "user".twitter, JSON_agg("tags"."tagName") as "tags" FROM "favoriteInstuctor"
+        Select "favoriteInstuctor".id, "favoriteInstuctor"."instructorId", "user".name, "user".pronouns, "user".avatar,  "user".instagram, "user".facebook, "user".twitter, JSON_agg("tags"."tagName") as "tags" FROM "favoriteInstuctor"
         JOIN "user" on "user".id ="favoriteInstuctor"."instructorId"
         JOIN "userTags" on "userTags"."userId" = "user".id
         JOIN "tags" on "tags".id = "userTags"."tagId"
         WHERE "favoriteInstuctor"."userId" = $1
-        GROUP BY "favoriteInstuctor".id, "favoriteInstuctor"."instructorId", "user".name, "user".pronouns, "user".instagram, "user".facebook, "user".twitter;
+        GROUP BY "favoriteInstuctor".id, "favoriteInstuctor"."instructorId", "user".name, "user".pronouns,"user".avatar,  "user".instagram, "user".facebook, "user".twitter;
     `
 
   pool.query(getFavoriteInstructorQuery, [userId])
