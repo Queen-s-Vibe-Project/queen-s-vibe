@@ -138,8 +138,10 @@ function RegisterForm() {
           name="tag"
         >
           {listOfTags &&
-            listOfTags.map((tag) => (
-              <option value={tag.id}>{tag.tagName}</option>
+            listOfTags.map((tag, i) => (
+              <option key={i} value={tag.id}>
+                {tag.tagName}
+              </option>
             ))}
         </select>
       </div>
