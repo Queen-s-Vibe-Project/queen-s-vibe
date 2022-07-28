@@ -1,10 +1,7 @@
-function InstructorAbout({ item }) {
+function InstructorAbout({ instructor }) {
   return (
     <>
-      <div>
-        <h3> About </h3>
-      </div>
-      <p> {item && item.about} </p>
+      <p> {instructor.about} </p>
     </>
   );
 }

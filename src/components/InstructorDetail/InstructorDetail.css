@@ -64,3 +64,8 @@
     margin-top: 50px;
     /* margin-left: ; */
 }
+.tags{
+   display: flex;
+   flex-direction: row;
+   flex-wrap: wrap; 
+}

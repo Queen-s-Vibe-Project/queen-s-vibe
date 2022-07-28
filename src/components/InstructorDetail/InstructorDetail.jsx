@@ -8,40 +8,25 @@ import { useSelector } from "react-redux";
 
 function InstructorDetail() {
 
-  const instructor = useSelector((store) => store.instructorDetail);
-
+  const instructor = useSelector((store) => store.instructorDetail[0]);
+  
   return (
     <>
       <h1> Instructor Detail </h1>
       <button> Back </button>
-      {instructor.map((item) => {
-        return (
-          <InstructorProfile key={item.id} item={item} />
-        )
-      })}
-        
+      {instructor && <InstructorProfile key={instructor} instructor={instructor} />}
       <div>
         <h3> Classes </h3>
-        {instructor.map((item) => {
-          return (
-            <InstructorClasses key={item.id} item={item} />
-          )
-        })}
+            {instructor && <InstructorClasses key={instructor} instructor={instructor} />}
       </div>
-      <h3> Tags </h3>
-      {instructor.map((item) => {
-        return (
-          <InstructorTags key={item.id} item={item} />
-        )
-      })}
+        <h3> Tags </h3>
+      <div className="tags">
+         {instructor && <InstructorTags key={instructor} instructor={instructor} /> } 
+      </div>
       <div>
         <h3> About </h3>
       </div>
-      {instructor.map((item) => {
-        return (
-          <InstructorAbout key={item} item={item} />
-        )
-      })}
+         {instructor && <InstructorAbout key={instructor} instructor={instructor} /> }
     </>
   );
 }
