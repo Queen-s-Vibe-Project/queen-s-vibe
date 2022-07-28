@@ -70,7 +70,7 @@ router.get('/favorite',(req,res)=>{
     console.log(userId);
 
     const getFavoriteInstructorQuery = `
-        Select "favoriteInstuctor".id, "favoriteInstuctor"."instructorId", "user".name, "user".pronouns, "user".instagram, "user".facebook, "user".twitter, JSON_agg("tags"."tagName")  FROM "favoriteInstuctor"
+        Select "favoriteInstuctor".id, "favoriteInstuctor"."instructorId", "user".name, "user".pronouns, "user".instagram, "user".facebook, "user".twitter, JSON_agg("tags"."tagName") as "tags" FROM "favoriteInstuctor"
         JOIN "user" on "user".id ="favoriteInstuctor"."instructorId"
         JOIN "userTags" on "userTags"."userId" = "user".id
         JOIN "tags" on "tags".id = "userTags"."tagId"

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import InstructorCardItem from "../InstructorCardItem/InstructorCardItem";
+import FavoriteInstructorCard from "./FavoriteInstructorCard";
 
 
 export default function FavoriteInstructor(){
@@ -10,12 +10,21 @@ export default function FavoriteInstructor(){
         dispatch({
             type:'FETCH_FAVORITE_INSTRUCTOR'
         })
-    })
+    },[])
+
+    const favoriteInstructor = useSelector((store)=> store.favoriteInstructor)
+
+    if (favoriteInstructor) {
+        console.log(favoriteInstructor);
+    }
 
     return (
         <div>
             <div>
                 <h3>Favorite Instructors:</h3>
+                { favoriteInstructor && favoriteInstructor.map(instructor=>(
+                    <FavoriteInstructorCard instructor={instructor} />
+                ))}
             </div>
 
         </div>
