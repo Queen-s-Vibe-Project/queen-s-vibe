@@ -18,9 +18,11 @@ import RegisterPage from "../RegisterPage/RegisterPage";
 import RecommendInstructors from "../RecommendInstructors/RecommendInstructors";
 // import Map from '../Map/Map';
 import SearchBar from "../SearchBar/SearchBar";
-import AddClass from "../AddClass/AddClass";
+import AddClass from "../AddClass/AddClass"
 import PhotoUpload from "../PhotoUpload/PhotoUpload";
 import InstructorDetail from "../InstructorDetail/InstructorDetail";
+import Map from "../Map/Map";
+
 
 import "./App.css";
 

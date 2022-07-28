@@ -12,7 +12,7 @@ const containerStyle = {
 };
 
 const options = {
-    //styles: mapStyles,
+    // styles: mapStyles,
     disableDefaultUI: true,
 }
 
@@ -36,10 +36,12 @@ const Map = () => {
         })
     },[])
 
+
+
     
 
     const {isLoaded, loadError} = useLoadScript({
-        googleMapsApiKey: "key goes here",
+        googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
         libraries
     })
 
