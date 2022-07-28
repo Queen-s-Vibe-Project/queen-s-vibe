@@ -17,9 +17,23 @@ function* fetchAllInstructors() {
     }
 }
 
+function* fetchRecommendInstructor(){
+    try {
+
+        const res = yield axios.get('/instructor/recommend')
+        console.log(res.data);
+        
+        yield put({ type:'SET_RECOMMEND_INSTRUCTOR', payload: res.data})
+        
+    } catch (error) {
+        console.error(`${error}`);
+    }
+}
+
 // Watcher saga
 function* instructorSaga() {
     yield takeEvery('FETCH_INSTRUCTORS', fetchAllInstructors);
+    yield takeEvery('FETCH_RECOMMEND_INSTRUCTOR', fetchRecommendInstructor)
 }
 
 export default instructorSaga;
