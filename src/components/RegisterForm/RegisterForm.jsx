@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "../App/App.css";
-import SearchBar from '../SearchBar/SearchBar';
+import SearchBar from "../SearchBar/SearchBar";
 
 function RegisterForm() {
   const [userType, setUserType] = useState("");
@@ -10,20 +10,18 @@ function RegisterForm() {
   const [name, setName] = useState("");
   const [pronouns, setPronouns] = useState("");
   const errors = useSelector((store) => store.errors);
-  const listOfTags = useSelector((store)=> store.search.tags);
+  const listOfTags = useSelector((store) => store.search.tags);
   const [tags, setTags] = useState("");
   const dispatch = useDispatch();
 
-    if(listOfTags){
-      console.log(listOfTags);
-    }
-  useEffect(()=>{
-
+  if (listOfTags) {
+    console.log(listOfTags);
+  }
+  useEffect(() => {
     dispatch({
-      type: 'FETCH_TAGS'
-    })
-
-  },[])
+      type: "FETCH_TAGS",
+    });
+  }, []);
 
   const registerUser = (event) => {
     event.preventDefault();
@@ -36,14 +34,14 @@ function RegisterForm() {
         name: name,
         pronouns: pronouns,
         tags: tags,
-        adminLevel: userType
+        adminLevel: userType,
       },
     });
   }; // end registerUser
 
   return (
     <form className="registration-container" onSubmit={registerUser}>
-      <h2>Queen Vibes KC</h2>
+      <h2>Groupii</h2>
       {errors.registrationMessage && (
         <h3 className="alert" role="alert">
           {errors.registrationMessage}
@@ -55,14 +53,14 @@ function RegisterForm() {
           <div className="user-type">User Type</div>
         </label>
         <select
-          onChange={(evt)=>{
-            setUserType(evt.target.value)
-          }} 
-          className="user-type-box" 
-          id="type" 
+          onChange={(evt) => {
+            setUserType(evt.target.value);
+          }}
+          className="user-type-box"
+          id="type"
           name="type"
-          >
-          <option value='' >--Gym Goer or Instructor--</option>
+        >
+          <option value="">--Gym Goer or Instructor--</option>
           <option value="gym-goer">Gym Goer</option>
           <option value="instructor">Instructor</option>
         </select>
@@ -134,14 +132,15 @@ function RegisterForm() {
           <div className="user-tag">Select Tags</div>
         </label>
         <select
-          onChange={(evt) => setTags(evt.target.value)} 
-          className="user-tag-box" 
-          id="tag" 
-          name="tag" 
-          >
-          { listOfTags && listOfTags.map((tag)=>(
-            <option value={tag.id}>{tag.tagName}</option>
-          ))}
+          onChange={(evt) => setTags(evt.target.value)}
+          className="user-tag-box"
+          id="tag"
+          name="tag"
+        >
+          {listOfTags &&
+            listOfTags.map((tag) => (
+              <option value={tag.id}>{tag.tagName}</option>
+            ))}
         </select>
       </div>
 

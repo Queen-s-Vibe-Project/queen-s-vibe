@@ -32,17 +32,29 @@ function InstructorCardItem({ item }) {
         <div>
           <Card className="right-card">
             <CardContent className="rt-card">
-              <Typography variant="p" component="div">
+              <Typography
+                className="instructor-name"
+                variant="p"
+                component="div"
+              >
                 {item.name}
               </Typography>
 
-              <Stack className="chip-container" direction="row" spacing={0.5}>
-                <Chip className="chip-pill" label="LGBQT" variant="outlined" />
-                <Chip
-                  className="chip-pill"
-                  label="SeniorFriendly"
-                  variant="outlined"
-                />
+              {/* Map over instructor tags */}
+              <Stack>
+                <span className="chip-container">
+                  {item.tags.map((tag, i) => {
+                    return (
+                      <li className="tag-list" key={i}>
+                        <Chip
+                          className="chip-pill"
+                          label={tag}
+                          variant="outlined"
+                        />
+                      </li>
+                    );
+                  })}
+                </span>
               </Stack>
               <div className="icon-container">
                 <FacebookIcon className="featured-icon" />

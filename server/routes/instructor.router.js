@@ -14,7 +14,8 @@ router.get('/', (req, res) => {
 	                    JOIN tags
 	                    ON "userTags"."tagId" = tags.id
 	                    WHERE "user"."adminLevel" = 'instructor'
-	                    GROUP BY "user".id;`;
+	                    GROUP BY "user".id
+                        LIMIT 3;`;
 
     pool.query(queryText)
         .then((result) => {

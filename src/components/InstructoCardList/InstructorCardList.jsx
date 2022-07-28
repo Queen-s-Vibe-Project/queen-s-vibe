@@ -18,9 +18,12 @@ function InstructorCardList() {
 
   return (
     <>
-      {instructor.map((item) => {
-        return <InstructorCardItem key={item.id} item={item} />;
-      })}
+      <section className="instructors-container">
+        {instructor.map((item, i) => {
+          return <InstructorCardItem key={i} item={item} />;
+        })}
+      </section>
+
       <div className="about-section">
         <h4>About Placeholder</h4>
         <p>
