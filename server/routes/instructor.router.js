@@ -36,9 +36,32 @@ router.get('/recommend',(req,res)=>{
         WHERE "userTags"."userId" = $1;
     `
 
-    pool.query()
+    pool.query(tagQuery,[userId])
+        .then((dbRes)=>{
+            //console.log(dbRes.rows[0].tagName);
 
-    res.sendStatus(200)
+            return dbRes.rows[0].tagName
+        })
+        .then((tagName)=>{
+            const recommendInstructorQuery = `
+                SELECT "user".name, "user".pronouns , "tags"."tagName" FROM "user"
+                JOIN "userTags" on "user".id = "userTags"."userId"
+                JOIN "tags" on "tags".id = "userTags"."tagId"
+                WHERE "user"."adminLevel" = 'instructor' AND "tags"."tagName" =  '${tagName}'
+                GROUP BY "user".name, "user".pronouns, "tags"."tagName";
+            `
+            
+            pool.query(recommendInstructorQuery)
+                .then((dbRes)=>{
+                    console.log(dbRes.rows);
+                    res.send(dbRes.rows)
+                }).catch((err)=>{
+                    console.error(`${err}`);
+                    res.sendStatus(500)
+                })
+        })
+
+   
 })
 
 module.exports = router;
