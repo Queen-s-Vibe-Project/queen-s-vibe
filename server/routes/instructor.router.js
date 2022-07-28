@@ -80,10 +80,12 @@ router.get('/favorite',(req,res)=>{
 
     pool.query(getFavoriteInstructorQuery,[userId])
         .then((dbRes)=>{
-            console.log(dbRes.rows)
+            res.send(dbRes.rows)
+        }).catch((err)=>{
+            console.error(`${err}`);
         })
 
-    res.sendStatus(200)
+    
 })
 
 module.exports = router;
