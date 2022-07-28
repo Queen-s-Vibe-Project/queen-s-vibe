@@ -4,11 +4,8 @@ const router = express.Router();
 
 //get tags for autocomplete
 router.get("/tags", (req, res) => {
-  const sqlQuery = `
-    SELECT * FROM "tags"
-    `;
-  pool
-    .query(sqlQuery)
+  const sqlQuery = `SELECT * FROM "tags"`;
+  pool.query(sqlQuery)
     .then((dbRes) => {
       res.send(dbRes.rows);
     })

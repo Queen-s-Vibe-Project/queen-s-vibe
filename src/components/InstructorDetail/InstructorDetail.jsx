@@ -3,12 +3,21 @@ import "./InstructorDetail.css";
 import InstructorProfile from "./InstructorProfile";
 import InstructorClasses from "./InstructorClasses";
 import InstructorTags from "./InstructorTags";
+import { Link, useHistory } from "react-router-dom";
 
 function InstructorDetail() {
+  const history = useHistory();
+
+  const handleClick = () => {
+    history.push("/");
+  };
+
   return (
     <>
       <h1> Instructor Detail </h1>
-      <button> Back </button>
+
+      <button onClick={handleClick}> Back </button>
+
       <InstructorProfile />
       <div>
         <h3> Classes </h3>
