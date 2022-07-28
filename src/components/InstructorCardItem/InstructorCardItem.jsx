@@ -1,6 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./InstructorCardItem.css";
-import { useSelector } from "react-redux";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -25,7 +25,9 @@ function InstructorCardItem({ item }) {
               sx={{ width: 75, height: 75 }}
             />
           </Stack>
-          <button className="view-more-btn">View More</button>
+          <Link to={`/instructor/${item.id}`}>
+            <button className="view-more-btn">View More</button>
+          </Link>
         </div>
 
         {/* Right side */}

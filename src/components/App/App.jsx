@@ -21,6 +21,7 @@ import SearchBar from "../SearchBar/SearchBar";
 import AddClass from "../AddClass/AddClass";
 import PhotoUpload from "../PhotoUpload/PhotoUpload";
 import InstructorDetail from "../InstructorDetail/InstructorDetail";
+import SearchResult from "../SearchResult/SearchResult";
 
 import "./App.css";
 
@@ -92,9 +93,13 @@ function App() {
             )}
           </Route>
 
-          <Route exact path="/instructorDetail">
+          <Route exact path="/instructor/:id">
             <InstructorDetail />
           </Route>
+
+          <Router exact path="/search/result">
+            <SearchResult />
+          </Router>
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>

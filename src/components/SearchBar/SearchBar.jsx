@@ -5,6 +5,7 @@ import Chip from "@mui/material/Chip";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const SearchBar = () => {
   useEffect(() => {
@@ -42,7 +43,6 @@ const SearchBar = () => {
 
   return (
     <div>
-      <h1>Search Bar</h1>
       <form onSubmit={handleSubmit}>
         <Autocomplete
           multiple
@@ -63,9 +63,11 @@ const SearchBar = () => {
             />
           )}
         />
-        <Button type="submit" variant="contained">
-          Search
-        </Button>
+        <Link to={`/search/result`}>
+          <Button type="submit" variant="contained">
+            Search
+          </Button>
+        </Link>
       </form>
     </div>
   );
