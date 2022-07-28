@@ -14,6 +14,9 @@ export default function FavoriteInstructor(){
 
     return (
         <div>
+            <div>
+                <h3>Favorite Instructors:</h3>
+            </div>
 
         </div>
     )

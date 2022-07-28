@@ -15,6 +15,7 @@ function UserPage() {
         <SearchBar/>
         <RecommendInstructors/>
         <UpcomingClasses/>
+        <FavoriteInstructor/>
       <p>Your ID is: {user.id}</p>
       <LogOutButton className="btn" />
     </div>
