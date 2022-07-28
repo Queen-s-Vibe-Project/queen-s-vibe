@@ -30,6 +30,9 @@ function* fetchInstructorDetail(action){
     }
     catch (error) {
         console.error('Get instructor detail failed', error)
+    }
+}
+
 function* fetchRecommendInstructor(){
     try {
         const res = yield axios.get('/instructor/recommend')

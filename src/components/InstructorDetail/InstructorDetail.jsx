@@ -11,18 +11,6 @@ function InstructorDetail() {
 
   const instructor = useSelector((store) => store.instructorDetail[0]);
   
-  return (
-    <>
-      <h1> Instructor Detail </h1>
-      <button> Back </button>
-      {instructor && <InstructorProfile key={instructor} instructor={instructor} />}
-
-function InstructorDetail() {
-  const history = useHistory();
-
-  const handleClick = () => {
-    history.push("/");
-  };
 
   return (
     <>
