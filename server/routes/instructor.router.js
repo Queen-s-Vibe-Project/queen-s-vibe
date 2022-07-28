@@ -31,37 +31,37 @@ router.get('/', (req, res) => {
 });
 
 // Get individual instructor
-router.get("/:id", (req, res) => {
+// router.get("/:id", (req, res) => {
 
-  const queryText = `SELECT * FROM "user" WHERE "user".id = $1;`;
-  // const queryText = `
-  //   SELECT "user".id, "user".name, "user"."adminLevel", "user".about, "user".pronouns, "user".avatar, array_agg(tags."tagName") AS tags,  "user"."adminLevel", "user".facebook, "user".instagram, "user".twitter, "user".website, "activities".activity, "availableClass".location, "availableClass"."dateOfWeek", "availableClass"."startTime"
-  //     FROM "user"
-  //     JOIN "userTags"
-  //     ON "userTags"."userId" = "user".id
-  //     JOIN tags
-  //     ON "userTags"."tagId" = tags.id
-  //     JOIN "availableClass"
-  //     ON "user".id = "availableClass"."instructorId"
-  //     JOIN "activities" 
-  //     ON "activities".id = "availableClass"."activityId"
-  //     WHERE "user".id = $1 AND "user"."adminLevel" = 'instructor'
-  //   GROUP BY "user".id, "activities".activity, "availableClass".location, "availableClass"."dateOfWeek", "availableClass"."startTime";
-  //   `;
+//   const queryText = `SELECT * FROM "user" WHERE "user".id = $1;`;
+//   // const queryText = `
+//   //   SELECT "user".id, "user".name, "user"."adminLevel", "user".about, "user".pronouns, "user".avatar, array_agg(tags."tagName") AS tags,  "user"."adminLevel", "user".facebook, "user".instagram, "user".twitter, "user".website, "activities".activity, "availableClass".location, "availableClass"."dateOfWeek", "availableClass"."startTime"
+//   //     FROM "user"
+//   //     JOIN "userTags"
+//   //     ON "userTags"."userId" = "user".id
+//   //     JOIN tags
+//   //     ON "userTags"."tagId" = tags.id
+//   //     JOIN "availableClass"
+//   //     ON "user".id = "availableClass"."instructorId"
+//   //     JOIN "activities" 
+//   //     ON "activities".id = "availableClass"."activityId"
+//   //     WHERE "user".id = $1 AND "user"."adminLevel" = 'instructor'
+//   //   GROUP BY "user".id, "activities".activity, "availableClass".location, "availableClass"."dateOfWeek", "availableClass"."startTime";
+//   //   `;
 
-  const queryParams = [req.params.id];
+//   const queryParams = [req.params.id];
 
-  console.log('what is this', req.params.id)
+//   console.log('what is this', req.params.id)
 
-  pool.query(queryText, queryParams)
-    .then((results) => {
-      console.log("InstructorDetail", results.rows[0]);
-    })
-    .catch((err) => {
-      console.log("GET InstructorDetail failed", err);
-      res.sendStatus(500);
-    });
-});
+//   pool.query(queryText, queryParams)
+//     .then((results) => {
+//       console.log("InstructorDetail", results.rows[0]);
+//     })
+//     .catch((err) => {
+//       console.log("GET InstructorDetail failed", err);
+//       res.sendStatus(500);
+//     });
+// });
 
 // Recommended instructor route
 router.get('/recommend', (req, res) => {
@@ -69,24 +69,42 @@ router.get('/recommend', (req, res) => {
   console.log(userId);
 
   const tagQuery = `
-        SELECT "tags"."tagName" FROM "userTags"
+        SELECT JSON_AGG("tags"."tagName") AS "tags" FROM "userTags"
         JOIN "tags" on "tags".id = "userTags"."tagId" 
         WHERE "userTags"."userId" = $1;
     `
 
   pool.query(tagQuery, [userId])
     .then((dbRes) => {
-      //console.log(dbRes.rows[0].tagName);
+        
+        console.log(dbRes.rows[0].tags,dbRes.rows[0].tags.length);
+        let listOfTags = '';
 
-      return dbRes.rows[0].tagName
+        for (let index = 0; index < dbRes.rows[0].tags.length; index++) {
+            console.log('last');
+            if (index === dbRes.rows[0].tags.length -1) {
+                listOfTags += `\'${dbRes.rows[0].tags[index]}\'`
+            }else{
+                console.log('loop',index);
+                listOfTags += `\'${dbRes.rows[0].tags[index]}\',`
+            }
+            
+        }
+
+        return listOfTags;
+
+      
     })
-    .then((tagName) => {
+    .then((listOfTags) => {
+        console.log(listOfTags);
       const recommendInstructorQuery = `
-                SELECT "user".name, "user".pronouns , "tags"."tagName" FROM "user"
-                JOIN "userTags" on "user".id = "userTags"."userId"
-                JOIN "tags" on "tags".id = "userTags"."tagId"
-                WHERE "user"."adminLevel" = 'instructor' AND "tags"."tagName" =  '${tagName}'
-                GROUP BY "user".name, "user".pronouns, "tags"."tagName";
+            SELECT "user".name, "user".pronouns , JSON_AGG("tags"."tagName"), COUNT("user".name),"user".avatar FROM "user"
+            JOIN "userTags" on "user".id = "userTags"."userId"
+            JOIN "tags" on "tags".id = "userTags"."tagId"
+            WHERE "user"."adminLevel" = 'instructor' AND "tags"."tagName" IN (${listOfTags})
+            GROUP BY "user".name, "user".pronouns, "user".avatar 
+            ORDER BY COUNT("user".name) DESC
+            LIMIT 5;
             `
 
       pool.query(recommendInstructorQuery)
@@ -98,6 +116,8 @@ router.get('/recommend', (req, res) => {
           res.sendStatus(500)
         })
     })
+
+    
 })
 
 // Favorite instructors route
