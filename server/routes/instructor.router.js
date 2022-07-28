@@ -98,11 +98,11 @@ router.get('/recommend', (req, res) => {
     .then((listOfTags) => {
         console.log(listOfTags);
       const recommendInstructorQuery = `
-            SELECT "user".name, "user".pronouns , JSON_AGG("tags"."tagName"), COUNT("user".name),"user".avatar FROM "user"
+            SELECT "user".id, "user".name, "user".pronouns , JSON_AGG("tags"."tagName"), COUNT("user".name),"user".avatar FROM "user"
             JOIN "userTags" on "user".id = "userTags"."userId"
             JOIN "tags" on "tags".id = "userTags"."tagId"
             WHERE "user"."adminLevel" = 'instructor' AND "tags"."tagName" IN (${listOfTags})
-            GROUP BY "user".name, "user".pronouns, "user".avatar 
+            GROUP BY "user".id, "user".name, "user".pronouns, "user".avatar 
             ORDER BY COUNT("user".name) DESC
             LIMIT 5;
             `
