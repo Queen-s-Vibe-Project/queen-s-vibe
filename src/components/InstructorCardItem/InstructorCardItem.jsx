@@ -1,6 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./InstructorCardItem.css";
-import { useSelector } from "react-redux";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -25,24 +25,38 @@ function InstructorCardItem({ item }) {
               sx={{ width: 75, height: 75 }}
             />
           </Stack>
-          <button className="view-more-btn">View More</button>
+          <Link to={`/instructor/${item.id}`}>
+            <button className="view-more-btn">View More</button>
+          </Link>
         </div>
 
         {/* Right side */}
         <div>
           <Card className="right-card">
             <CardContent className="rt-card">
-              <Typography variant="p" component="div">
+              <Typography
+                className="instructor-name"
+                variant="p"
+                component="div"
+              >
                 {item.name}
               </Typography>
 
-              <Stack className="chip-container" direction="row" spacing={0.5}>
-                <Chip className="chip-pill" label="LGBQT" variant="outlined" />
-                <Chip
-                  className="chip-pill"
-                  label="SeniorFriendly"
-                  variant="outlined"
-                />
+              {/* Map over instructor tags */}
+              <Stack>
+                <span className="chip-container">
+                  {item.tags.map((tag, i) => {
+                    return (
+                      <li className="tag-list" key={i}>
+                        <Chip
+                          className="chip-pill"
+                          label={tag}
+                          variant="outlined"
+                        />
+                      </li>
+                    );
+                  })}
+                </span>
               </Stack>
               <div className="icon-container">
                 <FacebookIcon className="featured-icon" />

@@ -1,8 +1,7 @@
 .featured-container {
   display: flex;
   margin: 2rem;
-  gap: 2rem;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -22,6 +21,11 @@
 }
 
 /* Right side of featured instructors */
+.right-card {
+  width: 14rem;
+  /* height: 8.5rem; */
+}
+
 .rt-card {
   display: flex;
   flex-direction: column;
@@ -58,14 +62,23 @@
 
 .chip-pill {
   /* width: 50% !important; */
-  height: 75% !important;
+  height: 1.25rem !important;
   font-size: 0.75rem !important;
 }
 
 .chip-container {
   display: flex;
   flex-direction: row;
-  flex-basis: auto;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.tag-list {
+  list-style-type: none;
+}
+
+.instructor-name {
+  font-weight: bold;
 }
 
 /* about section */
