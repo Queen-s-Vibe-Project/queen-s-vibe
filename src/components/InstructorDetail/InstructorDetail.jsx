@@ -3,30 +3,37 @@ import "./InstructorDetail.css";
 import InstructorProfile from "./InstructorProfile";
 import InstructorClasses from "./InstructorClasses";
 import InstructorTags from "./InstructorTags";
-import { useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 
 function InstructorDetail() {
-  
-  const item = useSelector(store => store.instructor)
 
+  const instructor = useSelector((store) => store.instructorDetail);
 
   return (
     <>
       <h1> Instructor Detail </h1>
       <button> Back </button>
-        <InstructorProfile />
+      {instructor.map((item) => {
+        return (
+        <InstructorProfile key={item.id} item={item} />
+        )
+      })}
+        
       <div>
         <h3> Classes </h3>
-        <InstructorClasses />
+        {instructor.map((item) => {
+          return <InstructorClasses key={item.id} instructor={item} />
+        })}
       </div>
       <h3> Tags </h3>
-      <InstructorTags />
+      {instructor.map((item) => {
+        return <InstructorTags key={item.id} item={item} />
+      })}
       <div>
         <h3> About </h3>
       </div>
       <p>
-        Hello World! My name is Edan and I have been a trainer for about 10
-        years. I love help people achieve their fitness goals....
+        {instructor && instructor.about}
       </p>
     </>
   );
