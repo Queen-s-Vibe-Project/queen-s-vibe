@@ -34,7 +34,9 @@ function* fetchActiveInstructor(action) {
 }
 
 function* fetchRecommendInstructor() {
+    console.log('in recommend');
     try {
+        console.log('in try');
         const res = yield axios.get('/instructor/recommend')
         console.log(res.data);
 
