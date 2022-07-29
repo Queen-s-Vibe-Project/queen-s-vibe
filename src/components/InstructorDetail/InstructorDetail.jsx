@@ -13,7 +13,11 @@ function InstructorDetail() {
   const params = useParams();
 
   // useEffect to dispatch 'FETCH_ACTIVE_INSTRUCTOR' on page load
+  useEffect(()=>{
+    dispatch({type:"FETCH_INSTRUCTOR_PROFILE", payload: params.id})
+  },[params.id])
 
+  const profile = useSelector((store) => store.instructorProfile)
 
   // const instructor = useSelector((store) => store.instructorDetail[0]);
 
@@ -28,11 +32,11 @@ function InstructorDetail() {
       <button onClick={handleClick}>Back</button>
 
 
-      <InstructorProfile instructor={params.id} />
+      <InstructorProfile profile={profile} instructor={params.id} />
       <div>
         <h3> Classes </h3>
         
-          <InstructorClasses  instructor={params.id} />
+      {/* <InstructorClasses  instructor={params.id} /> */}
         
       </div>
       <h3> Tags </h3>

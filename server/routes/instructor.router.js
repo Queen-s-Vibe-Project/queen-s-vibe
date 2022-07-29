@@ -32,7 +32,7 @@ router.get('/', (req, res) => {
 
 // Get individual instructor
 router.get('/profile/:id',(req,res)=>{
-    console.log(req.params.id);
+    
 
     const profileQuery =   `
         SELECT * FROM "user"
@@ -43,13 +43,13 @@ router.get('/profile/:id',(req,res)=>{
         .then((dbRes)=>{
             res.send(dbRes.rows[0]);
         }).catch((err)=>{
-            console.error(`${err}`);
+            console.error(` Profile error: ${err}`);
         })
 })
 
 router.get('/class/:id',(req,res)=>{
 
-    console.log(req.params.id);
+        console.log(req.params.id);
 
     const classQuery = `
         SELECT "user".id, "availableClass"."dateOfWeek", "availableClass"."startTime", "availableClass".location, "activities".activity  FROM "availableClass"
@@ -60,9 +60,10 @@ router.get('/class/:id',(req,res)=>{
 
     pool.query(classQuery,[req.params.id])
         .then((dbRes)=>{
+            
             res.send(dbRes.rows);
         }).catch((err)=>{
-            console.error(err);
+            console.error(`class error: ${err}`);
         })
 
     

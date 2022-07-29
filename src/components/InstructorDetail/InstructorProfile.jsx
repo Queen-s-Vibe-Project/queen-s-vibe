@@ -9,25 +9,22 @@ import { useSelector, useDispatch } from "react-redux";
 
 
 
-function InstructorProfile( {instructor} ) {
-  const dispatch = useDispatch()
+function InstructorProfile( {profile,instructor} ) {
+  
 
-  useEffect(()=>{
-    dispatch({type:"FETCH_INSTRUCTOR_PROFILE", payload: instructor})
-  },[instructor])
 
   const user = useSelector((store) => store.user) 
-  const profile = useSelector((store) => store.instructorProfile)
+  
 
   return (
     <>
-    {(user.adminLevel === 'instructor')? <div><EditIcon/></div>: <div></div> }
+    {(user.adminLevel === 'instructor'&& user.id === Number(instructor))? <div><EditIcon/></div>: <div></div> }
       <div className="profileHeader">
         <div className="pic">
           <Avatar
             sx={{ width: 56, height: 56 }}
             src={profile.avatar}
-            alt={instructor.name}
+            alt={profile.name}
           />
         </div>
         <div className="favoriteHeart">

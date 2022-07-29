@@ -24,7 +24,7 @@ function instructorClasses({instructor}) {
   }
   return (
       <div className="classOrder" >
-        { (user.adminLevel === 'instructor') ? 
+        { (user.adminLevel === 'instructor' && user.id === instructor) ? 
         <div className="addIcon"> <AddIcon/> </div> :
         <div></div>
       }
