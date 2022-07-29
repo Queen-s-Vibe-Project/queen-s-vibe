@@ -48,5 +48,16 @@ export const instructorClasses = (state = [], action )=>{
             return state;
     }
 }
+
+export const instructorTags = (state = [], action )=>{
+    switch (action.type) {
+        case 'SET_INSTRUCTOR_TAGS':
+            
+            return action.payload;
+    
+        default:
+            return state;
+    }
+}
 export default instructorReducer;
 

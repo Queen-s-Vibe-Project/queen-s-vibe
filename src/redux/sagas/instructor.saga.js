@@ -53,6 +53,15 @@ function* fetchInstructorClasses(action) {
     }
 }
 
+function* fetchInstructorTags(action) {
+    try {
+        const res = yield axios.get('/instructor/tags/'+action.payload)
+        yield put({ type:'SET_INSTRUCTOR_TAGS', payload: res.data})
+    } catch (error) {
+        console.error(`${error}`);
+    }
+}
+
 function* fetchRecommendInstructor() {
     console.log('in recommend');
     try {
@@ -108,6 +117,7 @@ function* instructorSaga() {
     yield takeEvery('FETCH_ACTIVITIES', fetchActivities)
     yield takeEvery('FETCH_FAVORITE_INSTRUCTOR', fetchFavoriteInstructor);
     yield takeEvery("FETCH_INSTRUCTOR_CLASSES", fetchInstructorClasses)
+    yield takeEvery('FETCH_INSTRUCTOR_TAGS',fetchInstructorTags)
 
     ///
     yield takeEvery('ADD_INSTRUCTOR_TO_FAVORITES', addInstructorToFavorite)

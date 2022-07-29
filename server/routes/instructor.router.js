@@ -10,7 +10,7 @@ const {
 // get array of object for tag name
 
 
-router.get('/', (req, res) => {
+router.get('/',rejectUnauthenticated ,(req, res) => {
   console.log('/user GET route');
   const queryText = `SELECT "user".id, "user".name, "user"."adminLevel", "user".avatar, array_agg(tags."tagName") AS tags
 	                    FROM "user"
@@ -34,7 +34,7 @@ router.get('/', (req, res) => {
 });
 
 // Get individual instructor
-router.get('/profile/:id',(req,res)=>{
+router.get('/profile/:id',rejectUnauthenticated,(req,res)=>{
     
 
     const profileQuery =   `
@@ -50,7 +50,7 @@ router.get('/profile/:id',(req,res)=>{
         })
 })
 
-router.get('/class/:id',(req,res)=>{
+router.get('/class/:id',rejectUnauthenticated,(req,res)=>{
 
         const userId =req.params.id;
 
@@ -70,6 +70,24 @@ router.get('/class/:id',(req,res)=>{
         })
 
     
+})
+
+router.get('/tags/:id',rejectUnauthenticated,(req,res)=>{
+  console.log(req.params.id);
+
+  const tagsQuery = `
+    SELECT "tags"."tagName" FROM "userTags"
+    JOIN "tags" on "tags".id = "userTags"."tagId"
+    WHERE "userTags"."userId" = $1;
+  `
+
+  pool.query(tagsQuery, [req.params.id])
+    .then((dbRes)=>{
+      res.send(dbRes.rows)
+    }).catch((error)=>{
+      console.error(error);
+    })
+  
 })
 
 // Recommended instructor route
@@ -130,7 +148,7 @@ router.get('/recommend', (req, res) => {
 })
 
 // Favorite instructors route
-router.get('/favorite', (req, res) => {
+router.get('/favorite',rejectUnauthenticated ,(req, res) => {
   const userId = req.user.id
 
   console.log(userId);
@@ -152,7 +170,7 @@ router.get('/favorite', (req, res) => {
     })
 })
 
-router.post('/favorite/:id',rejectUnauthenticated,(req,res)=>{
+router.post('/favorite/:id',rejectUnauthenticated,rejectUnauthenticated,(req,res)=>{
   console.log(req.params.id, 'This is user id' ,req.user.id);
 
   const addToFavoriteQuery = `
