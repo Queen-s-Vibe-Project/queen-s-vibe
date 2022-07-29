@@ -149,5 +149,12 @@ router.get('/favorite', (req, res) => {
     })
 })
 
+router.post('/favorite/:id',(req,res)=>{
+  console.log(req.params.id);
+
+  
+  res.sendStatus(200)
+})
+
 module.exports = router;
 
