@@ -14,15 +14,18 @@ function InstructorProfile( {instructor} ) {
 
   useEffect(()=>{
     dispatch({type:"FETCH_INSTRUCTOR_PROFILE", payload: instructor})
-  })
+  },[instructor])
+
+  const user = useSelector((store) => store.user) 
+  const profile = useSelector((store) => store.instructorProfile)
 
   return (
     <>
-    {/* <div className="editIcon"> <EditIcon /> </div>
+    {(user.adminLevel === 'instructor')? <div><EditIcon/></div>: <div></div> }
       <div className="profileHeader">
         <div className="pic">
           <Avatar
-            src={instructor.avatar}
+            src={profile.avatar}
             alt={instructor.name}
           />
         </div>
@@ -30,16 +33,16 @@ function InstructorProfile( {instructor} ) {
             <FavoriteIcon />
           </div>
         <div className="containerProfile">
-          <div> {instructor.name} </div>
-          <div> {instructor.pronouns} </div>
+          <div> {profile.name} </div>
+          <div> {profile.pronouns} </div>
           <div>
-            <InstagramIcon src={instructor.instagram} color="primary" />
-            <FacebookIcon src={instructor.facbook} color="primary" />
-            <TwitterIcon src={instructor.twitter} color="primary" />
+            <InstagramIcon src={profile.instagram} color="primary" />
+            <FacebookIcon src={profile.facebook} color="primary" />
+            <TwitterIcon src={profile.twitter} color="primary" />
           </div>
           <div className="chip"> Ace Certification </div>
         </div>
-      </div> */}
+      </div>
     </>
   );
 }
