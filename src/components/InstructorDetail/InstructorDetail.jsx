@@ -18,7 +18,7 @@ function InstructorDetail() {
   // const instructor = useSelector((store) => store.instructorDetail[0]);
 
   const handleClick = () => {
-    history.push("/");
+    history.goBack();
   };
 
   return (
