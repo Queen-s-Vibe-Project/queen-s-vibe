@@ -41,7 +41,7 @@ function LoginForm() {
 
         <div>
           <label htmlFor="username">
-            <div className="login-label">Email</div>
+            <div className="login-label">Username</div>
             <TextField
               id="outlined-basic"
               variant="outlined"
