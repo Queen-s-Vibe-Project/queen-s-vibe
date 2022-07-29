@@ -1,6 +1,9 @@
 const express = require("express");
 const pool = require("../modules/pool");
 const router = express.Router();
+const {
+  rejectUnauthenticated,
+} = require('../modules/authentication-middleware');
 
 // GET all instructors without authentication
 // JOIN user, userTags, and tags tables and use array-agg to
@@ -30,23 +33,32 @@ router.get('/', (req, res) => {
 });
 
 // Get individual instructor
+
 router.get('/profile/:id', (req, res) => {
   console.log(req.params.id);
+router.get('/profile/:id',(req,res)=>{
 
   const profileQuery = `
         SELECT * FROM "user"
         WHERE "user".id = $1;
     `
-
   pool.query(profileQuery, [req.params.id])
     .then((dbRes) => {
       res.send(dbRes.rows[0]);
     }).catch((err) => {
       console.error(`${err}`);
     })
+
+    pool.query(profileQuery,[req.params.id])
+        .then((dbRes)=>{
+            res.send(dbRes.rows[0]);
+        }).catch((err)=>{
+            console.error(` Profile error: ${err}`);
+        })
 })
 
 router.get('/class/:id', (req, res) => {
+
 
   console.log(req.params.id);
 
@@ -64,7 +76,22 @@ router.get('/class/:id', (req, res) => {
       console.error(err);
     })
 
+        const userId =req.params.id;
 
+    const classQuery = `
+    SELECT "user".id, "availableClass"."dateOfWeek", "availableClass"."startTime", "availableClass".location, "activities".activity  FROM "availableClass"
+    JOIN "user" ON "user".id = "availableClass"."instructorId"
+    JOIN "activities" on "activities".id = "availableClass"."activityId"
+    WHERE "user".id = $1;
+    `
+
+    pool.query(classQuery,[userId])
+        .then((dbRes)=>{
+            
+            res.send(dbRes.rows);
+        }).catch((err)=>{
+            console.error(`class error: ${err}`);
+        })
 })
 
 // Recommended instructor route
@@ -138,6 +165,22 @@ router.get('/favorite', (req, res) => {
       res.send(dbRes.rows)
     }).catch((err) => {
       console.error(`${err}`);
+    })
+})
+
+router.post('/favorite/:id',rejectUnauthenticated,(req,res)=>{
+  console.log(req.params.id, 'This is user id' ,req.user.id);
+
+  const addToFavoriteQuery = `
+    INSERT INTO "favoriteInstuctor" ("userId" , "instructorId")
+    VALUES ($1,$2)
+  `
+
+  pool.query(addToFavoriteQuery, [req.user.id,req.params.id])
+    .then((dbRes)=>{
+      res.sendStatus(200)
+    }).catch((err)=>{
+      console.error(err);
     })
 })
 
