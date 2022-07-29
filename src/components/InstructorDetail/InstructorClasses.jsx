@@ -5,36 +5,27 @@ import { useSelector, useDispatch } from "react-redux";
 import InstructorClass from "./InstructorClass/InstructorClass";
 
 
-function instructorClasses({instructor}) {
+function instructorClasses({classes, instructor}) {
 
-  const dispatch = useDispatch()
-
-  useEffect(()=>{
-    dispatch({
-      type: "FETCH_INSTRUCTOR_CLASSES",
-      payload: instructor
-    })
-  },[])
-
-  const classes = useSelector((store) => store.instructorClasses)
+  console.log(classes);
+  
   const user = useSelector((store) => store.user) 
 
-  if (classes) {
-    console.log(classes);
-  }
+ 
   return (
       <div className="classOrder" >
-        { (user.adminLevel === 'instructor' && user.id === instructor) ? 
+        { (user.adminLevel === 'instructor' && user.id === Number(instructor)) ? 
         <div className="addIcon"> <AddIcon/> </div> :
         <div></div>
       }
         
-        
-        { classes && classes.length > 1 &&
+        {
+          
           classes.map((session) =>(
-          <InstructorClass session={session} />
-          ))
+            <InstructorClass session={session} />
+          )) 
         }
+        
        
         
       </div>

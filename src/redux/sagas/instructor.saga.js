@@ -47,7 +47,7 @@ function* fetchInstructorClasses(action) {
     try {
         const res = yield axios.get('/instructor/class/'+ action.payload)
         //console.log(res.data);
-        yield put({type:"FETCH_INSTRUCTOR_CLASSES", payload: res.data})
+        yield put({type:"SET_INSTRUCTOR_CLASSES", payload: res.data})
     } catch (error) {
         console.error(`${error}`);
     }

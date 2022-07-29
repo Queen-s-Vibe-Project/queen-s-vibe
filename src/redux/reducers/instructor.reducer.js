@@ -40,7 +40,7 @@ export const favoriteInstructor = (state =[], action) =>{
 
 export const instructorClasses = (state = [], action )=>{
     switch (action.type) {
-        case "FETCH_INSTRUCTOR_CLASSES":
+        case "SET_INSTRUCTOR_CLASSES":
             
             return action.payload;
     

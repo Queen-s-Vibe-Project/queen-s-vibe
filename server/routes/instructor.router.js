@@ -49,16 +49,16 @@ router.get('/profile/:id',(req,res)=>{
 
 router.get('/class/:id',(req,res)=>{
 
-        console.log(req.params.id);
+        const userId =req.params.id;
 
     const classQuery = `
-        SELECT "user".id, "availableClass"."dateOfWeek", "availableClass"."startTime", "availableClass".location, "activities".activity  FROM "availableClass"
-        JOIN "user" ON "user".id = "availableClass"."instructorId"
-        JOIN "activities" on "activities".id = "availableClass"."activityId"
-        WHERE "user".id = $1;
+    SELECT "user".id, "availableClass"."dateOfWeek", "availableClass"."startTime", "availableClass".location, "activities".activity  FROM "availableClass"
+    JOIN "user" ON "user".id = "availableClass"."instructorId"
+    JOIN "activities" on "activities".id = "availableClass"."activityId"
+    WHERE "user".id = $1;
     `
 
-    pool.query(classQuery,[req.params.id])
+    pool.query(classQuery,[userId])
         .then((dbRes)=>{
             
             res.send(dbRes.rows);
