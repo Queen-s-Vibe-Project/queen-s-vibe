@@ -14,7 +14,6 @@ function InstructorDetail() {
 
   // useEffect to dispatch 'FETCH_ACTIVE_INSTRUCTOR' on page load
 
-
   // const instructor = useSelector((store) => store.instructorDetail[0]);
 
   const handleClick = () => {
@@ -27,22 +26,20 @@ function InstructorDetail() {
 
       <button onClick={handleClick}>Back</button>
 
-
       <InstructorProfile instructor={params.id} />
       <div>
         <h3> Classes </h3>
-        
-          <InstructorClasses  instructor={params.id} />
-        
+
+        <InstructorClasses instructor={params.id} />
       </div>
       <h3> Tags </h3>
       {/* <div className="tags">
         {instructor && (
-          <InstructorTags key={instructor} instructor={instructor} />
+          <InstructorTags key={instructor} instructor={instructor} /> 
         )}
       </div>
       <div>
-        <h3> About </h3>
+        <h3> About </h3> 
       </div>
       {instructor && (
         <InstructorAbout key={instructor} instructor={instructor} />

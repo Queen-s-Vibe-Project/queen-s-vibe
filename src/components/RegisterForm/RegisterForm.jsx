@@ -163,7 +163,7 @@ function RegisterForm() {
       {/* Tags */}
       <div>
         <label htmlFor="tags">
-          <div className="user-tag">Select Tags</div>
+          <div className="user-tag">Select tags you are insterested in:</div>
         </label>
         <select
           onChange={(evt) => setTags(evt.target.value)}
