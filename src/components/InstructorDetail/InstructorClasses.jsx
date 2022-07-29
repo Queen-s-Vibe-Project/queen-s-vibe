@@ -17,13 +17,17 @@ function instructorClasses({instructor}) {
   },[])
 
   const classes = useSelector((store) => store.instructorClasses)
+  const user = useSelector((store) => store.user) 
 
   if (classes) {
     console.log(classes);
   }
   return (
       <div className="classOrder" >
-        <div className="addIcon"> <AddIcon/> </div>
+        { (user.adminLevel === 'instructor') ? 
+        <div className="addIcon"> <AddIcon/> </div> :
+        <div></div>
+      }
         
         
         { classes && classes.length > 1 &&
