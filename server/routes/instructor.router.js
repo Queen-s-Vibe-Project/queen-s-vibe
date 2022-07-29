@@ -1,6 +1,9 @@
 const express = require("express");
 const pool = require("../modules/pool");
 const router = express.Router();
+const {
+  rejectUnauthenticated,
+} = require('../modules/authentication-middleware');
 
 // GET all instructors without authentication
 // JOIN user, userTags, and tags tables and use array-agg to
@@ -147,6 +150,24 @@ router.get('/favorite', (req, res) => {
     }).catch((err) => {
       console.error(`${err}`);
     })
+})
+
+router.post('/favorite/:id',rejectUnauthenticated,(req,res)=>{
+  console.log(req.params.id, 'This is user id' ,req.user.id);
+
+  const addToFavoriteQuery = `
+    INSERT INTO "favoriteInstuctor" ("userId" , "instructorId")
+    VALUES ($1,$2)
+  `
+
+  pool.query(addToFavoriteQuery, [req.user.id,req.params.id])
+    .then((dbRes)=>{
+      res.sendStatus(200)
+    }).catch((err)=>{
+      console.error(err);
+    })
+
+  
 })
 
 module.exports = router;

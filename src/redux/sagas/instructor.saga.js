@@ -90,6 +90,15 @@ function* fetchActivities() {
     }
 }
 
+function* addInstructorToFavorite(action) {
+    console.log(action.payload);
+    try {
+        const res = yield axios.post('/instructor/favorite/'+action.payload)
+    } catch (error) {
+        
+    }
+}
+
 // Watcher saga
 function* instructorSaga() {
     yield takeEvery('FETCH_INSTRUCTORS', fetchAllInstructors);
@@ -99,6 +108,9 @@ function* instructorSaga() {
     yield takeEvery('FETCH_ACTIVITIES', fetchActivities)
     yield takeEvery('FETCH_FAVORITE_INSTRUCTOR', fetchFavoriteInstructor);
     yield takeEvery("FETCH_INSTRUCTOR_CLASSES", fetchInstructorClasses)
+
+    ///
+    yield takeEvery('ADD_INSTRUCTOR_TO_FAVORITES', addInstructorToFavorite)
 }
 
 export default instructorSaga;
