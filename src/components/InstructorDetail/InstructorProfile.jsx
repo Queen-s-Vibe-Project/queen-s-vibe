@@ -11,9 +11,10 @@ import { useSelector, useDispatch } from "react-redux";
 
 function InstructorProfile( {profile,instructor} ) {
   
-
-
+  
+  const dispatch = useDispatch()
   const user = useSelector((store) => store.user) 
+  
   
 
   return (
@@ -27,7 +28,15 @@ function InstructorProfile( {profile,instructor} ) {
             alt={profile.name}
           />
         </div>
-        <div className="favoriteHeart">
+        <div
+          onClick={()=>{
+            console.log('click');
+            dispatch({
+              type:'ADD_INSTRUCTOR_TO_FAVORITES',
+              payload: instructor
+            })
+          }} 
+          className="favoriteHeart">
             <FavoriteIcon />
           </div>
         <div className="containerProfile">
