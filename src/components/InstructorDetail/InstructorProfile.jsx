@@ -4,12 +4,21 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import EditIcon from '@mui/icons-material/Edit';
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+
+
 
 function InstructorProfile( {instructor} ) {
-  console.log('did it come', instructor)
+  const dispatch = useDispatch()
+
+  useEffect(()=>{
+    dispatch({type:"FETCH_INSTRUCTOR_PROFILE", payload: instructor})
+  })
+
   return (
     <>
-    <div className="editIcon"> <EditIcon /> </div>
+    {/* <div className="editIcon"> <EditIcon /> </div>
       <div className="profileHeader">
         <div className="pic">
           <Avatar
@@ -30,7 +39,7 @@ function InstructorProfile( {instructor} ) {
           </div>
           <div className="chip"> Ace Certification </div>
         </div>
-      </div>
+      </div> */}
     </>
   );
 }
