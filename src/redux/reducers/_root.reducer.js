@@ -4,13 +4,14 @@ import {
   favoriteInstructor,
   instructorProfile,
   instructorClasses,
+  activities,
 } from "./instructor.reducer.js";
 import errors from "./errors.reducer";
 import search from "./search.reducer";
 import user from "./user.reducer";
 import instructor from "./instructor.reducer.js";
 import instructorDetail from "./instructorDetail.reducer";
-import activities from "./instructor.reducer";
+
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
 // This is imported in index.js as rootSaga

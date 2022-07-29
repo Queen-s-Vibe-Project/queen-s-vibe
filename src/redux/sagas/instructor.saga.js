@@ -77,7 +77,7 @@ function* fetchFavoriteInstructor() {
 function* fetchActivities() {
   try {
     const res = yield axios.get("/instructor/activities");
-    console.log(res.data);
+    console.log("activities for addClass", res.data);
     yield put({ type: "SET_ACTIVITIES", payload: res.data });
   } catch (error) {
     console.log("Error in fetchActivities", error);

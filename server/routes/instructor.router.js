@@ -149,7 +149,7 @@ router.get("/favorite", (req, res) => {
 
 router.get("/activities", (req, res) => {
   const sqlQuery = `
-    SELECT * "activities"
+    SELECT * FROM activities
   `;
   pool
     .query(sqlQuery)

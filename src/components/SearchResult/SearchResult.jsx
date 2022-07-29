@@ -8,8 +8,8 @@ function SearchResult() {
   
  
   const instructors = useSelector((store) => store.search.results.instructorRecommendations);
-  const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  
 
   useEffect(() => {
     if(instructors){

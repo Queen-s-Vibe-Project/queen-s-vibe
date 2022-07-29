@@ -16,7 +16,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import { InputLabel, Select, MenuItem } from '@mui/material';
+import { InputLabel, Select, MenuItem, FormControl } from '@mui/material';
 
 const AddClass = () =>  {
   useEffect(()=>{
@@ -37,10 +37,12 @@ const AddClass = () =>  {
   const [coordinates, setCoordinates] = useState({lat: null, lng: null})
   const [days, setDays] = useState([])
   const [time, setTime] = useState('10:00')
-  const [activity, setActivity] = useState({})
+  const [choseActivity, setChoseActivity] = useState('')
   const [isLoaded, setIsLoaded] = useState(false)
   
-  
+  const handleChange = (evt) => {
+    setChoseActivity(evt.target.value)
+  }
  
 
 
@@ -60,7 +62,8 @@ const AddClass = () =>  {
     time: time,
     days: days,
     lat: coordinates.lat,
-    lng: coordinates.lng
+    lng: coordinates.lng, 
+    choseActivity: choseActivity
   }
 
 
@@ -164,24 +167,23 @@ const AddClass = () =>  {
       </ToggleButtonGroup>
       <h4>Pick Time</h4>
       <TimePicker onChange={setTime} value={time} />
-      <InputLabel id="demo-simple-select-helper-label">Activity</InputLabel>
-        <Select
-          labelId="demo-simple-select-helper-label"
-          id="demo-simple-select-helper"
-          value={activity}
-          label="Age"
-          onChange={(evt) => setActivity(evt.target.value)}
-        >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          {activities.map((activity) => {
-            return(
-              <MenuItem value={activity.id}>{activity.activity}</MenuItem>
-            )
-          })}
-        </Select>
       
+      <InputLabel size='large' id="activity-select">Activity</InputLabel>
+        <TextField
+          select
+          id="activity-select"
+          label="Activity"
+          value={choseActivity}
+          onChange={handleChange}
+          // defaultValue={activities[0].activity}
+          // onChange={(evt) =>  {setChoseActivity(evt.target.value)}}
+        >
+          {activities.map((option) => (
+                <MenuItem key={option.id} value={option.id}>{option.activity}</MenuItem>
+            )
+          )}
+        </TextField>
+       
         </DialogContent>
       
         <DialogActions>
