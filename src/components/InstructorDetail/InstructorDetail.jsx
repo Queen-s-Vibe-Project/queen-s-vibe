@@ -47,7 +47,6 @@ function InstructorDetail() {
 
       <button onClick={handleClick}>Back</button>
 
-      <InstructorProfile instructor={params.id} />
       <div>
         <h3> Classes </h3>
 
@@ -59,8 +58,7 @@ function InstructorDetail() {
           {/* conditional render add icon */}
           {user.adminLevel === "instructor" && user.id === Number(params.id) ? (
             <div>
-              {" "}
-              <AddIcon />{" "}
+              <AddIcon />
             </div>
           ) : (
             <></>

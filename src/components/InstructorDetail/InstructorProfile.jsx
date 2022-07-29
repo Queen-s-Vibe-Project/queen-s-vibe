@@ -3,23 +3,23 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import EditIcon from '@mui/icons-material/Edit';
+import EditIcon from "@mui/icons-material/Edit";
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-
-
-function InstructorProfile( {profile,instructor} ) {
-  
-  
-  const dispatch = useDispatch()
-  const user = useSelector((store) => store.user) 
-  
-  
+function InstructorProfile({ profile, instructor }) {
+  const dispatch = useDispatch();
+  const user = useSelector((store) => store.user);
 
   return (
     <>
-    {(user.adminLevel === 'instructor'&& user.id === Number(instructor))? <div><EditIcon/></div>: <div></div> }
+      {user.adminLevel === "instructor" && user.id === Number(instructor) ? (
+        <div>
+          <EditIcon />
+        </div>
+      ) : (
+        <div></div>
+      )}
       <div className="profileHeader">
         <div className="pic">
           <Avatar
@@ -29,16 +29,17 @@ function InstructorProfile( {profile,instructor} ) {
           />
         </div>
         <div
-          onClick={()=>{
-            console.log('click');
+          onClick={() => {
+            console.log("click");
             dispatch({
-              type:'ADD_INSTRUCTOR_TO_FAVORITES',
-              payload: instructor
-            })
-          }} 
-          className="favoriteHeart">
-            <FavoriteIcon />
-          </div>
+              type: "ADD_INSTRUCTOR_TO_FAVORITES",
+              payload: instructor,
+            });
+          }}
+          className="favoriteHeart"
+        >
+          <FavoriteIcon />
+        </div>
         <div className="containerProfile">
           <div> {profile.name} </div>
           <div> {profile.pronouns} </div>
