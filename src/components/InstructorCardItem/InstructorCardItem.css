@@ -1,15 +1,16 @@
 .featured-container {
   display: flex;
   margin: 2rem;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  gap: 2rem;
 }
 
 /* Left side of featured instructors */
 .view-more-btn {
-  margin-top: 0.5rem;
+  margin-top: 1rem;
   font-size: 0.75rem;
-  background-color: rgb(205, 205, 212);
+  background-color: rgb(233, 233, 233);
   border: 0.5px solid grey;
   border-radius: 5px;
   cursor: pointer;
@@ -22,8 +23,8 @@
 
 /* Right side of featured instructors */
 .right-card {
-  width: 14rem;
-  /* height: 8.5rem; */
+  width: 12rem;
+  height: 8rem;
 }
 
 .rt-card {
@@ -32,6 +33,7 @@
   gap: 0.75rem;
   font-size: 0.75rem;
   padding-bottom: 16px !important;
+  margin-right: 2rem;
 }
 
 .icon-container {

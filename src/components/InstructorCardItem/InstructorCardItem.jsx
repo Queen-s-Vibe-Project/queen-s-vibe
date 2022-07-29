@@ -39,18 +39,14 @@ function InstructorCardItem({ item }) {
               sx={{ width: 75, height: 75 }}
             />
           </Stack>
-          {/* <button onClick={goToInstructorDetail} className="view-more-btn">
-            View More
-          </button> */}
-            <button
-            onClick={()=>{
-              history.push(`/instructor/${item.id}` )
-            }} 
+          <button
+            onClick={() => {
+              history.push(`/instructor/${item.id}`);
+            }}
             className="view-more-btn"
-            >
-              View More
-            </button>
-          
+          >
+            View More
+          </button>
         </div>
 
         {/* Right side */}
@@ -68,7 +64,20 @@ function InstructorCardItem({ item }) {
               {/* Map over instructor tags */}
               <Stack>
                 <span className="chip-container">
-                  {item.tags.map((tag, i) => {
+                  <Chip
+                    className="chip-pill"
+                    label={item.tags[0]}
+                    variant="outlined"
+                  />
+
+                  <Chip
+                    className="chip-pill"
+                    label={item.tags[1]}
+                    variant="outlined"
+                  />
+
+                  {/* map over instructor tags */}
+                  {/* {item.tags.map((tag, i) => {
                     return (
                       <li className="tag-list" key={i}>
                         <Chip
@@ -78,7 +87,7 @@ function InstructorCardItem({ item }) {
                         />
                       </li>
                     );
-                  })}
+                  })} */}
                 </span>
               </Stack>
               <div className="icon-container">
