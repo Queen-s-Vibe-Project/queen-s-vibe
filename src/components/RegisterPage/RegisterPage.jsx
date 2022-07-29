@@ -11,7 +11,7 @@ function RegisterPage() {
       <RegisterForm />
 
       <center>
-        <h3>Already registered? </h3>
+        <h3 className="registered-text">Already registered? </h3>
         <button
           type="button"
           className="login-btn"
