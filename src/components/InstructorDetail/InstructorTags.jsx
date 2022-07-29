@@ -2,14 +2,14 @@ import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
 import AddIcon from '@mui/icons-material/Add';
 
-function InstructorTags( {instructor} ) {
+function InstructorTags( {tags} ) {
   return (
     <>
      <div> <AddIcon /> </div>
-      {instructor.tags.map((tag) => {
+      {tags.map((tag) => {
         return <div>
               <Stack direction="row" spacing={1}>
-               <Chip label={tag} />
+               <Chip label={tag.tagName} />
               </Stack>
               </div>       
       })}

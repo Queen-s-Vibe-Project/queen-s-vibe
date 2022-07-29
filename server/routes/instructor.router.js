@@ -9,7 +9,9 @@ const {
 // JOIN user, userTags, and tags tables and use array-agg to
 // get array of object for tag name
 
-router.get('/', (req, res) => {
+
+router.get('/',rejectUnauthenticated ,(req, res) => {
+
   console.log('/user GET route');
   const queryText = `SELECT "user".id, "user".name, "user"."adminLevel", "user".avatar, array_agg(tags."tagName") AS tags
 	                    FROM "user"
@@ -34,21 +36,14 @@ router.get('/', (req, res) => {
 
 // Get individual instructor
 
-router.get('/profile/:id', (req, res) => {
-  console.log(req.params.id);
-router.get('/profile/:id',(req,res)=>{
+router.get('/profile/:id',rejectUnauthenticated,(req,res)=>{
+    
+
 
   const profileQuery = `
         SELECT * FROM "user"
         WHERE "user".id = $1;
-    `
-  pool.query(profileQuery, [req.params.id])
-    .then((dbRes) => {
-      res.send(dbRes.rows[0]);
-    }).catch((err) => {
-      console.error(`${err}`);
-    })
-
+        
     pool.query(profileQuery,[req.params.id])
         .then((dbRes)=>{
             res.send(dbRes.rows[0]);
@@ -57,24 +52,9 @@ router.get('/profile/:id',(req,res)=>{
         })
 })
 
-router.get('/class/:id', (req, res) => {
 
+router.get('/class/:id',rejectUnauthenticated,(req,res)=>{
 
-  console.log(req.params.id);
-
-  const classQuery = `
-        SELECT "user".id, "availableClass"."dateOfWeek", "availableClass"."startTime", "availableClass".location, "activities".activity  FROM "availableClass"
-        JOIN "user" ON "user".id = "availableClass"."instructorId"
-        JOIN "activities" on "activities".id = "availableClass"."activityId"
-        WHERE "user".id = $1;
-    `
-
-  pool.query(classQuery, [req.params.id])
-    .then((dbRes) => {
-      res.send(dbRes.rows);
-    }).catch((err) => {
-      console.error(err);
-    })
 
         const userId =req.params.id;
 
@@ -92,6 +72,24 @@ router.get('/class/:id', (req, res) => {
         }).catch((err)=>{
             console.error(`class error: ${err}`);
         })
+})
+
+router.get('/tags/:id',rejectUnauthenticated,(req,res)=>{
+  console.log(req.params.id);
+
+  const tagsQuery = `
+    SELECT "tags"."tagName" FROM "userTags"
+    JOIN "tags" on "tags".id = "userTags"."tagId"
+    WHERE "userTags"."userId" = $1;
+  `
+
+  pool.query(tagsQuery, [req.params.id])
+    .then((dbRes)=>{
+      res.send(dbRes.rows)
+    }).catch((error)=>{
+      console.error(error);
+    })
+  
 })
 
 // Recommended instructor route
@@ -146,7 +144,7 @@ router.get('/recommend', (req, res) => {
 })
 
 // Favorite instructors route
-router.get('/favorite', (req, res) => {
+router.get('/favorite',rejectUnauthenticated ,(req, res) => {
   const userId = req.user.id
 
   console.log(userId);
@@ -168,7 +166,7 @@ router.get('/favorite', (req, res) => {
     })
 })
 
-router.post('/favorite/:id',rejectUnauthenticated,(req,res)=>{
+router.post('/favorite/:id',rejectUnauthenticated,rejectUnauthenticated,(req,res)=>{
   console.log(req.params.id, 'This is user id' ,req.user.id);
 
   const addToFavoriteQuery = `
