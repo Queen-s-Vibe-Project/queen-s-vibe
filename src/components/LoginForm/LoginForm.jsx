@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import "../LoginPage/LoginPage.css";
+import TextField from "@mui/material/TextField";
 
 function LoginForm() {
   const [username, setUsername] = useState("");
@@ -40,29 +41,43 @@ function LoginForm() {
 
         <div>
           <label htmlFor="username">
-            <div className="login-label">Email</div>
-            <input
+            <div className="login-label">Username</div>
+            <TextField
+              id="outlined-basic"
+              variant="outlined"
+              value={username}
+              onChange={(event) => setUsername(event.target.value)}
+            />
+
+            {/* <input
               className="login-input"
               type="text"
               name="username"
               required
               value={username}
               onChange={(event) => setUsername(event.target.value)}
-            />{" "}
+            /> */}
           </label>
         </div>
 
         <div>
           <label htmlFor="password">
             <div className="login-label">Password</div>
-            <input
+            <TextField
+              type="password"
+              id="outlined-basic"
+              variant="outlined"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+            />
+            {/* <input
               className="login-input"
               type="password"
               name="password"
               required
               value={password}
               onChange={(event) => setPassword(event.target.value)}
-            />{" "}
+            /> */}
           </label>
         </div>
 

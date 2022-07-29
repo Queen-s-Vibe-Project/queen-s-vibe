@@ -17,7 +17,7 @@ function InstructorDetail() {
 
   // useEffect to dispatch 'FETCH_ACTIVE_INSTRUCTOR' on page load
 
- 
+  // const instructor = useSelector((store) => store.instructorDetail[0]);
 
   useEffect(()=>{
     
@@ -30,6 +30,7 @@ function InstructorDetail() {
     //
     dispatch({type:'FETCH_INSTRUCTOR_TAGS',payload: params.id})
   },[params.id])
+
 
   const profile = useSelector((store) => store.instructorProfile)
   const classes = useSelector((store) => store.instructorClasses)
@@ -48,6 +49,12 @@ function InstructorDetail() {
 
       <button onClick={handleClick}>Back</button>
 
+
+      <InstructorProfile instructor={params.id} />
+      <div>
+        <h3> Classes </h3>
+
+
       <div className="profile">
         <InstructorProfile profile={profile} instructor={params.id} />
       </div>
@@ -63,7 +70,7 @@ function InstructorDetail() {
             <InstructorClass session={session} />
           ))
         }
-        
+
       </div>
       <h3> Tags </h3>
       <div className="tags">
@@ -73,6 +80,8 @@ function InstructorDetail() {
       </div>
       {/* <div>
         <h3> About </h3>
+
+
       </div>
       {instructor && (
         <InstructorAbout key={instructor} instructor={instructor} />
@@ -82,22 +91,3 @@ function InstructorDetail() {
 }
 
 export default InstructorDetail;
-// { (classes && classes.length > 1) ? 
-//   <div className="classOrder" >
-//   { (user.adminLevel === 'instructor' && user.id === Number(params.id)) ? 
-//   <div className="addIcon"> <AddIcon/> </div> :
-//   <div></div>
-// }
-//     { 
-//       classes.map((session)=>{
-//         <InstructorClass session={session} />
-//       })
-//     }
-//    </div>  :
-//     <div> loading</div>
-// }
-//   {
-//     classes.map((session)=>(
-//       <InstructorClass session={session} />
-//     ))
-//   }

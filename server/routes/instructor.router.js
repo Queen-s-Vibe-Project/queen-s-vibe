@@ -11,6 +11,7 @@ const {
 
 
 router.get('/',rejectUnauthenticated ,(req, res) => {
+
   console.log('/user GET route');
   const queryText = `SELECT "user".id, "user".name, "user"."adminLevel", "user".avatar, array_agg(tags."tagName") AS tags
 	                    FROM "user"
@@ -20,7 +21,7 @@ router.get('/',rejectUnauthenticated ,(req, res) => {
 	                    ON "userTags"."tagId" = tags.id
 	                    WHERE "user"."adminLevel" = 'instructor'
 	                    GROUP BY "user".id
-                        LIMIT 3;`;
+                      LIMIT 3;`;
 
   pool
     .query(queryText)
@@ -34,14 +35,15 @@ router.get('/',rejectUnauthenticated ,(req, res) => {
 });
 
 // Get individual instructor
+
 router.get('/profile/:id',rejectUnauthenticated,(req,res)=>{
     
 
-    const profileQuery =   `
+
+  const profileQuery = `
         SELECT * FROM "user"
         WHERE "user".id = $1;
-    `
-
+        
     pool.query(profileQuery,[req.params.id])
         .then((dbRes)=>{
             res.send(dbRes.rows[0]);
@@ -50,7 +52,9 @@ router.get('/profile/:id',rejectUnauthenticated,(req,res)=>{
         })
 })
 
+
 router.get('/class/:id',rejectUnauthenticated,(req,res)=>{
+
 
         const userId =req.params.id;
 
@@ -68,8 +72,6 @@ router.get('/class/:id',rejectUnauthenticated,(req,res)=>{
         }).catch((err)=>{
             console.error(`class error: ${err}`);
         })
-
-    
 })
 
 router.get('/tags/:id',rejectUnauthenticated,(req,res)=>{
@@ -103,27 +105,24 @@ router.get('/recommend', (req, res) => {
 
   pool.query(tagQuery, [userId])
     .then((dbRes) => {
-        
-        console.log(dbRes.rows[0].tags,dbRes.rows[0].tags.length);
-        let listOfTags = '';
 
-        for (let index = 0; index < dbRes.rows[0].tags.length; index++) {
-            console.log('last');
-            if (index === dbRes.rows[0].tags.length -1) {
-                listOfTags += `\'${dbRes.rows[0].tags[index]}\'`
-            }else{
-                console.log('loop',index);
-                listOfTags += `\'${dbRes.rows[0].tags[index]}\',`
-            }
-            
+      console.log(dbRes.rows[0].tags, dbRes.rows[0].tags.length);
+      let listOfTags = '';
+
+      for (let index = 0; index < dbRes.rows[0].tags.length; index++) {
+        console.log('last');
+        if (index === dbRes.rows[0].tags.length - 1) {
+          listOfTags += `\'${dbRes.rows[0].tags[index]}\'`
+        } else {
+          console.log('loop', index);
+          listOfTags += `\'${dbRes.rows[0].tags[index]}\',`
         }
+      }
+      return listOfTags;
 
-        return listOfTags;
-
-      
     })
     .then((listOfTags) => {
-        console.log(listOfTags);
+      console.log(listOfTags);
       const recommendInstructorQuery = `
             SELECT "user".id, "user".name, "user".pronouns , JSON_AGG("tags"."tagName"), COUNT("user".name),"user".avatar FROM "user"
             JOIN "userTags" on "user".id = "userTags"."userId"
@@ -133,7 +132,6 @@ router.get('/recommend', (req, res) => {
             ORDER BY COUNT("user".name) DESC
             LIMIT 5;
             `
-
       pool.query(recommendInstructorQuery)
         .then((dbRes) => {
           console.log(dbRes.rows);
@@ -143,8 +141,6 @@ router.get('/recommend', (req, res) => {
           res.sendStatus(500)
         })
     })
-
-    
 })
 
 // Favorite instructors route
@@ -184,8 +180,6 @@ router.post('/favorite/:id',rejectUnauthenticated,rejectUnauthenticated,(req,res
     }).catch((err)=>{
       console.error(err);
     })
-
-  
 })
 
 module.exports = router;

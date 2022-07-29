@@ -6,6 +6,7 @@ import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
 import { Link, useHistory } from "react-router-dom";
+import "./SearchBar.css";
 
 const SearchBar = () => {
   // useHistory to handle Search button
@@ -46,7 +47,7 @@ const SearchBar = () => {
   };
 
   return (
-    <div>
+    <div className="search-container">
       <form onSubmit={handleSubmit}>
         <Autocomplete
           multiple
@@ -59,7 +60,6 @@ const SearchBar = () => {
             <TextField
               {...params}
               variant="standard"
-              label="Search"
               placeholder={
                 limitReached ? "Tag Limit Reached" : "Search By Tags"
               }
@@ -67,7 +67,7 @@ const SearchBar = () => {
             />
           )}
         />
-        <Button type="submit" variant="contained">
+        <Button className="search-button" type="submit" variant="contained">
           Search
         </Button>
       </form>
