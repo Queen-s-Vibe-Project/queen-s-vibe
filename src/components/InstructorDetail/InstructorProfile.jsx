@@ -25,6 +25,7 @@ function InstructorProfile( {instructor} ) {
       <div className="profileHeader">
         <div className="pic">
           <Avatar
+            sx={{ width: 56, height: 56 }}
             src={profile.avatar}
             alt={instructor.name}
           />
