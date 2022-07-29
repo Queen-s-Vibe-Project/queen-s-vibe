@@ -1,11 +1,16 @@
 import { combineReducers } from "redux";
-import { recommendInstructor,favoriteInstructor,instructorProfile,instructorClasses } from "./instructor.reducer.js";
+import {
+  recommendInstructor,
+  favoriteInstructor,
+  instructorProfile,
+  instructorClasses,
+} from "./instructor.reducer.js";
 import errors from "./errors.reducer";
 import search from "./search.reducer";
 import user from "./user.reducer";
-import instructor from "./instructor.reducer.js"
-import instructorDetail from "./instructorDetail.reducer"
-
+import instructor from "./instructor.reducer.js";
+import instructorDetail from "./instructorDetail.reducer";
+import activities from "./instructor.reducer";
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
 // This is imported in index.js as rootSaga
@@ -19,9 +24,10 @@ const rootReducer = combineReducers({
   instructor, // contains all user info
   instructorDetail, // contains all instructor detail information
   recommendInstructor, // list of recommend instructor base on gym goer's tag
-  favoriteInstructor, // get list of gym goer's favorite instructors 
-  instructorProfile,// get instructor's info
-  instructorClasses
+  favoriteInstructor, // get list of gym goer's favorite instructors
+  instructorProfile, // get instructor's info
+  instructorClasses,
+  activities, //list of all activities
 });
 
 export default rootReducer;

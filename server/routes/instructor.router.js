@@ -6,9 +6,8 @@ const router = express.Router();
 // JOIN user, userTags, and tags tables and use array-agg to
 // get array of object for tag name
 
-
-router.get('/', (req, res) => {
-  console.log('/user GET route');
+router.get("/", (req, res) => {
+  console.log("/user GET route");
   const queryText = `SELECT "user".id, "user".name, "user"."adminLevel", "user".avatar, array_agg(tags."tagName") AS tags
 	                    FROM "user"
 	                    JOIN "userTags"
@@ -31,77 +30,75 @@ router.get('/', (req, res) => {
 });
 
 // Get individual instructor
-router.get('/profile/:id',(req,res)=>{
-    console.log(req.params.id);
+router.get("/profile/:id", (req, res) => {
+  console.log(req.params.id);
 
-    const profileQuery =   `
+  const profileQuery = `
         SELECT * FROM "user"
         WHERE "user".id = $1;
-    `
+    `;
 
-    pool.query(profileQuery,[req.params.id])
-        .then((dbRes)=>{
-            res.send(dbRes.rows[0]);
-        }).catch((err)=>{
-            console.error(`${err}`);
-        })
-})
+  pool
+    .query(profileQuery, [req.params.id])
+    .then((dbRes) => {
+      res.send(dbRes.rows[0]);
+    })
+    .catch((err) => {
+      console.error(`${err}`);
+    });
+});
 
-router.get('/class/:id',(req,res)=>{
+router.get("/class/:id", (req, res) => {
+  console.log(req.params.id);
 
-    console.log(req.params.id);
-
-    const classQuery = `
+  const classQuery = `
         SELECT "user".id, "availableClass"."dateOfWeek", "availableClass"."startTime", "availableClass".location, "activities".activity  FROM "availableClass"
         JOIN "user" ON "user".id = "availableClass"."instructorId"
         JOIN "activities" on "activities".id = "availableClass"."activityId"
         WHERE "user".id = $1;
-    `
+    `;
 
-    pool.query(classQuery,[req.params.id])
-        .then((dbRes)=>{
-            res.send(dbRes.rows);
-        }).catch((err)=>{
-            console.error(err);
-        })
-
-    
-})
+  pool
+    .query(classQuery, [req.params.id])
+    .then((dbRes) => {
+      res.send(dbRes.rows);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+});
 
 // Recommended instructor route
-router.get('/recommend', (req, res) => {
-  const userId = req.user.id
+router.get("/recommend", (req, res) => {
+  const userId = req.user.id;
   console.log(userId);
 
   const tagQuery = `
         SELECT JSON_AGG("tags"."tagName") AS "tags" FROM "userTags"
         JOIN "tags" on "tags".id = "userTags"."tagId" 
         WHERE "userTags"."userId" = $1;
-    `
+    `;
 
-  pool.query(tagQuery, [userId])
+  pool
+    .query(tagQuery, [userId])
     .then((dbRes) => {
-        
-        console.log(dbRes.rows[0].tags,dbRes.rows[0].tags.length);
-        let listOfTags = '';
+      console.log(dbRes.rows[0].tags, dbRes.rows[0].tags.length);
+      let listOfTags = "";
 
-        for (let index = 0; index < dbRes.rows[0].tags.length; index++) {
-            console.log('last');
-            if (index === dbRes.rows[0].tags.length -1) {
-                listOfTags += `\'${dbRes.rows[0].tags[index]}\'`
-            }else{
-                console.log('loop',index);
-                listOfTags += `\'${dbRes.rows[0].tags[index]}\',`
-            }
-            
+      for (let index = 0; index < dbRes.rows[0].tags.length; index++) {
+        console.log("last");
+        if (index === dbRes.rows[0].tags.length - 1) {
+          listOfTags += `\'${dbRes.rows[0].tags[index]}\'`;
+        } else {
+          console.log("loop", index);
+          listOfTags += `\'${dbRes.rows[0].tags[index]}\',`;
         }
+      }
 
-        return listOfTags;
-
-      
+      return listOfTags;
     })
     .then((listOfTags) => {
-        console.log(listOfTags);
+      console.log(listOfTags);
       const recommendInstructorQuery = `
             SELECT "user".id, "user".name, "user".pronouns , JSON_AGG("tags"."tagName"), COUNT("user".name),"user".avatar FROM "user"
             JOIN "userTags" on "user".id = "userTags"."userId"
@@ -110,24 +107,24 @@ router.get('/recommend', (req, res) => {
             GROUP BY "user".id, "user".name, "user".pronouns, "user".avatar 
             ORDER BY COUNT("user".name) DESC
             LIMIT 5;
-            `
+            `;
 
-      pool.query(recommendInstructorQuery)
+      pool
+        .query(recommendInstructorQuery)
         .then((dbRes) => {
           console.log(dbRes.rows);
-          res.send(dbRes.rows)
-        }).catch((err) => {
-          console.error(`${err}`);
-          res.sendStatus(500)
+          res.send(dbRes.rows);
         })
-    })
-
-    
-})
+        .catch((err) => {
+          console.error(`${err}`);
+          res.sendStatus(500);
+        });
+    });
+});
 
 // Favorite instructors route
-router.get('/favorite', (req, res) => {
-  const userId = req.user.id
+router.get("/favorite", (req, res) => {
+  const userId = req.user.id;
 
   console.log(userId);
 
@@ -138,15 +135,30 @@ router.get('/favorite', (req, res) => {
         JOIN "tags" on "tags".id = "userTags"."tagId"
         WHERE "favoriteInstuctor"."userId" = $1
         GROUP BY "favoriteInstuctor".id, "favoriteInstuctor"."instructorId", "user".name, "user".pronouns,"user".avatar,  "user".instagram, "user".facebook, "user".twitter;
-    `
+    `;
 
-  pool.query(getFavoriteInstructorQuery, [userId])
+  pool
+    .query(getFavoriteInstructorQuery, [userId])
     .then((dbRes) => {
-      res.send(dbRes.rows)
-    }).catch((err) => {
-      console.error(`${err}`);
+      res.send(dbRes.rows);
     })
-})
+    .catch((err) => {
+      console.error(`${err}`);
+    });
+});
+
+router.get("/activities", (req, res) => {
+  const sqlQuery = `
+    SELECT * "activities"
+  `;
+  pool
+    .query(sqlQuery)
+    .then((dbRes) => {
+      res.send(dbRes.rows);
+    })
+    .catch((err) => {
+      console.log("Error in GET activities", err);
+    });
+});
 
 module.exports = router;
-

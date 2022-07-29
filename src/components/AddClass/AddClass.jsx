@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import PlacesAutocomplete, {
@@ -16,8 +16,18 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import { InputLabel, Select, MenuItem } from '@mui/material';
 
 const AddClass = () =>  {
+  useEffect(()=>{
+    dispatch({
+      type: "FETCH_ACTIVITIES"
+    })
+  },[])
+  useEffect(()=>{
+    setIsLoaded(true)
+  },[activities])
+
   const dispatch = useDispatch()
   const activities = useSelector((store) => store.activities)
   const user = useSelector((store) => store.user);
@@ -27,6 +37,12 @@ const AddClass = () =>  {
   const [coordinates, setCoordinates] = useState({lat: null, lng: null})
   const [days, setDays] = useState([])
   const [time, setTime] = useState('10:00')
+  const [activity, setActivity] = useState({})
+  const [isLoaded, setIsLoaded] = useState(false)
+  
+  
+ 
+
 
   const handleSubmit = () => {
     dispatch({
@@ -65,10 +81,12 @@ const AddClass = () =>  {
   };
 
   return (
+    
     <div>
       <Button variant="outlined" onClick={handleClickOpen}>
         Add a Class
       </Button>
+      {!isLoaded ? <h2>Loading...</h2> :
       <form onSubmit={handleSubmit}>
       <Dialog open={open} onClose={handleClose}>
       
@@ -146,6 +164,23 @@ const AddClass = () =>  {
       </ToggleButtonGroup>
       <h4>Pick Time</h4>
       <TimePicker onChange={setTime} value={time} />
+      <InputLabel id="demo-simple-select-helper-label">Activity</InputLabel>
+        <Select
+          labelId="demo-simple-select-helper-label"
+          id="demo-simple-select-helper"
+          value={activity}
+          label="Age"
+          onChange={(evt) => setActivity(evt.target.value)}
+        >
+          <MenuItem value="">
+            <em>None</em>
+          </MenuItem>
+          {activities.map((activity) => {
+            return(
+              <MenuItem value={activity.id}>{activity.activity}</MenuItem>
+            )
+          })}
+        </Select>
       
         </DialogContent>
       
@@ -156,6 +191,7 @@ const AddClass = () =>  {
         
       </Dialog>
       </form>
+        }
     </div>
   );
 }
