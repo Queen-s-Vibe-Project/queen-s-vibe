@@ -84,8 +84,8 @@ DROP TABLE "availableClass";
 CREATE TABLE "availableClass"(
 	"id" SERIAL PRIMARY KEY,
 	"instructorId" int REFERENCES "user",
-	"dateOfWeek" INTEGER,
-	"startTime" TIMESTAMP,
+	"dateOfWeek" VARCHAR,
+	"startTime" VARCHAR,
 	"location" VARCHAR,
 	"activityId" INT
 );

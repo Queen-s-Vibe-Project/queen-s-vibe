@@ -31,37 +31,42 @@ router.get('/', (req, res) => {
 });
 
 // Get individual instructor
-// router.get("/:id", (req, res) => {
+router.get('/profile/:id',(req,res)=>{
+    console.log(req.params.id);
 
-//   const queryText = `SELECT * FROM "user" WHERE "user".id = $1;`;
-//   // const queryText = `
-//   //   SELECT "user".id, "user".name, "user"."adminLevel", "user".about, "user".pronouns, "user".avatar, array_agg(tags."tagName") AS tags,  "user"."adminLevel", "user".facebook, "user".instagram, "user".twitter, "user".website, "activities".activity, "availableClass".location, "availableClass"."dateOfWeek", "availableClass"."startTime"
-//   //     FROM "user"
-//   //     JOIN "userTags"
-//   //     ON "userTags"."userId" = "user".id
-//   //     JOIN tags
-//   //     ON "userTags"."tagId" = tags.id
-//   //     JOIN "availableClass"
-//   //     ON "user".id = "availableClass"."instructorId"
-//   //     JOIN "activities" 
-//   //     ON "activities".id = "availableClass"."activityId"
-//   //     WHERE "user".id = $1 AND "user"."adminLevel" = 'instructor'
-//   //   GROUP BY "user".id, "activities".activity, "availableClass".location, "availableClass"."dateOfWeek", "availableClass"."startTime";
-//   //   `;
+    const profileQuery =   `
+        SELECT * FROM "user"
+        WHERE "user".id = $1;
+    `
 
-//   const queryParams = [req.params.id];
+    pool.query(profileQuery,[req.params.id])
+        .then((dbRes)=>{
+            res.send(dbRes.rows[0]);
+        }).catch((err)=>{
+            console.error(`${err}`);
+        })
+})
 
-//   console.log('what is this', req.params.id)
+router.get('/class/:id',(req,res)=>{
 
-//   pool.query(queryText, queryParams)
-//     .then((results) => {
-//       console.log("InstructorDetail", results.rows[0]);
-//     })
-//     .catch((err) => {
-//       console.log("GET InstructorDetail failed", err);
-//       res.sendStatus(500);
-//     });
-// });
+    console.log(req.params.id);
+
+    const classQuery = `
+        SELECT "user".id, "availableClass"."dateOfWeek", "availableClass"."startTime", "availableClass".location, "activities".activity  FROM "availableClass"
+        JOIN "user" ON "user".id = "availableClass"."instructorId"
+        JOIN "activities" on "activities".id = "availableClass"."activityId"
+        WHERE "user".id = $1;
+    `
+
+    pool.query(classQuery,[req.params.id])
+        .then((dbRes)=>{
+            res.send(dbRes.rows);
+        }).catch((err)=>{
+            console.error(err);
+        })
+
+    
+})
 
 // Recommended instructor route
 router.get('/recommend', (req, res) => {
