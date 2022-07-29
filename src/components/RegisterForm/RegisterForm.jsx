@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import "../App/App.css";
+import "../RegisterPage/RegisterPage.css";
 import SearchBar from "../SearchBar/SearchBar";
+import TextField from "@mui/material/TextField";
 
 function RegisterForm() {
   const [userType, setUserType] = useState("");
@@ -41,7 +42,7 @@ function RegisterForm() {
 
   return (
     <form className="registration-container" onSubmit={registerUser}>
-      <h2>Groupii</h2>
+      <h2>Sign Up</h2>
       {errors.registrationMessage && (
         <h3 className="alert" role="alert">
           {errors.registrationMessage}
@@ -68,61 +69,94 @@ function RegisterForm() {
 
       {/* Email input */}
       <div>
-        <label className="input-label" htmlFor="username">
-          <div>Email</div>
-          <input
+        <label htmlFor="username">
+          <div className="input-label">Username</div>
+
+          <TextField
+            value={username}
+            required
+            id="outlined-basic"
+            variant="outlined"
+            onChange={(event) => setUsername(event.target.value)}
+          />
+          {/* <input
             className="registration-input"
             type="text"
             name="username"
             value={username}
             required
             onChange={(event) => setUsername(event.target.value)}
-          />
+          /> */}
         </label>
       </div>
 
       {/* Password input */}
       <div>
-        <label className="input-label" htmlFor="password">
-          <div>Password</div>
-          <input
+        <label htmlFor="password">
+          <div className="input-label">Password</div>
+
+          <TextField
+            value={password}
+            required
+            id="outlined-basic"
+            variant="outlined"
+            onChange={(event) => setPassword(event.target.value)}
+          />
+
+          {/* <input
             className="registration-input"
             type="password"
             name="password"
             value={password}
             required
             onChange={(event) => setPassword(event.target.value)}
-          />
+          /> */}
         </label>
       </div>
 
       {/* Name input */}
       <div>
-        <label className="input-label" htmlFor="name">
-          <div>Name</div>
-          <input
+        <label htmlFor="name">
+          <div className="input-label">Name</div>
+
+          <TextField
+            value={name}
+            required
+            id="outlined-basic"
+            variant="outlined"
+            onChange={(event) => setName(event.target.value)}
+          />
+          {/* <input
             className="registration-input"
             type="name"
             name="name"
             value={name}
             required
             onChange={(event) => setName(event.target.value)}
-          />
+          /> */}
         </label>
       </div>
 
       {/* Pronouns input */}
       <div>
-        <label className="input-label" htmlFor="pronouns">
-          <div>Pronouns</div>
-          <input
+        <label htmlFor="pronouns">
+          <div className="input-label">Pronouns</div>
+
+          <TextField
+            value={pronouns}
+            required
+            id="outlined-basic"
+            variant="outlined"
+            onChange={(event) => setPronouns(event.target.value)}
+          />
+          {/* <input
             className="registration-input"
             type="pronouns"
             name="pronouns"
             value={pronouns}
             required
             onChange={(event) => setPronouns(event.target.value)}
-          />
+          /> */}
         </label>
       </div>
 

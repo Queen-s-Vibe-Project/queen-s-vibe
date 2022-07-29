@@ -11,26 +11,27 @@
   gap: 0.5rem;
 }
 
-.registration-input {
-  width: 20rem;
-  height: 1.75rem;
-  margin-top: 0.5rem;
-}
-
 .user-type {
   padding-bottom: 5px;
 }
 
 .user-type-box,
 .user-tag-box {
-  width: 20rem;
-  height: 2.25rem;
+  width: 19.75rem;
+  height: 2.5rem;
   font-size: 1rem;
   margin-top: 0.5rem;
   margin-bottom: 1rem;
+  border-radius: 5px;
+  border: 1px solid rgb(186, 182, 182);
+  padding-left: 0.5rem;
 }
 
 .user-tag {
   margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.input-label {
   margin-bottom: 0.5rem;
 }
