@@ -37,4 +37,15 @@ export const favoriteInstructor = (state =[], action) =>{
             return state;
     }
 }
+
+export const instructorClasses = (state = [], action )=>{
+    switch (action.type) {
+        case "FETCH_INSTRUCTOR_CLASSES":
+            
+            return action.payload;
+    
+        default:
+            return state;
+    }
+}
 export default instructorReducer;

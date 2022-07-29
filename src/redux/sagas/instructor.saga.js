@@ -43,6 +43,16 @@ function* fetchInstructorProfile(action){
     }
 }
 
+function* fetchInstructorClasses(action) {
+    try {
+        const res = yield axios.get('/instructor/class/'+ action.payload)
+        //console.log(res.data);
+        yield put({type:"FETCH_INSTRUCTOR_CLASSES", payload: res.data})
+    } catch (error) {
+        console.error(`${error}`);
+    }
+}
+
 function* fetchRecommendInstructor() {
     console.log('in recommend');
     try {
@@ -76,7 +86,8 @@ function* instructorSaga() {
     //yield takeEvery('FETCH_ACTIVE_INSTRUCTOR', fetchActiveInstructor);
     yield takeEvery("FETCH_INSTRUCTOR_PROFILE",fetchInstructorProfile)
     yield takeEvery('FETCH_RECOMMEND_INSTRUCTOR', fetchRecommendInstructor);
-    yield takeEvery('FETCH_FAVORITE_INSTRUCTOR', fetchFavoriteInstructor)
+    yield takeEvery('FETCH_FAVORITE_INSTRUCTOR', fetchFavoriteInstructor);
+    yield takeEvery("FETCH_INSTRUCTOR_CLASSES", fetchInstructorClasses)
 }
 
 export default instructorSaga;

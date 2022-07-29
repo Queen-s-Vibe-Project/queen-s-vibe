@@ -22,21 +22,21 @@ function InstructorDetail() {
   };
 
   return (
-    <>
+    <div className="Universal-Container">
       <h1> Instructor Detail </h1>
 
       <button onClick={handleClick}>Back</button>
 
 
       <InstructorProfile instructor={params.id} />
-      {/* <div>
+      <div>
         <h3> Classes </h3>
-        {instructor && (
-          <InstructorClasses key={instructor} instructor={instructor} />
-        )}
+        
+          <InstructorClasses  instructor={params.id} />
+        
       </div>
       <h3> Tags </h3>
-      <div className="tags">
+      {/* <div className="tags">
         {instructor && (
           <InstructorTags key={instructor} instructor={instructor} />
         )}
@@ -47,7 +47,7 @@ function InstructorDetail() {
       {instructor && (
         <InstructorAbout key={instructor} instructor={instructor} />
       )} */}
-    </>
+    </div>
   );
 }
 
