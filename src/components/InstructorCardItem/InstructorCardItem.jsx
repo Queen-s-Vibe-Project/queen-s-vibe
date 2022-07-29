@@ -42,10 +42,15 @@ function InstructorCardItem({ item }) {
           {/* <button onClick={goToInstructorDetail} className="view-more-btn">
             View More
           </button> */}
-
-          <Link to={`/instructor/${item.id}`}>
-            <button className="view-more-btn">View More</button>
-          </Link>
+            <button
+            onClick={()=>{
+              history.push(`/instructor/${item.id}` )
+            }} 
+            className="view-more-btn"
+            >
+              View More
+            </button>
+          
         </div>
 
         {/* Right side */}

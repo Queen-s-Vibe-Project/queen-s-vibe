@@ -24,7 +24,7 @@ export default function RecommendInstructors (){
             <div className='RC-container'>
                 { recommendInstructor && recommendInstructor.map( instructor => (
                     <div>
-                        <RecommendCard instructor={instructor}/>
+                        <RecommendCard key={instructor.id} instructor={instructor}/>
                     </div>
                 ))} 
             </div>
