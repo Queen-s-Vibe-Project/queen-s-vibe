@@ -58,12 +58,23 @@ function* fetchFavoriteInstructor() {
     }
 }
 
+function* fetchActivities() {
+    try{
+        const res = yield axoios.get('/instructor/activities')
+        console.log(res.data)
+        yield put({type: 'SET_ACTIVITIES', payload: res.data})
+    } catch (error) {
+        console.log('Error in fetchActivities', error)
+    }
+}
+
 // Watcher saga
 function* instructorSaga() {
     yield takeEvery('FETCH_INSTRUCTORS', fetchAllInstructors);
     yield takeEvery('FETCH_ACTIVE_INSTRUCTOR', fetchActiveInstructor);
     yield takeEvery('FETCH_RECOMMEND_INSTRUCTOR', fetchRecommendInstructor);
     yield takeEvery('FETCH_FAVORITE_INSTRUCTOR', fetchFavoriteInstructor)
+    yield takeEvery('FETCH_ACTIVITIES', fetchActivities)
 }
 
 export default instructorSaga;
