@@ -38,10 +38,17 @@
 }
 
 .classOrder{
-    width: 273px;
-    flex-direction: row;
     display: flex;
     overflow: scroll;
+}
+
+.class{
+    flex-direction: row;
+    overflow: scroll;
+}
+
+.ic-card{
+    margin-right: 1rem;
 }
 
 .pic{

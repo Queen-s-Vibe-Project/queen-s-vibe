@@ -8,7 +8,7 @@ export default function InstructorClass({session}) {
     console.log(session);
     return (
         
-          <div className="card">
+          <div className="card ic-card ">
               <div> {session.activity} </div>
               <div> {session.dateOfWeek} </div>
               <div> {session.startTime} </div>

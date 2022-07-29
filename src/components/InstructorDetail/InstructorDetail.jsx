@@ -48,7 +48,7 @@ function InstructorDetail() {
         <InstructorProfile profile={profile} instructor={params.id} />
       </div>
       <h3> Classes </h3>
-      <div className="classOrder">
+      <div className="class ic-card">
        
         {/* conditinal render add icon */}
        { (user.adminLevel === 'instructor' && user.id === Number(params.id)) ? 
