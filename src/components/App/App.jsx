@@ -16,8 +16,6 @@ import LandingPage from "../LandingPage/LandingPage";
 import LoginPage from "../LoginPage/LoginPage";
 import RegisterPage from "../RegisterPage/RegisterPage";
 import RecommendInstructors from "../RecommendInstructors/RecommendInstructors";
-import SearchBar from "../SearchBar/SearchBar";
-import AddClass from "../AddClass/AddClass"
 import PhotoUpload from "../PhotoUpload/PhotoUpload";
 import InstructorDetail from "../InstructorDetail/InstructorDetail";
 import Map from "../Map/Map";
@@ -37,7 +35,6 @@ function App() {
   return (
     <Router>
       <div>
-        <AddClass />
         <Nav />
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}

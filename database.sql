@@ -87,6 +87,8 @@ CREATE TABLE "availableClass"(
 	"dateOfWeek" VARCHAR,
 	"startTime" VARCHAR,
 	"location" VARCHAR,
+	"lat" INT,
+	"lng" INT,
 	"activityId" INT
 );
 

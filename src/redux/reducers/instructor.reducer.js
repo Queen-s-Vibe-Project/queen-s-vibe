@@ -1,11 +1,11 @@
 const instructorReducer = (state = [], action) => {
-    switch (action.type) {
-        case 'SET_INSTRUCTORS':
-            return action.payload;
-        default:
-            return state;
-    }
-}
+  switch (action.type) {
+    case "SET_INSTRUCTORS":
+      return action.payload;
+    default:
+      return state;
+  }
+};
 
 export const instructorProfile = (state = [], action ) =>{
     switch (action.type) {
@@ -49,3 +49,4 @@ export const instructorClasses = (state = [], action )=>{
     }
 }
 export default instructorReducer;
+

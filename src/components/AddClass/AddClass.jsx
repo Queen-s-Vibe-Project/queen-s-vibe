@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+
 import PlacesAutocomplete, {
   geocodeByAddress,
   geocodeByPlaceId,
@@ -17,6 +18,8 @@ import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
 const AddClass = () =>  {
+  const dispatch = useDispatch()
+  const activities = useSelector((store) => store.activities)
   const user = useSelector((store) => store.user);
   const [open, setOpen] = useState(false);
   const [description, setDescription] = useState('')
@@ -26,7 +29,12 @@ const AddClass = () =>  {
   const [time, setTime] = useState('10:00')
 
   const handleSubmit = () => {
-    console.log(toSend)
+    dispatch({
+      type:"ADD_NEW_CLASS",
+      payload: toSend
+    })
+    handleClose()
+    
   }
 
   const toSend = {
@@ -35,7 +43,8 @@ const AddClass = () =>  {
     location: address,
     time: time,
     days: days,
-    coordinates: coordinates
+    lat: coordinates.lat,
+    lng: coordinates.lng
   }
 
 
@@ -142,7 +151,7 @@ const AddClass = () =>  {
       
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button type='submit' onClick={handleSubmit}>Subscribe</Button>
+          <Button type='submit' onClick={handleSubmit}>Add Class</Button>
         </DialogActions>
         
       </Dialog>
