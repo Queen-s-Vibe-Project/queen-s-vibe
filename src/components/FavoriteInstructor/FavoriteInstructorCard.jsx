@@ -36,10 +36,15 @@ function FavoriteInstructorCard({ instructor }) {
               </Typography>
 
               <Stack className="chip-container" direction="row" spacing={0.5}>
-                { instructor && instructor.tags.map(tag =>(
-                    <Chip className="chip-pill" label={`${tag}`} variant="outlined" />
-                ))}
-               
+                {instructor &&
+                  instructor.tags.map((tag, i) => (
+                    <Chip
+                      key={i}
+                      className="chip-pill"
+                      label={`${tag}`}
+                      variant="outlined"
+                    />
+                  ))}
               </Stack>
               <div className="icon-container">
                 <FacebookIcon className="featured-icon" />

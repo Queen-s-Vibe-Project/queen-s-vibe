@@ -139,7 +139,7 @@ router.get('/recommend', (req, res) => {
 })
 
 // Favorite instructors route
-router.get('/favorite', rejectUnauthenticated, (req, res) => {
+router.get('/favorite', (req, res) => {
   const userId = req.user.id
 
   console.log(userId);
@@ -161,7 +161,7 @@ router.get('/favorite', rejectUnauthenticated, (req, res) => {
     })
 })
 
-router.post('/favorite/:id', rejectUnauthenticated, rejectUnauthenticated, (req, res) => {
+router.post('/favorite/:id', (req, res) => {
   console.log(req.params.id, 'This is user id', req.user.id);
 
   const addToFavoriteQuery = `
