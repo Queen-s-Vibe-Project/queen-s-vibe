@@ -16,9 +16,6 @@ function InstructorDetail() {
   const [isLoaded, setIsLoaded] = useState(false);
 
   // useEffect to dispatch 'FETCH_ACTIVE_INSTRUCTOR' on page load
-  useEffect(()=>{
-    
-  },[])
 
   // const instructor = useSelector((store) => store.instructorDetail[0]);
 
@@ -32,9 +29,7 @@ function InstructorDetail() {
     //
     dispatch({ type: "FETCH_INSTRUCTOR_TAGS", payload: params.id });
     //
-    dispatch({
-      type:"FETCH_TAGS"
-    })
+   
   }, [params.id]);
 
   const profile = useSelector((store) => store.instructorProfile);
