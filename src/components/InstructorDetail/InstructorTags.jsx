@@ -5,7 +5,13 @@ import AddIcon from '@mui/icons-material/Add';
 function InstructorTags( {tags} ) {
   return (
     <>
-     <div> <AddIcon /> </div>
+     <div
+      onClick={()=>{
+        console.log('click');
+      }}
+     > 
+      <AddIcon /> 
+    </div>
       {tags.map((tag) => {
         return <div>
               <Stack direction="row" spacing={1}>
