@@ -73,7 +73,7 @@ router.get('/tags/:id', (req, res) => {
   console.log(req.params.id);
 
   const tagsQuery = `
-    SELECT "tags"."tagName" FROM "userTags"
+    SELECT "userTags".id, "tags"."tagName" FROM "userTags"
     JOIN "tags" on "tags".id = "userTags"."tagId"
     WHERE "userTags"."userId" = $1;
   `
@@ -105,6 +105,25 @@ router.post('/addTag/:id',rejectUnauthenticated,(req,res)=>{
       })
 
 })
+
+
+router.delete('/tag/:id',(req,res)=>{
+ 
+  const deleteTagQuery = `
+    DELETE FROM "userTags"
+    WHERE "userTags".id = $1;
+  `
+
+  pool.query(deleteTagQuery,[req.params.id])
+  .then((dbRes)=>{
+    res.sendStatus(200)
+  }).catch((err)=>{
+    console.error(`${err}`);
+    res.sendStatus(500)
+  })
+  
+})
+
 
 // Recommended instructor route
 router.get('/recommend', (req, res) => {

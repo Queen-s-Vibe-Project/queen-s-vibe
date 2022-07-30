@@ -116,6 +116,15 @@ function* addTag(action) {
     }
 }
 
+function* deleteTag(action) {
+    console.log('in delete', action.payload);
+    try {
+        yield axios.delete('/instructor/tag/'+action.payload)
+    } catch (error) {
+        console.error(`${error}`);
+    }
+}
+
 // Watcher saga
 function* instructorSaga() {
     yield takeEvery('FETCH_INSTRUCTORS', fetchAllInstructors);
@@ -127,6 +136,7 @@ function* instructorSaga() {
     yield takeEvery("FETCH_INSTRUCTOR_CLASSES", fetchInstructorClasses)
     yield takeEvery('FETCH_INSTRUCTOR_TAGS',fetchInstructorTags)
     yield takeEvery('ADD_TAG', addTag)
+    yield takeEvery('DELETE_TAG',deleteTag)
 
     ///
     yield takeEvery('ADD_INSTRUCTOR_TO_FAVORITES', addInstructorToFavorite)

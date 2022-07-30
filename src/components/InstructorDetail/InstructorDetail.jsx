@@ -71,7 +71,7 @@ function InstructorDetail() {
         </div>
         <h3> Tags </h3>
         <div className="tags">
-          {tags && tags.length > 1 && <InstructorTags tags={tags} />}
+          {tags && tags.length > 0 && <InstructorTags tags={tags} />}
         </div>
       </div>
       {/* <div>
