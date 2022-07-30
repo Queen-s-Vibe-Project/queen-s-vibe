@@ -87,6 +87,24 @@ router.get('/tags/:id', (req, res) => {
 
 })
 
+router.post('/tags/:id',rejectUnauthenticated,(req,res)=>{
+   console.log('tag id', req.params.id);
+   console.log();
+
+   const insertTagQuery = `
+    INSERT INTO "userTags" ("userId", "tagId")
+    VALUES ($1,$2);
+   `
+
+   pool.query(insertTagQuery, [req.user.id, req.params.id ])
+      .then((dbRes)=>{
+          res.sendStatus(200)
+      }).catch((error)=>{
+        console.error(`${error}`);
+      })
+
+})
+
 // Recommended instructor route
 router.get('/recommend', (req, res) => {
   const userId = req.user.id
