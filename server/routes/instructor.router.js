@@ -139,7 +139,7 @@ router.get('/recommend', (req, res) => {
 })
 
 // Favorite instructors route
-router.get('/favorite', (req, res) => {
+router.get('/favorite', rejectUnauthenticated, (req, res) => {
   const userId = req.user.id
 
   console.log(userId);
@@ -161,7 +161,7 @@ router.get('/favorite', (req, res) => {
     })
 })
 
-router.post('/favorite/:id', (req, res) => {
+router.post('/favorite/:id', rejectUnauthenticated, (req, res) => {
   console.log(req.params.id, 'This is user id', req.user.id);
 
   const addToFavoriteQuery = `
@@ -174,6 +174,25 @@ router.post('/favorite/:id', (req, res) => {
       res.sendStatus(200)
     }).catch((err) => {
       console.error(err);
+    })
+})
+
+
+// DELETE favorite instructor in Gym Goer page view
+router.delete('/favorite/:id', rejectUnauthenticated, (req, res) => {
+  console.log('Favorite instructor id', req.user.id);
+
+  const sqlQuery = `DELETE FROM "favoriteInstructor" WHERE instructorID = $1;`;
+  const sqlParams = [req.user.id];
+
+  pool.query(sqlQuery, sqlParams)
+    .then((result) => {
+      console.log("DELETE favorite instructor successful", result);
+      res.sendStatus(201)
+    })
+    .catch((err) => {
+      console.log("DELETE favorite instructor failed", err);
+      res.sendStatus(500)
     })
 })
 
