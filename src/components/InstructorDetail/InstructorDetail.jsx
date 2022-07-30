@@ -28,14 +28,17 @@ function InstructorDetail() {
     });
     //
     dispatch({ type: "FETCH_INSTRUCTOR_TAGS", payload: params.id });
+    //
+   
   }, [params.id]);
 
   const profile = useSelector((store) => store.instructorProfile);
   const classes = useSelector((store) => store.instructorClasses);
   const tags = useSelector((store) => store.instructorTags);
+  const imTags = useSelector((store)=> store.search.tags)
   const user = useSelector((store) => store.user);
   // const instructor = useSelector((store) => store.instructorDetail[0]);
-  console.log("Array:", classes);
+  console.log("Array:", imTags);
 
   const handleClick = () => {
     history.goBack();
