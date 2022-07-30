@@ -19,6 +19,12 @@ import Checkbox from '@mui/material/Checkbox';
 
 export default function AddInstructorTag(props){
     const [open, setOpen] = React.useState(false);
+
+    const [checkbox,setCheckBox] = React.useState(false)
+    
+    const [value,setValue] = React.useState('')
+    const [addTagBtn,setAddTagBtn] = React.useState(false)
+
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
@@ -34,6 +40,17 @@ export default function AddInstructorTag(props){
         p: 4,
       };
 
+      function handleChange( id) {
+        console.log('before:', value, checkbox);
+            if(checkbox === false){
+                setCheckBox(true)
+                setValue(id)
+
+            } else if (checkbox === true){
+                setCheckBox(false)
+                setValue('')
+            }
+      }
       
 
     const dispatch = useDispatch()
@@ -42,7 +59,7 @@ export default function AddInstructorTag(props){
         dispatch({
             type:"FETCH_TAGS"
           })
-    },[])
+    },[addTagBtn])
 
     const tags = useSelector((store)=> store.search.tags)
     return(
@@ -60,25 +77,43 @@ export default function AddInstructorTag(props){
                 <Box sx={style}>
                 <List
                     sx={{
-                        fontSize: '.5rem',
+                        fontSize: 2,
                         maxHeight: 200,
                         overflow: 'scroll',
                     }}
                 >
                     <ListSubheader>List</ListSubheader>
-                    <Divider/>
+                    
                     {  tags && tags.map(tag=>(
                         <ListItemButton>
-                        <Checkbox/>
+                        <Checkbox 
+                            onChange={()=>{
+                                handleChange(tag.id)
+                            }}
+                        />
                         <ListItemText key={tag.id} primary={tag.tagName} />
                         </ListItemButton>
                     ))}
                 </List>
+                <Box sx={{marginTop: 2}}>
                 <Button
                     onClick={handleClose}
                 >
                     Cancel
                 </Button>
+                <Button
+                    onClick={()=>{
+                        dispatch({
+                            type:'ADD_TAG',
+                            payload: value
+                        })
+                        setAddTagBtn(true)
+                        
+                    }}
+                >
+                    Add Tags
+                </Button>
+                </Box>
                 </Box>
             </Modal>
         </div>
