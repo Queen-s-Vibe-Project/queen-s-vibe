@@ -10,9 +10,12 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import List from '@mui/material/List';
+import ListSubheader from '@mui/material/ListSubheader';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
+import ListItemButton from '@mui/material/ListItemButton';
 import Divider from '@mui/material/Divider';
+import Checkbox from '@mui/material/Checkbox';
 
 export default function AddInstructorTag(props){
     const [open, setOpen] = React.useState(false);
@@ -57,15 +60,25 @@ export default function AddInstructorTag(props){
                 <Box sx={style}>
                 <List
                     sx={{
-                        overflow: 'auto',
+                        fontSize: '.5rem',
+                        maxHeight: 200,
+                        overflow: 'scroll',
                     }}
                 >
-                    <ListItemText primary='List' />
+                    <ListSubheader>List</ListSubheader>
                     <Divider/>
                     {  tags && tags.map(tag=>(
-                        <ListItemText primary={tag.tagName} />
+                        <ListItemButton>
+                        <Checkbox/>
+                        <ListItemText key={tag.id} primary={tag.tagName} />
+                        </ListItemButton>
                     ))}
                 </List>
+                <Button
+                    onClick={handleClose}
+                >
+                    Cancel
+                </Button>
                 </Box>
             </Modal>
         </div>
