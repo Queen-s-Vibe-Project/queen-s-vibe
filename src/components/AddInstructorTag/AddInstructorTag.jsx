@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useSelector, useDispatch } from "react-redux";
+import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 
@@ -27,6 +28,7 @@ export default function AddInstructorTag(props){
 
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+    const params = useParams();
 
     const style = {
         position: 'absolute',
@@ -52,14 +54,25 @@ export default function AddInstructorTag(props){
             }
       }
       
+    
 
     const dispatch = useDispatch()
+
+    React.useEffect(()=>{
+        console.log('test', params.id);
+
+        dispatch({
+            type: "FETCH_INSTRUCTOR_TAGS",
+            payload: params.id
+        })
+
+    },[addTagBtn])
 
     React.useEffect(()=>{
         dispatch({
             type:"FETCH_TAGS"
           })
-    },[addTagBtn])
+    },[])
 
     const tags = useSelector((store)=> store.search.tags)
     return(
@@ -108,6 +121,7 @@ export default function AddInstructorTag(props){
                             payload: value
                         })
                         setAddTagBtn(true)
+                        handleClose()
                         
                     }}
                 >
