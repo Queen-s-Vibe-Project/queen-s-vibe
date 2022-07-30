@@ -59,12 +59,16 @@ export default function AddInstructorTag(props){
     const dispatch = useDispatch()
 
     React.useEffect(()=>{
-        console.log('test', params.id);
-
-        dispatch({
-            type: "FETCH_INSTRUCTOR_TAGS",
-            payload: params.id
-        })
+        
+        if(addTagBtn === true){
+            dispatch({
+                type: "FETCH_INSTRUCTOR_TAGS",
+                payload: params.id
+            })
+    
+            setAddTagBtn(false)
+        }
+        
 
     },[addTagBtn])
 
