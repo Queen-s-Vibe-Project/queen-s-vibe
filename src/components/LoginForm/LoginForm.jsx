@@ -29,8 +29,8 @@ function LoginForm() {
   return (
     <div className="login-container">
       <div className="login-form-header">
-        <h2 className="login-header">Welcome Back</h2>
-        <h5 className="login-text">Stay active. Stay healthy. Sign up!</h5>
+        <h2 className="login-header">Welcome to Groupie</h2>
+        <h5 className="login-text">The group fitness fit for YOU.</h5>
       </div>
       <form className="form-panel" onSubmit={login}>
         {errors.loginMessage && (

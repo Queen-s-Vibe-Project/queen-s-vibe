@@ -97,6 +97,7 @@ function RegisterForm() {
 
           <TextField
             value={password}
+            type="password"
             required
             id="outlined-basic"
             variant="outlined"

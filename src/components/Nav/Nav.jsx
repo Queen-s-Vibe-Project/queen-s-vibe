@@ -8,7 +8,7 @@ import MenuItem from "@mui/material/MenuItem";
 import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
 import Button from "@mui/material/Button";
 import MenuIcon from "@mui/icons-material/Menu";
-import Logo from "./qv-logo.png";
+import Groupie from "./GroupieLogo.png";
 
 function Nav() {
   const user = useSelector((store) => store.user);
@@ -38,10 +38,10 @@ function Nav() {
             )}
           </PopupState>
           {/* NavBar company name */}
-          <h3>Groupii</h3>
+          <h3>Groupie</h3>
           {/* NavBar company logo, will go back to home page if clicked */}
           <Link to="/home">
-            <img className="nav-logo" src={Logo} alt="Logo" />
+            <img className="nav-logo" src={Groupie} alt="Logo" />
           </Link>
         </div>
       )}
@@ -75,7 +75,7 @@ function Nav() {
           <h3>Groupii</h3>
           {/* NavBar company logo, will go back to home page if clicked */}
           <Link to="/home">
-            <img className="nav-logo" src={Logo} alt="Logo" />
+            <img className="nav-logo" src={Groupie} alt="Logo" />
           </Link>
         </div>
       )}
