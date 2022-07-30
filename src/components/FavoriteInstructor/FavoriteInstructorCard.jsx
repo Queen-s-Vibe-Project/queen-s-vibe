@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -12,6 +13,9 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import Avatar from "@mui/material/Avatar";
 
 function FavoriteInstructorCard({ instructor }) {
+
+  const history = useHistory()
+
   return (
     <>
       <div className="featured-container">
@@ -24,7 +28,14 @@ function FavoriteInstructorCard({ instructor }) {
               sx={{ width: 75, height: 75 }}
             />
           </Stack>
-          <button className="view-more-btn">View More</button>
+          <button
+          onClick={()=>{
+            history.push('/instructor/'+instructor.instructorId)
+          }} 
+          className="view-more-btn"
+          >
+            View More
+          </button>
         </div>
 
         {/* Right side */}
