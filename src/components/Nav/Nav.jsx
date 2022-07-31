@@ -8,7 +8,7 @@ import MenuItem from "@mui/material/MenuItem";
 import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
 import Button from "@mui/material/Button";
 import MenuIcon from "@mui/icons-material/Menu";
-import Groupie from "./GroupieLogo.png";
+import Groupie from "./Groupie.png";
 
 function Nav() {
   const user = useSelector((store) => store.user);
@@ -71,8 +71,7 @@ function Nav() {
               </React.Fragment>
             )}
           </PopupState>
-          {/* NavBar company name */}
-          <h3>Groupii</h3>
+
           {/* NavBar company logo, will go back to home page if clicked */}
           <Link to="/home">
             <img className="nav-logo" src={Groupie} alt="Logo" />

@@ -4,7 +4,6 @@ import "./LandingPage.css";
 import SearchBar from "../SearchBar/SearchBar";
 
 import InstructorCardList from "../InstructoCardList/InstructorCardList";
-import RecommendInstructors from "../RecommendInstructors/RecommendInstructors";
 
 function LandingPage() {
   return (
