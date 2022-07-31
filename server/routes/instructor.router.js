@@ -8,8 +8,6 @@ const {
 // GET all instructors without authentication
 // JOIN user, userTags, and tags tables and use array-agg to
 // get array of object for tag name
-
-
 router.get('/', (req, res) => {
 
   console.log('/user GET route');
@@ -34,7 +32,7 @@ router.get('/', (req, res) => {
     });
 });
 
-// Get individual instructor
+// GET route to fetch a specific instructor
 router.get('/profile/:id', (req, res) => {
 
   const profileQuery = `
@@ -49,7 +47,7 @@ router.get('/profile/:id', (req, res) => {
     })
 })
 
-
+// GET route to fetch upcoming classes
 router.get('/class/:id', (req, res) => {
   const userId = req.params.id;
 
@@ -59,7 +57,6 @@ router.get('/class/:id', (req, res) => {
     JOIN "activities" on "activities".id = "availableClass"."activityId"
     WHERE "user".id = $1;
     `
-
   pool.query(classQuery, [userId])
     .then((dbRes) => {
 
@@ -87,58 +84,75 @@ router.get('/tags/:id', (req, res) => {
 
 })
 
-// Recommended instructor route
-router.get('/recommend', (req, res) => {
-  const userId = req.user.id
-  console.log(userId);
+// GET route to fetch all recommend instructors for user page view
+// router.get('/recommend', (req, res) => {
+//   const userId = req.user.id
+//   console.log(userId);
 
-  const tagQuery = `
-        SELECT JSON_AGG("tags"."tagName") AS "tags" FROM "userTags"
-        JOIN "tags" on "tags".id = "userTags"."tagId" 
-        WHERE "userTags"."userId" = $1;
-    `
+//   const tagQuery = `
+//         SELECT JSON_AGG("tags"."tagName") AS "tags" FROM "userTags"
+//         JOIN "tags" on "tags".id = "userTags"."tagId" 
+//         WHERE "userTags"."userId" = $1;
+//     `
 
-  pool.query(tagQuery, [userId])
+//   pool.query(tagQuery, [userId])
+//     .then((dbRes) => {
+
+//       console.log(dbRes.rows[0].tags, dbRes.rows[0].tags.length);
+//       let listOfTags = '';
+
+//       for (let index = 0; index < dbRes.rows[0].tags.length; index++) {
+//         console.log('last');
+//         if (index === dbRes.rows[0].tags.length - 1) {
+//           listOfTags += `\'${dbRes.rows[0].tags[index]}\'`
+//         } else {
+//           console.log('loop', index);
+//           listOfTags += `\'${dbRes.rows[0].tags[index]}\',`
+//         }
+//       }
+//       return listOfTags;
+
+//     })
+//     .then((listOfTags) => {
+//       console.log(listOfTags);
+//       const recommendInstructorQuery = `
+//             SELECT "user".id, "user".name, "user".pronouns , JSON_AGG("tags"."tagName"), COUNT("user".name),"user".avatar FROM "user"
+//             JOIN "userTags" on "user".id = "userTags"."userId"
+//             JOIN "tags" on "tags".id = "userTags"."tagId"
+//             WHERE "user"."adminLevel" = 'instructor' AND "tags"."tagName" IN (${listOfTags})
+//             GROUP BY "user".id, "user".name, "user".pronouns, "user".avatar 
+//             ORDER BY COUNT("user".name) DESC
+//             LIMIT 5;
+//             `
+//       pool.query(recommendInstructorQuery)
+//         .then((dbRes) => {
+//           console.log(dbRes.rows);
+//           res.send(dbRes.rows)
+//         }).catch((err) => {
+//           console.error(`${err}`);
+//           res.sendStatus(500)
+//         })
+//     })
+// })
+
+// POST route to add favorite instructors to favoriteInstructors db
+router.post('/favorite/:id', rejectUnauthenticated, (req, res) => {
+  console.log(req.params.id, 'This is user id', req.user.id);
+
+  const addToFavoriteQuery = `
+    INSERT INTO "favoriteInstuctor" ("userId" , "instructorId")
+    VALUES ($1,$2)
+  `
+
+  pool.query(addToFavoriteQuery, [req.user.id, req.params.id])
     .then((dbRes) => {
-
-      console.log(dbRes.rows[0].tags, dbRes.rows[0].tags.length);
-      let listOfTags = '';
-
-      for (let index = 0; index < dbRes.rows[0].tags.length; index++) {
-        console.log('last');
-        if (index === dbRes.rows[0].tags.length - 1) {
-          listOfTags += `\'${dbRes.rows[0].tags[index]}\'`
-        } else {
-          console.log('loop', index);
-          listOfTags += `\'${dbRes.rows[0].tags[index]}\',`
-        }
-      }
-      return listOfTags;
-
-    })
-    .then((listOfTags) => {
-      console.log(listOfTags);
-      const recommendInstructorQuery = `
-            SELECT "user".id, "user".name, "user".pronouns , JSON_AGG("tags"."tagName"), COUNT("user".name),"user".avatar FROM "user"
-            JOIN "userTags" on "user".id = "userTags"."userId"
-            JOIN "tags" on "tags".id = "userTags"."tagId"
-            WHERE "user"."adminLevel" = 'instructor' AND "tags"."tagName" IN (${listOfTags})
-            GROUP BY "user".id, "user".name, "user".pronouns, "user".avatar 
-            ORDER BY COUNT("user".name) DESC
-            LIMIT 5;
-            `
-      pool.query(recommendInstructorQuery)
-        .then((dbRes) => {
-          console.log(dbRes.rows);
-          res.send(dbRes.rows)
-        }).catch((err) => {
-          console.error(`${err}`);
-          res.sendStatus(500)
-        })
+      res.sendStatus(200)
+    }).catch((err) => {
+      console.error(err);
     })
 })
 
-// Favorite instructors route
+// GET route to fetch favorited instructors
 router.get('/favorite', rejectUnauthenticated, (req, res) => {
   const userId = req.user.id
 
@@ -161,21 +175,7 @@ router.get('/favorite', rejectUnauthenticated, (req, res) => {
     })
 })
 
-router.post('/favorite/:id', rejectUnauthenticated, (req, res) => {
-  console.log(req.params.id, 'This is user id', req.user.id);
 
-  const addToFavoriteQuery = `
-    INSERT INTO "favoriteInstuctor" ("userId" , "instructorId")
-    VALUES ($1,$2)
-  `
-
-  pool.query(addToFavoriteQuery, [req.user.id, req.params.id])
-    .then((dbRes) => {
-      res.sendStatus(200)
-    }).catch((err) => {
-      console.error(err);
-    })
-})
 
 
 // DELETE favorite instructor in Gym Goer page view

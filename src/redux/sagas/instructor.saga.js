@@ -18,7 +18,7 @@ function* fetchAllInstructors() {
 }
 
 function* fetchActiveInstructor(action) {
-   
+
     try {
         const res = yield axios.get(`/instructor/${action.payload}`)
         console.log('Instructor Detail is', res.data)
@@ -32,12 +32,12 @@ function* fetchActiveInstructor(action) {
     }
 }
 
-function* fetchInstructorProfile(action){
+function* fetchInstructorProfile(action) {
     console.log('id', action.payload);
     try {
-        const res = yield axios.get('/instructor/profile/'+action.payload)
+        const res = yield axios.get('/instructor/profile/' + action.payload)
         //console.log(res.data);
-        yield put({ type: "SET_INSTRUCTOR_PROFILE", payload: res.data})
+        yield put({ type: "SET_INSTRUCTOR_PROFILE", payload: res.data })
     } catch (error) {
         console.error(`${error}`);
     }
@@ -45,9 +45,9 @@ function* fetchInstructorProfile(action){
 
 function* fetchInstructorClasses(action) {
     try {
-        const res = yield axios.get('/instructor/class/'+ action.payload)
+        const res = yield axios.get('/instructor/class/' + action.payload)
         //console.log(res.data);
-        yield put({type:"SET_INSTRUCTOR_CLASSES", payload: res.data})
+        yield put({ type: "SET_INSTRUCTOR_CLASSES", payload: res.data })
     } catch (error) {
         console.error(`${error}`);
     }
@@ -55,8 +55,8 @@ function* fetchInstructorClasses(action) {
 
 function* fetchInstructorTags(action) {
     try {
-        const res = yield axios.get('/instructor/tags/'+action.payload)
-        yield put({ type:'SET_INSTRUCTOR_TAGS', payload: res.data})
+        const res = yield axios.get('/instructor/tags/' + action.payload)
+        yield put({ type: 'SET_INSTRUCTOR_TAGS', payload: res.data })
     } catch (error) {
         console.error(`${error}`);
     }
@@ -90,10 +90,10 @@ function* fetchFavoriteInstructor() {
 }
 
 function* fetchActivities() {
-    try{
-        const res = yield axoios.get('/instructor/activities')
+    try {
+        const res = yield axios.get('/instructor/activities')
         console.log(res.data)
-        yield put({type: 'SET_ACTIVITIES', payload: res.data})
+        yield put({ type: 'SET_ACTIVITIES', payload: res.data })
     } catch (error) {
         console.log('Error in fetchActivities', error)
     }
@@ -102,9 +102,9 @@ function* fetchActivities() {
 function* addInstructorToFavorite(action) {
     console.log(action.payload);
     try {
-        const res = yield axios.post('/instructor/favorite/'+action.payload)
+        yield axios.post(`/instructor/favorite/${action.payload}`)
     } catch (error) {
-        
+
     }
 }
 
@@ -112,12 +112,12 @@ function* addInstructorToFavorite(action) {
 function* instructorSaga() {
     yield takeEvery('FETCH_INSTRUCTORS', fetchAllInstructors);
     //yield takeEvery('FETCH_ACTIVE_INSTRUCTOR', fetchActiveInstructor);
-    yield takeEvery("FETCH_INSTRUCTOR_PROFILE",fetchInstructorProfile)
+    yield takeEvery("FETCH_INSTRUCTOR_PROFILE", fetchInstructorProfile)
     yield takeEvery('FETCH_RECOMMEND_INSTRUCTOR', fetchRecommendInstructor);
     yield takeEvery('FETCH_ACTIVITIES', fetchActivities)
     yield takeEvery('FETCH_FAVORITE_INSTRUCTOR', fetchFavoriteInstructor);
     yield takeEvery("FETCH_INSTRUCTOR_CLASSES", fetchInstructorClasses)
-    yield takeEvery('FETCH_INSTRUCTOR_TAGS',fetchInstructorTags)
+    yield takeEvery('FETCH_INSTRUCTOR_TAGS', fetchInstructorTags)
 
     ///
     yield takeEvery('ADD_INSTRUCTOR_TO_FAVORITES', addInstructorToFavorite)
