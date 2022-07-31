@@ -3,11 +3,19 @@ import { useDispatch, useSelector } from "react-redux";
 import "../RegisterPage/RegisterPage.css";
 import SearchBar from "../SearchBar/SearchBar";
 import TextField from "@mui/material/TextField";
+import { styled } from '@mui/material/styles';
+import IconButton from '@mui/material/IconButton';
+import PhotoCamera from '@mui/icons-material/PhotoCamera';
+import Avatar from '@mui/material/Avatar';
+import axios from 'axios'
+
 
 function RegisterForm() {
   const [userType, setUserType] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [profilePhoto, setProfilePhoto] = useState(null)
+  const [file, setFile] = useState(null)
   const [name, setName] = useState("");
   const [pronouns, setPronouns] = useState("");
   const errors = useSelector((store) => store.errors);
@@ -24,10 +32,21 @@ function RegisterForm() {
     });
   }, []);
 
-  const registerUser = (event) => {
-    event.preventDefault();
+  const handleChange = (evt) => {
+    setProfilePhoto(URL.createObjectURL(evt.target.files[0]))
+    setFile(evt.target.files[0])
+}
+const Input = styled('input')({
+  display: 'none',
+});
 
+  const registerUser = async (event) => {
+    event.preventDefault();
     const formData = new FormData()
+      formData.append("image", file)
+      const result = await axios.post('/upload', formData)
+      console.log(result.data.Location)
+    
     
 
     dispatch({
@@ -36,6 +55,7 @@ function RegisterForm() {
         username: username,
         password: password,
         name: name,
+        avatar: result.data.Location,
         pronouns: pronouns,
         tags: tags,
         adminLevel: userType,
@@ -139,7 +159,17 @@ function RegisterForm() {
           /> */}
         </label>
       </div>
-
+      <Avatar
+            alt="Profile Photo"
+            src={profilePhoto}
+            sx={{ width: 100, height: 100}}
+        />
+        <label htmlFor="icon-button-file">
+        <Input accept="image/*" id="icon-button-file" type="file" onChange={handleChange}/>
+        <IconButton color="primary" aria-label="upload picture" component="span">
+          <PhotoCamera />
+        </IconButton>
+        </label>
       {/* Pronouns input */}
       <div>
         <label htmlFor="pronouns">
