@@ -27,6 +27,9 @@ function RegisterForm() {
   const registerUser = (event) => {
     event.preventDefault();
 
+    const formData = new FormData()
+    
+
     dispatch({
       type: "REGISTER",
       payload: {
