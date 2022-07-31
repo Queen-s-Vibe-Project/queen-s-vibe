@@ -61,10 +61,10 @@ function InstructorCardItem({ item }) {
                 {item.name}
               </Typography>
 
-              {/* Map over instructor tags */}
+              {/* Limit tags to 2 per instructor */}
               <Stack>
                 <span className="chip-container">
-                  <Chip
+                  {/* <Chip
                     className="chip-pill"
                     label={item.tags[0]}
                     variant="outlined"
@@ -74,10 +74,10 @@ function InstructorCardItem({ item }) {
                     className="chip-pill"
                     label={item.tags[1]}
                     variant="outlined"
-                  />
+                  /> */}
 
-                  {/* map over instructor tags */}
-                  {/* {item.tags.map((tag, i) => {
+                  {/* Map over instructor tags and limit tags to 2 */}
+                  {item.tags.slice(0, 2).map((tag, i) => {
                     return (
                       <li className="tag-list" key={i}>
                         <Chip
@@ -87,7 +87,7 @@ function InstructorCardItem({ item }) {
                         />
                       </li>
                     );
-                  })} */}
+                  })}
                 </span>
               </Stack>
               <div className="icon-container">
