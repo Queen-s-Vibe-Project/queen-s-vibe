@@ -1,27 +1,30 @@
-import React from 'react';
-import LogOutButton from '../LogOutButton/LogOutButton';
-import RecommendInstructors from '../RecommendInstructors/RecommendInstructors';
-import {useSelector} from 'react-redux';
-import SearchBar from '../SearchBar/SearchBar';
-import UpcomingClasses from '../UpcomingClasses/UpcomingClasses';
-import FavoriteInstructor from '../FavoriteInstructor/FavoriteInstructor';
-import AddClass from '../AddClass/AddClass';
+import React from "react";
+import LogOutButton from "../LogOutButton/LogOutButton";
+import RecommendInstructors from "../RecommendInstructors/RecommendInstructors";
+import { useSelector } from "react-redux";
+import SearchBar from "../SearchBar/SearchBar";
+import UpcomingClasses from "../UpcomingClasses/UpcomingClasses";
+import FavoriteInstructor from "../FavoriteInstructor/FavoriteInstructor";
+import AddClass from "../AddClass/AddClass";
 
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
   return (
-    <div className='Universal-Container' >
-      <h2>Welcome, {user.username}!</h2>
-        <SearchBar/>
-        <RecommendInstructors/>
-        <UpcomingClasses/>
-        <FavoriteInstructor/>
-        {user.adminLevel === "instructor" && <AddClass/>}
+    <>
+      {" "}
+      <h2 className="Universal-Container">Welcome, {user.username}!</h2>
+      <SearchBar />
+      <div className="Universal-Container">
+        <RecommendInstructors />
+        <UpcomingClasses />
+        <FavoriteInstructor />
+        {user.adminLevel === "instructor" && <AddClass />}
 
-      <p>Your ID is: {user.id}</p>
-      <LogOutButton className="btn" />
-    </div>
+        <p>Your ID is: {user.id}</p>
+        <LogOutButton className="btn" />
+      </div>
+    </>
   );
 }
 
