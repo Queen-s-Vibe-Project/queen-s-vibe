@@ -17,20 +17,20 @@ function* fetchAllInstructors() {
     }
 }
 
-function* fetchActiveInstructor(action) {
+// function* fetchActiveInstructor(action) {
 
-    try {
-        const res = yield axios.get(`/instructor/${action.payload}`)
-        console.log('Instructor Detail is', res.data)
-        yield put({
-            type: 'SET_ACTIVE_INSTRUCTOR',
-            payload: res.data
-        })
-    }
-    catch (error) {
-        console.error('Get instructor detail failed', error)
-    }
-}
+//     try {
+//         const res = yield axios.get(`/instructor/${action.payload}`)
+//         console.log('Instructor Detail is', res.data)
+//         yield put({
+//             type: 'SET_ACTIVE_INSTRUCTOR',
+//             payload: res.data
+//         })
+//     }
+//     catch (error) {
+//         console.error('Get instructor detail failed', error)
+//     }
+// }
 
 function* fetchInstructorProfile(action) {
     console.log('id', action.payload);
@@ -108,19 +108,30 @@ function* addInstructorToFavorite(action) {
     }
 }
 
+// Delete favorite instructor on user view page
+// Saga will listen for "DELETE_FAVORITE_INSTRUCTOR" action from user page view
+function* deleteFavoriteInstructor(action) {
+    console.log('In deleteFavoriteInstructor saga', action);
+    try {
+        // action.payload should be id
+        yield axios.delete(`/instructor/favorite/${action.payload}`)
+    }
+    catch (error) {
+        console.log('Delete favorite instructor failed', error);
+    }
+}
 // Watcher saga
 function* instructorSaga() {
     yield takeEvery('FETCH_INSTRUCTORS', fetchAllInstructors);
     //yield takeEvery('FETCH_ACTIVE_INSTRUCTOR', fetchActiveInstructor);
-    yield takeEvery("FETCH_INSTRUCTOR_PROFILE", fetchInstructorProfile)
+    yield takeEvery("FETCH_INSTRUCTOR_PROFILE", fetchInstructorProfile);
     yield takeEvery('FETCH_RECOMMEND_INSTRUCTOR', fetchRecommendInstructor);
-    yield takeEvery('FETCH_ACTIVITIES', fetchActivities)
+    yield takeEvery('FETCH_ACTIVITIES', fetchActivities);
     yield takeEvery('FETCH_FAVORITE_INSTRUCTOR', fetchFavoriteInstructor);
-    yield takeEvery("FETCH_INSTRUCTOR_CLASSES", fetchInstructorClasses)
-    yield takeEvery('FETCH_INSTRUCTOR_TAGS', fetchInstructorTags)
-
-    ///
-    yield takeEvery('ADD_INSTRUCTOR_TO_FAVORITES', addInstructorToFavorite)
+    yield takeEvery("FETCH_INSTRUCTOR_CLASSES", fetchInstructorClasses);
+    yield takeEvery('FETCH_INSTRUCTOR_TAGS', fetchInstructorTags);
+    yield takeEvery('ADD_INSTRUCTOR_TO_FAVORITES', addInstructorToFavorite);
+    yield takeEvery('DELETE_FAVORITE_INSTRUCTOR', deleteFavoriteInstructor)
 }
 
 export default instructorSaga;

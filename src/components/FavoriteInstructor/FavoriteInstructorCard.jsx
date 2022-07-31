@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -12,6 +12,8 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import Avatar from "@mui/material/Avatar";
 
 function FavoriteInstructorCard({ instructor }) {
+  const dispatch = useDispatch();
+
   return (
     <>
       <div className="featured-container">
@@ -33,6 +35,16 @@ function FavoriteInstructorCard({ instructor }) {
             <CardContent className="rt-card">
               <Typography variant="p" component="div">
                 {instructor.name}
+                <button
+                  onClick={() => {
+                    dispatch({
+                      type: "DELETE_FAVORITE_INSTRUCTOR",
+                      payload: { id: instructor.id },
+                    });
+                  }}
+                >
+                  Delete
+                </button>
               </Typography>
 
               <Stack className="chip-container" direction="row" spacing={0.5}>
