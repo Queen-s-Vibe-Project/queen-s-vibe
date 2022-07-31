@@ -9,7 +9,7 @@ function InstructorCardList() {
 
   // Random instructor list
   const random = instructor.sort(() => Math.random() - 0.5);
-  console.log("random", random);
+  console.log("random instructors", random);
 
   // useEffect to fetch instructors on page load
   // dispatch 'FETCH_INSTRUCTORS' to trigger saga
