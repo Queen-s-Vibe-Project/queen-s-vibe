@@ -114,7 +114,17 @@ function* deleteFavoriteInstructor(action) {
     console.log('In deleteFavoriteInstructor saga', action);
     try {
         // action.payload should be id
-        yield axios.delete(`/instructor/favorite/${action.payload}`)
+        // add id after action.payload or else it will return gym goer id
+        // instead of favorite instructor id
+        yield axios.delete(`/instructor/favorite/${action.payload.id}`)
+
+        // axios.get to fetch favorite instructor after deleting favorite instructor
+        const res = yield axios.get(`/instructor/favorite`)
+        // refresh page after deletion
+        yield put({
+            type: 'SET_FAVORITE_INSTRUCTOR',
+            payload: res.data
+        })
     }
     catch (error) {
         console.log('Delete favorite instructor failed', error);
