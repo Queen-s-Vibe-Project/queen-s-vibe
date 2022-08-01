@@ -1,7 +1,7 @@
-function InstructorAbout({ instructor }) {
+function InstructorAbout({ profile }) {
   return (
     <>
-      <p> {instructor.about} </p>
+      <p> {profile.about} </p>
     </>
   );
 }
