@@ -161,6 +161,15 @@ function* addNewClass(action) {
         console.log("Error in addNewClass", err);
     }
 }
+function* updateAbout(action){
+    console.log('did it make it over?', action.payload)
+    try{
+        yield axios.put(`/instructor/update/${action.payload.id}`, action.payload)
+    } catch(error) {
+        console.error(`Failed to update About in saga ${error}`)
+    }
+
+}
 
 // Watcher saga
 function* instructorSaga() {
@@ -179,6 +188,7 @@ function* instructorSaga() {
     yield takeEvery("DELETE_TAG", deleteTag);
     yield takeEvery("ADD_INSTRUCTOR_TO_FAVORITES", addInstructorToFavorite);
     yield takeEvery("ADD_NEW_CLASS", addNewClass);
+    yield takeEvery('UPDATE_ABOUT', updateAbout)
 }
 
 export default instructorSaga;
