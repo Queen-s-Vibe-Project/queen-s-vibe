@@ -20,6 +20,7 @@ import PhotoUpload from "../PhotoUpload/PhotoUpload";
 import InstructorDetail from "../InstructorDetail/InstructorDetail";
 import Map from "../Map/Map";
 import SearchResult from "../SearchResult/SearchResult";
+import InstructorPage from "../InstructorPage/InstructorPage";
 
 import "./App.css";
 

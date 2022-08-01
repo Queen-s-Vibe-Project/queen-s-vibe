@@ -130,6 +130,19 @@ function* deleteFavoriteInstructor(action) {
         console.log('Delete favorite instructor failed', error);
     }
 }
+
+// Add classes on instructor detail page
+// Saga will listen for "ADD_CLASS" action from instructor detail view
+function* addClass(action) {
+    console.log('In addClass saga action.payload is', action.payload)
+    try {
+        yield axios.post('/instructor/class/' + action.payload)
+    }
+    catch (error) {
+        console.log('Error in addClass', error);
+    }
+}
+
 // Watcher saga
 function* instructorSaga() {
     yield takeEvery('FETCH_INSTRUCTORS', fetchAllInstructors);
@@ -141,7 +154,8 @@ function* instructorSaga() {
     yield takeEvery("FETCH_INSTRUCTOR_CLASSES", fetchInstructorClasses);
     yield takeEvery('FETCH_INSTRUCTOR_TAGS', fetchInstructorTags);
     yield takeEvery('ADD_INSTRUCTOR_TO_FAVORITES', addInstructorToFavorite);
-    yield takeEvery('DELETE_FAVORITE_INSTRUCTOR', deleteFavoriteInstructor)
+    yield takeEvery('DELETE_FAVORITE_INSTRUCTOR', deleteFavoriteInstructor);
+    yield takeEvery('ADD_CLASS', addClass);
 }
 
 export default instructorSaga;

@@ -66,6 +66,25 @@ router.get('/class/:id', (req, res) => {
     })
 })
 
+// POST route to add classes
+// router.post('/class/:id', (req, res) => {
+
+//   const values =
+//     console.log("Values is", values);
+//   const sqlText = ``;
+
+//   pool.query(sqlText, values)
+//     .then((result) => {
+//       console.log('POST add class successful');
+//       res.sendStatus(201)
+//     })
+//     .catch((err) => {
+//       console.log('POST add class failed', err);
+//       res.sendStatus(500)
+//     })
+// })
+
+// GET route to individual user tags
 router.get('/tags/:id', (req, res) => {
   console.log(req.params.id);
 

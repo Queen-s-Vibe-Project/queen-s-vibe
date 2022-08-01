@@ -60,7 +60,9 @@ function InstructorDetail() {
             <></>
           )}
           {classes &&
-            classes.map((session) => <InstructorClass session={session} />)}
+            classes.map((session, i) => (
+              <InstructorClass key={i} session={session} />
+            ))}
         </div>
         <h3> Tags </h3>
         <div className="tags">

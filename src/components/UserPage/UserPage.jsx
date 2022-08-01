@@ -6,6 +6,7 @@ import SearchBar from "../SearchBar/SearchBar";
 import UpcomingClasses from "../UpcomingClasses/UpcomingClasses";
 import FavoriteInstructor from "../FavoriteInstructor/FavoriteInstructor";
 import AddClass from "../AddClass/AddClass";
+import InstructorPage from "../InstructorPage/InstructorPage";
 
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
@@ -32,6 +33,7 @@ function UserPage() {
       ) : (
         // Instructor profile
         <div>
+          <InstructorPage />
           <AddClass />
           <LogOutButton className="btn" />
         </div>

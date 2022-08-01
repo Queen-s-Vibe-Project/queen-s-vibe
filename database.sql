@@ -136,3 +136,8 @@ JOIN "userTags" on "userTags"."userId" = "user".id
 JOIN "tags" on "tags".id = "userTags"."tagId"
 WHERE "favoriteInstuctor"."userId" = 4
 GROUP BY "favoriteInstuctor".id, "favoriteInstuctor"."instructorId", "user".name, "user".pronouns, "user".instagram, "user".facebook, "user".twitter;
+
+
+-- INSERT SAMPLE DATA INTO "availableClass" table
+INSERT INTO "availableClass" ("instructorId", "dateOfWeek", "startTime", "location", "lat", "lng", "activityId")
+	VALUES (1, 'Tuesday', '8am', 'Saint Paul', '22.2', '22.1', 2);
