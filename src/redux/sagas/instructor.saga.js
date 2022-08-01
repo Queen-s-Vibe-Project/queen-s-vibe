@@ -126,8 +126,13 @@ function* deleteTag(action) {
 }
 
 function* updateAbout(action){
-    console.log('did it make it over?', action.payload)
-    
+    // console.log('did it make it over?', action.payload)
+    try{
+        yield axios.put('/instructor/update/' +action.payload)
+    } catch(error) {
+        console.error(`Failed to update About in saga ${error}`)
+    }
+
 }
 
 // Watcher saga
