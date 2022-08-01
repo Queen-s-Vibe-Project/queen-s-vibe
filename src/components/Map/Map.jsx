@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { GoogleMap, useLoadScript } from "@react-google-maps/api";
-// import mapStyles from "./mapStyles";
+import mapStyles from "./mapStyles";
 import "./Map.css";
 
 const containerStyle = {
@@ -11,37 +11,35 @@ const containerStyle = {
 };
 
 const options = {
-    // styles: mapStyles,
-    disableDefaultUI: true,
-}
-
+  styles: mapStyles,
+  disableDefaultUI: true,
+};
 
 const libraries = ["places"];
 
 const Map = () => {
-    const [markers, setMarkers] = useState([])
-    const [currentLocation, setCurrentLocation] = useState({
-        lat: 39.0997,
-        lng: -94.5786
-      })
+  const [markers, setMarkers] = useState([]);
+  const [currentLocation, setCurrentLocation] = useState({
+    lat: 39.0997,
+    lng: -94.5786,
+  });
 
-    useEffect(()=>{
-        navigator.geolocation.getCurrentPosition(function(position) {
-            setCurrentLocation({
-               lat: position.coords.latitude,
-                lng:position.coords.longitude
-        })
-            
-        })
-    },[])
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(function (position) {
+      setCurrentLocation({
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+      });
+    });
+  }, []);
 
-    const {isLoaded, loadError} = useLoadScript({
-        googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
-        libraries
-    })
+  const { isLoaded, loadError } = useLoadScript({
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
+    libraries,
+  });
 
-    if(loadError) return "Loading Error"
-    if(!isLoaded) return "Loading..."
+  if (loadError) return "Loading Error";
+  if (!isLoaded) return "Loading...";
 
   return (
     <>
