@@ -5,13 +5,28 @@ const router = express.Router();
 //get tags for autocomplete
 router.get("/tags", (req, res) => {
   const sqlQuery = `SELECT * FROM "tags"`;
-  pool.query(sqlQuery)
+  pool
+    .query(sqlQuery)
     .then((dbRes) => {
       res.send(dbRes.rows);
     })
     .catch((err) => {
       res.sendStatus(500);
       console.log("error in GET/tags", err);
+    });
+});
+
+//get activities
+router.get("/activities", (req, res) => {
+  const sqlQuery = `SELECT * FROM "activities"`;
+  pool
+    .query(sqlQuery)
+    .then((dbRes) => {
+      res.send(dbRes.rows);
+    })
+    .catch((err) => {
+      res.sendStatus(500);
+      console.log("error in GET/activities", err);
     });
 });
 
