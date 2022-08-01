@@ -125,6 +125,11 @@ function* deleteTag(action) {
     }
 }
 
+function* updateAbout(action){
+    console.log('did it make it over?', action.payload)
+    
+}
+
 // Watcher saga
 function* instructorSaga() {
     yield takeEvery('FETCH_INSTRUCTORS', fetchAllInstructors);
@@ -137,6 +142,7 @@ function* instructorSaga() {
     yield takeEvery('FETCH_INSTRUCTOR_TAGS',fetchInstructorTags)
     yield takeEvery('ADD_TAG', addTag)
     yield takeEvery('DELETE_TAG',deleteTag)
+    yield takeEvery('UPDATE_ABOUT', updateAbout)
 
     ///
     yield takeEvery('ADD_INSTRUCTOR_TO_FAVORITES', addInstructorToFavorite)

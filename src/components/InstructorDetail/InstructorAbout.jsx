@@ -25,8 +25,8 @@ const dispatch = useDispatch();
         dispatch({
           type:'UPDATE_ABOUT',
           payload: {
+            id: profile.id,
             result: result.value,
-            id: profile.id
           }
         })
       }
