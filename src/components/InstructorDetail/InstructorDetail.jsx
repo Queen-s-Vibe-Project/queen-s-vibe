@@ -9,6 +9,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link, useHistory, useParams } from "react-router-dom";
 import AddIcon from "@mui/icons-material/Add";
 
+
 function InstructorDetail() {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -75,9 +76,9 @@ function InstructorDetail() {
         </div>
       </div>
       <div>
-        <h3> About </h3>
+        <h3> About  </h3>
       </div>
-        <InstructorAbout profile={profile} instructor={params.id} />
+        <InstructorAbout profile={profile} instructor={params.id} /> 
     </div>
   );
 }
