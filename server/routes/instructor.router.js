@@ -18,8 +18,7 @@ router.get("/", (req, res) => {
 	                    JOIN tags
 	                    ON "userTags"."tagId" = tags.id
 	                    WHERE "user"."adminLevel" = 'instructor'
-	                    GROUP BY "user".id
-                      LIMIT 3;`;
+	                    GROUP BY "user".id;`;
 
   pool
     .query(queryText)
@@ -48,11 +47,13 @@ router.get("/profile/:id", (req, res) => {
     });
 });
 
+// GET individual class
 router.get("/class/:id", (req, res) => {
   const userId = req.params.id;
 
   const classQuery = `
-    SELECT "user".id, "availableClass"."dateOfWeek", "availableClass"."startTime", "availableClass".location, "activities".activity  FROM "availableClass"
+    SELECT "user".id, "availableClass"."dateOfWeek", "availableClass"."startTime", "availableClass".location, "activities".activity  
+    FROM "availableClass"
     JOIN "user" ON "user".id = "availableClass"."instructorId"
     JOIN "activities" on "activities".id = "availableClass"."activityId"
     WHERE "user".id = $1;
@@ -68,6 +69,25 @@ router.get("/class/:id", (req, res) => {
     });
 });
 
+// POST route to add classes
+// router.post('/class/:id', (req, res) => {
+
+//   const values =
+//     console.log("Values is", values);
+//   const sqlText = ``;
+
+//   pool.query(sqlText, values)
+//     .then((result) => {
+//       console.log('POST add class successful');
+//       res.sendStatus(201)
+//     })
+//     .catch((err) => {
+//       console.log('POST add class failed', err);
+//       res.sendStatus(500)
+//     })
+// })
+
+// GET route to individual user tags
 router.get("/tags/:id", (req, res) => {
   console.log(req.params.id);
 
@@ -124,6 +144,23 @@ router.delete("/tag/:id", (req, res) => {
     });
 });
 
+// POST route to add favorite instructors to favoriteInstructors db
+router.post('/favorite/:id', rejectUnauthenticated, (req, res) => {
+  console.log(req.params.id, 'This is user id', req.user.id);
+
+  const addToFavoriteQuery = `
+    INSERT INTO "favoriteInstuctor" ("userId" , "instructorId")
+    VALUES ($1,$2)
+  `
+
+  pool.query(addToFavoriteQuery, [req.user.id, req.params.id])
+    .then((dbRes) => {
+      res.sendStatus(200)
+    }).catch((err) => {
+      console.error(err);
+    })
+})
+
 // Recommended instructor route
 router.get("/recommend", (req, res) => {
   const userId = req.user.id;
@@ -179,8 +216,7 @@ router.get("/recommend", (req, res) => {
 // Favorite instructors route
 router.get("/favorite", rejectUnauthenticated, (req, res) => {
   const userId = req.user.id;
-
-  console.log(userId);
+  // console.log(userId);
 
   const getFavoriteInstructorQuery = `
         Select "favoriteInstuctor".id, "favoriteInstuctor"."instructorId", "user".name, "user".pronouns, "user".avatar,  "user".instagram, "user".facebook, "user".twitter, JSON_agg("tags"."tagName") as "tags" FROM "favoriteInstuctor"
@@ -201,27 +237,44 @@ router.get("/favorite", rejectUnauthenticated, (req, res) => {
     });
 });
 
-router.post(
-  "/favorite/:id",
-  rejectUnauthenticated,
-  rejectUnauthenticated,
-  (req, res) => {
-    console.log(req.params.id, "This is user id", req.user.id);
 
-    const addToFavoriteQuery = `
-    INSERT INTO "favoriteInstuctor" ("userId" , "instructorId")
-    VALUES ($1,$2)
-  `;
+// DELETE favorite instructor in Gym Goer page view
+// Target instructor id using req.params.id
+router.delete('/favorite/:id', rejectUnauthenticated, (req, res) => {
+  console.log('Favorite instructor id', req.params);
 
-    pool
-      .query(addToFavoriteQuery, [req.user.id, req.params.id])
-      .then((dbRes) => {
-        res.sendStatus(200);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }
+  const sqlQuery = `DELETE FROM "favoriteInstuctor" WHERE id = $1;`;
+  const instructorId = [req.params.id];
+
+  pool.query(sqlQuery, instructorId)
+    .then((result) => {
+      console.log("DELETE favorite instructor successful");
+      res.sendStatus(201)
+    })
+    .catch((err) => {
+      console.log("DELETE favorite instructor failed", err);
+      res.sendStatus(500)
+    }
+    )
+});
+
+// POST to add favorite instructor to db
+router.post("/favorite/:id", rejectUnauthenticated, (req, res) => {
+  console.log(req.params.id, "This is user id", req.user.id);
+
+  const addToFavoriteQuery = `INSERT INTO "favoriteInstuctor" ("userId" , "instructorId")
+                                        VALUES ($1,$2)
+                                    `;
+
+  pool
+    .query(addToFavoriteQuery, [req.user.id, req.params.id])
+    .then((dbRes) => {
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+}
 );
 
 router.post("/newClass", rejectUnauthenticated, (req, res) => {

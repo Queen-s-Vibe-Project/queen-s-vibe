@@ -15,10 +15,6 @@ function InstructorDetail() {
   const params = useParams();
   const [isLoaded, setIsLoaded] = useState(false);
 
-  // useEffect to dispatch 'FETCH_ACTIVE_INSTRUCTOR' on page load
-
-  // const instructor = useSelector((store) => store.instructorDetail[0]);
-
   useEffect(() => {
     dispatch({ type: "FETCH_INSTRUCTOR_PROFILE", payload: params.id });
     //
@@ -67,7 +63,9 @@ function InstructorDetail() {
             <></>
           )}
           {classes &&
-            classes.map((session) => <InstructorClass session={session} />)}
+            classes.map((session, i) => (
+              <InstructorClass key={i} session={session} />
+            ))}
         </div>
         <h3> Tags </h3>
         <div className="tags">

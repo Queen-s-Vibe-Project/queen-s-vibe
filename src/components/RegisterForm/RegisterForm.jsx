@@ -120,6 +120,7 @@ const Input = styled('input')({
 
           <TextField
             value={password}
+            type="password"
             required
             id="outlined-basic"
             variant="outlined"

@@ -29,8 +29,8 @@ function LoginForm() {
   return (
     <div className="login-container">
       <div className="login-form-header">
-        <h2 className="login-header">Welcome Back</h2>
-        <h5 className="login-text">Stay active. Stay healthy. Sign up!</h5>
+        <h2 className="login-header">Welcome to Groupie</h2>
+        <h5 className="login-text">The group fitness fit for YOU.</h5>
       </div>
       <form className="form-panel" onSubmit={login}>
         {errors.loginMessage && (
@@ -48,15 +48,6 @@ function LoginForm() {
               value={username}
               onChange={(event) => setUsername(event.target.value)}
             />
-
-            {/* <input
-              className="login-input"
-              type="text"
-              name="username"
-              required
-              value={username}
-              onChange={(event) => setUsername(event.target.value)}
-            /> */}
           </label>
         </div>
 
@@ -70,14 +61,6 @@ function LoginForm() {
               value={password}
               onChange={(event) => setPassword(event.target.value)}
             />
-            {/* <input
-              className="login-input"
-              type="password"
-              name="password"
-              required
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-            /> */}
           </label>
         </div>
 

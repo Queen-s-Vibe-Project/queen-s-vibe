@@ -13,8 +13,8 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import Avatar from "@mui/material/Avatar";
 
 function FavoriteInstructorCard({ instructor }) {
-
-  const history = useHistory()
+  const dispatch = useDispatch();
+  const history = useHistory();
 
   return (
     <>
@@ -29,10 +29,10 @@ function FavoriteInstructorCard({ instructor }) {
             />
           </Stack>
           <button
-          onClick={()=>{
-            history.push('/instructor/'+instructor.instructorId)
-          }} 
-          className="view-more-btn"
+            onClick={() => {
+              history.push("/instructor/" + instructor.instructorId);
+            }}
+            className="view-more-btn"
           >
             View More
           </button>
@@ -44,13 +44,28 @@ function FavoriteInstructorCard({ instructor }) {
             <CardContent className="rt-card">
               <Typography variant="p" component="div">
                 {instructor.name}
+                <button
+                  onClick={() => {
+                    dispatch({
+                      type: "DELETE_FAVORITE_INSTRUCTOR",
+                      payload: { id: instructor.id },
+                    });
+                  }}
+                >
+                  Delete
+                </button>
               </Typography>
 
               <Stack className="chip-container" direction="row" spacing={0.5}>
-                { instructor && instructor.tags.map(tag =>(
-                    <Chip className="chip-pill" label={`${tag}`} variant="outlined" />
-                ))}
-               
+                {instructor &&
+                  instructor.tags.map((tag, i) => (
+                    <Chip
+                      key={i}
+                      className="chip-pill"
+                      label={`${tag}`}
+                      variant="outlined"
+                    />
+                  ))}
               </Stack>
               <div className="icon-container">
                 <FacebookIcon className="featured-icon" />

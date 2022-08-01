@@ -7,6 +7,10 @@ function InstructorCardList() {
   // Need to bring in instructor from redux store
   const instructor = useSelector((store) => store.instructor);
 
+  // Random instructor list
+  const random = instructor.sort(() => Math.random() - 0.5);
+  console.log("random instructors", random);
+
   // useEffect to fetch instructors on page load
   // dispatch 'FETCH_INSTRUCTORS' to trigger saga
   useEffect(() => {
@@ -18,7 +22,8 @@ function InstructorCardList() {
   return (
     <>
       <section className="instructors-container">
-        {instructor.map((item, i) => {
+        {/* Limit feature instructors to 3 using slice method */}
+        {instructor.slice(0, 3).map((item, i) => {
           return <InstructorCardItem key={i} item={item} />;
         })}
       </section>
