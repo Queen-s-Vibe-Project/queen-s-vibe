@@ -51,7 +51,8 @@ router.get('/class/:id', (req, res) => {
   const userId = req.params.id;
 
   const classQuery = `
-    SELECT "user".id, "availableClass"."dateOfWeek", "availableClass"."startTime", "availableClass".location, "activities".activity  FROM "availableClass"
+    SELECT "user".id, "availableClass"."dateOfWeek", "availableClass"."startTime", "availableClass".location, "activities".activity  
+    FROM "availableClass"
     JOIN "user" ON "user".id = "availableClass"."instructorId"
     JOIN "activities" on "activities".id = "availableClass"."activityId"
     WHERE "user".id = $1;

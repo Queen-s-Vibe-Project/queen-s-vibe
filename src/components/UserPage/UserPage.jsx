@@ -10,20 +10,32 @@ import AddClass from "../AddClass/AddClass";
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
+  const isGymGoer = user.adminLevel;
+  console.log("User status", isGymGoer);
+
   return (
     <>
-      {" "}
       <h2 className="Universal-Container">Welcome, {user.username}!</h2>
       <SearchBar />
-      <div className="Universal-Container">
-        <RecommendInstructors />
-        <UpcomingClasses />
-        <FavoriteInstructor />
-        {user.adminLevel === "instructor" && <AddClass />}
 
-        <p>Your ID is: {user.id}</p>
-        <LogOutButton className="btn" />
-      </div>
+      {/* Conditional rendering to display either gym goer profile or instructor profile
+      based on adminLevel */}
+      {/* Gym goer profile */}
+      {user.adminLevel === "gym-goer" ? (
+        <div className="Universal-Container">
+          <RecommendInstructors />
+          <UpcomingClasses />
+          <FavoriteInstructor />
+          <p>Your ID is: {user.id}</p>
+          <LogOutButton className="btn" />
+        </div>
+      ) : (
+        // Instructor profile
+        <div>
+          <AddClass />
+          <LogOutButton className="btn" />
+        </div>
+      )}
     </>
   );
 }
