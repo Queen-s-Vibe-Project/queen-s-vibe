@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import LogOutButton from "../LogOutButton/LogOutButton";
 import RecommendInstructors from "../RecommendInstructors/RecommendInstructors";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import SearchBar from "../SearchBar/SearchBar";
 import UpcomingClasses from "../UpcomingClasses/UpcomingClasses";
 import FavoriteInstructor from "../FavoriteInstructor/FavoriteInstructor";

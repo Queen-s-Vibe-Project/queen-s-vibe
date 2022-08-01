@@ -110,25 +110,6 @@ function* addTag(action) {
     }
 }
 
-function* fetchActivities() {
-    try {
-        const res = yield axios.get('/instructor/activities')
-        console.log(res.data)
-        yield put({ type: 'SET_ACTIVITIES', payload: res.data })
-    } catch (error) {
-        console.log('Error in fetchActivities', error)
-    }
-}
-
-function* addInstructorToFavorite(action) {
-    console.log(action.payload);
-    try {
-        yield axios.post(`/instructor/favorite/${action.payload}`)
-    } catch (error) {
-        console.log('Error adding favorite instructor saga', error);
-    }
-}
-
 // Delete favorite instructor on user view page
 // Saga will listen for "DELETE_FAVORITE_INSTRUCTOR" action from user page view
 function* deleteFavoriteInstructor(action) {
