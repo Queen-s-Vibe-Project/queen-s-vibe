@@ -33,7 +33,7 @@ function* fetchActiveInstructor(action) {
 }
 
 function* fetchInstructorProfile(action){
-    console.log('id', action.payload);
+    // console.log('id', action.payload);
     try {
         const res = yield axios.get('/instructor/profile/'+action.payload)
         //console.log(res.data);
@@ -129,6 +129,9 @@ function* updateAbout(action){
     console.log('did it make it over?', action.payload)
     try{
         yield axios.put(`/instructor/update/${action.payload.id}`, action.payload)
+        // yield put({
+        //     type: "FETCH_INSTRUCTOR_PROFILE"
+        // })
     } catch(error) {
         console.error(`Failed to update About in saga ${error}`)
     }

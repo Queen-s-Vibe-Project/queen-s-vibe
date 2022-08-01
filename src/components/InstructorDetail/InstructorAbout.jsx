@@ -1,11 +1,25 @@
 import EditIcon from "@mui/icons-material/Edit";
 import Button from "@mui/material/Button";
 import swal from 'sweetalert2'; 
+import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
 function InstructorAbout({ profile }) {
+const params = useParams()
 const dispatch = useDispatch();
+const [about, setAbout] = useState(false)
+
+// useEffect(() => {
+// if(about === false){
+//   dispatch({
+//     type: "FETCH_INSTRUCTOR_PROFILE"
+//     })
+// }
+// },[about])
 
   const updateAbout = () => {
+    setAbout(false)
+    console.log('about is', about)
     swal.fire({
       title: 'Update About',
       input: 'textarea',
@@ -29,6 +43,11 @@ const dispatch = useDispatch();
             result: result.value,
           }
         })
+        dispatch({
+          type: 'FETCH_INSTRUCTOR_PROFILE',
+          payload: profile.id
+        })
+        
       }
     })
   };

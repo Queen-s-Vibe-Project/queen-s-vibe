@@ -40,7 +40,6 @@ router.get('/profile/:id', (req, res) => {
   const profileQuery = `
         SELECT * FROM "user"
         WHERE "user".id = $1;`
-
   pool.query(profileQuery, [req.params.id])
     .then((dbRes) => {
       res.send(dbRes.rows[0]);
