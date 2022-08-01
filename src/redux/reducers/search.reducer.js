@@ -9,6 +9,15 @@ const tags = (state = [], action) => {
   }
 };
 
+const activities = (state = [], action) => {
+  switch (action.type) {
+    case "SET_ACTIVITIES":
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
 const results = (state = [], action) => {
   switch (action.type) {
     case "SET_SEARCH_RESULTS":
@@ -21,4 +30,5 @@ const results = (state = [], action) => {
 export default combineReducers({
   tags,
   results,
+  activities,
 });

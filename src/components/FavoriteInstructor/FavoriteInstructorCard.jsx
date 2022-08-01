@@ -1,5 +1,6 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -13,6 +14,7 @@ import Avatar from "@mui/material/Avatar";
 
 function FavoriteInstructorCard({ instructor }) {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   return (
     <>
@@ -26,7 +28,14 @@ function FavoriteInstructorCard({ instructor }) {
               sx={{ width: 75, height: 75 }}
             />
           </Stack>
-          <button className="view-more-btn">View More</button>
+          <button
+            onClick={() => {
+              history.push("/instructor/" + instructor.instructorId);
+            }}
+            className="view-more-btn"
+          >
+            View More
+          </button>
         </div>
 
         {/* Right side */}

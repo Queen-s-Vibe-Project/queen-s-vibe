@@ -11,8 +11,12 @@ import InstructorPage from "../InstructorPage/InstructorPage";
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
-  const isGymGoer = user.adminLevel;
-  console.log("User status", isGymGoer);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch({
+      type: "FETCH_ACTIVITIES",
+    });
+  });
 
   return (
     <>

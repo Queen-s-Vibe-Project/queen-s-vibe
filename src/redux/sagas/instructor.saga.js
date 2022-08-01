@@ -1,19 +1,18 @@
-import axios from 'axios';
-import { put, takeEvery } from 'redux-saga/effects';
+import axios from "axios";
+import { put, takeEvery } from "redux-saga/effects";
 
 function* fetchAllInstructors() {
     // Get all instructors
-    console.log('In fetchAllInstructors saga');
+    console.log("In fetchAllInstructors saga");
     try {
-        const res = yield axios.get('/instructor')
-        console.log('Get all instructors:', res.data);
+        const res = yield axios.get("/instructor");
+        console.log("Get all instructors:", res.data);
         yield put({
-            type: 'SET_INSTRUCTORS',
-            payload: res.data
-        })
-    }
-    catch (error) {
-        console.log('GET instructors request failed', error);
+            type: "SET_INSTRUCTORS",
+            payload: res.data,
+        });
+    } catch (error) {
+        console.log("GET instructors request failed", error);
     }
 }
 
@@ -63,14 +62,13 @@ function* fetchInstructorTags(action) {
 }
 
 function* fetchRecommendInstructor() {
-    console.log('in recommend');
+    console.log("in recommend");
     try {
-        console.log('in try');
-        const res = yield axios.get('/instructor/recommend')
+        console.log("in try");
+        const res = yield axios.get("/instructor/recommend");
         console.log(res.data);
 
-        yield put({ type: 'SET_RECOMMEND_INSTRUCTOR', payload: res.data })
-
+        yield put({ type: "SET_RECOMMEND_INSTRUCTOR", payload: res.data });
     } catch (error) {
         console.error(`${error}`);
     }
@@ -78,14 +76,37 @@ function* fetchRecommendInstructor() {
 
 function* fetchFavoriteInstructor() {
     try {
-
-        const res = yield axios.get('/instructor/favorite')
+        const res = yield axios.get("/instructor/favorite");
         console.log(res.data);
 
-        yield put({ type: 'SET_FAVORITE_INSTRUCTOR', payload: res.data })
-
+        yield put({ type: "SET_FAVORITE_INSTRUCTOR", payload: res.data });
     } catch (error) {
         console.error(error);
+    }
+}
+
+function* fetchActivities() {
+    try {
+        const res = yield axoios.get("/instructor/activities");
+        console.log(res.data);
+        yield put({ type: "SET_ACTIVITIES", payload: res.data });
+    } catch (error) {
+        console.log("Error in fetchActivities", error);
+    }
+}
+
+function* addInstructorToFavorite(action) {
+    console.log(action.payload);
+    try {
+        const res = yield axios.post("/instructor/favorite/" + action.payload);
+    } catch (error) { }
+}
+
+function* addTag(action) {
+    try {
+        yield axios.post("/instructor/addTag/" + action.payload);
+    } catch (error) {
+        console.error(`${error}`);
     }
 }
 
@@ -104,7 +125,7 @@ function* addInstructorToFavorite(action) {
     try {
         yield axios.post(`/instructor/favorite/${action.payload}`)
     } catch (error) {
-
+        console.log('Error adding favorite instructor saga', error);
     }
 }
 
@@ -143,19 +164,40 @@ function* addClass(action) {
     }
 }
 
+function* deleteTag(action) {
+    console.log("in delete", action.payload);
+    try {
+        yield axios.delete("/instructor/tag/" + action.payload);
+    } catch (error) {
+        console.error(`${error}`);
+    }
+}
+
+function* addNewClass(action) {
+    try {
+        yield axios.post("/instructor/newClass", action.payload);
+    } catch (err) {
+        console.log("Error in addNewClass", err);
+    }
+}
+
 // Watcher saga
 function* instructorSaga() {
-    yield takeEvery('FETCH_INSTRUCTORS', fetchAllInstructors);
-    //yield takeEvery('FETCH_ACTIVE_INSTRUCTOR', fetchActiveInstructor);
-    yield takeEvery("FETCH_INSTRUCTOR_PROFILE", fetchInstructorProfile);
-    yield takeEvery('FETCH_RECOMMEND_INSTRUCTOR', fetchRecommendInstructor);
-    yield takeEvery('FETCH_ACTIVITIES', fetchActivities);
-    yield takeEvery('FETCH_FAVORITE_INSTRUCTOR', fetchFavoriteInstructor);
-    yield takeEvery("FETCH_INSTRUCTOR_CLASSES", fetchInstructorClasses);
-    yield takeEvery('FETCH_INSTRUCTOR_TAGS', fetchInstructorTags);
     yield takeEvery('ADD_INSTRUCTOR_TO_FAVORITES', addInstructorToFavorite);
     yield takeEvery('DELETE_FAVORITE_INSTRUCTOR', deleteFavoriteInstructor);
     yield takeEvery('ADD_CLASS', addClass);
+    yield takeEvery("FETCH_INSTRUCTORS", fetchAllInstructors);
+    //yield takeEvery('FETCH_ACTIVE_INSTRUCTOR', fetchActiveInstructor);
+    yield takeEvery("FETCH_INSTRUCTOR_PROFILE", fetchInstructorProfile);
+    yield takeEvery("FETCH_RECOMMEND_INSTRUCTOR", fetchRecommendInstructor);
+    yield takeEvery("FETCH_ACTIVITIES", fetchActivities);
+    yield takeEvery("FETCH_FAVORITE_INSTRUCTOR", fetchFavoriteInstructor);
+    yield takeEvery("FETCH_INSTRUCTOR_CLASSES", fetchInstructorClasses);
+    yield takeEvery("FETCH_INSTRUCTOR_TAGS", fetchInstructorTags);
+    yield takeEvery("ADD_TAG", addTag);
+    yield takeEvery("DELETE_TAG", deleteTag);
+    yield takeEvery("ADD_INSTRUCTOR_TO_FAVORITES", addInstructorToFavorite);
+    yield takeEvery("ADD_NEW_CLASS", addNewClass);
 }
 
 export default instructorSaga;

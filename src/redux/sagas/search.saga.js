@@ -16,9 +16,15 @@ function* fetchTags() {
   yield put({ type: "SET_TAGS", payload: response.data });
 }
 
+function* fetchActivities() {
+  const response = yield axios.get("/search/activities");
+  yield put({ type: "SET_ACTIVITIES", payload: response.data });
+}
+
 function* search() {
   yield takeLatest("FETCH_TAGS", fetchTags);
   yield takeLatest("FETCH_SEARCH_RESULTS", fetchSearchResults);
+  yield takeLatest("FETCH_ACTIVITIES", fetchActivities);
 }
 
 export default search;

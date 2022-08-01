@@ -16,14 +16,16 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import { InputLabel, Select, MenuItem } from '@mui/material';
 
 const AddClass = () =>  {
   const dispatch = useDispatch()
-  const activities = useSelector((store) => store.activities)
+  const activities = useSelector((store) => store.search.activities)
   const user = useSelector((store) => store.user);
   const [open, setOpen] = useState(false);
   const [description, setDescription] = useState('')
   const [address, setAddress] = useState('')
+  const [activity, setActivity] = useState('')
   const [coordinates, setCoordinates] = useState({lat: null, lng: null})
   const [days, setDays] = useState([])
   const [time, setTime] = useState('10:00')
@@ -44,7 +46,12 @@ const AddClass = () =>  {
     time: time,
     days: days,
     lat: coordinates.lat,
-    lng: coordinates.lng
+    lng: coordinates.lng,
+    activity: activity
+  }
+
+  const handleActivityChange = (evt) => {
+    setActivity(evt.target.value)
   }
 
 
@@ -148,7 +155,21 @@ const AddClass = () =>  {
       <TimePicker onChange={setTime} value={time} />
       
         </DialogContent>
-      
+        <InputLabel id="activity-label">Activity</InputLabel>
+      <Select
+        id="demo-simple-select"
+        value={activity}
+        label="activity"
+        onChange={handleActivityChange}
+      >
+        {activities.map((activity) => {
+          return(
+            <MenuItem value={activity.id}>{activity.activity}</MenuItem>
+          )
+        })}
+       
+        
+      </Select>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
           <Button type='submit' onClick={handleSubmit}>Add Class</Button>
