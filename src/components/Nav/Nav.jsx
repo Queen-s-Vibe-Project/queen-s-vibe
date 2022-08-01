@@ -37,8 +37,6 @@ function Nav() {
               </React.Fragment>
             )}
           </PopupState>
-          {/* NavBar company name */}
-          <h3>Groupie</h3>
           {/* NavBar company logo, will go back to home page if clicked */}
           <Link to="/home">
             <img className="nav-logo" src={Groupie} alt="Logo" />

@@ -48,15 +48,6 @@ function LoginForm() {
               value={username}
               onChange={(event) => setUsername(event.target.value)}
             />
-
-            {/* <input
-              className="login-input"
-              type="text"
-              name="username"
-              required
-              value={username}
-              onChange={(event) => setUsername(event.target.value)}
-            /> */}
           </label>
         </div>
 
@@ -70,14 +61,6 @@ function LoginForm() {
               value={password}
               onChange={(event) => setPassword(event.target.value)}
             />
-            {/* <input
-              className="login-input"
-              type="password"
-              name="password"
-              required
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-            /> */}
           </label>
         </div>
 
