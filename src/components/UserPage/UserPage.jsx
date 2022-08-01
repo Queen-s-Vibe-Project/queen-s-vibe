@@ -1,7 +1,8 @@
 import React from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import RecommendInstructors from '../RecommendInstructors/RecommendInstructors';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
+import { useEffect } from 'react';
 import SearchBar from '../SearchBar/SearchBar';
 import UpcomingClasses from '../UpcomingClasses/UpcomingClasses';
 import FavoriteInstructor from '../FavoriteInstructor/FavoriteInstructor';
@@ -10,6 +11,13 @@ import AddClass from '../AddClass/AddClass';
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch({
+      type: "FETCH_ACTIVITIES"
+    })
+  })
+
   return (
     <div className='Universal-Container' >
       <h2>Welcome, {user.username}!</h2>
