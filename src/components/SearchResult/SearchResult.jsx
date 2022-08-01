@@ -23,20 +23,14 @@ function SearchResult() {
   return (
     <>
       <h2 className="search-results">Search Results Page </h2>
-      <Map />
+      
       {isLoading ? (
         <p>Loading...</p>
       ) :
       <section>
-        {/* <ul>
-          {instructors.map((result) =>{
-            return(
-            <li>{result.username}</li>
-            )
-          })}
-        </ul> */}
+        <Map instructors={instructors}/>
         {instructors.map((result, i) => {
-          return (<SearchItem key={i} result={result.username} />);
+          return (<SearchItem key={i} result={result} />);
         })}
       </section>
       }

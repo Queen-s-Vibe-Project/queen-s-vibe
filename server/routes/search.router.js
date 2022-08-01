@@ -55,10 +55,10 @@ router.post("/", (req, res) => {
 
   SELECT "user".id, "user".username, JSON_AGG("tags"."tagName") as tags, "user".avatar, "user"."adminLevel", "user".facebook, "user".instagram, "user".twitter, "user".website, 
 	(SELECT JSON_AGG(row_to_json("availableClass")) FROM "availableClass" WHERE "availableClass"."instructorId" = "user".id) as classes FROM "user"
-	    JOIN "userTags" on "userTags"."userId" = "user".id
-	    JOIN "tags" on "userTags"."tagId" = "tags".id
-	    JOIN "availableClass" ON "availableClass"."instructorId" = "user".id
-	    WHERE "tags".id IN (${queryValues})
+	    FULL JOIN "userTags" on "userTags"."userId" = "user".id
+	    FULL JOIN "tags" on "userTags"."tagId" = "tags".id
+	    FULL JOIN "availableClass" ON "availableClass"."instructorId" = "user".id
+	    WHERE "tags".id IN (${queryValues}) AND "adminLevel" = 'instructor'
 	    GROUP BY "user".id
 	    HAVING count(*) >= 1
 	    ORDER BY count(tags) DESC;

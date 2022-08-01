@@ -29,6 +29,7 @@ const AddClass = () =>  {
   const [coordinates, setCoordinates] = useState({lat: null, lng: null})
   const [days, setDays] = useState([])
   const [time, setTime] = useState('10:00')
+  const [link, setLink] = useState('')
 
   const handleSubmit = () => {
     dispatch({
@@ -47,7 +48,8 @@ const AddClass = () =>  {
     days: days,
     lat: coordinates.lat,
     lng: coordinates.lng,
-    activity: activity
+    activity: activity,
+    linkToSite: link
   }
 
   const handleActivityChange = (evt) => {
@@ -78,14 +80,21 @@ const AddClass = () =>  {
       </Button>
       <form onSubmit={handleSubmit}>
       <Dialog open={open} onClose={handleClose}>
-      
         <DialogTitle>Add Class</DialogTitle>
         <DialogContent>
-        
           <DialogContentText>
             Add a Class! Tell the people a little about the class. Tell them when and where to find you.
           </DialogContentText>
-          
+          <TextField
+            autoFocus
+            margin="dense"
+            id="link"
+            label="link"
+            type="link"
+            fullWidth
+            variant="standard"
+            onChange={(evt)=>setLink(evt.target.value)}
+          />
           <TextField
             autoFocus
             margin="dense"
@@ -168,7 +177,6 @@ const AddClass = () =>  {
           )
         })}
        
-        
       </Select>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>

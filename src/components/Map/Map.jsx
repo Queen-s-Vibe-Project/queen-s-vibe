@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { GoogleMap, useLoadScript } from "@react-google-maps/api";
-// import mapStyles from "./mapStyles";
+import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
+import mapStyles from "./mapStyles";
 import "./Map.css";
 
 const containerStyle = {
@@ -11,14 +11,15 @@ const containerStyle = {
 };
 
 const options = {
-    // styles: mapStyles,
+    styles: mapStyles,
     disableDefaultUI: true,
 }
 
 
 const libraries = ["places"];
 
-const Map = () => {
+const Map = ({instructors}) => {
+
     const [markers, setMarkers] = useState([])
     const [currentLocation, setCurrentLocation] = useState({
         lat: 39.0997,
@@ -34,6 +35,12 @@ const Map = () => {
             
         })
     },[])
+
+    for(let instructor of instructors){
+      instructor.classes && instructor.classes.map((classer) => {
+        <Marker position={{lat: classer.lat, lng: classer.lng} }/>
+      })
+    }
 
     const {isLoaded, loadError} = useLoadScript({
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
@@ -52,10 +59,7 @@ const Map = () => {
         zoom={10}
         options={options}
       >
-        {markers.map((marker) => (
-          <Marker />
-        ))}
-        <></>
+      
       </GoogleMap>
     </>
   );
