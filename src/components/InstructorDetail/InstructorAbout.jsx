@@ -7,19 +7,15 @@ import React, { useEffect, useState } from "react";
 function InstructorAbout({ profile }) {
 const params = useParams()
 const dispatch = useDispatch();
-const [about, setAbout] = useState(false)
-
+// const [about, setAbout] = useState(false)
 // useEffect(() => {
-// if(about === false){
-//   dispatch({
-//     type: "FETCH_INSTRUCTOR_PROFILE"
-//     })
-// }
-// },[about])
+// dispatch({
+//   type: "FETCH_INSTRUCTOR_PROFILE",
+//   payload: profile.id
+// })
+// }, [])
 
   const updateAbout = () => {
-    setAbout(true)
-    console.log('about is', about)
     swal.fire({
       title: 'Update About',
       input: 'textarea',

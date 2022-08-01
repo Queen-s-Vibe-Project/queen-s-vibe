@@ -165,6 +165,9 @@ function* updateAbout(action){
     console.log('did it make it over?', action.payload)
     try{
         yield axios.put(`/instructor/update/${action.payload.id}`, action.payload)
+        yield put({
+            type: 'SET_INSTRUCTOR_PROFILE'
+        })
     } catch(error) {
         console.error(`Failed to update About in saga ${error}`)
     }
