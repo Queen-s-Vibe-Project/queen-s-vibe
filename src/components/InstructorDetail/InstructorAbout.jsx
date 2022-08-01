@@ -1,8 +1,9 @@
 import EditIcon from "@mui/icons-material/Edit";
 import Button from "@mui/material/Button";
 import swal from 'sweetalert2'; 
-
+import { useSelector, useDispatch } from "react-redux";
 function InstructorAbout({ profile }) {
+const dispatch = useDispatch();
 
   const updateAbout = () => {
     swal.fire({
@@ -16,8 +17,18 @@ function InstructorAbout({ profile }) {
       confirmButtonText: 'Save', 
     }).then((result) => {
       if(result.isConfirmed){
-        console.log('what is my result', result.value )
-        
+          swal.fire(
+            'Success!',
+            'Information saved',
+            'success'
+          )
+        dispatch({
+          type:'UPDATE_ABOUT',
+          payload: {
+            result: result.value,
+            id: profile.id
+          }
+        })
       }
     })
   };
