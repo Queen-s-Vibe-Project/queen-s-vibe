@@ -7,7 +7,7 @@ import SearchItem from "../SearchItem/SearchItem";
 function SearchResult() {
   
  
-  const instructors = useSelector((store) => store.search.results.instructorRecommendations);
+  const instructors = useSelector((store) => store.search.results);
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
