@@ -124,6 +124,30 @@ router.delete('/tag/:id',(req,res)=>{
   
 })
 
+router.put('/update/:id', (req, res) => {
+  const sqlText = `
+  UPDATE "user"
+  SET about = $1
+  WHERE id = $2
+  RETURNING "user".about;
+  `;
+  
+  const sqlParams = [
+    req.body.result,
+    req.params.id
+  ];
+
+console.log('I am updating', sqlParams)
+  pool.query(sqlText, sqlParams)
+  .then(() => {
+    res.sendStatus(200)
+  })
+  .catch((err) => {
+    console.error(`Failed to update in Instructor Server Rotue ${err}`)
+    res.sendStatus(500)
+  })
+
+})
 
 // Recommended instructor route
 router.get('/recommend', (req, res) => {
