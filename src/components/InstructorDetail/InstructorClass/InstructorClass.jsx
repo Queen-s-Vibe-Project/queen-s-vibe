@@ -22,11 +22,17 @@ export default function InstructorClass({ session }) {
   };
 
   return (
-    <div className="card ic-card ">
-      <div> {session.activity} </div>
-      <div> {session.dateOfWeek} </div>
-      <div> {session.startTime} </div>
-      <button onClick={addClassHandle}>Add Class</button>
-    </div>
+    <>
+      <div className="card ic-card ">
+        <div> {session.activity} </div>
+        <div> {session.dateOfWeek} </div>
+        <div> {session.startTime} </div>
+        {user.adminLevel === "gym-goer" ? (
+          <div>
+            <button onClick={addClassHandle}>Add Class</button>
+          </div>
+        ) : null}
+      </div>
+    </>
   );
 }

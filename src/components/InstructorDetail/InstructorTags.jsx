@@ -31,12 +31,10 @@ function InstructorTags({ tags }) {
 
   return (
     <>
-      <div>
-        <AddInstructorTag />
-      </div>
-      {tags.map((tag) => {
+      <div>{/* <AddInstructorTag /> */}</div>
+      {tags.map((tag, i) => {
         return (
-          <div>
+          <div key={i}>
             <Stack direction="row" spacing={1}>
               {user.id === Number(params.id) ? (
                 <Chip
