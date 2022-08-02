@@ -4,10 +4,11 @@ import swal from "sweetalert2";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import React, { useEffect, useState } from "react";
-function InstructorAbout() {
+function InstructorAbout({ user }) {
   const params = useParams();
   const dispatch = useDispatch();
-
+  // console.log('did the user make it through', user)
+  
   // const [about, setAbout] = useState(false)
   // useEffect(() => {
   // dispatch({
@@ -21,7 +22,7 @@ function InstructorAbout() {
       .fire({
         title: "Update About",
         input: "textarea",
-        inputValue: profile.about,
+        inputValue: user.about,
         showCancelButton: true,
         cancelButtonColor: "red",
         showConfirmButton: true,
@@ -34,13 +35,13 @@ function InstructorAbout() {
           dispatch({
             type: "UPDATE_ABOUT",
             payload: {
-              id: profile.id,
+              id: user.id,
               result: result.value,
             },
           });
           dispatch({
             type: "FETCH_INSTRUCTOR_PROFILE",
-            payload: profile.id,
+            payload: user.id,
           });
         }
       });
@@ -53,7 +54,7 @@ function InstructorAbout() {
           <EditIcon />
         </Button>
       </div>
-      {/* <p> {profile.about} </p> */}
+      <p> {user.about} </p>
     </>
   );
 }

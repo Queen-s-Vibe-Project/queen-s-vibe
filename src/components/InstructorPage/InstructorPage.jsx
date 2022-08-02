@@ -53,9 +53,9 @@ function InstructorPage() {
           <div>
             <p className="cert">ACE Certification</p>
           </div>
-          <div className="about-text">
+          {/* <div className="about-text">
             <p>{user.about}</p>
-          </div>
+          </div> */}
         </div>
       </div>
 
@@ -103,6 +103,11 @@ function InstructorPage() {
             <button className="edit-class">Delete</button>
           </div>
         </div>
+        <div>
+        <h3 className="class-text"> About </h3>
+        <InstructorAbout user={user} />
+        </div>
+       
       </div>
     </>
   );
