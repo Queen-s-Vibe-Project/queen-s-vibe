@@ -16,6 +16,14 @@ export default function UserClasses(){
 
     const classes = useSelector((store) => store.instructorClasses);
 
+    function deleteClass(id) {
+        console.log('delete', id);
+        dispatch({
+            type:'DELETE_AVAILABLE_CLASS',
+            payload: id
+        })
+    }
+
     return(
         <div>
             { classes &&
@@ -28,12 +36,9 @@ export default function UserClasses(){
           <div className="class-button">
             <button className="edit-class">Edit</button>
             <button 
-              onClick={()=>(
-                console.log('delete')
-                // dispatch({
-                  
-                // })
-              )} 
+              onClick={()=>{
+                deleteClass(cl.id)
+              }} 
               className="delete-class"
             >
               Delete
