@@ -40,20 +40,21 @@ function InstructorProfile({ profile, instructor }) {
         <span>
           <TwitterIcon src={profile.twitter} />
         </span>
+        {user.id ? (
+          <div
+            onClick={() => {
+              dispatch({
+                type: "ADD_INSTRUCTOR_TO_FAVORITES",
+                payload: instructor,
+              });
+            }}
+            className="favoriteHeart"
+          >
+            <FavoriteIcon />
+          </div>
+        ) : null}
 
-        {/* <div
-          onClick={() => {
-            dispatch({
-              type: "ADD_INSTRUCTOR_TO_FAVORITES",
-              payload: instructor,
-            });
-          }}
-          className="favoriteHeart"
-        >
-          <FavoriteIcon />
-        </div> */}
         <div> Ace Certification </div>
-
         <div className="containerProfile">
           <div></div>
         </div>

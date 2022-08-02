@@ -65,15 +65,13 @@ function InstructorDetail() {
         </div>
         <h3> Tags </h3>
         <div className="tags">
-         <InstructorTags tags={tags} />
+          <InstructorTags tags={tags} />
         </div>
       </div>
       <div>
-        <h3> About </h3>
+        <h3>About</h3>
+        <p>{profile.about}</p>
       </div>
-
-        {/* { profile && <InstructorAbout profile={profile} instructor={params.id} />} */}
-
     </div>
   );
 }

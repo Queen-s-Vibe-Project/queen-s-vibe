@@ -11,24 +11,20 @@ function instructorClasses({classes, instructor}) {
   
   const user = useSelector((store) => store.user) 
 
- 
   return (
-      <div className="classOrder" >
-        { (user.adminLevel === 'instructor' && user.id === Number(instructor)) ? 
-        <div className="addIcon"> <AddIcon/> </div> :
+    <div className="classOrder">
+      {user.adminLevel === "instructor" && user.id === Number(instructor) ? (
+        <div className="addIcon">
+          {" "}
+          <AddIcon />{" "}
+        </div>
+      ) : (
         <div></div>
-      }
-        
-        {
-          
-          classes.map((session) =>(
-            <InstructorClass session={session} />
-          )) 
-        }
-        
-       
-        
-      </div>
+      )}
+      {classes.map((session) => (
+        <InstructorClass session={session} />
+      ))}
+    </div>
   );
 }
 
