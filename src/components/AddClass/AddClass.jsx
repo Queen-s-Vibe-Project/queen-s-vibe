@@ -23,6 +23,7 @@ const AddClass = () => {
   const activities = useSelector((store) => store.search.activities);
   const user = useSelector((store) => store.user);
   const [open, setOpen] = useState(false);
+  const [link, setLink] = useState('')
   const [description, setDescription] = useState("");
   const [address, setAddress] = useState("");
   const [activity, setActivity] = useState("");
@@ -47,6 +48,8 @@ const AddClass = () => {
     lat: coordinates.lat,
     lng: coordinates.lng,
     activity: activity,
+    linkToSite: link
+  }
   };
 
   const handleActivityChange = (evt) => {
@@ -74,6 +77,7 @@ const AddClass = () => {
         Add a Class
       </Button>
       <form onSubmit={handleSubmit}>
+
         <Dialog open={open} onClose={handleClose}>
           <DialogTitle>Add Class</DialogTitle>
           <DialogContent>

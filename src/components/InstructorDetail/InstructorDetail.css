@@ -1,90 +1,84 @@
 .chip {
-    display: inline-block;
-    padding:0 25px;
-    height: 50px;
-    font-size: 16px;
-    line-height: 50px;
-    border-radius: 25px;
-    background-color: lightgray;
+  display: inline-block;
+  padding: 0 25px;
+  height: 50px;
+  font-size: 16px;
+  line-height: 50px;
+  border-radius: 25px;
+  background-color: lightgray;
 }
 
-.card{
-    height: 150px;
-    width: 122px;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    border-radius: 10px; 
-    background-color: lightgray;
-    
-
+.card {
+  height: 150px;
+  width: 122px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  background-color: lightgray;
 }
 
-.container{
-    padding: 35px;
-    margin-top: 20px;
-    text-align: center;
+.container {
+  padding: 35px;
+  margin-top: 20px;
+  text-align: center;
 }
 
-.profileHeader{
-    background-color: plum;
-    width: 262px;
-    height: 213px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-.containerProfile{
-    text-align: center;
-    margin-top: 50px;
+.containerProfile {
+  text-align: center;
+  margin-top: 50px;
 }
 
-.classOrder{
-    display: flex;
-    overflow: scroll;
+.classOrder {
+  display: flex;
+  overflow: scroll;
 }
 
-.class{
-    flex-direction: row;
-    overflow: scroll;
+.class {
+  flex-direction: row;
+  overflow: scroll;
 }
 
-.ic-card{
-    margin-right: 1rem;
+.ic-card {
+  margin-right: 1rem;
 }
 
-.pic{
-    display: flex;
-    justify-content: center;
+.pic {
+  display: flex;
+  justify-content: center;
 }
 
-.favoriteHeart{
-    margin-left: 224px;
-    margin-bottom: -2px;
-    margin-top: -35px;
+.favoriteHeart {
+  margin-left: 224px;
+  margin-bottom: -2px;
+  margin-top: -35px;
 }
-.editIcon{
-    margin-left: 327px;
-}
-
-.deleteIcon{
-    margin-left: 93px;
+.editIcon {
+  margin-left: 327px;
 }
 
-.addIcon{
-    margin-top: 50px;
-    /* margin-left: ; */
+.deleteIcon {
+  margin-left: 93px;
 }
-.tags{
-   display: flex;
-   flex-direction: row;
-   flex-wrap: wrap; 
+
+.addIcon {
+  margin-top: 50px;
+  /* margin-left: ; */
+}
+.tags {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .css-10hburv-MuiTypography-root {
-    margin: 0;
-    font-family: "Roboto","Helvetica","Arial",sans-serif;
-    font-weight: 400;
-    font-size: .6rem;
-    line-height: 1.5;
-    letter-spacing: 0.00938em;
-    display: block;
+  margin: 0;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 400;
+  font-size: 0.6rem;
+  line-height: 1.5;
+  letter-spacing: 0.00938em;
+  display: block;
+}
+
+.profile-card {
+  text-align: center;
 }

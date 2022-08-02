@@ -64,18 +64,6 @@ function InstructorCardItem({ item }) {
               {/* Limit tags to 2 per instructor */}
               <Stack>
                 <span className="chip-container">
-                  {/* <Chip
-                    className="chip-pill"
-                    label={item.tags[0]}
-                    variant="outlined"
-                  />
-
-                  <Chip
-                    className="chip-pill"
-                    label={item.tags[1]}
-                    variant="outlined"
-                  /> */}
-
                   {/* Map over instructor tags and limit tags to 2 */}
                   {item.tags.slice(0, 2).map((tag, i) => {
                     return (

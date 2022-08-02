@@ -35,8 +35,6 @@ function InstructorTags({ tags }) {
        { (user.id === Number(params.id) ) ? <AddInstructorTag /> : <div></div> }
       </div>
       {tags.map((tag) => {
-        return (
-          <div>
             <Stack direction="row" spacing={1}>
               {user.id === Number(params.id) ? (
                 <Chip
