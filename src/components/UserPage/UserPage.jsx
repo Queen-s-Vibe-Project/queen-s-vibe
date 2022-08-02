@@ -7,16 +7,21 @@ import UpcomingClasses from "../UpcomingClasses/UpcomingClasses";
 import FavoriteInstructor from "../FavoriteInstructor/FavoriteInstructor";
 import AddClass from "../AddClass/AddClass";
 import InstructorPage from "../InstructorPage/InstructorPage";
+import InstructorTags from "../InstructorDetail/InstructorTags";
 
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
+  const tags = useSelector((store) => store.instructorTags);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch({
       type: "FETCH_ACTIVITIES",
     });
-  });
+
+    dispatch({ type: "FETCH_INSTRUCTOR_TAGS", payload: user.id });
+    
+  },[]);
 
   return (
     <>
@@ -45,6 +50,9 @@ function UserPage() {
           </h2>
           <InstructorPage />
           <AddClass />
+          <div className="tags">
+          {tags && tags.length > 0 && <InstructorTags tags={tags} />}
+        </div>
         </div>
       )}
     </>
