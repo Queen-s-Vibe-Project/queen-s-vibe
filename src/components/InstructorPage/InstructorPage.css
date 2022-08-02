@@ -1,10 +1,11 @@
 .instructor-view-container {
     background-color: rgb(236, 232, 232);
-    margin: 2rem;
+    margin: auto;
     padding-top: 1.5rem;
     border-radius: .5rem;
     gap: .5;
     box-shadow: 4px 8px 14px -3px #828282;
+    width: 70%;
 }
 
 .instructor-view {
@@ -14,6 +15,7 @@
     justify-content: center;
     align-items: center;
     margin-bottom: 2rem;
+    padding-bottom: 1rem;
 }
 
 .avatar-img {
@@ -91,9 +93,8 @@
   }
 
   .class-text {
-    text-align: left;
+    text-align: center;
     margin-top: 3rem;
-    margin-left: 2.5rem;
   }
 
   .cert {

@@ -9,7 +9,7 @@
 
 .login-text {
   margin-top: 0.5rem;
-  margin-bottom: 3rem;
+  margin-bottom: 1rem;
 }
 
 .form-panel {
@@ -49,12 +49,24 @@
   text-align: center;
 }
 
-#outlined-basic {
+#username, 
+#password, 
+#name, 
+#pronouns {
   width: 18rem;
   height: 0.25rem;
 }
 
-.login-label {
-  margin-bottom: 0.5rem;
+.login-label, .input-label {
+  margin-bottom: 1rem;
   margin-top: 1rem;
 }
+
+.photo-avatar {
+  margin-top: .5rem;
+}
+
+.tags-input {
+  margin-top: 1rem;
+}
+
