@@ -170,7 +170,9 @@ function* updateAbout(action){
         console.error(`Failed to update About in saga ${error}`)
     }
 }
-
+function* updateProfile(action){
+console.log('It made it over', action.payload);
+}
 // Watcher saga
 function* instructorSaga() {
   yield takeEvery("ADD_INSTRUCTOR_TO_FAVORITES", addInstructorToFavorite);
@@ -188,7 +190,8 @@ function* instructorSaga() {
   yield takeEvery("DELETE_TAG", deleteTag);
   yield takeEvery("ADD_INSTRUCTOR_TO_FAVORITES", addInstructorToFavorite);
   yield takeEvery("ADD_NEW_CLASS", addNewClass);
-  yield takeEvery('UPDATE_ABOUT', updateAbout)
+  yield takeEvery('UPDATE_ABOUT', updateAbout);
+  yield takeEvery('UPDATE_PROFILE', updateProfile)
 }
 
 export default instructorSaga;

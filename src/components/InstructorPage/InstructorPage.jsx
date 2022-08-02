@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import InstructorAbout from "../InstructorDetail/InstructorAbout";
 import Avatar from "@mui/material/Avatar";
 import FacebookIcon from "@mui/icons-material/Facebook";
@@ -10,9 +10,50 @@ import Icon from "@mui/material/Icon";
 import CreateIcon from "@mui/icons-material/Create";
 import UpcomingClassCard from "../UpcomingClasses/UpcomingClassCard";
 import UserTags from "../UserTags/UserTags";
+import swal from "sweetalert2";
 
 function InstructorPage() {
   const user = useSelector((store) => store.user);
+  const dispatch = useDispatch();
+// Edit function for instructor profile
+const editProfile = () => {
+
+  swal.fire({
+  title:'Update your Profile',
+  html:
+  `<input id="swal-input1" class="swal2-input" value='${user.name}'>` +
+  `<input id="swal-input2" class="swal2-input" value='${user.pronouns}'>`,
+   preConfirm: () => {
+     return {
+       id: user.id,
+       name: document.getElementById('swal-input1').value,
+       pronouns: document.getElementById('swal-input2').value
+     }
+   },
+   confirmButtonText: 'Save Changes',
+   confirmButtonColor: 'green',
+   showCancelButton: true,
+   cancelButtonColor:'red',
+   cancelButtonText: 'Cancel Edit'
+  }).then((result) => {
+    if(result.isConfirmed ){
+      console.log('Profile edit result is', result.value)
+      dispatch({
+        type:'UPDATE_PROFILE',
+        payload: result.value
+      })
+    }
+    else if(result.isDismissed){
+      console.log('No edits were saved')
+      swal.fire(
+        'Cancelled',
+        'No changes were made',
+        'error'
+      )
+    }
+  })
+
+}
 
   return (
     <>
@@ -20,7 +61,7 @@ function InstructorPage() {
         {/* Tooltip for pencil edit  */}
         <div className="tooltip">
           <Icon className="pencil-icon">
-            <CreateIcon />
+            <CreateIcon onClick={editProfile}/>
           </Icon>
           <span className="tooltiptext">Edit Profile</span>
         </div>
