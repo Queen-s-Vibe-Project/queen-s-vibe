@@ -326,4 +326,8 @@ router.post("/newClass", rejectUnauthenticated, (req, res) => {
     });
 });
 
+router.delete('/class/id',rejectUnauthenticated,(req,res)=>{
+  
+})
+
 module.exports = router;

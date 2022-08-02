@@ -10,11 +10,12 @@ import Icon from "@mui/material/Icon";
 import CreateIcon from "@mui/icons-material/Create";
 import UpcomingClassCard from "../UpcomingClasses/UpcomingClassCard";
 import UserTags from "../UserTags/UserTags";
+import UserClasses from "../UserClasses/UserClasses";
 
 function InstructorPage() {
   const dispatch = useDispatch()
   const user = useSelector((store) => store.user);
-  const classes = useSelector((store) => store.instructorClasses);
+ 
 
   return (
     <>
@@ -70,32 +71,7 @@ function InstructorPage() {
       <h3 className="class-text">Classes</h3>
       
       <div className="instructor-class-container">
-      <div>
-      { classes &&
-        classes.map((cl)=>(
-          <div className="instructor-card">
-          <p>Class: {cl.activity}</p>
-          <p>Location: {cl.location}</p>
-          <p>Date: {cl.dateOfWeek.join(', ')}</p>
-          <p>Time: {cl.startTime}</p>
-          <div className="class-button">
-            <button className="edit-class">Edit</button>
-            <button 
-              onClick={()=>(
-                console.log('delete')
-                // dispatch({
-                  
-                // })
-              )} 
-              className="delete-class"
-            >
-              Delete
-            </button>
-          </div>
-        </div>
-        ))
-      }
-      </div>
+        <UserClasses/>
        
         <div>
         <h3 className="class-text"> About </h3>
