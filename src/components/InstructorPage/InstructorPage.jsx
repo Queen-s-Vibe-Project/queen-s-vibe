@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import InstructorAbout from "../InstructorDetail/InstructorAbout";
 import Avatar from "@mui/material/Avatar";
 import FacebookIcon from "@mui/icons-material/Facebook";
@@ -12,6 +12,7 @@ import UpcomingClassCard from "../UpcomingClasses/UpcomingClassCard";
 import UserTags from "../UserTags/UserTags";
 
 function InstructorPage() {
+  const dispatch = useDispatch()
   const user = useSelector((store) => store.user);
   const classes = useSelector((store) => store.instructorClasses);
 
@@ -79,7 +80,17 @@ function InstructorPage() {
           <p>Time: {cl.startTime}</p>
           <div className="class-button">
             <button className="edit-class">Edit</button>
-            <button className="edit-class">Delete</button>
+            <button 
+              onClick={()=>(
+                console.log('delete')
+                // dispatch({
+                  
+                // })
+              )} 
+              className="delete-class"
+            >
+              Delete
+            </button>
           </div>
         </div>
         ))
