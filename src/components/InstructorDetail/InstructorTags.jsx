@@ -28,7 +28,7 @@ function InstructorTags({ tags }) {
       setDeleteChip(false);
     }
   }, [deleteChip]);
-
+//  fix
   return (
     <>
       <div>
@@ -47,9 +47,8 @@ function InstructorTags({ tags }) {
                 <Chip label={tag.tagName} />
               )}
             </Stack>
-          </div>
-        );
-      })}
+              })
+      }
     </>
   );
 }
