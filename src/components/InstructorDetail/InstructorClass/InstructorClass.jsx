@@ -26,7 +26,7 @@ export default function InstructorClass({ session }) {
       <div> {session.activity} </div>
       <div> {session.dateOfWeek} </div>
       <div> {session.startTime} </div>
-      <button onClick={addClassHandle}>Add Class</button>
+      {(user.adminLevel === 'gym-goer')?<button onClick={addClassHandle}>Add Class</button>: <div></div> }
     </div>
   );
 }
