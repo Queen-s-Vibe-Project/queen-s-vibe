@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useEffect } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
@@ -6,13 +7,19 @@ export default function UserClasses(){
 
     const user = useSelector((store) => store.user);
     const dispatch = useDispatch()
+    const [deletePress, setDeletePress] = useState(true)
 
     useEffect(()=>{
-        dispatch({
-            type: "FETCH_INSTRUCTOR_CLASSES",
-            payload: user.id,
-          });
-    },[])
+        if (deletePress === true) {
+            
+            dispatch({
+                type: "FETCH_INSTRUCTOR_CLASSES",
+                payload: user.id,
+            });
+            
+            setDeletePress(false)
+        }
+    },[deletePress])
 
     const classes = useSelector((store) => store.instructorClasses);
 
@@ -22,6 +29,8 @@ export default function UserClasses(){
             type:'DELETE_AVAILABLE_CLASS',
             payload: id
         })
+
+        setDeletePress(true)
     }
 
     return(
@@ -37,7 +46,7 @@ export default function UserClasses(){
             <button className="edit-class">Edit</button>
             <button 
               onClick={()=>{
-                deleteClass(cl.id)
+                deleteClass(cl.classId)
               }} 
               className="delete-class"
             >

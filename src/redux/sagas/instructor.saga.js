@@ -171,6 +171,16 @@ function* updateAbout(action){
     }
 }
 
+function* deleteAvailableClass(action) {
+  try {
+
+    yield axios.delete('/instructor/class/'+ action.payload)
+    
+  } catch (error) {
+    console.error(`Error in deleteAvailableClass: ${error}`);
+  }
+}
+
 // Watcher saga
 function* instructorSaga() {
   yield takeEvery("ADD_INSTRUCTOR_TO_FAVORITES", addInstructorToFavorite);
@@ -189,6 +199,7 @@ function* instructorSaga() {
   yield takeEvery("ADD_INSTRUCTOR_TO_FAVORITES", addInstructorToFavorite);
   yield takeEvery("ADD_NEW_CLASS", addNewClass);
   yield takeEvery('UPDATE_ABOUT', updateAbout)
+  yield takeEvery('DELETE_AVAILABLE_CLASS',deleteAvailableClass)
 }
 
 export default instructorSaga;
