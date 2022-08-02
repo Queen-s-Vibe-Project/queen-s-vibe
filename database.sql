@@ -85,7 +85,7 @@ CREATE TABLE "availableClass"(
 	"id" SERIAL PRIMARY KEY,
 	"instructorId" int REFERENCES "user",
 	"dateOfWeek" VARCHAR[],
-	"description" VARCHAR
+	"description" VARCHAR,
 	"startTime" VARCHAR,
 	"location" VARCHAR,
 	"lat" INT,

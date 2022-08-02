@@ -43,7 +43,7 @@ function LoginForm() {
           <label htmlFor="username">
             <div className="login-label">Username</div>
             <TextField
-              id="outlined-basic"
+              id="username"
               variant="outlined"
               value={username}
               onChange={(event) => setUsername(event.target.value)}
@@ -56,7 +56,8 @@ function LoginForm() {
             <div className="login-label">Password</div>
             <TextField
               type="password"
-              id="outlined-basic"
+              className="outlined-basic"
+              id="password"
               variant="outlined"
               value={password}
               onChange={(event) => setPassword(event.target.value)}

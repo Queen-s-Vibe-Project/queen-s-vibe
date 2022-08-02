@@ -36,11 +36,13 @@ const Map = ({instructors}) => {
         })
     },[])
 
-    for(let instructor of instructors){
+    function classMarkers(instructors) {
+    for (let instructor of instructors) {
       instructor.classes && instructor.classes.map((classer) => {
-        <Marker position={{lat: classer.lat, lng: classer.lng} }/>
-      })
+        <Marker position={{ lat: classer.lat, lng: classer.lng }} />;
+      });
     }
+  }
 
     const {isLoaded, loadError} = useLoadScript({
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
@@ -59,6 +61,7 @@ const Map = ({instructors}) => {
         zoom={10}
         options={options}
       >
+      <Marker position={{lat: 39.0997, lng: -94.5786 }} />;
       
       </GoogleMap>
     </>

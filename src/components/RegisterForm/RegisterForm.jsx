@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "../RegisterPage/RegisterPage.css";
 import SearchBar from "../SearchBar/SearchBar";
@@ -8,10 +8,12 @@ import IconButton from '@mui/material/IconButton';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import Avatar from '@mui/material/Avatar';
 import axios from 'axios'
-
+import { Autocomplete } from "@mui/material";
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup'
 
 function RegisterForm() {
-  const [userType, setUserType] = useState("");
+  const [userType, setUserType] = useState("instructor");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [profilePhoto, setProfilePhoto] = useState(null)
@@ -19,13 +21,26 @@ function RegisterForm() {
   const [name, setName] = useState("");
   const [pronouns, setPronouns] = useState("");
   const errors = useSelector((store) => store.errors);
-  const listOfTags = useSelector((store) => store.search.tags);
-  const [tags, setTags] = useState("");
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false)
+  const limit = 6;
+  const tags = useSelector((store) => store.search.tags);
+  const [searchTags, setSearchTags] = useState([]);
+  const [limitReached, setLimitReached] = useState(false);
+  const onSelect = useCallback(
+    (event, value) => {
+      setSearchTags(value);
+      setLimitReached(value.length >= limit);
+    },
+    [limit]
+  );
 
-  if (listOfTags) {
-    console.log(listOfTags);
-  }
+  const checkDisable = useCallback(
+    (option) => limitReached && !searchTags.includes(option),
+    [limitReached, searchTags]
+  );
+
+  
   useEffect(() => {
     dispatch({
       type: "FETCH_TAGS",
@@ -36,14 +51,19 @@ function RegisterForm() {
     setProfilePhoto(URL.createObjectURL(evt.target.files[0]))
     setFile(evt.target.files[0])
 }
+
+  const handleChangeUserType = (evt) => {
+    setUserType(evt.target.value)
+  }
 const Input = styled('input')({
   display: 'none',
 });
 
   const registerUser = async (event) => {
     event.preventDefault();
+    setLoading(true)
     const formData = new FormData()
-      formData.append("image", file)
+    formData.append("image", file)
       const result = await axios.post('/upload', formData)
       console.log(result.data.Location)
     
@@ -57,13 +77,15 @@ const Input = styled('input')({
         name: name,
         avatar: result.data.Location,
         pronouns: pronouns,
-        tags: tags,
+        tags: searchTags,
         adminLevel: userType,
       },
     });
   }; // end registerUser
 
   return (
+    <div>
+    {loading ? <div>Loading...</div> :
     <form className="registration-container" onSubmit={registerUser}>
       <h2>Sign Up</h2>
       {errors.registrationMessage && (
@@ -73,7 +95,20 @@ const Input = styled('input')({
       )}
 
       <div>
-        <label htmlFor="type">
+        <ToggleButtonGroup
+          required
+          color="primary"
+          value={userType}
+          exclusive
+          onChange={handleChangeUserType}
+        >
+          <ToggleButton value="gym-goer">Gym-Goer</ToggleButton>
+          <ToggleButton value="instructor">Instructor</ToggleButton>
+      </ToggleButtonGroup>
+
+
+
+        {/* <label htmlFor="type">
           <div className="user-type">User Type</div>
         </label>
         <select
@@ -87,7 +122,7 @@ const Input = styled('input')({
           <option value="">--Gym Goer or Instructor--</option>
           <option value="gym-goer">Gym Goer</option>
           <option value="instructor">Instructor</option>
-        </select>
+        </select> */}
       </div>
 
       {/* Email input */}
@@ -98,18 +133,10 @@ const Input = styled('input')({
           <TextField
             value={username}
             required
-            id="outlined-basic"
+            id="username"
             variant="outlined"
             onChange={(event) => setUsername(event.target.value)}
           />
-          {/* <input
-            className="registration-input"
-            type="text"
-            name="username"
-            value={username}
-            required
-            onChange={(event) => setUsername(event.target.value)}
-          /> */}
         </label>
       </div>
 
@@ -122,19 +149,10 @@ const Input = styled('input')({
             value={password}
             type="password"
             required
-            id="outlined-basic"
+            id="password"
             variant="outlined"
             onChange={(event) => setPassword(event.target.value)}
           />
-
-          {/* <input
-            className="registration-input"
-            type="password"
-            name="password"
-            value={password}
-            required
-            onChange={(event) => setPassword(event.target.value)}
-          /> */}
         </label>
       </div>
 
@@ -146,24 +164,16 @@ const Input = styled('input')({
           <TextField
             value={name}
             required
-            id="outlined-basic"
+            id="name"
             variant="outlined"
             onChange={(event) => setName(event.target.value)}
           />
-          {/* <input
-            className="registration-input"
-            type="name"
-            name="name"
-            value={name}
-            required
-            onChange={(event) => setName(event.target.value)}
-          /> */}
         </label>
       </div>
       <Avatar
             alt="Profile Photo"
             src={profilePhoto}
-            sx={{ width: 100, height: 100}}
+            sx={{ width: 150, height: 150}}
         />
         <label htmlFor="icon-button-file">
         <Input accept="image/*" id="icon-button-file" type="file" onChange={handleChange}/>
@@ -179,23 +189,38 @@ const Input = styled('input')({
           <TextField
             value={pronouns}
             required
-            id="outlined-basic"
+            id="pronouns"
             variant="outlined"
             onChange={(event) => setPronouns(event.target.value)}
           />
-          {/* <input
-            className="registration-input"
-            type="pronouns"
-            name="pronouns"
-            value={pronouns}
-            required
-            onChange={(event) => setPronouns(event.target.value)}
-          /> */}
         </label>
       </div>
 
       {/* Tags */}
-      <div>
+      <div className="Universal-Container">
+      <Autocomplete
+          multiple
+          options={tags}
+          sx={{
+            width: '200px'
+          }}
+          getOptionDisabled={checkDisable}
+          getOptionLabel={(option) => option.tagName}
+          onChange={onSelect}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              variant="outlined"
+              placeholder={
+                limitReached ? "Tag Limit Reached" : "Add Tags"
+              }
+              helperText={limitReached && "Tag Limit Reached"}
+            />
+          )}
+        />
+      </div>
+
+      {/* <div>
         <label htmlFor="tags">
           <div className="user-tag">Select tags you are insterested in:</div>
         </label>
@@ -212,7 +237,7 @@ const Input = styled('input')({
               </option>
             ))}
         </select>
-      </div>
+      </div> */}
 
       <div>
         <input
@@ -220,9 +245,12 @@ const Input = styled('input')({
           type="submit"
           name="submit"
           value="Register"
+          // onClick={() => setLoading(true)}
         />
       </div>
     </form>
+    }
+    </div>
   );
 }
 

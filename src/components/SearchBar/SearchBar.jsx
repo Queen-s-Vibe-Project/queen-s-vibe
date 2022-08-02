@@ -51,7 +51,7 @@ const SearchBar = () => {
       <form onSubmit={handleSubmit}>
         <Autocomplete
           multiple
-          id="tags-standard"
+          id="tags-autocomplete"
           options={tags}
           getOptionDisabled={checkDisable}
           getOptionLabel={(option) => option.tagName}
