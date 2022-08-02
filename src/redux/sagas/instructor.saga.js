@@ -172,7 +172,17 @@ function* updateAbout(action){
 }
 function* updateProfile(action){
 console.log('It made it over', action.payload);
+try{
+  yield axios.put(`/instructor/profileUpdate/${action.payload.id}`, action.payload)
+  yield put({
+    type: 'FETCH_USER'
+  })
+} catch(error) {
+  console.error(`Failed to update in UpdateProfile Saga ${error}`)
 }
+
+}
+
 // Watcher saga
 function* instructorSaga() {
   yield takeEvery("ADD_INSTRUCTOR_TO_FAVORITES", addInstructorToFavorite);
