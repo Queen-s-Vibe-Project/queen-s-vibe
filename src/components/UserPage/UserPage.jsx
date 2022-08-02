@@ -39,14 +39,12 @@ function UserPage() {
         </div>
       ) : (
         // Instructor profile
-        <div>
+        <div className="instructor-page">
           <h2 className="welcome Universal-Container">
             Welcome, {user.username}!
           </h2>
           <InstructorPage />
           <AddClass />
-          <p>Your ID is: {user.id}</p>
-          <LogOutButton className="btn" />
         </div>
       )}
     </>

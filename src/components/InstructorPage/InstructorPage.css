@@ -38,3 +38,59 @@
 .welcome {
     text-align: center;
 }
+
+.pencil-icon {
+    margin-left: 1rem;
+    color: purple;
+    cursor: pointer;
+}
+
+/* Tooltip for pencil icon */
+.tooltip {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: rgb(67, 66, 66);
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+  
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+  }
+  
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+  }
+
+  .instructor-class-container {
+    display: flex;
+    gap: 1.5rem;
+    margin: 0 2rem 2rem 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .instructor-card {
+    width: 8rem;
+    height: 7rem;
+    border-radius: .5rem;
+    font-size: .80rem;
+    padding: .5rem .5rem 1rem .5rem;
+    background-color: rgb(236, 232, 232);
+    box-shadow: 4px 8px 14px -3px #828282;
+    border: 1px solid rgb(162, 154, 162)
+
+  }
+
+  .class-text {
+    text-align: left;
+    margin-top: 3rem;
+    margin-left: 2.56rem;
+  }
