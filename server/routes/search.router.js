@@ -62,7 +62,6 @@ router.post("/", (req, res) => {
 	    GROUP BY "user".id
 	    HAVING count(*) >= 1
 	    ORDER BY count(tags) DESC;
-
     `;
   const sqlParams = sqlParamsInsert(tags);
   console.log(sqlParams);

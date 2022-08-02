@@ -18,6 +18,7 @@ router.get("/", rejectUnauthenticated, (req, res) => {
 // The only thing different from this and every other post we've seen
 // is that the password gets encrypted before being inserted
 router.post("/register", (req, res, next) => {
+  const tags = req.body.tags;
   const username = req.body.username;
   const password = encryptLib.encryptPassword(req.body.password);
 
@@ -35,18 +36,35 @@ router.post("/register", (req, res, next) => {
       req.body.avatar,
     ])
     .then((debRes) => {
-      console.log("id", debRes.rows[0].id);
+      console.log("response from registration", debRes.rows[0].id);
 
-      //res.sendStatus(201)
       return debRes.rows[0].id;
     })
     .then((id) => {
+      const sqlQueryInsert = (tags) => {
+        let queryInsert = [];
+        for (let i = 0; i < tags.length; i++) {
+          queryInsert.push(`($1, $${i + 2})`);
+        }
+        return queryInsert.join();
+      };
+      let queryValues = sqlQueryInsert(tags);
+      console.log(queryValues);
+      const sqlParamsInsert = (tags) => {
+        let paramsInsert = [id];
+        for (let i = 0; i < tags.length; i++) {
+          paramsInsert.push(tags[i].id);
+        }
+        return paramsInsert;
+      };
+
       const insertQuery = `
       INSERT INTO "userTags" ("userId","tagId")
-      VALUES (${id},$1);
+      VALUES ${queryValues};
       `;
-
-      pool.query(insertQuery, [req.body.tags]).then(() => {
+      const sqlParams = sqlParamsInsert(tags);
+      console.log(sqlParams);
+      pool.query(insertQuery, sqlParams).then(() => {
         res.sendStatus(201);
       });
     })
