@@ -18,7 +18,6 @@ function InstructorPage() {
   const dispatch = useDispatch()
   const user = useSelector((store) => store.user);
 
-  const dispatch = useDispatch();
   
 // Edit function for instructor profile
 const editProfile = () => {
