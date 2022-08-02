@@ -69,9 +69,10 @@
     visibility: visible;
   }
 
+  /* Class card */
   .instructor-class-container {
     display: flex;
-    gap: 1.5rem;
+    gap: 1rem;
     margin: 0 2rem 2rem 2rem;
     justify-content: center;
     flex-wrap: wrap;
@@ -79,11 +80,11 @@
 
   .instructor-card {
     width: 8rem;
-    height: 7rem;
+    height: auto;
     border-radius: .5rem;
     font-size: .80rem;
     padding: .5rem .5rem 1rem .5rem;
-    background-color: rgb(236, 232, 232);
+    background-color: rgba(204, 208, 227, 0.459);
     box-shadow: 4px 8px 14px -3px #828282;
     border: 1px solid rgb(162, 154, 162)
 
@@ -92,5 +93,31 @@
   .class-text {
     text-align: left;
     margin-top: 3rem;
-    margin-left: 2.56rem;
+    margin-left: 2.5rem;
   }
+
+  .cert {
+    margin-top: 0;
+    margin-bottom: .25rem;
+  }
+
+  .about-text {
+    text-align: left;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+    font-size: .95rem;
+  }
+
+.class-button {
+    display: flex;
+    justify-content: center;
+    gap: .5rem;
+}
+
+.edit-class {
+    width: 5rem;
+    background-color: rgb(221, 203, 221);
+    border: 1px solid rgb(184, 138, 225);
+    border-radius: 5px;
+    color: rgb(42, 42, 126);
+}

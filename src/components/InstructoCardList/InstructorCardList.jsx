@@ -38,13 +38,6 @@ function InstructorCardList() {
           rutrum mauris ut magna dictum pellentesque.
         </p>
 
-        <p>
-          Vestibulum risus odio, dictum et justo vitae, rutrum condimentum arcu.
-          Nullam sed ultrices libero. Curabitur tempor tristique ipsum vitae
-          porttitor. Duis sed aliquet enim. Nullam et aliquet purus, eu
-          convallis sem. Aliquam consectetur tincidunt metus, nec laoreet dui
-          pellentesque ad.
-        </p>
       </div>
     </>
   );

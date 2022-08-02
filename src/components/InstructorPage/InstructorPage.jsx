@@ -50,7 +50,10 @@ function InstructorPage() {
           </section>
 
           <div>
-            <p>ACE Certification</p>
+            <p className="cert">ACE Certification</p>
+          </div>
+          <div className="about-text">
+            <p>{user.about}</p>
           </div>
         </div>
       </div>
@@ -63,24 +66,41 @@ function InstructorPage() {
           <p>Location: Saint Paul</p>
           <p>Date: 10/9/22</p>
           <p>Time: 8am</p>
+          <div className="class-button">
+            <button className="edit-class">Edit</button>
+            <button className="edit-class">Delete</button>
+          </div>
         </div>
+
         <div className="instructor-card">
           <p>Class: HIIT</p>
           <p>Location: Minneapolis</p>
           <p>Date: 10/9/22</p>
           <p>Time: 8am</p>
+          <div className="class-button">
+            <button className="edit-class">Edit</button>
+            <button className="edit-class">Delete</button>
+          </div>
         </div>
         <div className="instructor-card">
           <p>Class: Weightlifting</p>
           <p>Location: Plymouth</p>
           <p>Date: 10/9/22</p>
           <p>Time: 8am</p>
+          <div className="class-button">
+            <button className="edit-class">Edit</button>
+            <button className="edit-class">Delete</button>
+          </div>
         </div>
         <div className="instructor-card">
           <p>Class: Weightlifting</p>
           <p>Location: Plymouth</p>
           <p>Date: 10/9/22</p>
           <p>Time: 8am</p>
+          <div className="class-button">
+            <button className="edit-class">Edit</button>
+            <button className="edit-class">Delete</button>
+          </div>
         </div>
       </div>
     </>
