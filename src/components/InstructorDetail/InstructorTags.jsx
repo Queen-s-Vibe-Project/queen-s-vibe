@@ -32,7 +32,7 @@ function InstructorTags({ tags }) {
   return (
     <>
       <div>
-        <AddInstructorTag />
+       { (user.id === Number(params.id) ) ? <AddInstructorTag /> : <div></div> }
       </div>
       {tags.map((tag) => {
         return (

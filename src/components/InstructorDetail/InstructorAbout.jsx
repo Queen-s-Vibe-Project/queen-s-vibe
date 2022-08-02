@@ -54,7 +54,7 @@ const dispatch = useDispatch();
           <EditIcon />
         </Button>
       </div>
-      <p> {profile.about} </p>
+      {/* <p> {profile.about} </p> */}
     </>
   );
 }
