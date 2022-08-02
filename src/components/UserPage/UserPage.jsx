@@ -20,23 +20,29 @@ function UserPage() {
 
   return (
     <>
-      <h2 className="Universal-Container">Welcome, {user.username}!</h2>
-      <SearchBar />
-
       {/* Conditional rendering to display either gym goer profile or instructor profile
       based on adminLevel */}
       {/* Gym goer profile */}
       {user.adminLevel === "gym-goer" ? (
-        <div className="Universal-Container">
-          <RecommendInstructors />
-          <UpcomingClasses />
-          <FavoriteInstructor />
-          <p>Your ID is: {user.id}</p>
-          <LogOutButton className="btn" />
+        <div>
+          <h2 className="welcome Universal-Container">
+            Welcome, {user.username}!
+          </h2>
+          <SearchBar />
+          <div className="Universal-Container">
+            <RecommendInstructors />
+            <UpcomingClasses />
+            <FavoriteInstructor />
+            <p>Your ID is: {user.id}</p>
+            <LogOutButton className="btn" />
+          </div>
         </div>
       ) : (
         // Instructor profile
         <div>
+          <h2 className="welcome Universal-Container">
+            Welcome, {user.username}!
+          </h2>
           <InstructorPage />
           <AddClass />
           <p>Your ID is: {user.id}</p>

@@ -1,0 +1,40 @@
+.instructor-view-container {
+    background-color: rgb(236, 232, 232);
+    margin: 2rem;
+    padding-top: 1.5rem;
+    border-radius: .5rem;
+    gap: .5;
+    box-shadow: 4px 8px 14px -3px #828282;
+}
+
+.instructor-view {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.avatar-img {
+    justify-content: center;
+}
+
+.social-media-icons {
+    margin-right: .75rem;
+}
+
+.social {
+    color: purple
+}
+
+.instructor-card-name {
+    font-size: 1.25rem;
+    margin-bottom: .25em;
+    font-weight: 600;
+    margin-top: .75rem;
+}
+
+.welcome {
+    text-align: center;
+}

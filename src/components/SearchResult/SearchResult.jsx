@@ -5,41 +5,31 @@ import Map from "../Map/Map";
 import SearchItem from "../SearchItem/SearchItem";
 
 function SearchResult() {
-  
- 
-  const instructors = useSelector((store) => store.search.results.instructorRecommendations);
+  const instructors = useSelector(
+    (store) => store.search.results.instructorRecommendations
+  );
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if(instructors){
-      setIsLoading(false)
+    if (instructors) {
+      setIsLoading(false);
     }
   }, [instructors]);
 
-  console.log("Search store is:", instructors);
-
-  
   return (
     <>
       <h2 className="search-results">Search Results Page </h2>
       <Map />
       {isLoading ? (
         <p>Loading...</p>
-      ) :
-      <section>
-        {/* <ul>
-          {instructors.map((result) =>{
-            return(
-            <li>{result.username}</li>
-            )
+      ) : (
+        <section>
+          {instructors.map((result) => {
+            return <SearchItem key={result.id} result={result.pronouns} />;
           })}
-        </ul> */}
-        {instructors.map((result, i) => {
-          return (<SearchItem key={i} result={result.username} />);
-        })}
-      </section>
-      }
+        </section>
+      )}
     </>
   );
 }
