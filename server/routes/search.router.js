@@ -53,8 +53,11 @@ router.post("/", (req, res) => {
 
   const sqlQuery = `
 
-  SELECT "user".id, "user".username, JSON_AGG("tags"."tagName") as tags, "user".avatar, "user"."adminLevel", "user".facebook, "user".instagram, "user".twitter, "user".website, 
-	(SELECT JSON_AGG(row_to_json("availableClass")) FROM "availableClass" WHERE "availableClass"."instructorId" = "user".id) as classes FROM "user"
+  SELECT "user".id, "user".username, JSON_AGG("tags"."tagName") as tags, "user".name, "user".avatar, "user"."adminLevel", "user".facebook, "user".instagram, "user".twitter, "user".website, 
+	(SELECT JSON_AGG(row_to_json("availableClass")) 
+      FROM "availableClass" 
+      WHERE "availableClass"."instructorId" = "user".id) as classes 
+      FROM "user"
 	    FULL JOIN "userTags" on "userTags"."userId" = "user".id
 	    FULL JOIN "tags" on "userTags"."tagId" = "tags".id
 	    FULL JOIN "availableClass" ON "availableClass"."instructorId" = "user".id
