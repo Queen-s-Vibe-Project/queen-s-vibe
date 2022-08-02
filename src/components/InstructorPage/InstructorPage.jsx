@@ -85,47 +85,7 @@ function InstructorPage() {
         ))
       }
       </div>
-        <div className="instructor-card">
-          <p>Class: Yoga</p>
-          <p>Location: Saint Paul</p>
-          <p>Date: 10/9/22</p>
-          <p>Time: 8am</p>
-          <div className="class-button">
-            <button className="edit-class">Edit</button>
-            <button className="edit-class">Delete</button>
-          </div>
-        </div>
-
-        <div className="instructor-card">
-          <p>Class: HIIT</p>
-          <p>Location: Minneapolis</p>
-          <p>Date: 10/9/22</p>
-          <p>Time: 8am</p>
-          <div className="class-button">
-            <button className="edit-class">Edit</button>
-            <button className="edit-class">Delete</button>
-          </div>
-        </div>
-        <div className="instructor-card">
-          <p>Class: Weightlifting</p>
-          <p>Location: Plymouth</p>
-          <p>Date: 10/9/22</p>
-          <p>Time: 8am</p>
-          <div className="class-button">
-            <button className="edit-class">Edit</button>
-            <button className="edit-class">Delete</button>
-          </div>
-        </div>
-        <div className="instructor-card">
-          <p>Class: Weightlifting</p>
-          <p>Location: Plymouth</p>
-          <p>Date: 10/9/22</p>
-          <p>Time: 8am</p>
-          <div className="class-button">
-            <button className="edit-class">Edit</button>
-            <button className="edit-class">Delete</button>
-          </div>
-        </div>
+       
         <div>
         <h3 className="class-text"> About </h3>
         <InstructorAbout user={user} />
