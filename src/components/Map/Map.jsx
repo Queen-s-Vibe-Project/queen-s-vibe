@@ -11,10 +11,9 @@ const containerStyle = {
 };
 
 const options = {
-    styles: mapStyles,
-    disableDefaultUI: true,
-}
-
+  styles: mapStyles,
+  disableDefaultUI: true,
+};
 
 const libraries = ["places"];
 

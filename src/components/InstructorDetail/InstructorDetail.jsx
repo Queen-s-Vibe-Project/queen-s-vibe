@@ -4,7 +4,7 @@ import InstructorProfile from "./InstructorProfile";
 import InstructorClasses from "./InstructorClasses";
 import InstructorClass from "./InstructorClass/InstructorClass";
 import InstructorTags from "./InstructorTags";
-import InstructorAbout from "./InstructorAbout";
+// import InstructorAbout from "./InstructorAbout";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useHistory, useParams } from "react-router-dom";
 import AddIcon from "@mui/icons-material/Add";
@@ -25,15 +25,13 @@ function InstructorDetail() {
     //
     dispatch({ type: "FETCH_INSTRUCTOR_TAGS", payload: params.id });
     //
-   
   }, [params.id]);
 
   const profile = useSelector((store) => store.instructorProfile);
   const classes = useSelector((store) => store.instructorClasses);
   const tags = useSelector((store) => store.instructorTags);
-  const imTags = useSelector((store)=> store.search.tags)
+  const imTags = useSelector((store) => store.search.tags);
   const user = useSelector((store) => store.user);
-  // const instructor = useSelector((store) => store.instructorDetail[0]);
   console.log("Array:", imTags);
 
   const handleClick = () => {
@@ -47,8 +45,6 @@ function InstructorDetail() {
       <button onClick={handleClick}>Back</button>
 
       <div>
-        <h3> Classes </h3>
-
         <div className="profile">
           <InstructorProfile profile={profile} instructor={params.id} />
         </div>
@@ -75,7 +71,9 @@ function InstructorDetail() {
       <div>
         <h3> About </h3>
       </div>
-        <InstructorAbout profile={profile} instructor={params.id} />
+
+        {/* { profile && <InstructorAbout profile={profile} instructor={params.id} />} */}
+
     </div>
   );
 }

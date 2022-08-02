@@ -28,15 +28,13 @@ function InstructorTags({ tags }) {
       setDeleteChip(false);
     }
   }, [deleteChip]);
-
+//  fix
   return (
     <>
       <div>
-        <AddInstructorTag />
+       { (user.id === Number(params.id) ) ? <AddInstructorTag /> : <div></div> }
       </div>
       {tags.map((tag) => {
-        return (
-          <div>
             <Stack direction="row" spacing={1}>
               {user.id === Number(params.id) ? (
                 <Chip
@@ -49,9 +47,8 @@ function InstructorTags({ tags }) {
                 <Chip label={tag.tagName} />
               )}
             </Stack>
-          </div>
-        );
-      })}
+              })
+      }
     </>
   );
 }
