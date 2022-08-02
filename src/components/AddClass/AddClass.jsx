@@ -50,7 +50,7 @@ const AddClass = () => {
     activity: activity,
     linkToSite: link
   }
-  };
+  
 
   const handleActivityChange = (evt) => {
     setActivity(evt.target.value);
