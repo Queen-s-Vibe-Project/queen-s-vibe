@@ -28,7 +28,7 @@ function InstructorTags({ tags }) {
       setDeleteChip(false);
     }
   }, [deleteChip]);
-
+//  fix
   return (
     <>
       <div>
