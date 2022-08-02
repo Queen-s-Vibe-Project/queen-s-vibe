@@ -51,7 +51,7 @@ router.get("/class/:id", (req, res) => {
   const userId = req.params.id;
 
   const classQuery = `
-    SELECT "user".id, "availableClass"."dateOfWeek", "availableClass"."startTime", "availableClass".location, "activities".activity  
+    SELECT "availableClass".id AS "classId" , "user".id, "availableClass"."dateOfWeek", "availableClass"."startTime", "availableClass".location, "activities".activity  
     FROM "availableClass"
     JOIN "user" ON "user".id = "availableClass"."instructorId"
     JOIN "activities" on "activities".id = "availableClass"."activityId"
@@ -325,5 +325,23 @@ router.post("/newClass", rejectUnauthenticated, (req, res) => {
       console.error(err);
     });
 });
+
+router.delete('/class/:id',rejectUnauthenticated,(req,res)=>{
+  console.log('in router', req.params.id);
+  
+  const deleteClassQuery = `
+    DELETE FROM "availableClass"
+    WHERE "availableClass".id = $1;
+  `
+
+  pool.query(deleteClassQuery, [req.params.id])
+    .then((dbRes) => {
+      res.sendStatus(200)
+    }).catch((error)=>{
+      console.error(`Error in line 341: ${error}`);
+      res.sendStatus(500)
+    })
+
+})
 
 module.exports = router;
