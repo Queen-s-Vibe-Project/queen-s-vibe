@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { GoogleMap, useLoadScript } from "@react-google-maps/api";
+import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 import mapStyles from "./mapStyles";
 import "./Map.css";
 
@@ -50,10 +50,7 @@ const Map = () => {
         zoom={10}
         options={options}
       >
-        {markers.map((marker) => (
-          <Marker />
-        ))}
-        <></>
+      
       </GoogleMap>
     </>
   );

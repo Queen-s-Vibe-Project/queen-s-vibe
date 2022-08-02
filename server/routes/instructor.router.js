@@ -4,11 +4,9 @@ const router = express.Router();
 const {
   rejectUnauthenticated,
 } = require("../modules/authentication-middleware");
-
 // GET all instructors without authentication
 // JOIN user, userTags, and tags tables and use array-agg to
 // get array of object for tag name
-
 router.get("/", (req, res) => {
   console.log("/user GET route");
   const queryText = `SELECT "user".id, "user".name, "user"."adminLevel", "user".avatar, array_agg(tags."tagName") AS tags
@@ -19,7 +17,6 @@ router.get("/", (req, res) => {
 	                    ON "userTags"."tagId" = tags.id
 	                    WHERE "user"."adminLevel" = 'instructor'
 	                    GROUP BY "user".id;`;
-
   pool
     .query(queryText)
     .then((result) => {
@@ -36,7 +33,6 @@ router.get("/profile/:id", (req, res) => {
   const profileQuery = `
         SELECT * FROM "user"
         WHERE "user".id = $1;`;
-
   pool
     .query(profileQuery, [req.params.id])
     .then((dbRes) => {
@@ -58,7 +54,6 @@ router.get("/class/:id", (req, res) => {
     JOIN "activities" on "activities".id = "availableClass"."activityId"
     WHERE "user".id = $1;
     `;
-
   pool
     .query(classQuery, [userId])
     .then((dbRes) => {
@@ -90,13 +85,11 @@ router.get("/class/:id", (req, res) => {
 // GET route to individual user tags
 router.get("/tags/:id", (req, res) => {
   console.log(req.params.id);
-
   const tagsQuery = `
     SELECT "userTags".id, "tags"."tagName" FROM "userTags"
     JOIN "tags" on "tags".id = "userTags"."tagId"
     WHERE "userTags"."userId" = $1;
   `;
-
   pool
     .query(tagsQuery, [req.params.id])
     .then((dbRes) => {
@@ -132,7 +125,6 @@ router.delete("/tag/:id", (req, res) => {
     DELETE FROM "userTags"
     WHERE "userTags".id = $1;
   `;
-
   pool
     .query(deleteTagQuery, [req.params.id])
     .then((dbRes) => {
@@ -145,21 +137,23 @@ router.delete("/tag/:id", (req, res) => {
 });
 
 // POST route to add favorite instructors to favoriteInstructors db
-router.post('/favorite/:id', rejectUnauthenticated, (req, res) => {
-  console.log(req.params.id, 'This is user id', req.user.id);
+router.post("/favorite/:id", rejectUnauthenticated, (req, res) => {
+  console.log(req.params.id, "This is user id", req.user.id);
 
   const addToFavoriteQuery = `
     INSERT INTO "favoriteInstuctor" ("userId" , "instructorId")
     VALUES ($1,$2)
-  `
+  `;
 
-  pool.query(addToFavoriteQuery, [req.user.id, req.params.id])
+  pool
+    .query(addToFavoriteQuery, [req.user.id, req.params.id])
     .then((dbRes) => {
-      res.sendStatus(200)
-    }).catch((err) => {
-      console.error(err);
+      res.sendStatus(200);
     })
-})
+    .catch((err) => {
+      console.error(err);
+    });
+});
 
 // Recommended instructor route
 router.get("/recommend", (req, res) => {
@@ -237,25 +231,24 @@ router.get("/favorite", rejectUnauthenticated, (req, res) => {
     });
 });
 
-
 // DELETE favorite instructor in Gym Goer page view
 // Target instructor id using req.params.id
-router.delete('/favorite/:id', rejectUnauthenticated, (req, res) => {
-  console.log('Favorite instructor id', req.params);
+router.delete("/favorite/:id", rejectUnauthenticated, (req, res) => {
+  console.log("Favorite instructor id", req.params);
 
   const sqlQuery = `DELETE FROM "favoriteInstuctor" WHERE id = $1;`;
   const instructorId = [req.params.id];
 
-  pool.query(sqlQuery, instructorId)
+  pool
+    .query(sqlQuery, instructorId)
     .then((result) => {
       console.log("DELETE favorite instructor successful");
-      res.sendStatus(201)
+      res.sendStatus(201);
     })
     .catch((err) => {
       console.log("DELETE favorite instructor failed", err);
-      res.sendStatus(500)
-    }
-    )
+      res.sendStatus(500);
+    });
 });
 
 
@@ -301,8 +294,7 @@ router.post("/favorite/:id", rejectUnauthenticated, (req, res) => {
     .catch((err) => {
       console.error(err);
     });
-}
-);
+});
 
 router.post("/newClass", rejectUnauthenticated, (req, res) => {
   const sqlQuery = `

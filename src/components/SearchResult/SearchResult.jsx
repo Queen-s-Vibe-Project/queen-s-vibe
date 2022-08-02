@@ -5,9 +5,8 @@ import Map from "../Map/Map";
 import SearchItem from "../SearchItem/SearchItem";
 
 function SearchResult() {
-  const instructors = useSelector(
-    (store) => store.search.results.instructorRecommendations
-  );
+  const instructors = useSelector((store) => store.search.results);
+
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -20,16 +19,17 @@ function SearchResult() {
   return (
     <>
       <h2 className="search-results">Search Results Page </h2>
-      <Map />
+      
       {isLoading ? (
         <p>Loading...</p>
-      ) : (
-        <section>
-          {instructors.map((result) => {
-            return <SearchItem key={result.id} result={result.pronouns} />;
-          })}
-        </section>
-      )}
+      ) :
+      <section>
+        <Map instructors={instructors}/>
+        {instructors.map((result, i) => {
+          return (<SearchItem key={i} result={result} />);
+        })}
+      </section>
+      }
     </>
   );
 }
