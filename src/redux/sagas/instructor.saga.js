@@ -180,7 +180,7 @@ function* instructorSaga() {
   //yield takeEvery('FETCH_ACTIVE_INSTRUCTOR', fetchActiveInstructor);
   yield takeEvery("FETCH_INSTRUCTOR_PROFILE", fetchInstructorProfile);
   yield takeEvery("FETCH_RECOMMEND_INSTRUCTOR", fetchRecommendInstructor);
-  yield takeEvery("FETCH_ACTIVITIES", fetchActivities);
+  // yield takeEvery("FETCH_ACTIVITIES", fetchActivities);
   yield takeEvery("FETCH_FAVORITE_INSTRUCTOR", fetchFavoriteInstructor);
   yield takeEvery("FETCH_INSTRUCTOR_CLASSES", fetchInstructorClasses);
   yield takeEvery("FETCH_INSTRUCTOR_TAGS", fetchInstructorTags);

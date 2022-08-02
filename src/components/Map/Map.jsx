@@ -77,9 +77,7 @@ const Map = ({instructors}) => {
         <Marker 
           key={uuidv4()} 
           position={{ lat: marker.lat, lng: marker.lng}}
-          icon={{
-            
-          }}/>
+          />
       )
       })}
       
