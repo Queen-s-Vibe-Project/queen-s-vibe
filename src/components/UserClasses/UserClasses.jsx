@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
+import AddClass from "../AddClass/AddClass";
 
 export default function UserClasses(){
 
@@ -35,6 +36,7 @@ export default function UserClasses(){
 
     return(
         <div>
+            <AddClass/>
             { classes &&
         classes.map((cl)=>(
           <div className="instructor-card">
