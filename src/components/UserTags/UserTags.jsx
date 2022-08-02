@@ -27,6 +27,8 @@ export default function UserTags(){
     const [deleteChip, setDeleteChip] = useState(false);
     const [open, setOpen] = useState(false);
 
+    const [value, setValue] = React.useState('');
+
     function handleDelete(id) {
         dispatch({
           type: "DELETE_TAG",
@@ -44,22 +46,32 @@ export default function UserTags(){
       }, [deleteChip]);
 
     useEffect(()=>{
-        dispatch({ type: "FETCH_INSTRUCTOR_TAGS", payload: user.id });
-        dispatch({
-            type:"FETCH_TAGS"
-          })
-    },[])
+
+        if (value === '') {
+            dispatch({ type: "FETCH_INSTRUCTOR_TAGS", payload: user.id });
+            dispatch({
+                type:"FETCH_TAGS"
+            })
+        }
+
+        
+    },[value])
 
     const tags = useSelector((store) => store.instructorTags);
     const dbTags = useSelector((store)=> store.search.tags)
 
     const handleClickOpen = () => {
         setOpen(true);
-      };
+    };
     
-      const handleClose = () => {
-        setOpen(false);
-      };
+    const handleClose = () => {
+    setOpen(false);
+    };
+
+    const handleChange = (event) => {
+        console.log('before', value);
+    setValue(event.target.value);
+    };
 
     return(
         <div>
@@ -82,16 +94,29 @@ export default function UserTags(){
                         <FormLabel>
                             Tags
                         </FormLabel>
-                        <RadioGroup>
+                        <RadioGroup
+                            onChange={handleChange}
+                        >
                             { dbTags.map((tag)=>(
-                                <FormControlLabel value="female" control={<Radio />} label="Female" />
+                                <FormControlLabel value={tag.id} control={<Radio />} label={tag.tagName}/>
                             )) }
                         </RadioGroup>
                     </FormControl>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose}>Disagree</Button>
-                    <Button>Add Tag</Button>
+                    <Button
+                        onClick={()=>{
+                            dispatch({
+                                type:'ADD_TAG',
+                                payload: value
+                            })
+                            setValue('')
+                            handleClose()
+                        }}
+                    >
+                        Add Tag
+                    </Button>
                 </DialogActions>
             </Dialog>
             <Stack>

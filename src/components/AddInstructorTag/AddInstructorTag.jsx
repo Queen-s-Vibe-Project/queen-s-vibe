@@ -43,7 +43,7 @@ export default function AddInstructorTag(props){
       };
 
       function handleChange( id) {
-        console.log('before:', value, checkbox);
+        //console.log('before:', value, checkbox);
             if(checkbox === false){
                 setCheckBox(true)
                 setValue(id)
