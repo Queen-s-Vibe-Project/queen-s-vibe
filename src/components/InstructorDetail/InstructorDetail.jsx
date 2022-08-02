@@ -71,7 +71,9 @@ function InstructorDetail() {
       <div>
         <h3> About </h3>
       </div>
-      {profile.about}
+
+        {/* { profile && <InstructorAbout profile={profile} instructor={params.id} />} */}
+
     </div>
   );
 }

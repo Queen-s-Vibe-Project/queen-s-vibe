@@ -53,7 +53,7 @@ function InstructorAbout() {
           <EditIcon />
         </Button>
       </div>
-      <p> {profile.about} </p>
+      {/* <p> {profile.about} </p> */}
     </>
   );
 }
