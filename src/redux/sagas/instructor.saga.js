@@ -6,7 +6,7 @@ function* fetchAllInstructors() {
   console.log("In fetchAllInstructors saga");
   try {
     const res = yield axios.get("/instructor");
-    console.log("Get all instructors:", res.data);
+    console.log("Get all instructors saga:", res.data);
     yield put({
       type: "SET_INSTRUCTORS",
       payload: res.data,
@@ -45,7 +45,7 @@ function* fetchInstructorProfile(action) {
 function* fetchInstructorClasses(action) {
   try {
     const res = yield axios.get("/instructor/class/" + action.payload);
-    //console.log(res.data);
+    //console.log('fetchInstructorClasses saga', res.data);
     yield put({ type: "SET_INSTRUCTOR_CLASSES", payload: res.data });
   } catch (error) {
     console.error(`${error}`);
@@ -66,7 +66,7 @@ function* fetchRecommendInstructor() {
   try {
     console.log("in try");
     const res = yield axios.get("/instructor/recommend");
-    console.log(res.data);
+    console.log('in fetchRecommendInstructor saga', res.data);
 
     yield put({ type: "SET_RECOMMEND_INSTRUCTOR", payload: res.data });
   } catch (error) {
@@ -77,7 +77,7 @@ function* fetchRecommendInstructor() {
 function* fetchFavoriteInstructor() {
   try {
     const res = yield axios.get("/instructor/favorite");
-    console.log(res.data);
+    console.log('fetchFavoriteInstuctor saga,' res.data);
 
     yield put({ type: "SET_FAVORITE_INSTRUCTOR", payload: res.data });
   } catch (error) {
@@ -91,12 +91,12 @@ function* fetchActivities() {
     console.log(res.data);
     yield put({ type: "SET_ACTIVITIES", payload: res.data });
   } catch (error) {
-    console.log("Error in fetchActivities", error);
+    console.log("Error in fetchActivities saga", error);
   }
 }
 
 function* addInstructorToFavorite(action) {
-  console.log(action.payload);
+  console.log('addInstructorToFavorite saga', action.payload);
   try {
     const res = yield axios.post("/instructor/favorite/" + action.payload);
   } catch (error) {}
@@ -106,7 +106,7 @@ function* addTag(action) {
   try {
     yield axios.post("/instructor/addTag/" + action.payload);
   } catch (error) {
-    console.error(`${error}`);
+    console.error(`addTag saga error: ${error}`);
   }
 }
 
@@ -144,7 +144,7 @@ function* addClass(action) {
 }
 
 function* deleteTag(action) {
-  console.log("in delete", action.payload);
+  console.log("in deleteTag saga", action.payload);
   try {
     yield axios.delete("/instructor/tag/" + action.payload);
   } catch (error) {
@@ -158,6 +158,17 @@ function* addNewClass(action) {
   } catch (err) {
     console.log("Error in addNewClass", err);
   }
+}
+function* updateAbout(action){
+    console.log('in updateAbout saga did it make it over?', action.payload)
+    try{
+        yield axios.put(`/instructor/update/${action.payload.id}`, action.payload)
+        yield put({
+            type: 'SET_INSTRUCTOR_PROFILE'
+        })
+    } catch(error) {
+        console.error(`Failed to update About in saga ${error}`)
+    }
 }
 
 // Watcher saga
@@ -177,6 +188,7 @@ function* instructorSaga() {
   yield takeEvery("DELETE_TAG", deleteTag);
   yield takeEvery("ADD_INSTRUCTOR_TO_FAVORITES", addInstructorToFavorite);
   yield takeEvery("ADD_NEW_CLASS", addNewClass);
+  yield takeEvery('UPDATE_ABOUT', updateAbout)
 }
 
 export default instructorSaga;
