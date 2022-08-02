@@ -9,6 +9,7 @@ import "./InstructorPage.css";
 import Icon from "@mui/material/Icon";
 import CreateIcon from "@mui/icons-material/Create";
 import UpcomingClassCard from "../UpcomingClasses/UpcomingClassCard";
+import InstructorTags from "../InstructorDetail/InstructorTags";
 
 function InstructorPage() {
   const user = useSelector((store) => store.user);
