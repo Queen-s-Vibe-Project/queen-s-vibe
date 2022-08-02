@@ -3,6 +3,7 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import "./InstructorDetail.css";
 import EditIcon from "@mui/icons-material/Edit";
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -20,17 +21,28 @@ function InstructorProfile({ profile, instructor }) {
       ) : (
         <div></div>
       )}
-      <div className="profileHeader">
-        <div className="pic">
+      <div>
+        <div className="profile-card">
           <Avatar
-            sx={{ width: 56, height: 56 }}
+            sx={{ width: 100, height: 100 }}
             src={profile.avatar}
             alt={profile.name}
           />
         </div>
-        <div
+        <div> {profile.name} </div>
+        <div> {profile.pronouns} </div>
+        <span>
+          <FacebookIcon src={profile.facebook} />
+        </span>
+        <span>
+          <InstagramIcon src={profile.instagram} />
+        </span>
+        <span>
+          <TwitterIcon src={profile.twitter} />
+        </span>
+
+        {/* <div
           onClick={() => {
-            console.log("click");
             dispatch({
               type: "ADD_INSTRUCTOR_TO_FAVORITES",
               payload: instructor,
@@ -39,16 +51,11 @@ function InstructorProfile({ profile, instructor }) {
           className="favoriteHeart"
         >
           <FavoriteIcon />
-        </div>
+        </div> */}
+        <div> Ace Certification </div>
+
         <div className="containerProfile">
-          <div> {profile.name} </div>
-          <div> {profile.pronouns} </div>
-          <div>
-            <InstagramIcon src={profile.instagram} color="primary" />
-            <FacebookIcon src={profile.facebook} color="primary" />
-            <TwitterIcon src={profile.twitter} color="primary" />
-          </div>
-          <div className="chip"> Ace Certification </div>
+          <div></div>
         </div>
       </div>
     </>

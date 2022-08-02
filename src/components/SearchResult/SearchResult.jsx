@@ -5,21 +5,17 @@ import Map from "../Map/Map";
 import SearchItem from "../SearchItem/SearchItem";
 
 function SearchResult() {
-  
- 
   const instructors = useSelector((store) => store.search.results);
+
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if(instructors){
-      setIsLoading(false)
+    if (instructors) {
+      setIsLoading(false);
     }
   }, [instructors]);
 
-  console.log("Search store is:", instructors);
-
-  
   return (
     <>
       <h2 className="search-results">Search Results Page </h2>

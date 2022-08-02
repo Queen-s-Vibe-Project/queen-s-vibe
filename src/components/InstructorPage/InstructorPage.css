@@ -1,0 +1,123 @@
+.instructor-view-container {
+    background-color: rgb(236, 232, 232);
+    margin: 2rem;
+    padding-top: 1.5rem;
+    border-radius: .5rem;
+    gap: .5;
+    box-shadow: 4px 8px 14px -3px #828282;
+}
+
+.instructor-view {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.avatar-img {
+    justify-content: center;
+}
+
+.social-media-icons {
+    margin-right: .75rem;
+}
+
+.social {
+    color: purple
+}
+
+.instructor-card-name {
+    font-size: 1.25rem;
+    margin-bottom: .25em;
+    font-weight: 600;
+    margin-top: .75rem;
+}
+
+.welcome {
+    text-align: center;
+}
+
+.pencil-icon {
+    margin-left: 1rem;
+    color: purple;
+    cursor: pointer;
+}
+
+/* Tooltip for pencil icon */
+.tooltip {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: rgb(67, 66, 66);
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+  
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+  }
+  
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+  }
+
+  /* Class card */
+  .instructor-class-container {
+    display: flex;
+    gap: 1rem;
+    margin: 0 2rem 2rem 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .instructor-card {
+    width: 8rem;
+    height: auto;
+    border-radius: .5rem;
+    font-size: .80rem;
+    padding: .5rem .5rem 1rem .5rem;
+    background-color: rgba(204, 208, 227, 0.459);
+    box-shadow: 4px 8px 14px -3px #828282;
+    border: 1px solid rgb(162, 154, 162)
+
+  }
+
+  .class-text {
+    text-align: left;
+    margin-top: 3rem;
+    margin-left: 2.5rem;
+  }
+
+  .cert {
+    margin-top: 0;
+    margin-bottom: .25rem;
+  }
+
+  .about-text {
+    text-align: left;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+    font-size: .95rem;
+  }
+
+.class-button {
+    display: flex;
+    justify-content: center;
+    gap: .5rem;
+}
+
+.edit-class {
+    width: 5rem;
+    background-color: rgb(221, 203, 221);
+    border: 1px solid rgb(184, 138, 225);
+    border-radius: 5px;
+    color: rgb(42, 42, 126);
+}
