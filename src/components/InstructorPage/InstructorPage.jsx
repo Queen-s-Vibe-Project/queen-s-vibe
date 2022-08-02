@@ -9,7 +9,7 @@ import "./InstructorPage.css";
 import Icon from "@mui/material/Icon";
 import CreateIcon from "@mui/icons-material/Create";
 import UpcomingClassCard from "../UpcomingClasses/UpcomingClassCard";
-import InstructorTags from "../InstructorDetail/InstructorTags";
+import UserTags from "../UserTags/UserTags";
 
 function InstructorPage() {
   const user = useSelector((store) => store.user);
@@ -58,6 +58,11 @@ function InstructorPage() {
           </div> */}
         </div>
       </div>
+      {/* tags */}
+      <div className="Universal-Container">
+        <UserTags/>
+      </div>
+      
 
       {/* Classes */}
       <h3 className="class-text">Classes</h3>

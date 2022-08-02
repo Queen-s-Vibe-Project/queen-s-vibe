@@ -50,9 +50,7 @@ function UserPage() {
           </h2>
           <InstructorPage />
           <AddClass />
-          <div className="tags">
-          {tags && tags.length > 0 && <InstructorTags tags={tags} />}
-        </div>
+          
         </div>
       )}
     </>
