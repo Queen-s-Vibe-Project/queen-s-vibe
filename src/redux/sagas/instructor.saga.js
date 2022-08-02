@@ -170,6 +170,18 @@ function* updateAbout(action){
         console.error(`Failed to update About in saga ${error}`)
     }
 }
+function* updateProfile(action){
+console.log('In updateProfile saga did it make it over', action.payload);
+try{
+  yield axios.put(`/instructor/updateProfile/${action.payload.id}`, action.payload)
+  yield put({
+    type: 'FETCH_USER'
+  })
+} catch(error) {
+  console.error(`Failed to update in UpdateProfile Saga ${error}`)
+}
+
+}
 
 function* deleteAvailableClass(action) {
   try {
@@ -198,7 +210,9 @@ function* instructorSaga() {
   yield takeEvery("DELETE_TAG", deleteTag);
   yield takeEvery("ADD_INSTRUCTOR_TO_FAVORITES", addInstructorToFavorite);
   yield takeEvery("ADD_NEW_CLASS", addNewClass);
-  yield takeEvery('UPDATE_ABOUT', updateAbout)
+
+  yield takeEvery('UPDATE_ABOUT', updateAbout);
+  yield takeEvery('UPDATE_PROFILE', updateProfile)
   yield takeEvery('DELETE_AVAILABLE_CLASS',deleteAvailableClass)
 }
 
