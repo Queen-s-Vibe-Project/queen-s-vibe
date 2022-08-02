@@ -254,7 +254,7 @@ router.delete("/favorite/:id", rejectUnauthenticated, (req, res) => {
     });
 });
 
-
+// updated instructor about
 router.put('/update/:id', (req, res) => {
   const sqlText = `
   UPDATE "user"
@@ -279,6 +279,29 @@ console.log('I am updating', sqlParams)
   })
 })
 
+//Update instructor Profile
+router.put('/updateProfile/:id', (req, res) => {
+  const sqlText = `
+  UPDATE "user"
+  SET name = $1, pronouns = $2
+  WHERE id = $3
+  RETURNING "user".id, "user".name, "user".pronouns;
+  `;
+  const sqlParams = [
+    req.body.name,
+    req.body.pronouns,
+    req.params.id
+  ]
+  console.log('In updateProfile Route:', sqlParams);
+  pool.query(sqlText, sqlParams)
+  .then(() => {
+    res.sendStatus(200)
+  })
+  .catch((error) => {
+    console.error(`Failed to update instructor profile ${error}`)
+    res.sendStatus(500)
+  })
+})
 
 
 // POST to add favorite instructor to db

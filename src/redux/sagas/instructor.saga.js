@@ -171,9 +171,9 @@ function* updateAbout(action){
     }
 }
 function* updateProfile(action){
-console.log('It made it over', action.payload);
+console.log('In updateProfile saga did it make it over', action.payload);
 try{
-  yield axios.put(`/instructor/profileUpdate/${action.payload.id}`, action.payload)
+  yield axios.put(`/instructor/updateProfile/${action.payload.id}`, action.payload)
   yield put({
     type: 'FETCH_USER'
   })
