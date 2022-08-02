@@ -77,7 +77,7 @@ function* fetchRecommendInstructor() {
 function* fetchFavoriteInstructor() {
   try {
     const res = yield axios.get("/instructor/favorite");
-    console.log('fetchFavoriteInstuctor saga,' res.data);
+    //console.log('fetchFavoriteInstuctor saga,' res.data);
 
     yield put({ type: "SET_FAVORITE_INSTRUCTOR", payload: res.data });
   } catch (error) {
