@@ -47,9 +47,8 @@ function InstructorTags({ tags }) {
                 <Chip label={tag.tagName} />
               )}
             </Stack>
-          </div>
-        );
-      })}
+              })
+      }
     </>
   );
 }
