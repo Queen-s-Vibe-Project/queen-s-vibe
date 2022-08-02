@@ -6,12 +6,17 @@ import Stack from "@mui/material/Stack";
 import AddIcon from "@mui/icons-material/Add";
 import AddInstructorTag from "../AddInstructorTag/AddInstructorTag";
 
+
 function InstructorTags({ tags }) {
   const params = useParams();
   const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
 
   const [deleteChip, setDeleteChip] = useState(false);
+
+  if(tags){
+    console.log('tags', tags);
+  }
 
   function handleDelete(id) {
     dispatch({
@@ -34,8 +39,33 @@ function InstructorTags({ tags }) {
       <div>
        { (user.id === Number(params.id) ) ? <AddInstructorTag /> : <div></div> }
       </div>
-      {tags.map((tag) => {
-            <Stack direction="row" spacing={1}>
+      <div >
+      <Stack className="tags" direction='row'>
+      {
+        tags.map((tag)=>(
+          (user.id === Number(params.id))? 
+          <Chip 
+            label={tag.tagName} 
+            onDelete={() => {
+              handleDelete(tag.id);
+            }}
+            />
+            :
+          <Chip label={tag.tagName}  />
+        ))
+      }
+    </Stack>
+    </div>
+    </>
+  );
+}
+
+export default InstructorTags;
+
+
+/*
+
+  <Stack direction="row" spacing={1}>
               {user.id === Number(params.id) ? (
                 <Chip
                   onDelete={() => {
@@ -47,10 +77,5 @@ function InstructorTags({ tags }) {
                 <Chip label={tag.tagName} />
               )}
             </Stack>
-              })
-      }
-    </>
-  );
-}
 
-export default InstructorTags;
+*/
