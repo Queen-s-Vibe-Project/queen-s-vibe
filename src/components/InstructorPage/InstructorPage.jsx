@@ -54,6 +54,11 @@ const editProfile = () => {
         type:'UPDATE_PROFILE',
         payload: result.value
       })
+      swal.fire(
+        'Sucess!',
+        'Changes were saved',
+        'success'
+      )
     }
     else if(result.isDismissed){
       console.log('No edits were saved')
