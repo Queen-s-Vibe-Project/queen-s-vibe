@@ -12,10 +12,10 @@ import UpcomingClassCard from "../UpcomingClasses/UpcomingClassCard";
 import UserTags from "../UserTags/UserTags";
 import swal from "sweetalert2";
 import UserClasses from "../UserClasses/UserClasses";
+import PhotoUpload from "../PhotoUpload/PhotoUpload";
 
 
 function InstructorPage() {
-  const dispatch = useDispatch()
   const user = useSelector((store) => store.user);
 
   
@@ -86,12 +86,14 @@ const editProfile = () => {
 
         {/* Instructor info */}
         <div className="instructor-view">
-          <Avatar
+          {/* <Avatar
             className="avatar-img"
             alt={user.name}
             src={user.avatar}
             sx={{ width: 100, height: 100 }}
-          />
+          /> */}
+          <PhotoUpload userPhoto={user.avatar} userId={user.id}/>
+
 
           <div className="instructor-card-name">{user.name}</div>
           <div>{user.pronouns}</div>

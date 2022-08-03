@@ -85,7 +85,7 @@ DROP TABLE "availableClass";
 CREATE TABLE "userClass" (
 	"id" SERIAL PRIMARY KEY,
 	"userId" int REFERENCES "user",
-	"classId" int REFERENCES "availableClass",
+	"classId" int REFERENCES "availableClass"
 );
 
 ---------------
