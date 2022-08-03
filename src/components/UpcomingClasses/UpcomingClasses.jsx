@@ -23,8 +23,6 @@ export default function UpcomingClasses(){
                 {upcomingClasses && upcomingClasses.length > 1 && upcomingClasses.map((session)=>(
                     <UpcomingClassCard key={session.id} session={session}/>
                 ))}
-
-                <UpcomingClassCard/>
                 
             </div>
             
