@@ -63,10 +63,11 @@ function InstructorPage() {
         <UserTags />
       </div>
 
+      {/* Classes card section */}
       <h3 className="instructor-view-header">Classes</h3>
       <hr />
       <p className="scroll-text">Scroll to view more</p>
-      {/* Classes card */}
+
       <div className="instructor-class-container">
         <div className="instructor-card">
           <p>Class: HIIT</p>

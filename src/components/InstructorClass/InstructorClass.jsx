@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import ClearIcon from "@mui/icons-material/Clear";
 import AddIcon from "@mui/icons-material/Add";
+import "../InstructorDetail/InstructorDetail.css";
 
 export default function InstructorClass({ session }) {
   console.log("Session is", session);
@@ -23,13 +24,31 @@ export default function InstructorClass({ session }) {
 
   return (
     <>
-      <div className="card ic-card ">
-        <div> {session.activity} </div>
-        <div> {session.dateOfWeek} </div>
-        <div> {session.startTime} </div>
-        {user.adminLevel === "gym-goer" ? (
+      <div className="gym-goer-class">
+        <div className="gym-goer-card">
           <div>
-            <button onClick={addClassHandle}>Add Class</button>
+            <strong>Activity: </strong>
+            {session.activity}
+          </div>
+
+          <div>
+            <strong>Day: </strong>
+            {session.dateOfWeek}
+          </div>
+          <div>
+            <strong>Location: </strong>
+            {session.location}
+          </div>
+          <div>
+            <strong>Time: </strong>
+            {session.startTime}
+          </div>
+        </div>
+        {user.adminLevel === "gym-goer" ? (
+          <div className="add-instructor-class">
+            <button className="add-class-btn" onClick={addClassHandle}>
+              Add Class
+            </button>
           </div>
         ) : null}
       </div>
