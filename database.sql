@@ -88,8 +88,8 @@ CREATE TABLE "availableClass"(
 	"description" VARCHAR,
 	"startTime" VARCHAR,
 	"location" VARCHAR,
-	"lat" INT,
-	"lng" INT,
+	"lat" FLOAT,
+	"lng" FLOAT,
 	"activityId" INT
 );
 

@@ -367,4 +367,24 @@ router.delete('/class/:id',rejectUnauthenticated,(req,res)=>{
 
 })
 
+router.put("/photo/:id", rejectUnauthenticated, (req, res) => {
+  const sqlQuery = `
+    UPDATE "user"
+    SET "avatar" = $1
+    WHERE "user".id = $2
+  `;
+
+  const sqlParams = [req.body.avatar, req.params.id];
+
+  pool
+    .query(sqlQuery, sqlParams)
+    .then(() => {
+      res.sendStatus(201);
+    })
+    .catch((err) => {
+      console.log("error in update photo route", err);
+      res.sendStatus(500);
+    });
+});
+
 module.exports = router;
