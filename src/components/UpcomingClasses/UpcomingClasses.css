@@ -13,7 +13,17 @@
 }
 
 .class-card-text{
+
     line-height: 1;
+}
+
+.class-text{
+    display: flex;
+    flex-direction: column;
+}
+
+.class-text > p, .class-text > p, .class-text > h5{
+    margin-bottom: .005rem;
 }
 
 .image{
