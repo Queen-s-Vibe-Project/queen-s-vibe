@@ -103,7 +103,7 @@ const editProfile = () => {
               <a href={user.twitter} ><TwitterIcon /></a>
             </span>
           </section>
-
+          {/* Certification */}
           <div>
             <p className="cert">{user.certification}</p>
           </div>
