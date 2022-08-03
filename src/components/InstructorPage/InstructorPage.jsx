@@ -26,12 +26,18 @@ const editProfile = () => {
   title:'Update your Profile',
   html:
   `<input id="swal-input1" class="swal2-input" value='${user.name}'>` +
-  `<input id="swal-input2" class="swal2-input" value='${user.pronouns}'>`,
+  `<input id="swal-input2" class="swal2-input" value='${user.pronouns}'>`+
+  `<input id="swal-input3" class="swal2-input" value='${user.facebook}'>`+
+  `<input id="swal-input4" class="swal2-input" value='${user.instagram}'>`+
+  `<input id="swal-input5" class="swal2-input" value='${user.twitter}'>`,
    preConfirm: () => {
      return {
        id: user.id,
        name: document.getElementById('swal-input1').value,
-       pronouns: document.getElementById('swal-input2').value
+       pronouns: document.getElementById('swal-input2').value,
+       facebook: document.getElementById('swal-input3').value,
+       instagram: document.getElementById('swal-input4').value,
+       twitter: document.getElementById('swal-input5').value,
      }
    },
    confirmButtonText: 'Save Changes',
@@ -86,13 +92,13 @@ const editProfile = () => {
           {/* Social media icons */}
           <section>
             <span className="social social-media-icons">
-              <FacebookIcon />
+             <a href={user.facebook}><FacebookIcon /></a> 
             </span>
             <span className="social social-media-icons">
-              <InstagramIcon />
+              <a href={user.instagram}><InstagramIcon /></a>
             </span>
             <span className="social">
-              <TwitterIcon />
+              <a href={user.twitter} ><TwitterIcon /></a>
             </span>
           </section>
 
