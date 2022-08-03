@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./InstructorDetail.css";
 import InstructorProfile from "./InstructorProfile";
-import InstructorClasses from "./InstructorClasses";
-import InstructorClass from "./InstructorClass/InstructorClass";
+import instructorClasses from "../InstructorClass/InstructorClasses";
+import InstructorClass from "../InstructorClass/InstructorClass";
 import InstructorTags from "./InstructorTags";
 // import InstructorAbout from "./InstructorAbout";
 import { useSelector, useDispatch } from "react-redux";

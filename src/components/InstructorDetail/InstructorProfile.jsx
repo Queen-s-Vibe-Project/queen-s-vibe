@@ -40,7 +40,7 @@ function InstructorProfile({ profile, instructor }) {
         <span>
           <TwitterIcon src={profile.twitter} />
         </span>
-        {user.id ? (
+        {user.id && user.adminLevel === "gym-goer" ? (
           <div
             onClick={() => {
               dispatch({

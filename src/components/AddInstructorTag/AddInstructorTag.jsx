@@ -53,87 +53,75 @@ export default function AddInstructorTag(props){
                 setValue('')
             }
       }
-      
-    
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
-    React.useEffect(()=>{
-        
-        if(addTagBtn === true){
-            dispatch({
-                type: "FETCH_INSTRUCTOR_TAGS",
-                payload: params.id
-            })
-    
-            setAddTagBtn(false)
-        }
-        
-
-    },[addTagBtn])
-
-    React.useEffect(()=>{
+    React.useEffect(() => {
+      if (addTagBtn === true) {
         dispatch({
-            type:"FETCH_TAGS"
-          })
-    },[])
+          type: "FETCH_INSTRUCTOR_TAGS",
+          payload: params.id,
+        });
+        setAddTagBtn(false);
+      }
+    }, [addTagBtn]);
 
-    const tags = useSelector((store)=> store.search.tags)
-    return(
-        <div>
-            <Button onClick={handleOpen} endIcon={<AddIcon/>}>
+    React.useEffect(() => {
+      dispatch({
+        type: "FETCH_TAGS",
+      });
+    }, []);
 
-            </Button>
-            
-            <Modal
-                open={open}
-                onClose={handleClose}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
+    const tags = useSelector((store) => store.search.tags);
+    return (
+      <div>
+        <Button onClick={handleOpen} endIcon={<AddIcon />}></Button>
+
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <List
+              sx={{
+                fontSize: 2,
+                maxHeight: 200,
+                overflow: "scroll",
+              }}
             >
-                <Box sx={style}>
-                <List
-                    sx={{
-                        fontSize: 2,
-                        maxHeight: 200,
-                        overflow: 'scroll',
-                    }}
-                >
-                    <ListSubheader>List</ListSubheader>
-                    
-                    {  tags && tags.map(tag=>(
-                        <ListItemButton>
-                        <Checkbox 
-                            onChange={()=>{
-                                handleChange(tag.id)
-                            }}
-                        />
-                        <ListItemText key={tag.id} primary={tag.tagName} />
-                        </ListItemButton>
-                    ))}
-                </List>
-                <Box sx={{marginTop: 2}}>
-                <Button
-                    onClick={handleClose}
-                >
-                    Cancel
-                </Button>
-                <Button
-                    onClick={()=>{
-                        dispatch({
-                            type:'ADD_TAG',
-                            payload: value
-                        })
-                        setAddTagBtn(true)
-                        handleClose()
-                        
-                    }}
-                >
-                    Add Tags
-                </Button>
-                </Box>
-                </Box>
-            </Modal>
-        </div>
-    )
+              <ListSubheader>List</ListSubheader>
+
+              {tags &&
+                tags.map((tag) => (
+                  <ListItemButton>
+                    <Checkbox
+                      onChange={() => {
+                        handleChange(tag.id);
+                      }}
+                    />
+                    <ListItemText key={tag.id} primary={tag.tagName} />
+                  </ListItemButton>
+                ))}
+            </List>
+            <Box sx={{ marginTop: 2 }}>
+              <Button onClick={handleClose}>Cancel</Button>
+              <Button
+                onClick={() => {
+                  dispatch({
+                    type: "ADD_TAG",
+                    payload: value,
+                  });
+                  setAddTagBtn(true);
+                  handleClose();
+                }}
+              >
+                Add Tags
+              </Button>
+            </Box>
+          </Box>
+        </Modal>
+      </div>
+    );
 }

@@ -70,16 +70,6 @@ function* fetchFavoriteInstructor() {
   }
 }
 
-function* fetchActivities() {
-  try {
-    const res = yield axios.get("/instructor/activities");
-    console.log(res.data);
-    yield put({ type: "SET_ACTIVITIES", payload: res.data });
-  } catch (error) {
-    console.log("Error in fetchActivities saga", error);
-  }
-}
-
 function* addInstructorToFavorite(action) {
   console.log('addInstructorToFavorite saga', action.payload);
   try {
@@ -119,7 +109,7 @@ function* deleteFavoriteInstructor(action) {
   }
 }
 
-// Add classes on instructor detail page
+// Gym goer add classes on instructor detail page
 // Saga will listen for "ADD_CLASS" action from instructor detail view
 function* addClass(action) {
   console.log("In addClass saga action.payload is", action.payload);
@@ -166,7 +156,6 @@ function* instructorSaga() {
   yield takeEvery("FETCH_INSTRUCTORS", fetchAllInstructors);
   yield takeEvery("FETCH_INSTRUCTOR_PROFILE", fetchInstructorProfile);
   yield takeEvery("FETCH_RECOMMEND_INSTRUCTOR", fetchRecommendInstructor);
-  yield takeEvery("FETCH_ACTIVITIES", fetchActivities);
   yield takeEvery("FETCH_FAVORITE_INSTRUCTOR", fetchFavoriteInstructor);
   yield takeEvery("FETCH_INSTRUCTOR_CLASSES", fetchInstructorClasses);
   yield takeEvery("FETCH_INSTRUCTOR_TAGS", fetchInstructorTags);
