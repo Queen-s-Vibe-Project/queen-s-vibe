@@ -9,6 +9,17 @@ const userReducer = (state = {}, action) => {
   }
 };
 
+export const userClass = (state = [], action )=>{
+  switch (action.type) {
+    case 'SET_UPCOMING_CLASSES':
+      
+      return action.payload;
+  
+    default:
+      return state;
+  }
+}
+
 // user will be on the redux state at:
 // state.user
 export default userReducer;
