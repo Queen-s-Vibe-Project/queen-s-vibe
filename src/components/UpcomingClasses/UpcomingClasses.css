@@ -1,6 +1,6 @@
 .upcomingClasses-section{
     overflow: scroll;
-    height: 16.5rem;
+    height: 22.2rem;
 }
 
 .class-card{
@@ -10,27 +10,22 @@
     flex-direction: row;
     margin-bottom: 1rem;
     font-size: .9rem;
+    height: 10.375rem;
 }
 
-.class-card-text{
-
-    line-height: 1;
-}
 
 .class-text{
     display: flex;
     flex-direction: column;
 }
 
-.class-text > p, .class-text > p, .class-text > h5{
-    margin-bottom: .005rem;
-}
+
 
 .image{
     border-top-left-radius: 1rem;
     border-bottom-left-radius: 1rem;
     margin-right: 2rem;
     width: 7.5rem;
-    height: 7.5rem;
+    height: 10.375rem;
 }
 

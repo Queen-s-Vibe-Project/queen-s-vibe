@@ -15,7 +15,7 @@ export default function UpcomingClassCard({session}) {
       { session && <div className="class-card-text col">
        <div className="class-text">
         <h5>{session.activity}</h5>
-        <p>{session.dateOfWeek.join(', ')}</p>
+        <p>{session.dateOfWeek.join(', ') }</p>
         <p>{session.startTime}</p>
        </div>
       </div>}
