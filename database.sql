@@ -28,7 +28,10 @@ INSERT INTO "user" ("username", "password", "avatar", "pronouns", "about", "admi
 	  ('Cammy',123,'','She/her','', 'gym-goer','Cammy White'),('Joey',123,'','He/Him','', 'gym-goer','Joey Storm'),('Neil',123,'','He/Him','', 'gym-goer','Neil Gaiman'),('Sara',123,'','She/her','', 'gym-goer','Sara Griffin');
 
 ------------------------------
-
+UPDATE "user" 
+	SET instagram = 'https://www.instagram.com/',  facebook = 'https://www.facebook.com/', twitter = 'https://twitter.com/', website = 'https://www.schedulicity.com/scheduling/QVK58P4' , certification = 'ACE Certification'
+	WHERE "user"."adminLevel" = 'instructor';
+	    
 
 DROP TABLE "tags";
 
