@@ -16,21 +16,6 @@ function* fetchAllInstructors() {
   }
 }
 
-// function* fetchActiveInstructor(action) {
-
-//     try {
-//         const res = yield axios.get(`/instructor/${action.payload}`)
-//         console.log('Instructor Detail is', res.data)
-//         yield put({
-//             type: 'SET_ACTIVE_INSTRUCTOR',
-//             payload: res.data
-//         })
-//     }
-//     catch (error) {
-//         console.error('Get instructor detail failed', error)
-//     }
-// }
-
 function* fetchInstructorProfile(action) {
   console.log("id", action.payload);
   try {
@@ -85,21 +70,13 @@ function* fetchFavoriteInstructor() {
   }
 }
 
-function* fetchActivities() {
-  try {
-    const res = yield axios.get("/instructor/activities");
-    console.log(res.data);
-    yield put({ type: "SET_ACTIVITIES", payload: res.data });
-  } catch (error) {
-    console.log("Error in fetchActivities saga", error);
-  }
-}
-
 function* addInstructorToFavorite(action) {
   console.log('addInstructorToFavorite saga', action.payload);
   try {
     const res = yield axios.post("/instructor/favorite/" + action.payload);
-  } catch (error) {}
+  } catch (error) {
+    console.log('Error in favoriting instructor', error);
+  }
 }
 
 function* addTag(action) {
@@ -132,7 +109,7 @@ function* deleteFavoriteInstructor(action) {
   }
 }
 
-// Add classes on instructor detail page
+// Gym goer add classes on instructor detail page
 // Saga will listen for "ADD_CLASS" action from instructor detail view
 function* addClass(action) {
   console.log("In addClass saga action.payload is", action.payload);
@@ -199,16 +176,13 @@ function* instructorSaga() {
   yield takeEvery("DELETE_FAVORITE_INSTRUCTOR", deleteFavoriteInstructor);
   yield takeEvery("ADD_CLASS", addClass);
   yield takeEvery("FETCH_INSTRUCTORS", fetchAllInstructors);
-  //yield takeEvery('FETCH_ACTIVE_INSTRUCTOR', fetchActiveInstructor);
   yield takeEvery("FETCH_INSTRUCTOR_PROFILE", fetchInstructorProfile);
   yield takeEvery("FETCH_RECOMMEND_INSTRUCTOR", fetchRecommendInstructor);
-  // yield takeEvery("FETCH_ACTIVITIES", fetchActivities);
   yield takeEvery("FETCH_FAVORITE_INSTRUCTOR", fetchFavoriteInstructor);
   yield takeEvery("FETCH_INSTRUCTOR_CLASSES", fetchInstructorClasses);
   yield takeEvery("FETCH_INSTRUCTOR_TAGS", fetchInstructorTags);
   yield takeEvery("ADD_TAG", addTag);
   yield takeEvery("DELETE_TAG", deleteTag);
-  yield takeEvery("ADD_INSTRUCTOR_TO_FAVORITES", addInstructorToFavorite);
   yield takeEvery("ADD_NEW_CLASS", addNewClass);
 
   yield takeEvery('UPDATE_ABOUT', updateAbout);

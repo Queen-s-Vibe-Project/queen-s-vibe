@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./InstructorDetail.css";
 import InstructorProfile from "./InstructorProfile";
-import InstructorClasses from "./InstructorClasses";
-import InstructorClass from "./InstructorClass/InstructorClass";
+import instructorClasses from "../InstructorClass/InstructorClasses";
+import InstructorClass from "../InstructorClass/InstructorClass";
 import InstructorTags from "./InstructorTags";
 // import InstructorAbout from "./InstructorAbout";
 import { useSelector, useDispatch } from "react-redux";
@@ -40,24 +40,30 @@ function InstructorDetail() {
 
   return (
     <div className="Universal-Container">
-      <h1> Instructor Detail </h1>
+      <button className="go-back view-more-btn" onClick={handleClick}>
+        Back
+      </button>
 
-      <button onClick={handleClick}>Back</button>
+      <h3 className="instructor-view-header"> Instructor Details </h3>
+      <hr />
 
       <div>
         <div className="profile">
           <InstructorProfile profile={profile} instructor={params.id} />
         </div>
-        <h3> Classes </h3>
-        <div className="class ic-card">
-          {/* conditional render add icon */}
+        <h3 className="instructor-view-header"> Classes </h3>
+        <hr />
+        <p className="scroll-text">Scroll to view more</p>
+
+        <div className="ic-card">
+          {/* conditional render add icon
           {user.adminLevel === "instructor" && user.id === Number(params.id) ? (
             <div>
               <AddIcon />
             </div>
           ) : (
             <></>
-          )}
+          )} */}
           {classes &&
             classes.map((session, i) => (
               <InstructorClass key={i} session={session} />
@@ -65,15 +71,13 @@ function InstructorDetail() {
         </div>
         <h3> Tags </h3>
         <div className="tags">
-         <InstructorTags tags={tags} />
+          <InstructorTags tags={tags} />
         </div>
       </div>
       <div>
-        <h3> About </h3>
+        <h3>About</h3>
+        <p>{profile.about}</p>
       </div>
-
-        {/* { profile && <InstructorAbout profile={profile} instructor={params.id} />} */}
-
     </div>
   );
 }

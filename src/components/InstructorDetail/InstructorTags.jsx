@@ -14,8 +14,8 @@ function InstructorTags({ tags }) {
 
   const [deleteChip, setDeleteChip] = useState(false);
 
-  if(tags){
-    console.log('tags', tags);
+  if (tags) {
+    console.log("tags", tags);
   }
 
   function handleDelete(id) {
@@ -33,49 +33,32 @@ function InstructorTags({ tags }) {
       setDeleteChip(false);
     }
   }, [deleteChip]);
-//  fix
+  //  fix
   return (
     <>
       <div>
-       { (user.id === Number(params.id) ) ? <AddInstructorTag /> : <div></div> }
+        {user.id === Number(params.id) ? <AddInstructorTag /> : <div></div>}
       </div>
-      <div >
-      <Stack className="tags" direction='row'>
-      {
-        tags.map((tag)=>(
-          (user.id === Number(params.id))? 
-          <Chip 
-            label={tag.tagName} 
-            onDelete={() => {
-              handleDelete(tag.id);
-            }}
-            />
-            :
-          <Chip label={tag.tagName}  />
-        ))
-      }
-    </Stack>
-    </div>
+      <div>
+        <Stack className="tags" direction="row">
+          {tags.map((tag) =>
+            user.id === Number(params.id) ? (
+              <div key={tag.id}>
+                <Chip
+                  label={tag.tagName}
+                  onDelete={() => {
+                    handleDelete(tag.id);
+                  }}
+                />
+              </div>
+            ) : (
+              <Chip label={tag.tagName} />
+            )
+          )}
+        </Stack>
+      </div>
     </>
   );
 }
 
 export default InstructorTags;
-
-
-/*
-
-  <Stack direction="row" spacing={1}>
-              {user.id === Number(params.id) ? (
-                <Chip
-                  onDelete={() => {
-                    handleDelete(tag.id);
-                  }}
-                  label={tag.tagName}
-                />
-              ) : (
-                <Chip label={tag.tagName} />
-              )}
-            </Stack>
-
-*/

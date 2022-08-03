@@ -7,15 +7,6 @@ import React, { useEffect, useState } from "react";
 function InstructorAbout({ user }) {
   const params = useParams();
   const dispatch = useDispatch();
-  // console.log('did the user make it through', user)
-  
-  // const [about, setAbout] = useState(false)
-  // useEffect(() => {
-  // dispatch({
-  //   type: "FETCH_INSTRUCTOR_PROFILE",
-  //   payload: profile.id
-  // })
-  // }, [])
 
   const updateAbout = () => {
     swal
@@ -49,12 +40,16 @@ function InstructorAbout({ user }) {
 
   return (
     <>
-      <div>
+      <h3 className="instructor-view-header">
+        About
         <Button onClick={updateAbout}>
-          <EditIcon />
+          <EditIcon className="pencil-icon" />
         </Button>
+      </h3>
+      <hr />
+      <div className="about-text">
+        <p> {user.about} </p>
       </div>
-      <p> {user.about} </p>
     </>
   );
 }

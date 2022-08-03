@@ -1,6 +1,5 @@
 import './RecommendInstructors.css'
 
-
 export default function RecommendCard({instructor}) {
     return(
         <div>
