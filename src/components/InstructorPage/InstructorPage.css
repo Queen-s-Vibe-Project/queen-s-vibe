@@ -72,12 +72,12 @@
   }
 
   /* Class card */
-  .instructor-class-container {
+.instructor-class-container {
     display: flex;
     gap: 1rem;
-    margin: 0 2rem 2rem 2rem;
-    justify-content: center;
-    flex-wrap: wrap;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    overflow-x: auto;
   }
 
   .instructor-card {
@@ -88,13 +88,7 @@
     padding: .5rem .5rem 1rem .5rem;
     background-color: rgba(204, 208, 227, 0.459);
     box-shadow: 4px 8px 14px -3px #828282;
-    border: 1px solid rgb(162, 154, 162)
-
-  }
-
-  .class-text {
-    text-align: center;
-    margin-top: 3rem;
+    border: 1px solid rgb(162, 154, 162);
   }
 
   .cert {
@@ -102,7 +96,19 @@
     margin-bottom: .25rem;
   }
 
-  .about-text {
+  .instructor-view-header {
+    text-align: center;
+    margin-top: 2rem;
+    margin-bottom: 5px;
+  }
+
+.scroll-text {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 2rem;
+}
+
+.about-text {
     text-align: left;
     margin-left: 1.5rem;
     margin-right: 1.5rem;
@@ -117,10 +123,36 @@
 
 .edit-class {
     width: 5rem;
-    background-color: rgb(221, 203, 221);
-    border: 1px solid rgb(184, 138, 225);
+    background-color: rgb(202, 202, 219);
+    border: 1px solid rgb(75, 55, 92);
     border-radius: 5px;
     color: rgb(42, 42, 126);
+
+}
+
+.css-nen11g-MuiStack-root {
+  gap: 10px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+hr {
+  width: 7rem;
+}
+
+.tags-container {
+  background-color: #dcdcf3;
+  padding-top: 1px;
+  padding-bottom: 3rem;
+  border-radius: 5px;
+}
+
+#add-tags-btn {
+  width: 100%;
+  justify-content: center;
+  align-items: center;
     cursor: pointer;
 }
 

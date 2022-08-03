@@ -13,7 +13,8 @@ CREATE TABLE "user" (
 	"instagram" VARCHAR,
 	"facebook" VARCHAR,
 	"twitter" VARCHAR,
-	"website" VARCHAR
+	"website" VARCHAR,
+	"certification" VARCHAR
 );
 
 -- user insert
@@ -81,16 +82,10 @@ VALUES (1,2),(1,3),(1,4),(1,5),(2,1),(2,2),(2,3),(2,10),(2,11),(2,13),(3,5),(3,6
 -----------------------
 DROP TABLE "availableClass";
 
-CREATE TABLE "availableClass"(
+CREATE TABLE "userClass" (
 	"id" SERIAL PRIMARY KEY,
-	"instructorId" int REFERENCES "user",
-	"dateOfWeek" VARCHAR[],
-	"description" VARCHAR,
-	"startTime" VARCHAR,
-	"location" VARCHAR,
-	"lat" FLOAT,
-	"lng" FLOAT,
-	"activityId" INT
+	"userId" int REFERENCES "user",
+	"classId" int REFERENCES "availableClass"
 );
 
 ---------------

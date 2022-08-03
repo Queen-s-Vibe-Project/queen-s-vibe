@@ -24,7 +24,7 @@
 /* Right side of featured instructors */
 .right-card {
   width: 12rem;
-  height: 8rem;
+  height: auto;
   border: 1px solid rgb(140, 110, 140);
 }
 

@@ -14,14 +14,14 @@ function UserPage() {
   const user = useSelector((store) => store.user);
   const tags = useSelector((store) => store.instructorTags);
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch({
       type: "FETCH_ACTIVITIES",
     });
 
     dispatch({ type: "FETCH_INSTRUCTOR_TAGS", payload: user.id });
-    
-  },[]);
+  }, []);
 
   return (
     <>
@@ -45,17 +45,16 @@ function UserPage() {
       ) : (
         // Instructor profile
         <div className="instructor-page">
-          <h2 className="welcome Universal-Container">
+          <h3 className="welcome Universal-Container">
             Welcome, {user.username}!
-          </h2>
+          </h3>
           <InstructorPage />
+
           <AddClass />
-          
         </div>
       )}
     </>
   );
 }
 
-// this allows us to use <App /> in index.js
 export default UserPage;

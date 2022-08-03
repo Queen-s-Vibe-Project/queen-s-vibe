@@ -283,13 +283,17 @@ console.log('I am updating', sqlParams)
 router.put('/updateProfile/:id', (req, res) => {
   const sqlText = `
   UPDATE "user"
-  SET name = $1, pronouns = $2
-  WHERE id = $3
+  SET name = $1, pronouns = $2 , instagram = $3, facebook = $4 , twitter = $5, certification = $6
+  WHERE id = $7
   RETURNING "user".id, "user".name, "user".pronouns;
   `;
   const sqlParams = [
     req.body.name,
     req.body.pronouns,
+    req.body.instagram,
+    req.body.facebook,
+    req.body.twitter,
+    req.body.certification,
     req.params.id
   ]
   console.log('In updateProfile Route:', sqlParams);

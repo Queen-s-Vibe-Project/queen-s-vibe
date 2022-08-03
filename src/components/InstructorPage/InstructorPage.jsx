@@ -18,7 +18,6 @@ import PhotoUpload from "../PhotoUpload/PhotoUpload";
 function InstructorPage() {
   const user = useSelector((store) => store.user);
 
-  const dispatch = useDispatch();
   
 // Edit function for instructor profile
 const editProfile = () => {
@@ -27,12 +26,20 @@ const editProfile = () => {
   title:'Update your Profile',
   html:
   `<input id="swal-input1" class="swal2-input" value='${user.name}'>` +
-  `<input id="swal-input2" class="swal2-input" value='${user.pronouns}'>`,
+  `<input id="swal-input2" class="swal2-input" value='${user.pronouns}'>`+
+  `<input id="swal-input3" class="swal2-input" value='${user.facebook}'>`+
+  `<input id="swal-input4" class="swal2-input" value='${user.instagram}'>`+
+  `<input id="swal-input5" class="swal2-input" value='${user.twitter}'>`+
+  `<input id="swal-input6" class="swal2-input" value='${user.certification}'>`,
    preConfirm: () => {
      return {
        id: user.id,
        name: document.getElementById('swal-input1').value,
-       pronouns: document.getElementById('swal-input2').value
+       pronouns: document.getElementById('swal-input2').value,
+       facebook: document.getElementById('swal-input3').value,
+       instagram: document.getElementById('swal-input4').value,
+       twitter: document.getElementById('swal-input5').value,
+       certification: document.getElementById('swal-input6').value
      }
    },
    confirmButtonText: 'Save Changes',
@@ -47,6 +54,11 @@ const editProfile = () => {
         type:'UPDATE_PROFILE',
         payload: result.value
       })
+      swal.fire(
+        'Sucess!',
+        'Changes were saved',
+        'success'
+      )
     }
     else if(result.isDismissed){
       console.log('No edits were saved')
@@ -89,41 +101,79 @@ const editProfile = () => {
           {/* Social media icons */}
           <section>
             <span className="social social-media-icons">
-              <FacebookIcon />
+             <a href={user.facebook}><FacebookIcon /></a> 
             </span>
             <span className="social social-media-icons">
-              <InstagramIcon />
+              <a href={user.instagram}><InstagramIcon /></a>
             </span>
             <span className="social">
-              <TwitterIcon />
+              <a href={user.twitter} ><TwitterIcon /></a>
             </span>
           </section>
-
+          {/* Certification */}
           <div>
-            <p className="cert">ACE Certification</p>
+            <p className="cert">{user.certification}</p>
           </div>
-          {/* <div className="about-text">
-            <p>{user.about}</p>
-          </div> */}
         </div>
       </div>
       {/* tags */}
       <div className="Universal-Container">
-        <UserTags/>
+        <UserTags />
       </div>
-      
+      {/* Classes card section */}
+      <h3 className="instructor-view-header">Classes</h3>
+      <hr />
+      <p className="scroll-text">Scroll to view more</p>
 
-      {/* Classes */}
-      <h3 className="class-text">Classes</h3>
-      
       <div className="instructor-class-container">
-        <UserClasses/>
-       
-        <div>
-        <h3 className="class-text"> About </h3>
-        <InstructorAbout user={user} />
+        <div className="instructor-card">
+          <p>Class: HIIT</p>
+          <p>Location: Minneapolis</p>
+          <p>Date: 10/9/22</p>
+          <p>Time: 8am</p>
+          <div className="class-button">
+            <button className="edit-class">Edit</button>
+            <button className="edit-class">Delete</button>
+          </div>
         </div>
-       
+
+        <div className="instructor-card">
+          <p>Class: Weightlifting</p>
+          <p>Location: Plymouth</p>
+          <p>Date: 10/9/22</p>
+          <p>Time: 8am</p>
+          <div className="class-button">
+            <button className="edit-class">Edit</button>
+            <button className="edit-class">Delete</button>
+          </div>
+        </div>
+
+        <div className="instructor-card">
+          <p>Class: Weightlifting</p>
+          <p>Location: Plymouth</p>
+          <p>Date: 10/9/22</p>
+          <p>Time: 8am</p>
+          <div className="class-button">
+            <button className="edit-class">Edit</button>
+            <button className="edit-class">Delete</button>
+          </div>
+        </div>
+
+        <div className="instructor-card">
+          <p>Class: Yoga</p>
+          <p>Location: Saint Paul</p>
+          <p>Date: 10/9/22</p>
+          <p>Time: 8am</p>
+          <div className="class-button">
+            <button className="edit-class">Edit</button>
+            <button className="edit-class">Delete</button>
+          </div>
+        </div>
+      </div>
+
+      <div className="about-text">
+
+        <InstructorAbout user={user} />
       </div>
     </>
   );
