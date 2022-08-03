@@ -13,7 +13,8 @@ CREATE TABLE "user" (
 	"instagram" VARCHAR,
 	"facebook" VARCHAR,
 	"twitter" VARCHAR,
-	"website" VARCHAR
+	"website" VARCHAR,
+	"certification" VARCHAR
 );
 
 -- user insert
