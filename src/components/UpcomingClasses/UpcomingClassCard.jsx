@@ -1,4 +1,7 @@
-export default function UpcomingClassCard() {
+export default function UpcomingClassCard({session}) {
+  if (session) {
+    console.log('session', session);
+  }
   return (
     <div className="class-card ">
       <div className="image col">
@@ -9,11 +12,11 @@ export default function UpcomingClassCard() {
           srcset=""
         />
       </div>
-      <div className="class-card-text col">
-        <h5>HIIT</h5>
-        <p>07/27/2022</p>
-        <p>7:30pm</p>
-      </div>
+      { session && <div className="class-card-text col">
+        <h5>{session.activity}</h5>
+        <p>{session.dateOfWeek.join(', ')}</p>
+        <p>{session.startTime}</p>
+      </div>}
     </div>
   );
 }

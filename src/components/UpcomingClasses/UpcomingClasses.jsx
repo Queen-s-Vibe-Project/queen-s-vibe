@@ -10,20 +10,22 @@ export default function UpcomingClasses(){
 
     useEffect(()=>{
         dispatch({
-            type:'FETCH_UPCOMING_CLASSES',
-            payload: user.id
+            type:'FETCH_UPCOMING_CLASSES'
         })
     },[])
+
+    const upcomingClasses = useSelector((store)=> store.userClass)
 
     return(
         <div>
             <h3>Upcoming Classes</h3>
             <div className='upcomingClasses-section'>
+                {upcomingClasses && upcomingClasses.length > 1 && upcomingClasses.map((session)=>(
+                    <UpcomingClassCard key={session.id} session={session}/>
+                ))}
+
                 <UpcomingClassCard/>
-                <UpcomingClassCard/>
-                <UpcomingClassCard/>
-                <UpcomingClassCard/>
-                <UpcomingClassCard/>
+                
             </div>
             
         </div>
