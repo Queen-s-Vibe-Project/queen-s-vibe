@@ -29,7 +29,8 @@ const editProfile = () => {
   `<input id="swal-input2" class="swal2-input" value='${user.pronouns}'>`+
   `<input id="swal-input3" class="swal2-input" value='${user.facebook}'>`+
   `<input id="swal-input4" class="swal2-input" value='${user.instagram}'>`+
-  `<input id="swal-input5" class="swal2-input" value='${user.twitter}'>`,
+  `<input id="swal-input5" class="swal2-input" value='${user.twitter}'>`+
+  `<input id="swal-input6" class="swal2-input" value='${user.certification}'>`,
    preConfirm: () => {
      return {
        id: user.id,
@@ -38,6 +39,7 @@ const editProfile = () => {
        facebook: document.getElementById('swal-input3').value,
        instagram: document.getElementById('swal-input4').value,
        twitter: document.getElementById('swal-input5').value,
+       certification: document.getElementById('swal-input6').value
      }
    },
    confirmButtonText: 'Save Changes',
@@ -103,11 +105,8 @@ const editProfile = () => {
           </section>
 
           <div>
-            <p className="cert">ACE Certification</p>
+            <p className="cert">{user.certification}</p>
           </div>
-          {/* <div className="about-text">
-            <p>{user.about}</p>
-          </div> */}
         </div>
       </div>
       {/* tags */}
