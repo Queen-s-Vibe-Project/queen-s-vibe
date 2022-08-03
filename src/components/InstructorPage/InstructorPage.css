@@ -127,6 +127,7 @@
     border: 1px solid rgb(75, 55, 92);
     border-radius: 5px;
     color: rgb(42, 42, 126);
+
 }
 
 .css-nen11g-MuiStack-root {
@@ -152,4 +153,14 @@ hr {
   width: 100%;
   justify-content: center;
   align-items: center;
+    cursor: pointer;
+}
+
+.delete-class {
+  width: 5rem;
+  background-color: rgb(221, 203, 221);
+  border: 1px solid rgb(184, 138, 225);
+  border-radius: 5px;
+  color: rgb(42, 42, 126);
+  cursor: pointer;
 }

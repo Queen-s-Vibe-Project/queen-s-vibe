@@ -51,7 +51,7 @@ router.get("/class/:id", (req, res) => {
   const userId = req.params.id;
 
   const classQuery = `
-    SELECT "user".id, "availableClass"."dateOfWeek", "availableClass"."startTime", "availableClass".location, "activities".activity  
+    SELECT "availableClass".id AS "classId" , "user".id, "availableClass"."dateOfWeek", "availableClass"."startTime", "availableClass".location, "activities".activity  
     FROM "availableClass"
     JOIN "user" ON "user".id = "availableClass"."instructorId"
     JOIN "activities" on "activities".id = "availableClass"."activityId"
@@ -254,7 +254,7 @@ router.delete("/favorite/:id", rejectUnauthenticated, (req, res) => {
     });
 });
 
-
+// updated instructor about
 router.put('/update/:id', (req, res) => {
   const sqlText = `
   UPDATE "user"
@@ -279,6 +279,29 @@ console.log('I am updating', sqlParams)
   })
 })
 
+//Update instructor Profile
+router.put('/updateProfile/:id', (req, res) => {
+  const sqlText = `
+  UPDATE "user"
+  SET name = $1, pronouns = $2
+  WHERE id = $3
+  RETURNING "user".id, "user".name, "user".pronouns;
+  `;
+  const sqlParams = [
+    req.body.name,
+    req.body.pronouns,
+    req.params.id
+  ]
+  console.log('In updateProfile Route:', sqlParams);
+  pool.query(sqlText, sqlParams)
+  .then(() => {
+    res.sendStatus(200)
+  })
+  .catch((error) => {
+    console.error(`Failed to update instructor profile ${error}`)
+    res.sendStatus(500)
+  })
+})
 
 
 // POST to add favorite instructor to db
@@ -325,5 +348,23 @@ router.post("/newClass", rejectUnauthenticated, (req, res) => {
       console.error(err);
     });
 });
+
+router.delete('/class/:id',rejectUnauthenticated,(req,res)=>{
+  console.log('in router', req.params.id);
+  
+  const deleteClassQuery = `
+    DELETE FROM "availableClass"
+    WHERE "availableClass".id = $1;
+  `
+
+  pool.query(deleteClassQuery, [req.params.id])
+    .then((dbRes) => {
+      res.sendStatus(200)
+    }).catch((error)=>{
+      console.error(`Error in line 341: ${error}`);
+      res.sendStatus(500)
+    })
+
+})
 
 module.exports = router;

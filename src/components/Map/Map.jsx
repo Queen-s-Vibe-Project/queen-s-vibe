@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 import mapStyles from "./mapStyles";
 import "./Map.css";
+import { v4 as uuidv4 } from 'uuid';
+
 
 const containerStyle = {
   width: "325px",
@@ -19,6 +21,18 @@ const libraries = ["places"];
 
 const Map = ({instructors}) => {
 
+  function classMarkers(instructors) {
+    const newMarkers = [];
+  for (let instructor of instructors) {
+    instructor.classes && instructor.classes.map((classer) => {
+      // console.log(`latitude ${classer.lat}, longitude ${classer.lng}`)
+      newMarkers.push({ instructor:instructor.id, lat: classer.lat, lng: classer.lng })
+    });
+  }
+  return newMarkers
+}
+  
+
     const [markers, setMarkers] = useState([])
     const [currentLocation, setCurrentLocation] = useState({
         lat: 39.0997,
@@ -34,15 +48,13 @@ const Map = ({instructors}) => {
             
         })
     },[])
+    useEffect(() => {
+      setMarkers(classMarkers(instructors))
+    },[instructors])
 
-    function classMarkers(instructors) {
-    for (let instructor of instructors) {
-      instructor.classes && instructor.classes.map((classer) => {
-        <Marker position={{ lat: classer.lat, lng: classer.lng }} />;
-      });
-    }
-  }
-
+    console.log(markers)
+    
+  
     const {isLoaded, loadError} = useLoadScript({
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
         libraries
@@ -60,7 +72,15 @@ const Map = ({instructors}) => {
         zoom={10}
         options={options}
       >
-      <Marker position={{lat: 39.0997, lng: -94.5786 }} />;
+      {markers.map((marker) => {
+      return (
+        <Marker 
+          key={uuidv4()} 
+          position={{ lat: marker.lat, lng: marker.lng}}
+          />
+      )
+      })}
+      
       
       </GoogleMap>
     </>

@@ -49,6 +49,7 @@ function UserPage() {
             Welcome, {user.username}!
           </h3>
           <InstructorPage />
+
           <AddClass />
         </div>
       )}
