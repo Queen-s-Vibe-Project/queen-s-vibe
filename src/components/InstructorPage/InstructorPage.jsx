@@ -16,7 +16,7 @@ import AddClass from "../AddClass/AddClass";
 function InstructorPage() {
   const user = useSelector((store) => store.user);
   const instructorClasses = useSelector((store) => store.instructorClasses);
-
+  const dispatch = useDispatch();
   // Edit function for instructor profile
   const editProfile = () => {
     swal
