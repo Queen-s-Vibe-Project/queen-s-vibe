@@ -2,22 +2,21 @@ import { useSelector, useDispatch } from "react-redux";
 import ClearIcon from "@mui/icons-material/Clear";
 import AddIcon from "@mui/icons-material/Add";
 import "../InstructorDetail/InstructorDetail.css";
+import { useParams } from "react-router-dom";
 
 export default function InstructorClass({ session }) {
-  console.log("Session is", session);
+  // console.log("Session is", session);
+  const params = useParams();
   const dispatch = useDispatch();
   const instructorProfile = useSelector((store) => store.instructorProfile);
   const user = useSelector((store) => store.user);
 
   const addClassHandle = () => {
     dispatch({
-      type: "ADD_CLASS",
+      type: "ATTEND_CLASS",
       payload: {
         userId: user.id,
-        instructorId: instructorProfile.id,
-        classId: session.id,
-        date: session.dateOfWeek,
-        time: session.startTime,
+        classId: session.classId,
       },
     });
   };
@@ -47,7 +46,7 @@ export default function InstructorClass({ session }) {
         {user.adminLevel === "gym-goer" ? (
           <div className="add-instructor-class">
             <button className="add-class-btn" onClick={addClassHandle}>
-              Add Class
+              Save Class
             </button>
           </div>
         ) : null}
@@ -55,3 +54,4 @@ export default function InstructorClass({ session }) {
     </>
   );
 }
+

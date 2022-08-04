@@ -3,10 +3,10 @@ import { put, takeEvery } from "redux-saga/effects";
 
 function* fetchAllInstructors() {
   // Get all instructors
-  console.log("In fetchAllInstructors saga");
+  // console.log("In fetchAllInstructors saga");
   try {
     const res = yield axios.get("/instructor");
-    console.log("Get all instructors saga:", res.data);
+    // console.log("Get all instructors saga:", res.data);
     yield put({
       type: "SET_INSTRUCTORS",
       payload: res.data,
@@ -17,7 +17,7 @@ function* fetchAllInstructors() {
 }
 
 function* fetchInstructorProfile(action) {
-  console.log("id", action.payload);
+  // console.log("id", action.payload);
   try {
     const res = yield axios.get("/instructor/profile/" + action.payload);
     //console.log(res.data);
@@ -47,9 +47,9 @@ function* fetchInstructorTags(action) {
 }
 
 function* fetchRecommendInstructor() {
-  console.log("in recommend");
+  // console.log("in recommend");
   try {
-    console.log("in try");
+    // console.log("in try");
     const res = yield axios.get("/instructor/recommend");
     console.log('in fetchRecommendInstructor saga', res.data);
 
@@ -71,7 +71,7 @@ function* fetchFavoriteInstructor() {
 }
 
 function* addInstructorToFavorite(action) {
-  console.log('addInstructorToFavorite saga', action.payload);
+  // console.log('addInstructorToFavorite saga', action.payload);
   try {
     const res = yield axios.post("/instructor/favorite/" + action.payload);
   } catch (error) {
@@ -109,19 +109,11 @@ function* deleteFavoriteInstructor(action) {
   }
 }
 
-// Gym goer add classes on instructor detail page
-// Saga will listen for "ADD_CLASS" action from instructor detail view
-function* addClass(action) {
-  console.log("In addClass saga action.payload is", action.payload);
-  try {
-    yield axios.post("/instructor/class/" + action.payload);
-  } catch (error) {
-    console.log("Error in addClass", error);
-  }
-}
+
+
 
 function* deleteTag(action) {
-  console.log("in deleteTag saga", action.payload);
+  // console.log("in deleteTag saga", action.payload);
   try {
     yield axios.delete("/instructor/tag/" + action.payload);
   } catch (error) {
@@ -137,7 +129,7 @@ function* addNewClass(action) {
   }
 }
 function* updateAbout(action){
-    console.log('in updateAbout saga did it make it over?', action.payload)
+    // console.log('in updateAbout saga did it make it over?', action.payload)
     try{
         yield axios.put(`/instructor/update/${action.payload.id}`, action.payload)
         yield put({
@@ -148,7 +140,7 @@ function* updateAbout(action){
     }
 }
 function* updateProfile(action){
-console.log('In updateProfile saga did it make it over', action.payload);
+// console.log('In updateProfile saga did it make it over', action.payload);
 try{
   yield axios.put(`/instructor/updateProfile/${action.payload.id}`, action.payload)
   yield put({
@@ -182,7 +174,6 @@ function* updatePhoto(action) {
 function* instructorSaga() {
   yield takeEvery("ADD_INSTRUCTOR_TO_FAVORITES", addInstructorToFavorite);
   yield takeEvery("DELETE_FAVORITE_INSTRUCTOR", deleteFavoriteInstructor);
-  yield takeEvery("ADD_CLASS", addClass);
   yield takeEvery("FETCH_INSTRUCTORS", fetchAllInstructors);
   yield takeEvery("FETCH_INSTRUCTOR_PROFILE", fetchInstructorProfile);
   yield takeEvery("FETCH_RECOMMEND_INSTRUCTOR", fetchRecommendInstructor);
@@ -192,11 +183,10 @@ function* instructorSaga() {
   yield takeEvery("ADD_TAG", addTag);
   yield takeEvery("DELETE_TAG", deleteTag);
   yield takeEvery("ADD_NEW_CLASS", addNewClass);
-
   yield takeEvery("UPDATE_ABOUT", updateAbout);
   yield takeEvery("UPDATE_PROFILE", updateProfile);
   yield takeEvery("UPDATE_PHOTO", updatePhoto);
-  yield takeEvery("DELETE_AVAILABLE_CLASS", deleteAvailableClass);
+
 }
 
 export default instructorSaga;

@@ -104,10 +104,7 @@ CREATE TABLE "favoriteInstuctor" (
 CREATE TABLE "userClass" (
 	"id" SERIAL PRIMARY KEY,
 	"userId" int REFERENCES "user",
-	"instructorId" int REFERENCES "user",
-	"classId" int REFERENCES "activities",
-	"date" VARCHAR,
-	"startTime" VARCHAR
+	"classId" int REFERENCES "availableClass",
 );
 
 -- How to get classes userId
