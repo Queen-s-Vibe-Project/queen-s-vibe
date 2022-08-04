@@ -30,9 +30,9 @@ function UserPage() {
       {/* Gym goer profile */}
       {user.adminLevel === "gym-goer" ? (
         <div>
-          <h2 className="welcome Universal-Container">
+          <h3 className="welcome Universal-Container">
             Welcome, {user.username}!
-          </h2>
+          </h3>
           <SearchBar />
           <div className="Universal-Container">
             <RecommendInstructors />

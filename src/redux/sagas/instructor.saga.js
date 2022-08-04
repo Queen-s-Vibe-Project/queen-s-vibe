@@ -109,9 +109,6 @@ function* deleteFavoriteInstructor(action) {
   }
 }
 
-
-
-
 function* deleteTag(action) {
   // console.log("in deleteTag saga", action.payload);
   try {
@@ -149,7 +146,6 @@ try{
 } catch(error) {
   console.error(`Failed to update in UpdateProfile Saga ${error}`)
 }
-
 }
 
 function* deleteAvailableClass(action) {
@@ -170,6 +166,26 @@ function* updatePhoto(action) {
   }
 }
 
+function* attendClass(action) {
+  console.log('In attendClass saga action.payload is:', action.payload);
+  try {
+    yield axios.post("/instructor/class/add/" + action.payload.userId, action.payload);
+  }
+  catch (error) {
+    console.log('Error in attendClass saga', error);
+  }
+}
+
+function* fetchUpcomingClasses(action) {
+  console.log('in fetchUpcomingClasses saga', action.paylaod);
+  try {
+    const res = yield axios.get("/instructor/class/add/" + action.payload);
+    yield put({ type: "SET_GYMGOER_CLASSES", payload: res.data });
+  } catch (error) {
+    console.error('Error getting gymgoer classes saga', error);
+  }
+}
+
 // Watcher saga
 function* instructorSaga() {
   yield takeEvery("ADD_INSTRUCTOR_TO_FAVORITES", addInstructorToFavorite);
@@ -186,7 +202,8 @@ function* instructorSaga() {
   yield takeEvery("UPDATE_ABOUT", updateAbout);
   yield takeEvery("UPDATE_PROFILE", updateProfile);
   yield takeEvery("UPDATE_PHOTO", updatePhoto);
-
+  yield takeEvery('ATTEND_CLASS', attendClass);
+  yield takeEvery('FETCH_UPCOMING_CLASSES', fetchUpcomingClasses)
 }
 
 export default instructorSaga;

@@ -1,22 +1,37 @@
-import './RecommendInstructors.css'
+import { useHistory } from "react-router-dom";
+import "./RecommendInstructors.css";
 
-export default function RecommendCard({instructor}) {
-    return(
+export default function RecommendCard({ instructor }) {
+  const history = useHistory();
+
+  return (
+    <div>
+      <div className="recommend-card">
+        <img
+          className="recommend-avatar"
+          src={instructor.avatar}
+          alt="picture"
+          srcSet=""
+          height={75}
+        />
         <div>
-            <div className="card RC-card">
-            <img
-                className='avator' 
-                src={instructor.avatar} 
-                alt="picture" 
-                srcset=""
-                height={75}
-            />
-            <div className='RC-card-text'>
-                <p>{instructor.name}</p>
-                <p>{instructor.pronouns}</p>
-                <p>{instructor.count} Matching Tags</p>
-            </div>
-            </div>
+          <p className="rc-instructor-name">{instructor.name}</p>
         </div>
-    )
+        <div>
+          <p>{instructor.pronouns}</p>
+        </div>
+        <div>
+          <p>{instructor.count} Matching Tags</p>
+        </div>
+      </div>
+      <button
+        className="view-more"
+        onClick={() => {
+          history.push(`/instructor/${instructor.id}`);
+        }}
+      >
+        View More
+      </button>
+    </div>
+  );
 }

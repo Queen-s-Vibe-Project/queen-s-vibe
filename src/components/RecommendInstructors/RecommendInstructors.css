@@ -1,38 +1,42 @@
-
-
 .RC-container {
     display: flex;
     overflow: scroll;
     flex-direction: row;
-    gap: 10px;
-    
-}
-
-.card{
+    gap: 1rem;
     text-align: center;
-    border: 1px solid blue;
-    
 }
 
-.RC-card{
-    margin-right: 20px;
-}
-
-
-
-.RC-card-text{
-    font-size: 14px;
-    text-align: left;
-    line-height: 0.2;
-    margin-left: 1rem;
+.recommend-card {
+    width: 6.5rem;
+    height: 11rem;
+    text-align: center;
+    border: 1px solid rgb(162, 154, 162);
+    background-color: rgba(204, 208, 227, 0.459);
+    box-shadow: 4px 8px 14px -3px #828282;
+    font-size: .70rem;
+    border: 1px solid rgb(162, 154, 162);
+    border-radius: .5rem;
 
 }
 
+.rc-instructor-name {
+    font-weight: 600;
+}
 
-
-
-.avator{
+.recommend-avatar {
+    margin-top: .5rem;
     width: 4.06rem;
-    border-radius: 70%;
+    border-radius: 50%;
 }
 
+.view-more {
+    margin-top: .25rem;
+    font-size: 0.7rem;
+    background-color: rgba(81, 19, 143, 255);
+    border: 0.5px solid rgba(81, 19, 143, 255);
+    border-radius: 5px;
+    cursor: pointer;
+    color: rgb(222, 224, 230);
+    width: 6rem;
+    height: 1.25rem;
+}
