@@ -11,13 +11,13 @@ function instructorClasses({ classes, instructor }) {
 
   return (
     <div className="classOrder">
-      {/* {user.adminLevel === "instructor" && user.id === Number(instructor) ? (
+      {user.adminLevel === "instructor" && user.id === Number(instructor) ? (
         <div className="addIcon">
           <AddIcon />
         </div>
       ) : (
         <div></div>
-      )} */}
+      )}
       {classes.map((session) => (
         <InstructorClass session={session} />
       ))}

@@ -177,7 +177,7 @@ function* attendClass(action) {
 }
 
 function* fetchUpcomingClasses(action) {
-  console.log('in fetchUpcomingClasses saga', action.paylaod);
+  // console.log('in fetchUpcomingClasses saga', action.paylaod);
   try {
     const res = yield axios.get("/instructor/class/add/" + action.payload);
     yield put({ type: "SET_GYMGOER_CLASSES", payload: res.data });

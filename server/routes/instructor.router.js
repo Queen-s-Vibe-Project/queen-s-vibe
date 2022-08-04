@@ -4,6 +4,7 @@ const router = express.Router();
 const {
   rejectUnauthenticated,
 } = require("../modules/authentication-middleware");
+
 // GET all instructors without authentication
 // JOIN user, userTags, and tags tables and use array-agg to
 // get array of object for tag name
@@ -103,6 +104,7 @@ router.get('/class/add/:id', (req, res) => {
 
   pool.query(sqlQuery, [req.params.id])
     .then((dbRes) => {
+
       res.send(dbRes.rows)
     })
     .catch((err) => {
