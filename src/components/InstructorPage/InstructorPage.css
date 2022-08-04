@@ -102,6 +102,10 @@
     margin-bottom: 5px;
   }
 
+  .instructor-view-tagheader {
+    text-align: center;
+  }
+
 .scroll-text {
   text-align: center;
   margin-top: 0;
@@ -110,8 +114,8 @@
 
 .about-text {
     text-align: left;
-    margin-left: 1.5rem;
-    margin-right: 1.5rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
     font-size: .95rem;
   }
 
@@ -166,4 +170,13 @@
 
 .photo-button {
   text-align: center;
+}
+
+.instructor-view-class-header {
+text-align: center;
+}
+
+.instructor-view-about-header {
+  text-align: center;
+  margin-left: 3.5rem;
 }

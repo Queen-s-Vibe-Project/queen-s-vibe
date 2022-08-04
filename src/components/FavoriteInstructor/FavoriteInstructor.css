@@ -22,15 +22,13 @@
 
 .btn-container {
     padding-bottom: .5rem;
-}
-
-.delete-icon {
-    color: red;
+    padding-left: 10px;
 }
 
 .delete-icon-btn {
     color: red;
-
+    padding-bottom: 10px;
+    padding-left: 5px;
 }
 
 .favorite-header-text {
