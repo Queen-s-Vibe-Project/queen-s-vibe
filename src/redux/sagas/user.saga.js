@@ -33,9 +33,19 @@ function* fetchUpcomingClasses(){
   }
 }
 
+function* deleteGymGoerClass(action) {
+  console.log(action.payload);
+  try {
+    yield axios.delete('/api/user/upcomingClass/'+ action.payload)
+  } catch (error) {
+    console.error(`Error deleteGymGoerClass: ${error}`);
+  }
+}
+
 function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);
-  yield takeLatest('FETCH_UPCOMING_CLASSES', fetchUpcomingClasses)
+  yield takeLatest('FETCH_UPCOMING_CLASSES', fetchUpcomingClasses);
+  yield takeLatest("DELETE_GYM-GOER_CLASS", deleteGymGoerClass)
 }
 
 export default userSaga;

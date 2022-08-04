@@ -19,6 +19,11 @@
     flex-direction: column;
 }
 
+.class-text > h5, .class-text > p {
+    margin: .5rem 0;
+    padding: 0;
+}
+
 
 
 .image{

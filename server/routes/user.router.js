@@ -109,4 +109,20 @@ router.get('/upcomingClass',rejectUnauthenticated,(req,res)=>{
 
 })
 
+router.delete('/upcomingClass/:id',rejectUnauthenticated,(req,res)=>{
+  const deleteClassQuery = `
+    DELETE FROM "availableClass"
+    WHERE "availableClass".id = $1;
+  `
+
+  pool.query(deleteClassQuery,[req.params.id])
+    .then(()=>{
+       res.sendStatus(200)
+    }).catch((error)=>{
+      console.error(`Error ${error}`);
+      res.sendStatus(500)
+    })
+
+})
+
 module.exports = router;

@@ -1,7 +1,18 @@
+import { useEffect, useState } from "react";
+import { Button } from "@mui/material";
+import { useDispatch } from "react-redux";
 export default function UpcomingClassCard({session}) {
-  if (session) {
-    console.log('session', session);
-  }
+  
+  const dispatch = useDispatch()
+  const [isDeletePress, setIsDeletePress] = useState(false)
+
+  useEffect(()=>{
+    if (isDeletePress === true) {
+      dispatch({})
+      setIsDeletePress(false)
+    }
+  },[isDeletePress])
+
   return (
     <div className="class-card ">
       <div className="image col">
@@ -17,6 +28,18 @@ export default function UpcomingClassCard({session}) {
         <h5>{session.activity}</h5>
         <p>{session.dateOfWeek.join(', ') }</p>
         <p>{session.startTime}</p>
+        <Button
+          onClick={()=>{
+            dispatch({
+              type:"DELETE_GYM-GOER_CLASS",
+              payload:session.id
+            })
+            setIsDeletePress(true)
+          }}
+          color='error'
+        >
+          Delete
+        </Button>
        </div>
       </div>}
     </div>
