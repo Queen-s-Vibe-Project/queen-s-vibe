@@ -40,42 +40,39 @@ function InstructorDetail() {
 
   return (
     <div className="Universal-Container">
+      <h3 className="instructor-details-header"> Instructor Details </h3>
+
       <button className="go-back view-more-btn" onClick={handleClick}>
         Back
       </button>
-
-      <h3 className="instructor-view-header"> Instructor Details </h3>
-      <hr />
 
       <div>
         <div className="profile">
           <InstructorProfile profile={profile} instructor={params.id} />
         </div>
         <h3 className="instructor-view-header"> Classes </h3>
-        <hr />
-        <p className="scroll-text">Scroll to view more</p>
 
         <div className="ic-card">
-          {/* conditional render add icon
+          {/* conditional render add icon */}
           {user.adminLevel === "instructor" && user.id === Number(params.id) ? (
             <div>
               <AddIcon />
             </div>
           ) : (
             <></>
-          )} */}
+          )}
           {classes &&
             classes.map((session, i) => (
               <InstructorClass key={i} session={session} />
             ))}
         </div>
-        <h3> Tags </h3>
+        <h3 className="instructor-view-header">Tags</h3>
         <div className="tags">
           <InstructorTags tags={tags} />
         </div>
       </div>
       <div>
-        <h3>About</h3>
+        <h3 className="instructor-view-header">About</h3>
         <p>{profile.about}</p>
       </div>
     </div>

@@ -47,9 +47,9 @@
 }
 
 .favoriteHeart {
-  margin-left: 224px;
-  margin-bottom: -2px;
-  margin-top: -35px;
+  margin-left: 14rem;
+  margin-bottom: -1.25rem;
+  margin-top: -15rem;
 }
 .editIcon {
   margin-left: 327px;
@@ -61,12 +61,12 @@
 
 .addIcon {
   margin-top: 50px;
-  /* margin-left: ; */
 }
 .tags {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  margin-top: .5rem;
 }
 
 .css-10hburv-MuiTypography-root {
@@ -90,14 +90,11 @@
   margin-bottom: 2rem;
 }
 
-.go-back {
-  margin-left: 1.75rem;
-}
-
 .ic-card {
   display: flex;
   gap: 2rem;
   overflow-x: auto;
+  margin-top: 1rem;
 }
 
 .gym-goer-card {
@@ -129,4 +126,8 @@
   border-radius: 5px;
   font-size: .9rem;
   border: 1px solid rgb(41, 12, 86)
+}
+
+.instructor-details-header {
+  text-align: center;
 }

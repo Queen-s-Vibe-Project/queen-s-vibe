@@ -11,6 +11,10 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import Avatar from "@mui/material/Avatar";
+import DeleteIcon from "@mui/icons-material/Delete";
+import Icon from "@mui/material/Icon";
+import { Button } from "@mui/material";
+import "./FavoriteInstructor.css";
 
 function FavoriteInstructorCard({ instructor }) {
   const dispatch = useDispatch();
@@ -18,7 +22,7 @@ function FavoriteInstructorCard({ instructor }) {
 
   return (
     <>
-      <div className="featured-container">
+      <div className="favorite-container">
         {/* Left side */}
         <div>
           <Stack direction="row" spacing={1}>
@@ -42,20 +46,42 @@ function FavoriteInstructorCard({ instructor }) {
         <div>
           <Card className="right-card">
             <CardContent className="rt-card">
-              <Typography variant="p" component="div">
-                {instructor.name}
-              </Typography>
+              <div className="top-right-card">
+                <Typography
+                  className="favorite-name"
+                  variant="p"
+                  component="div"
+                >
+                  <strong>{instructor.name}</strong>
+                </Typography>
+                <div className="btn-container">
+                  <Button
+                    onClick={() => {
+                      dispatch({
+                        type: "DELETE_FAVORITE_INSTRUCTOR",
+                        payload: { id: instructor.id },
+                      });
+                    }}
+                  >
+                    <Icon>
+                      <DeleteIcon className="delete-icon-btn" />
+                    </Icon>
+                  </Button>
+                </div>
+              </div>
 
               <Stack className="chip-container" direction="row" spacing={0.5}>
                 {instructor &&
-                  instructor.tags.map((tag, i) => (
-                    <Chip
-                      key={i}
-                      className="chip-pill"
-                      label={`${tag}`}
-                      variant="outlined"
-                    />
-                  ))}
+                  instructor.tags
+                    .slice(0, 2)
+                    .map((tag, i) => (
+                      <Chip
+                        key={i}
+                        className="chip-pill"
+                        label={`${tag}`}
+                        variant="outlined"
+                      />
+                    ))}
               </Stack>
               <div className="icon-container">
                 <FacebookIcon className="featured-icon" />
@@ -64,17 +90,6 @@ function FavoriteInstructorCard({ instructor }) {
               </div>
             </CardContent>
           </Card>
-
-          <button
-            onClick={() => {
-              dispatch({
-                type: "DELETE_FAVORITE_INSTRUCTOR",
-                payload: { id: instructor.id },
-              });
-            }}
-          >
-            Delete
-          </button>
         </div>
       </div>
     </>

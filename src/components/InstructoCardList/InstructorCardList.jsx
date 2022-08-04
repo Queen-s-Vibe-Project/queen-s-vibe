@@ -29,7 +29,7 @@ function InstructorCardList() {
       </section>
 
       <div className="about-section">
-        <h4 className="about-header">About Groupie and How it Works</h4>
+        <h4 className="about-header">About Groupie</h4>
         <p>
           Working out is difficult enough so we want to create a safe and fun
           environment for both gym patrons and gym instructors. Groupie allows

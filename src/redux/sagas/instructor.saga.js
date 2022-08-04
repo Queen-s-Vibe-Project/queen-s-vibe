@@ -151,7 +151,8 @@ try{
 function* deleteAvailableClass(action) {
   try {
 
-    yield axios.delete('/instructor/class/'+ action.payload)
+   yield axios.delete('/instructor/class/'+ action.payload)
+   
     
   } catch (error) {
     console.error(`Error in deleteAvailableClass: ${error}`);
@@ -177,7 +178,7 @@ function* attendClass(action) {
 }
 
 function* fetchUpcomingClasses(action) {
-  console.log('in fetchUpcomingClasses saga', action.paylaod);
+  // console.log('in fetchUpcomingClasses saga', action.paylaod);
   try {
     const res = yield axios.get("/instructor/class/add/" + action.payload);
     yield put({ type: "SET_GYMGOER_CLASSES", payload: res.data });
@@ -206,6 +207,7 @@ function* instructorSaga() {
   yield takeEvery("FETCH_RECOMMEND_INSTRUCTOR", fetchRecommendInstructor);
   yield takeEvery("FETCH_FAVORITE_INSTRUCTOR", fetchFavoriteInstructor);
   yield takeEvery("FETCH_INSTRUCTOR_CLASSES", fetchInstructorClasses);
+  yield takeEvery("DELETE_INSTRUCTOR_CLASS", deleteAvailableClass)
   yield takeEvery("FETCH_INSTRUCTOR_TAGS", fetchInstructorTags);
   yield takeEvery("ADD_TAG", addTag);
   yield takeEvery("DELETE_TAG", deleteTag);

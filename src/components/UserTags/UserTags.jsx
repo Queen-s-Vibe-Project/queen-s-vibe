@@ -73,7 +73,7 @@ export default function UserTags() {
 
   return (
     <div className="tags-container">
-      <h3 className="instructor-view-header">Tags</h3>
+      <h4 className="instructor-view-header">Tags</h4>
       <hr />
       <Button
         id="add-tags-btn"

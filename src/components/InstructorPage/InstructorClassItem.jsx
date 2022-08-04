@@ -1,8 +1,11 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import "./InstructorPage.css";
 import swal from "sweetalert2";
 import { useSelector, useDispatch } from "react-redux";
 function InstructorClassItem({ instructorClass }) {
+
   const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
 
@@ -48,6 +51,25 @@ swal.fire({
 });
 
 };
+ 
+
+  const [isDeletePress, setDeletePress] = useState(false)
+  const user = useSelector((store)=> store.user)
+  
+  //when delete is press dispatch "FETCH_INSTRUCTOR_CLASSES"
+  useEffect(()=>{
+
+    if(isDeletePress === true){
+      dispatch({
+        type:"FETCH_INSTRUCTOR_CLASSES",
+        payload: user.id
+      })
+      setDeletePress(false)
+    }
+  },[isDeletePress])
+
+  const dispatch = useDispatch()
+
 
   return (
     <div className="instructor-card">
@@ -65,8 +87,22 @@ swal.fire({
         <strong>Time:</strong> {instructorClass.startTime}
       </p>
       <div className="class-button">
+
         <button className="edit-class" onClick={editClass}>Edit</button>
-        <button className="edit-class">Delete</button>
+        <button
+          onClick={()=>{
+            dispatch({
+              type:"DELETE_INSTRUCTOR_CLASS",
+              payload: instructorClass.classId
+            })
+
+            setDeletePress(true)
+          }} 
+          className="edit-class"
+        >
+          Delete
+        </button>
+
       </div>
     </div>
   );
