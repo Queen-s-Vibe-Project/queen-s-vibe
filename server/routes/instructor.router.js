@@ -336,6 +336,30 @@ router.put('/updateProfile/:id', rejectUnauthenticated, (req, res) => {
   })
 })
 
+// Update instructor classes
+router.put('/updateClass/:id', (req, res) => {
+  const sqlText = `
+  UPDATE "availableClass"
+	SET  "activityId" = $1, "location"= $2, "dateOfWeek" = $3, "startTime"= $4
+	WHERE id = $5;
+  `;
+ const  sqlParams = [
+    req.body.activity,
+    req.body.location,
+    req.body.dateOfWeek,
+    req.body.startTime,
+    req.params.id //Needs to be last
+  ];
+
+  pool.query(sqlText, sqlParams)
+  .then(() => {
+    res.sendStatus(200)
+  })
+  .catch((error) => {
+    console.error(`Failed to update classes in server Route ${error}`)
+    res.sendStatus(500)
+  })
+})
 
 // POST to add favorite instructor to db
 router.post("/favorite/:id", rejectUnauthenticated, (req, res) => {

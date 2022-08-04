@@ -187,6 +187,17 @@ function* fetchUpcomingClasses(action) {
   }
 }
 
+function* updateClass(action){
+  console.log('Inside update class', action.payload)
+  try {
+     yield axios.put(`/instructor/updateClass/${action.payload.id}`, action.payload)
+     yield put({ type: "FETCH_INSTRUCTOR_CLASSES" })
+  }
+  catch(err){
+    console.error(`Failed to update class in saga ${err}`)
+  }
+}
+
 // Watcher saga
 function* instructorSaga() {
   yield takeEvery("ADD_INSTRUCTOR_TO_FAVORITES", addInstructorToFavorite);
@@ -205,7 +216,8 @@ function* instructorSaga() {
   yield takeEvery("UPDATE_PROFILE", updateProfile);
   yield takeEvery("UPDATE_PHOTO", updatePhoto);
   yield takeEvery('ATTEND_CLASS', attendClass);
-  yield takeEvery('FETCH_UPCOMING_CLASSES', fetchUpcomingClasses)
+  yield takeEvery('FETCH_UPCOMING_CLASSES', fetchUpcomingClasses);
+  yield takeEvery('UPDATE_CLASS', updateClass);
 }
 
 export default instructorSaga;
