@@ -10,22 +10,34 @@
     flex-direction: row;
     margin-bottom: 1rem;
     font-size: .9rem;
-    height: 10.375rem;
+    height: 8.5rem;
+    background-color: rgba(204, 208, 227, 0.459);
+    box-shadow: 4px 8px 14px -3px #828282;
+    border: 1px solid rgb(162, 154, 162);
 }
 
-
-.class-text{
+/* .class-text{
     display: flex;
     flex-direction: column;
-}
-
-
+} */
 
 .image{
     border-top-left-radius: 1rem;
     border-bottom-left-radius: 1rem;
-    margin-right: 2rem;
+    margin-right: 1rem;
     width: 7.5rem;
-    height: 10.375rem;
+    height: 100%;
 }
 
+.class-text-container {
+    display: flex;
+    flex-direction: column;
+    gap: .4rem;
+    justify-content: center;
+    font-size: .75rem;
+    margin: .25rem;   
+}
+
+.upcoming-header {
+    margin-top: 2.5rem;
+}

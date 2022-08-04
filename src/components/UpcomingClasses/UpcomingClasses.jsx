@@ -19,7 +19,7 @@ export default function UpcomingClasses() {
 
   return (
     <div>
-      <h3>Upcoming Classes</h3>
+      <h4 className="upcoming-header">Upcoming Classes</h4>
       <div className="upcomingClasses-section">
         {upcomingClasses.map((session) => (
           <UpcomingClassCard key={session.id} session={session} />
