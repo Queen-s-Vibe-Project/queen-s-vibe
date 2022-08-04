@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import InstructorAbout from "../InstructorDetail/InstructorAbout";
 import FacebookIcon from "@mui/icons-material/Facebook";
@@ -14,8 +14,17 @@ import InstructorClassItem from "./InstructorClassItem";
 import AddClass from "../AddClass/AddClass";
 
 function InstructorPage() {
+
+  const dispatch = useDispatch()
   const user = useSelector((store) => store.user);
   const instructorClasses = useSelector((store) => store.instructorClasses);
+
+  useEffect(()=>{
+    dispatch({
+      type:"FETCH_INSTRUCTOR_CLASSES",
+      payload: user.id
+    })
+  },[])
 
   // Edit function for instructor profile
   const editProfile = () => {
