@@ -7,7 +7,8 @@ function InstructorClassItem({ instructorClass }) {
 
   const [isDeletePress, setDeletePress] = useState(false)
   const user = useSelector((store)=> store.user)
-
+  
+  //when delete is press dispatch "FETCH_INSTRUCTOR_CLASSES"
   useEffect(()=>{
 
     if(isDeletePress === true){
