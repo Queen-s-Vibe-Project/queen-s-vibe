@@ -2,6 +2,11 @@ import React from "react";
 import "./InstructorPage.css";
 
 function InstructorClassItem({ instructorClass }) {
+  
+const editClass = () => {
+  // console.log('inside edit class')
+  
+}
   return (
     <div className="instructor-card">
       <p>
@@ -18,7 +23,7 @@ function InstructorClassItem({ instructorClass }) {
         <strong>Time:</strong> {instructorClass.startTime}
       </p>
       <div className="class-button">
-        <button className="edit-class">Edit</button>
+        <button className="edit-class" onClick={editClass}>Edit</button>
         <button className="edit-class">Delete</button>
       </div>
     </div>
