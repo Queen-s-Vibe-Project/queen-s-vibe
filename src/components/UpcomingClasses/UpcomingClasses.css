@@ -16,7 +16,22 @@
     border: 1px solid rgb(162, 154, 162);
 }
 
-.image {
+
+
+.class-text{
+    display: flex;
+    flex-direction: column;
+}
+
+.class-text > h5, .class-text > p {
+    margin: .5rem 0;
+    padding: 0;
+}
+
+
+
+.image{
+
     border-top-left-radius: 1rem;
     border-bottom-left-radius: 1rem;
     margin-right: 1rem;
