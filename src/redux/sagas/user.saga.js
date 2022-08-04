@@ -24,8 +24,18 @@ function* fetchUser() {
   }
 }
 
+function* fetchUpcomingClasses(){
+  try {
+    const res = yield axios.get('/api/user/upcomingClass')
+    yield put({ type: 'SET_UPCOMING_CLASSES', payload: res.data})
+  } catch (error) {
+    console.error(`Error in fetchUpcomingClasses: ${error}`);
+  }
+}
+
 function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);
+  yield takeLatest('FETCH_UPCOMING_CLASSES', fetchUpcomingClasses)
 }
 
 export default userSaga;

@@ -51,8 +51,8 @@ function SearchItem({ result }) {
                   result.classes.map((classer, i) => {
                     return (
                       <div key={i}>
-                        {/* <p>{classer.dateOfWeek}</p> */}
-                        {/* <p>{classer.startTime}</p> */}
+                        <li>{classer.dateOfWeek.join(', ')}</li>
+                        <li>{classer.startTime}</li>
                       </div>
                     );
                   })}

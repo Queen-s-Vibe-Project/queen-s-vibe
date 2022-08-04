@@ -13,7 +13,8 @@ CREATE TABLE "user" (
 	"instagram" VARCHAR,
 	"facebook" VARCHAR,
 	"twitter" VARCHAR,
-	"website" VARCHAR
+	"website" VARCHAR,
+	"certification" VARCHAR
 );
 
 -- user insert
@@ -27,7 +28,10 @@ INSERT INTO "user" ("username", "password", "avatar", "pronouns", "about", "admi
 	  ('Cammy',123,'','She/her','', 'gym-goer','Cammy White'),('Joey',123,'','He/Him','', 'gym-goer','Joey Storm'),('Neil',123,'','He/Him','', 'gym-goer','Neil Gaiman'),('Sara',123,'','She/her','', 'gym-goer','Sara Griffin');
 
 ------------------------------
-
+UPDATE "user" 
+	SET instagram = 'https://www.instagram.com/',  facebook = 'https://www.facebook.com/', twitter = 'https://twitter.com/', website = 'https://www.schedulicity.com/scheduling/QVK58P4' , certification = 'ACE Certification'
+	WHERE "user"."adminLevel" = 'instructor';
+	    
 
 DROP TABLE "tags";
 
@@ -81,16 +85,10 @@ VALUES (1,2),(1,3),(1,4),(1,5),(2,1),(2,2),(2,3),(2,10),(2,11),(2,13),(3,5),(3,6
 -----------------------
 DROP TABLE "availableClass";
 
-CREATE TABLE "availableClass"(
+CREATE TABLE "userClass" (
 	"id" SERIAL PRIMARY KEY,
-	"instructorId" int REFERENCES "user",
-	"dateOfWeek" VARCHAR[],
-	"description" VARCHAR,
-	"startTime" VARCHAR,
-	"location" VARCHAR,
-	"lat" INT,
-	"lng" INT,
-	"activityId" INT
+	"userId" int REFERENCES "user",
+	"classId" int REFERENCES "availableClass"
 );
 
 ---------------

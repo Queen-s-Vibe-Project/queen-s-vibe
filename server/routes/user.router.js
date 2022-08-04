@@ -89,4 +89,24 @@ router.post("/logout", (req, res) => {
   res.sendStatus(200);
 });
 
+router.get('/upcomingClass',rejectUnauthenticated,(req,res)=>{
+  //console.log('in upcoming', req.user.id);
+
+  const upcomingClass = `
+    SELECT "userClass".id, "userClass"."userId", "availableClass"."instructorId", "availableClass"."dateOfWeek", "availableClass"."startTime", "activities".activity FROM "userClass"
+    JOIN "availableClass" ON "availableClass".id = "userClass"."classId"
+    JOIN "activities" ON "activities".id = "availableClass"."activityId" 
+    WHERE "userClass"."userId" = $1;
+  `
+
+  pool.query(upcomingClass, [req.user.id])
+    .then((dbRes)=>{
+      res.send(dbRes.rows)
+    }).catch((error)=>{
+      console.error(`Error in upcomming router: ${error}`);
+      res.sendStatus(500)
+    })
+
+})
+
 module.exports = router;

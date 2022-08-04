@@ -9,6 +9,7 @@ import {
 import errors from "./errors.reducer";
 import search from "./search.reducer";
 import user from "./user.reducer";
+import { userClass } from "./user.reducer";
 import instructor from "./instructor.reducer.js";
 import instructorDetail from "./instructorDetail.reducer";
 
@@ -29,6 +30,7 @@ const rootReducer = combineReducers({
   instructorProfile, // get instructor's info
   instructorClasses,
   instructorTags,
+  userClass,
 });
 
 export default rootReducer;

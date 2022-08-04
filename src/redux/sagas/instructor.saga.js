@@ -162,6 +162,14 @@ function* deleteAvailableClass(action) {
   }
 }
 
+function* updatePhoto(action) {
+  try {
+    yield axios.put("/instructor/photo/" + action.payload.id, action.payload);
+  } catch (err) {
+    console.error("Error in updatePhoto", err);
+  }
+}
+
 // Watcher saga
 function* instructorSaga() {
   yield takeEvery("ADD_INSTRUCTOR_TO_FAVORITES", addInstructorToFavorite);
@@ -175,9 +183,10 @@ function* instructorSaga() {
   yield takeEvery("ADD_TAG", addTag);
   yield takeEvery("DELETE_TAG", deleteTag);
   yield takeEvery("ADD_NEW_CLASS", addNewClass);
-  yield takeEvery('UPDATE_ABOUT', updateAbout);
-  yield takeEvery('UPDATE_PROFILE', updateProfile)
-  yield takeEvery('DELETE_AVAILABLE_CLASS',deleteAvailableClass)
+  yield takeEvery("UPDATE_ABOUT", updateAbout);
+  yield takeEvery("UPDATE_PROFILE", updateProfile);
+  yield takeEvery("UPDATE_PHOTO", updatePhoto);
+
 }
 
 export default instructorSaga;
