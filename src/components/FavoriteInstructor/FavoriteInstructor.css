@@ -1,0 +1,14 @@
+.top-right-card {
+    display: flex;
+    height: 1rem;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-container {
+    padding-bottom: .5rem;
+}
+
+.delete-icon {
+    color: red;
+}

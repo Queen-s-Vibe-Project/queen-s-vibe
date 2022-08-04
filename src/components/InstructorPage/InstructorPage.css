@@ -97,7 +97,7 @@
   }
 
   .instructor-view-header {
-    text-align: center;
+    text-align: left;
     margin-top: 1rem;
     margin-bottom: 5px;
   }
@@ -138,9 +138,6 @@
   align-items: center;
 }
 
-hr {
-  width: 7rem;
-}
 
 .tags-container {
   background-color: #dcdcf3;
