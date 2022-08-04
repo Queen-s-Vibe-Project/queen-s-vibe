@@ -1,6 +1,6 @@
 .upcomingClasses-section{
     overflow: scroll;
-    height: 19rem;
+    max-height: 17.5rem;
 }
 
 .class-card{

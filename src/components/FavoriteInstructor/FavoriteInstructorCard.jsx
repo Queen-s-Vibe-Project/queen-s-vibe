@@ -22,7 +22,7 @@ function FavoriteInstructorCard({ instructor }) {
 
   return (
     <>
-      <div className="featured-container">
+      <div className="favorite-container">
         {/* Left side */}
         <div>
           <Stack direction="row" spacing={1}>
@@ -56,7 +56,6 @@ function FavoriteInstructorCard({ instructor }) {
                 </Typography>
                 <div className="btn-container">
                   <Button
-                    className="delete-icon-btn"
                     onClick={() => {
                       dispatch({
                         type: "DELETE_FAVORITE_INSTRUCTOR",
@@ -65,7 +64,7 @@ function FavoriteInstructorCard({ instructor }) {
                     }}
                   >
                     <Icon>
-                      <DeleteIcon className="delete-icon" />
+                      <DeleteIcon className="delete-icon-btn" />
                     </Icon>
                   </Button>
                 </div>
