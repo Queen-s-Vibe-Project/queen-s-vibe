@@ -90,7 +90,7 @@ router.post('/class/add/:id', rejectUnauthenticated, (req, res) => {
 
 // GET route to get gym goer classes they added
 router.get('/class/add/:id', (req, res) => {
-  console.log('gym goer classes req.params.id', req.params.id);
+  // console.log('gym goer classes req.params.id', req.params.id);
   const sqlQuery = `
   SELECT "availableClass"."dateOfWeek", "availableClass"."startTime", "availableClass"."location", "activities"."activity"
     FROM "userClass"
@@ -128,6 +128,7 @@ router.get("/tags/:id", (req, res) => {
     });
 });
 
+// POST route to add tags
 router.post("/addTag/:id", rejectUnauthenticated, (req, res) => {
   console.log("tag id", req.params.id);
   console.log();
@@ -148,7 +149,8 @@ router.post("/addTag/:id", rejectUnauthenticated, (req, res) => {
     });
 });
 
-router.delete("/tag/:id", (req, res) => {
+// DELETE route to delete userTags
+router.delete("/tag/:id", rejectUnauthenticated, (req, res) => {
   const deleteTagQuery = `
     DELETE FROM "userTags"
     WHERE "userTags".id = $1;
@@ -183,10 +185,10 @@ router.post("/favorite/:id", rejectUnauthenticated, (req, res) => {
     });
 });
 
-// Recommended instructor route
+// Recommended instructor route for gym goer profile
 router.get("/recommend", (req, res) => {
   const userId = req.user.id;
-  console.log(userId);
+  // console.log(userId);
 
   const tagQuery = `
         SELECT JSON_AGG("tags"."tagName") AS "tags" FROM "userTags"
@@ -235,7 +237,7 @@ router.get("/recommend", (req, res) => {
     });
 });
 
-// Favorite instructors route
+// Favorite instructors route to get favorite instructors in gym goer profile
 router.get("/favorite", rejectUnauthenticated, (req, res) => {
   const userId = req.user.id;
   // console.log(userId);
@@ -280,20 +282,20 @@ router.delete("/favorite/:id", rejectUnauthenticated, (req, res) => {
 });
 
 // updated instructor about
-router.put('/update/:id', (req, res) => {
+router.put('/update/:id', rejectUnauthenticated, (req, res) => {
   const sqlText = `
-  UPDATE "user"
-  SET about = $1
-  WHERE id = $2
-  RETURNING "user".about;
-  `;
+    UPDATE "user"
+      SET about = $1
+      WHERE id = $2
+    RETURNING "user".about;
+    `;
   
   const sqlParams = [
     req.body.result,
     req.params.id
   ];
 
-console.log('I am updating', sqlParams)
+// console.log('I am updating', sqlParams)
   pool.query(sqlText, sqlParams)
   .then(() => {
     res.sendStatus(200)
@@ -305,13 +307,13 @@ console.log('I am updating', sqlParams)
 })
 
 //Update instructor Profile
-router.put('/updateProfile/:id', (req, res) => {
+router.put('/updateProfile/:id', rejectUnauthenticated, (req, res) => {
   const sqlText = `
-  UPDATE "user"
-  SET name = $1, pronouns = $2 , instagram = $3, facebook = $4 , twitter = $5, certification = $6
-  WHERE id = $7
-  RETURNING "user".id, "user".name, "user".pronouns;
-  `;
+    UPDATE "user"
+      SET name = $1, pronouns = $2 , instagram = $3, facebook = $4 , twitter = $5, certification = $6
+      WHERE id = $7
+      RETURNING "user".id, "user".name, "user".pronouns;
+    `;
   const sqlParams = [
     req.body.name,
     req.body.pronouns,
@@ -351,6 +353,7 @@ router.post("/favorite/:id", rejectUnauthenticated, (req, res) => {
     });
 });
 
+// POST route for instructors to add new classes in their profile view
 router.post("/newClass", rejectUnauthenticated, (req, res) => {
   const sqlQuery = `
     INSERT INTO "availableClass" ("instructorId", "description", "location", "dateOfWeek", "lat", "lng", "activityId", "startTime" )

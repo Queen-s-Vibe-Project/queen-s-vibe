@@ -1,7 +1,7 @@
 .instructor-view-container {
     background-color: rgb(236, 232, 232);
     margin: auto;
-    padding-top: 1.5rem;
+    padding-top: .5rem;
     border-radius: .5rem;
     gap: .5;
     box-shadow: 4px 8px 14px -3px #828282;
@@ -31,7 +31,7 @@
 }
 
 .instructor-card-name {
-    font-size: 1.25rem;
+    font-size: 1.10rem;
     margin-bottom: .25em;
     font-weight: 600;
     margin-top: .75rem;
@@ -98,7 +98,7 @@
 
   .instructor-view-header {
     text-align: center;
-    margin-top: 2rem;
+    margin-top: 1rem;
     margin-bottom: 5px;
   }
 
@@ -144,9 +144,11 @@ hr {
 
 .tags-container {
   background-color: #dcdcf3;
-  padding-top: 1px;
-  padding-bottom: 3rem;
-  border-radius: 5px;
+  padding-top: .5px;
+  padding-bottom: 1.5rem;
+  border-radius: .5rem;
+  width: 85%;
+  margin: auto;
 }
 
 #add-tags-btn {
@@ -163,4 +165,8 @@ hr {
   border-radius: 5px;
   color: rgb(42, 42, 126);
   cursor: pointer;
+}
+
+.photo-button {
+  text-align: center;
 }

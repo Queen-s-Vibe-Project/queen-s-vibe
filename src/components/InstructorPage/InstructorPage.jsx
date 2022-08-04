@@ -74,12 +74,6 @@ function InstructorPage() {
 
         {/* Instructor info */}
         <div className="instructor-view">
-          {/* <Avatar
-            className="avatar-img"
-            alt={user.name}
-            src={user.avatar}
-            sx={{ width: 100, height: 100 }}
-          /> */}
           <PhotoUpload userPhoto={user.avatar} userId={user.id} />
 
           <div className="instructor-card-name">{user.name}</div>
@@ -114,7 +108,7 @@ function InstructorPage() {
         <UserTags />
       </div>
       {/* Classes card section */}
-      <h3 className="instructor-view-header">Classes</h3>
+      <h4 className="instructor-view-header">Classes</h4>
       <hr />
       <p className="scroll-text">Scroll to view more</p>
       <AddClass />
