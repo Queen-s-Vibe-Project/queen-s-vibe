@@ -29,15 +29,13 @@ function InstructorCardList() {
       </section>
 
       <div className="about-section">
-        <h4 className="about-header">About Placeholder</h4>
+        <h4 className="about-header">About Groupie and How it Works</h4>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vehicula
-          ante ut tellus lacinia, vel euismod eros euismod. Proin ut ipsum vitae
-          diam convallis convallis id sit amet enim. Morbi nec iaculis enim.
-          Nulla tempor vehicula dui, vel gravida tortor ultricies ac. Vestibulum
-          rutrum mauris ut magna dictum pellentesque.
+          Working out is difficult enough so we want to create a safe and fun
+          environment for both gym patrons and gym instructors. Groupie allows
+          gym patrons to search for instructors that share similar beliefs and
+          values.
         </p>
-
       </div>
     </>
   );

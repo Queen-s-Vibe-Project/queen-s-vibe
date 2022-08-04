@@ -8,7 +8,7 @@ const {
 // JOIN user, userTags, and tags tables and use array-agg to
 // get array of object for tag name
 router.get("/", (req, res) => {
-  console.log("/user GET route");
+  // console.log("/user GET route");
   const queryText = `SELECT "user".id, "user".name, "user"."adminLevel", "user".avatar, array_agg(tags."tagName") AS tags
 	                    FROM "user"
 	                    JOIN "userTags"
@@ -67,23 +67,48 @@ router.get("/class/:id", (req, res) => {
     });
 });
 
-// POST route to add classes
-// router.post('/class/:id', (req, res) => {
+// POST route to allow gym goers to add class
+router.post('/class/add/:id', rejectUnauthenticated, (req, res) => {
 
-//   const values =
-//     console.log("Values is", values);
-//   const sqlText = ``;
+  const sqlQuery = `
+    INSERT INTO "userClass" ("userId", "classId")
+      VALUES ($1, $2)
+  `;
 
-//   pool.query(sqlText, values)
-//     .then((result) => {
-//       console.log('POST add class successful');
-//       res.sendStatus(201)
-//     })
-//     .catch((err) => {
-//       console.log('POST add class failed', err);
-//       res.sendStatus(500)
-//     })
-// })
+  const sqlParams = [req.user.id, req.body.classId]
+
+  pool.query(sqlQuery, sqlParams)
+    .then((result) => {
+      console.log('POST add class successful');
+      res.sendStatus(201)
+    })
+    .catch((err) => {
+      console.log('POST add class failed', err);
+      res.sendStatus(500)
+    })
+})
+
+// GET route to get gym goer classes they added
+router.get('/class/add/:id', (req, res) => {
+  console.log('gym goer classes req.params.id', req.params.id);
+  const sqlQuery = `
+  SELECT "availableClass"."dateOfWeek", "availableClass"."startTime", "availableClass"."location", "activities"."activity"
+    FROM "userClass"
+    JOIN "availableClass"
+    ON "availableClass".id = "userClass"."classId"
+    JOIN activities
+    ON activities.id = "availableClass"."activityId"
+    WHERE "userClass"."userId" = $1;
+  `;
+
+  pool.query(sqlQuery, [req.params.id])
+    .then((dbRes) => {
+      res.send(dbRes.rows)
+    })
+    .catch((err) => {
+      console.log('Error getting gym goer classes', err);
+    })
+})
 
 // GET route to individual user tags
 router.get("/tags/:id", (req, res) => {
@@ -172,15 +197,15 @@ router.get("/recommend", (req, res) => {
   pool
     .query(tagQuery, [userId])
     .then((dbRes) => {
-      console.log(dbRes.rows[0].tags, dbRes.rows[0].tags.length);
+      // console.log(dbRes.rows[0].tags, dbRes.rows[0].tags.length);
       let listOfTags = "";
 
       for (let index = 0; index < dbRes.rows[0].tags.length; index++) {
-        console.log("last");
+        // console.log("last");
         if (index === dbRes.rows[0].tags.length - 1) {
           listOfTags += `\'${dbRes.rows[0].tags[index]}\'`;
         } else {
-          console.log("loop", index);
+          // console.log("loop", index);
           listOfTags += `\'${dbRes.rows[0].tags[index]}\',`;
         }
       }
@@ -200,7 +225,7 @@ router.get("/recommend", (req, res) => {
       pool
         .query(recommendInstructorQuery)
         .then((dbRes) => {
-          console.log(dbRes.rows);
+          // console.log(dbRes.rows);
           res.send(dbRes.rows);
         })
         .catch((err) => {

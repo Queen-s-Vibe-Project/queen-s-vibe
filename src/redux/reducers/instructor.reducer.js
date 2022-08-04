@@ -59,5 +59,16 @@ export const instructorTags = (state = [], action )=>{
             return state;
     }
 }
+
+// Reducer for upcoming gym goer classes that were added
+export const upcomingClasses = (state = [], action) => {
+    switch (action.type) {
+        case "SET_GYMGOER_CLASSES":
+            return action.payload
+        default:
+            return state;
+    }
+}
+
 export default instructorReducer;
 

@@ -1,0 +1,20 @@
+.search-featured-container {
+    display: flex;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    margin-bottom: 2rem;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-right-card {
+    width: 100%;
+    height: auto;
+}
+
+.search-rt-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}

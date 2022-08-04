@@ -26,6 +26,7 @@
   width: 12rem;
   height: auto;
   border: 1px solid rgb(140, 110, 140);
+  box-shadow: 4px 8px 14px -3px #828282;  
 }
 
 .rt-card {

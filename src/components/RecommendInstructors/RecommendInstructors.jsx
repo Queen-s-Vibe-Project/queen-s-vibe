@@ -21,7 +21,7 @@ export default function RecommendInstructors() {
 
   return (
     <div className="recommendInstructor">
-      <h3 className="recommendInstructor-header">Recommended Instuctor</h3>
+      <h4 className="recommendInstructor-header">Recommended Instuctors</h4>
       <div className="RC-container">
         {recommendInstructor &&
           recommendInstructor.map((instructor, i) => (
