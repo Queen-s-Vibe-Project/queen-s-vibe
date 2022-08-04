@@ -37,7 +37,7 @@ function* deleteGymGoerClass(action) {
   console.log(action.payload);
   try {
     yield axios.delete('/api/user/upcomingClass/'+ action.payload)
-    put({
+    yield put({
             type:'FETCH_UPCOMING_CLASSES'
         })
   } catch (error) {
