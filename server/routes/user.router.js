@@ -111,9 +111,10 @@ router.get('/upcomingClass',rejectUnauthenticated,(req,res)=>{
 
 router.delete('/upcomingClass/:id',rejectUnauthenticated,(req,res)=>{
   const deleteClassQuery = `
-    DELETE FROM "availableClass"
-    WHERE "availableClass".id = $1;
+    DELETE FROM "userClass"
+    WHERE "userClass".id = $1;
   `
+  
 
   pool.query(deleteClassQuery,[req.params.id])
     .then(()=>{
