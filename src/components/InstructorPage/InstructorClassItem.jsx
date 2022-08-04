@@ -5,7 +5,8 @@ import { useSelector, useDispatch } from "react-redux";
 function InstructorClassItem({ instructorClass }) {
   const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
-  
+
+  //This function will allow instructors to update classes
 const editClass = () => {
   
   // console.log('inside edit class')
@@ -47,6 +48,7 @@ swal.fire({
 });
 
 };
+
   return (
     <div className="instructor-card">
       <p>
