@@ -18,18 +18,18 @@ function SearchResult() {
 
   return (
     <>
-      <h2 className="search-results">Search Results Page </h2>
-      
+      <h2 className="search-results">Search Results</h2>
+
       {isLoading ? (
         <p>Loading...</p>
-      ) :
-      <section>
-        <Map instructors={instructors}/>
-        {instructors.map((result, i) => {
-          return (<SearchItem key={i} result={result} />);
-        })}
-      </section>
-      }
+      ) : (
+        <section>
+          <Map instructors={instructors} />
+          {instructors.map((result, i) => {
+            return <SearchItem key={i} result={result} />;
+          })}
+        </section>
+      )}
     </>
   );
 }

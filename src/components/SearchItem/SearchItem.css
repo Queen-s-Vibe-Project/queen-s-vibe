@@ -11,6 +11,7 @@
 .search-right-card {
     width: 100%;
     height: auto;
+    border: 1px solid black;
 }
 
 .search-rt-card {

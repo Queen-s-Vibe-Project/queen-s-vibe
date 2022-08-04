@@ -48,8 +48,9 @@
 
 .favoriteHeart {
   margin-left: 14rem;
-  margin-bottom: -1.25rem;
-  margin-top: -15rem;
+  margin-top: -4rem;
+  color: red;
+  border: none;
 }
 .editIcon {
   margin-left: 327px;
