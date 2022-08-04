@@ -10,13 +10,14 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import Avatar from "@mui/material/Avatar";
+import "./SearchItem.css";
 
 function SearchItem({ result }) {
   const history = useHistory();
 
   return (
     <>
-      <div className="featured-container">
+      <div className="search-featured-container">
         {/* Left side */}
         <div>
           <Stack direction="row" spacing={1}>
@@ -37,8 +38,8 @@ function SearchItem({ result }) {
         </div>
 
         {/* Right side card */}
-        <Card className="right-card">
-          <CardContent className="rt-card">
+        <Card className="search-right-card">
+          <CardContent className="search-rt-card">
             <Typography className="instructor-name" variant="p" component="div">
               {result.name}
             </Typography>
@@ -50,8 +51,8 @@ function SearchItem({ result }) {
                   result.classes.map((classer, i) => {
                     return (
                       <div key={i}>
-                        <li>{classer.dateOfWeek}</li>
-                        <li>{classer.startTime}</li>
+                        {/* <p>{classer.dateOfWeek}</p> */}
+                        {/* <p>{classer.startTime}</p> */}
                       </div>
                     );
                   })}
