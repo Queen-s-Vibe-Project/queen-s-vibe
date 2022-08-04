@@ -108,10 +108,9 @@ function InstructorPage() {
         <UserTags />
       </div>
       {/* Classes card section */}
-      <h4 className="instructor-view-header">Classes</h4>
-      <hr />
-      <p className="scroll-text">Scroll to view more</p>
+      <h4 className="instructor-view-class-header">Classes</h4>
       <AddClass />
+
       <div className="instructor-class-container">
         {/* Map over instructor classes */}
         {instructorClasses.map((instructorClass, i) => {

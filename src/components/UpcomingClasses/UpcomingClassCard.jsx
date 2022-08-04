@@ -39,8 +39,8 @@ export default function UpcomingClassCard({session,id}) {
                 }}
                 color="error"
               >
-                <Icon className="delete-icon">
-                  <DeleteIcon />
+                <Icon>
+                  <DeleteIcon className="delete-icon-btn" />
                 </Icon>
               </Button>
             </div>

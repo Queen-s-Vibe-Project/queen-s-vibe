@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-
+import "./AddClass.css";
 import PlacesAutocomplete, {
   geocodeByAddress,
   geocodeByPlaceId,
@@ -73,11 +73,17 @@ const AddClass = () => {
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
-        Add a Class
-      </Button>
-      <form onSubmit={handleSubmit}>
+      <div className="add-class-button-div">
+        <Button
+          className="add-class-btn"
+          variant="outlined"
+          onClick={handleClickOpen}
+        >
+          Add a Class
+        </Button>
+      </div>
 
+      <form onSubmit={handleSubmit}>
         <Dialog open={open} onClose={handleClose}>
           <DialogTitle>Add Class</DialogTitle>
           <DialogContent>
