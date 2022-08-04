@@ -1,22 +1,25 @@
 import { useEffect, useState } from "react";
 import { Button } from "@mui/material";
 import { useDispatch } from "react-redux";
+
 import DeleteIcon from "@mui/icons-material/Delete";
 import Icon from "@mui/material/Icon";
 
-export default function UpcomingClassCard({ session }) {
-  console.log("UpcomingClassCard session is", session);
-  const dispatch = useDispatch();
-  const [isDeletePress, setIsDeletePress] = useState(true);
 
-  useEffect(() => {
-    if (isDeletePress === true) {
-      dispatch({
-        type: "FETCH_UPCOMING_CLASSES",
-      });
-      setIsDeletePress(false);
-    }
-  }, [isDeletePress]);
+export default function UpcomingClassCard({session,id}) {
+  
+  const dispatch = useDispatch()
+  const [isDeletePress, setIsDeletePress] = useState(false)
+
+  // useEffect(()=>{
+  //   if (isDeletePress === true) {
+  //     dispatch({
+  //       type:'FETCH_UPCOMING_CLASSES'
+  //   })
+  //     setIsDeletePress(false)
+  //   }
+  // },[isDeletePress])
+
 
   return (
     <div className="class-card ">
