@@ -8,8 +8,7 @@ export default function UpcomingClassCard({session}) {
         <img
           className="image"
           src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-          alt=""
-          srcset=""
+          alt="exercise"
         />
       </div>
       {session && (

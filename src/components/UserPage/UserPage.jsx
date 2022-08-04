@@ -5,7 +5,6 @@ import { useSelector, useDispatch } from "react-redux";
 import SearchBar from "../SearchBar/SearchBar";
 import UpcomingClasses from "../UpcomingClasses/UpcomingClasses";
 import FavoriteInstructor from "../FavoriteInstructor/FavoriteInstructor";
-import AddClass from "../AddClass/AddClass";
 import InstructorPage from "../InstructorPage/InstructorPage";
 import InstructorTags from "../InstructorDetail/InstructorTags";
 
@@ -49,8 +48,6 @@ function UserPage() {
             Welcome, {user.username}!
           </h3>
           <InstructorPage />
-
-          <AddClass />
         </div>
       )}
     </>
