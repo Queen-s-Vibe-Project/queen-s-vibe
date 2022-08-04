@@ -67,7 +67,7 @@ function InstructorProfile({ profile, instructor }) {
               }}
               className="favoriteHeart"
             >
-              {/* <FavoriteIcon /> */}
+              <FavoriteIcon />
             </div>
           ) : null}
 

@@ -44,16 +44,6 @@ function FavoriteInstructorCard({ instructor }) {
             <CardContent className="rt-card">
               <Typography variant="p" component="div">
                 {instructor.name}
-                <button
-                  onClick={() => {
-                    dispatch({
-                      type: "DELETE_FAVORITE_INSTRUCTOR",
-                      payload: { id: instructor.id },
-                    });
-                  }}
-                >
-                  Delete
-                </button>
               </Typography>
 
               <Stack className="chip-container" direction="row" spacing={0.5}>
@@ -74,6 +64,17 @@ function FavoriteInstructorCard({ instructor }) {
               </div>
             </CardContent>
           </Card>
+
+          <button
+            onClick={() => {
+              dispatch({
+                type: "DELETE_FAVORITE_INSTRUCTOR",
+                payload: { id: instructor.id },
+              });
+            }}
+          >
+            Delete
+          </button>
         </div>
       </div>
     </>

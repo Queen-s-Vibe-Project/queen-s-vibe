@@ -20,7 +20,7 @@ export default function FavoriteInstructor() {
   return (
     <div>
       <div>
-        <h3>Favorite Instructors:</h3>
+        <h4>Favorite Instructors</h4>
         {favoriteInstructor &&
           favoriteInstructor.map((instructor, i) => (
             <FavoriteInstructorCard key={i} instructor={instructor} />
