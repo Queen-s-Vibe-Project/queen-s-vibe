@@ -46,7 +46,7 @@ const PhotoUpload = ({userPhoto, userId}) => {
           <Avatar
             alt="Profile Photo"
             src={profilePhoto}
-            sx={{ width: 100, height: 100 }}
+            sx={{ width: 200, height: 200 }}
           />
           <label htmlFor="icon-button-file">
             <Input
