@@ -1,8 +1,9 @@
 .add-class-btn {
-    width: 8rem;
+    width: 7.5rem;
     font-size: .75rem;
 }
 
 .add-class-button-div {
     text-align: center;
+    margin-bottom: 1rem;
 }
