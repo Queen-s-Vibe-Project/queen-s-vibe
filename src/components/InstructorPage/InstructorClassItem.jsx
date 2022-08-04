@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import "./InstructorPage.css";
 import swal from "sweetalert2";
-import { useSelector, useDispatch } from "react-redux";
+
 function InstructorClassItem({ instructorClass }) {
 
   const user = useSelector((store) => store.user);
@@ -54,7 +54,7 @@ swal.fire({
  
 
   const [isDeletePress, setDeletePress] = useState(false)
-  const user = useSelector((store)=> store.user)
+  
   
   //when delete is press dispatch "FETCH_INSTRUCTOR_CLASSES"
   useEffect(()=>{
@@ -68,7 +68,7 @@ swal.fire({
     }
   },[isDeletePress])
 
-  const dispatch = useDispatch()
+  
 
 
   return (
