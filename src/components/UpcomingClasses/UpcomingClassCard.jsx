@@ -4,16 +4,16 @@ import { useDispatch } from "react-redux";
 export default function UpcomingClassCard({session,id}) {
   
   const dispatch = useDispatch()
-  const [isDeletePress, setIsDeletePress] = useState(true)
+  const [isDeletePress, setIsDeletePress] = useState(false)
 
-  useEffect(()=>{
-    if (isDeletePress === true) {
-      dispatch({
-        type:'FETCH_UPCOMING_CLASSES'
-    })
-      setIsDeletePress(false)
-    }
-  },[isDeletePress])
+  // useEffect(()=>{
+  //   if (isDeletePress === true) {
+  //     dispatch({
+  //       type:'FETCH_UPCOMING_CLASSES'
+  //   })
+  //     setIsDeletePress(false)
+  //   }
+  // },[isDeletePress])
 
   return (
     <div className="class-card ">
