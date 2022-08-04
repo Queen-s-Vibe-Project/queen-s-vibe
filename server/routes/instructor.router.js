@@ -388,14 +388,18 @@ router.delete('/class/:id',rejectUnauthenticated,(req,res)=>{
   
   const deleteClassQuery = `
     DELETE FROM "availableClass"
-    WHERE "availableClass".id = $1;
+    WHERE "availableClass".id = $1
+    RETURNING "availableClass"."instructorId" ;
   `
 
   pool.query(deleteClassQuery, [req.params.id])
     .then((dbRes) => {
-      res.sendStatus(200)
+      
+        //console.log(`${dbRes.rows[0].instructorId}`);
+        res.sendStatus(200)
+      
     }).catch((error)=>{
-      console.error(`Error in line 341: ${error}`);
+      console.error(`Error in line 400: ${error}`);
       res.sendStatus(500)
     })
 
