@@ -6,8 +6,7 @@ import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button'
 import axios from 'axios'
-
-
+import "../InstructorPage/InstructorPage.css";
 
 const PhotoUpload = ({userPhoto, userId}) => {
     const dispatch = useDispatch()
@@ -41,26 +40,33 @@ const PhotoUpload = ({userPhoto, userId}) => {
       
     }
 
-    return(
-        <div className='photo-button'>
+    return (
+      <div className="photo-button">
         <form action="" onSubmit={handleSubmit}>
-        <Avatar
+          <Avatar
             alt="Profile Photo"
             src={profilePhoto}
-            sx={{ width: 200, height: 200}}
-        />
-        <label htmlFor="icon-button-file">
-        <Input accept="image/*" id="icon-button-file" type="file" onChange={handleChange}/>
-        <IconButton  sx={{ color: '#880088'}} aria-label="upload picture" component="span">
-          <PhotoCamera />
-        </IconButton>
-        {photoChange &&
-            <Button type='submit'>Submit</Button>
-        }
-      </label>
-      </form>
+            sx={{ width: 100, height: 100 }}
+          />
+          <label htmlFor="icon-button-file">
+            <Input
+              accept="image/*"
+              id="icon-button-file"
+              type="file"
+              onChange={handleChange}
+            />
+            <IconButton
+              sx={{ color: "#880088" }}
+              aria-label="upload picture"
+              component="span"
+            >
+              <PhotoCamera />
+            </IconButton>
+            {photoChange && <Button type="submit">Submit</Button>}
+          </label>
+        </form>
       </div>
-    )
+    );
 }
 
 export default PhotoUpload
