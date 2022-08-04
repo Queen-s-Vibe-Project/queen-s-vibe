@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 export default function UpcomingClasses() {
   const user = useSelector((store) => store.user);
 
-  const upcomingClasses = useSelector((store) => store.upcomingClasses);
+  const upcomingClasses = useSelector((store) => store.userClass);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -22,7 +22,7 @@ export default function UpcomingClasses() {
       <h4 className="upcoming-header">Upcoming Classes</h4>
       <div className="upcomingClasses-section">
         {upcomingClasses.map((session) => (
-          <UpcomingClassCard key={session.id} session={session} />
+          <UpcomingClassCard key={session.id} id={session.id} session={session} />
         ))}
       </div>
     </div>

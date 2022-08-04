@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Button } from "@mui/material";
 import { useDispatch } from "react-redux";
-export default function UpcomingClassCard({session}) {
+export default function UpcomingClassCard({session,id}) {
   
   const dispatch = useDispatch()
   const [isDeletePress, setIsDeletePress] = useState(true)
@@ -32,6 +32,7 @@ export default function UpcomingClassCard({session}) {
         <p>{session.startTime}</p>
         <Button
           onClick={()=>{
+            console.log(id);
             dispatch({
               type:"DELETE_GYM-GOER_CLASS",
               payload:session.id
