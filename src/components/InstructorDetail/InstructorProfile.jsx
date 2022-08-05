@@ -14,6 +14,18 @@ function InstructorProfile({ profile, instructor }) {
   const user = useSelector((store) => store.user);
   // useState to disable favorite button after clicked
   const [faveDisable, setFaveDisable] = useState(false);
+  const [faveIcon, setFaveIcon] = useState(<FavoriteBorderIcon />);
+
+  // Disable favorite 'heart' icon after user clicks it
+  // Gym goer only allowed to favorite instructor one time
+  const faveClickHandler = () => {
+    dispatch({
+      type: "ADD_INSTRUCTOR_TO_FAVORITES",
+      payload: instructor,
+    });
+    setFaveDisable(true);
+    setFaveIcon(<FavoriteIcon />);
+  };
 
   return (
     <>
@@ -65,15 +77,9 @@ function InstructorProfile({ profile, instructor }) {
               <button
                 className="favoriteHeart"
                 disabled={faveDisable}
-                onClick={() => {
-                  setFaveDisable(true);
-                  dispatch({
-                    type: "ADD_INSTRUCTOR_TO_FAVORITES",
-                    payload: instructor,
-                  });
-                }}
+                onClick={faveClickHandler}
               >
-                <FavoriteBorderIcon />
+                {faveIcon}
               </button>
             </div>
           ) : null}
