@@ -34,30 +34,29 @@ export default function UserClasses(){
         setDeletePress(true)
     }
 
-    return(
-        <div>
-            <AddClass/>
-            { classes &&
-        classes.map((cl)=>(
-          <div className="instructor-card">
-          <p>Class: {cl.activity}</p>
-          <p>Location: {cl.location}</p>
-          <p>Date: {cl.dateOfWeek.join(', ')}</p>
-          <p>Time: {cl.startTime}</p>
-          <div className="class-button">
-            <button className="edit-class">Edit</button>
-            <button 
-              onClick={()=>{
-                deleteClass(cl.classId)
-              }} 
-              className="delete-class"
-            >
-              Delete
-            </button>
-          </div>
-        </div>
-        ))
-      }
-        </div>
-    )
+    return (
+      <div>
+        <AddClass />
+        {classes &&
+          classes.map((cl) => (
+            <div className="instructor-card">
+              <p>Class: {cl.activity}</p>
+              <p>Location: {cl.location}</p>
+              <p>Date: {cl.dateOfWeek}</p>
+              <p>Time: {cl.startTime}</p>
+              <div className="class-button">
+                <button className="edit-class">Edit</button>
+                <button
+                  onClick={() => {
+                    deleteClass(cl.classId);
+                  }}
+                  className="delete-class"
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          ))}
+      </div>
+    );
 }

@@ -81,28 +81,28 @@ swal.fire({
         <strong>Location:</strong> {instructorClass.location}
       </p>
       <p>
-        <strong>Date:</strong> {instructorClass.dateOfWeek.join(', ')}
+        <strong>Date:</strong> {instructorClass.dateOfWeek}
       </p>
       <p>
         <strong>Time:</strong> {instructorClass.startTime}
       </p>
       <div className="class-button">
-
-        <button className="edit-class" onClick={editClass}>Edit</button>
+        <button className="edit-class" onClick={editClass}>
+          Edit
+        </button>
         <button
-          onClick={()=>{
+          onClick={() => {
             dispatch({
-              type:"DELETE_INSTRUCTOR_CLASS",
-              payload: instructorClass.classId
-            })
+              type: "DELETE_INSTRUCTOR_CLASS",
+              payload: instructorClass.classId,
+            });
 
-            setDeletePress(true)
-          }} 
+            setDeletePress(true);
+          }}
           className="edit-class"
         >
           Delete
         </button>
-
       </div>
     </div>
   );
