@@ -37,6 +37,7 @@ router.get("/profile/:id", (req, res) => {
 
   pool
     .query(profileQuery, [req.params.id])
+
     .then((dbRes) => {
       res.send(dbRes.rows[0]);
       // Delete password column

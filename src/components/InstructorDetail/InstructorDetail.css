@@ -126,7 +126,8 @@
   color: white;
   border-radius: 5px;
   font-size: .9rem;
-  border: 1px solid rgb(41, 12, 86)
+  box-shadow: 4px 8px 14px -3px #828282;
+  border: 1px solid rgb(116, 112, 116);
 }
 
 .instructor-details-header {

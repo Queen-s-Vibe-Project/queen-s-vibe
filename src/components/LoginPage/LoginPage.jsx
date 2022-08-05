@@ -7,7 +7,7 @@ function LoginPage() {
   const history = useHistory();
 
   return (
-    <div>
+    <div className="login-page-container">
       <LoginForm />
 
       <center>
