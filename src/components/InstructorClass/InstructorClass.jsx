@@ -52,11 +52,16 @@ export default function InstructorClass({ session }) {
             {session.startTime}
           </div>
         </div>
-        <div className="add-instructor-class">
-          <button className="add-class-btn" onClick={addClassHandle}>
-            Save Class
-          </button>
-        </div>
+
+        {user.adminLevel != "instructor" ? (
+          <div className="add-instructor-class">
+            <button className="add-class-btn" onClick={addClassHandle}>
+              Save Class
+            </button>
+          </div>
+        ) : (
+          <></>
+        )}
       </div>
     </>
   );
