@@ -3,7 +3,7 @@ import ClearIcon from "@mui/icons-material/Clear";
 import AddIcon from "@mui/icons-material/Add";
 import "../InstructorDetail/InstructorDetail.css";
 import { useParams, useHistory } from "react-router-dom";
-
+import swal from "sweetalert2";
 export default function InstructorClass({ session }) {
   // console.log("Session is", session);
   const params = useParams();
@@ -26,6 +26,16 @@ export default function InstructorClass({ session }) {
             classId: session.classId,
           },
         });
+     const Toast = swal.mixin({
+       toast: true,
+       position:'bottom',
+       timer: 3000,
+       timerProgressBar: true,
+     })
+     Toast.fire({
+       icon:'success',
+       title: 'Saved successfully'
+     })
       }
     }
   };
