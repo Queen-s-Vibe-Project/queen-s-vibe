@@ -72,7 +72,7 @@ function InstructorDetail() {
         </div>
       </div>
       <div>
-        <h3 className="instructor-view-about-header">About</h3>
+        <h3 className="instructor-detail-about-header">About</h3>
         <p>{profile.about}</p>
       </div>
     </div>

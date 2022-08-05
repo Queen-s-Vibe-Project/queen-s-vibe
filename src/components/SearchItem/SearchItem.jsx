@@ -17,6 +17,8 @@ function SearchItem({ result }) {
 
   return (
     <>
+      {/* <hr></hr> */}
+      <br />
       <div className="search-featured-container">
         {/* Left side */}
         <div>
@@ -47,12 +49,15 @@ function SearchItem({ result }) {
             <Stack>
               <span className="chip-container">
                 {/* Map over search results instructors */}
-                {result.classes &&
-                  result.classes.map((classer, i) => {
+                {result.tags &&
+                  result.tags.slice(0, 2).map((tag, i) => {
                     return (
                       <div key={i}>
-                        {/* <li>{classer.dateOfWeek.join(', ')}</li> */}
-                        <li>{classer.startTime}</li>
+                        <Chip
+                          className="chip-pill"
+                          label={tag}
+                          variant="outlined"
+                        />
                       </div>
                     );
                   })}

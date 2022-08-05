@@ -21,3 +21,9 @@
 .featured-instructors {
   text-align: center;
 }
+
+.about-text {
+  font-size: .9rem;
+  margin-bottom: 3rem;
+  line-height: 1.25rem;
+}

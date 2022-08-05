@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import ClearIcon from "@mui/icons-material/Clear";
 import AddIcon from "@mui/icons-material/Add";
 import "../InstructorDetail/InstructorDetail.css";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 
 export default function InstructorClass({ session }) {
   // console.log("Session is", session);
@@ -10,15 +10,24 @@ export default function InstructorClass({ session }) {
   const dispatch = useDispatch();
   const instructorProfile = useSelector((store) => store.instructorProfile);
   const user = useSelector((store) => store.user);
+  const history = useHistory();
 
+  // Handle save class click to direct user to login/register view
+  // if user is not logged in, other dispatch "attend class"
   const addClassHandle = () => {
-    dispatch({
-      type: "ATTEND_CLASS",
-      payload: {
-        userId: user.id,
-        classId: session.classId,
-      },
-    });
+    if (!user.id) {
+      history.push("/login");
+    } else {
+      if (user.adminLevel === "gym-goer") {
+        dispatch({
+          type: "ATTEND_CLASS",
+          payload: {
+            userId: user.id,
+            classId: session.classId,
+          },
+        });
+      }
+    }
   };
 
   return (
@@ -43,13 +52,16 @@ export default function InstructorClass({ session }) {
             {session.startTime}
           </div>
         </div>
-        {user.adminLevel === "gym-goer" ? (
+
+        {user.adminLevel != "instructor" ? (
           <div className="add-instructor-class">
             <button className="add-class-btn" onClick={addClassHandle}>
               Save Class
             </button>
           </div>
-        ) : null}
+        ) : (
+          <></>
+        )}
       </div>
     </>
   );

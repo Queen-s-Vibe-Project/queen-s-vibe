@@ -3,14 +3,29 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import "./InstructorDetail.css";
 import EditIcon from "@mui/icons-material/Edit";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 function InstructorProfile({ profile, instructor }) {
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
+  // useState to disable favorite button after clicked
+  const [faveDisable, setFaveDisable] = useState(false);
+  const [faveIcon, setFaveIcon] = useState(<FavoriteBorderIcon />);
+
+  // Disable favorite 'heart' icon after user clicks it
+  // Gym goer only allowed to favorite instructor one time
+  const faveClickHandler = () => {
+    dispatch({
+      type: "ADD_INSTRUCTOR_TO_FAVORITES",
+      payload: instructor,
+    });
+    setFaveDisable(true);
+    setFaveIcon(<FavoriteIcon />);
+  };
 
   return (
     <>
@@ -58,16 +73,14 @@ function InstructorProfile({ profile, instructor }) {
           </div>
 
           {user.id && user.adminLevel === "gym-goer" ? (
-            <div
-              onClick={() => {
-                dispatch({
-                  type: "ADD_INSTRUCTOR_TO_FAVORITES",
-                  payload: instructor,
-                });
-              }}
-              className="favoriteHeart"
-            >
-              <FavoriteIcon />
+            <div>
+              <button
+                className="favoriteHeart"
+                disabled={faveDisable}
+                onClick={faveClickHandler}
+              >
+                {faveIcon}
+              </button>
             </div>
           ) : null}
 

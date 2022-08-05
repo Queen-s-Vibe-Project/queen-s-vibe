@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import InstructorCardItem from "../InstructorCardItem/InstructorCardItem";
+import "../LandingPage/LandingPage.css";
 
 function InstructorCardList() {
   const dispatch = useDispatch();
@@ -30,7 +31,7 @@ function InstructorCardList() {
 
       <div className="about-section">
         <h4 className="about-header">About Groupie</h4>
-        <p>
+        <p className="about-text">
           Working out is difficult enough so we want to create a safe and fun
           environment for both gym patrons and gym instructors. Groupie allows
           gym patrons to search for instructors that share similar beliefs and

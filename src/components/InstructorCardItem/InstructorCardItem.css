@@ -80,7 +80,8 @@
 }
 
 .instructor-name {
-  font-weight: bold;
+  font-weight: 600;
+  font-size: .75rem;
 }
 
 /* about section */

@@ -1,3 +1,7 @@
+.login-page-container {
+  height: 100vh;
+}
+
 .login-form-header {
   text-align: center;
   margin-top: 10%;
@@ -47,6 +51,7 @@
 .not-registered,
 .register-text {
   text-align: center;
+  margin-left: 1rem;
 }
 
 #username, 
@@ -69,4 +74,3 @@
 .tags-input {
   margin-top: 1rem;
 }
-

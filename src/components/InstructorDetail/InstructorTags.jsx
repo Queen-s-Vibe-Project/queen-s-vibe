@@ -41,9 +41,9 @@ function InstructorTags({ tags }) {
       </div>
       <div>
         <Stack className="tags" direction="row">
-          {tags.map((tag) =>
+          {tags.map((tag, i) =>
             user.id === Number(params.id) ? (
-              <div key={tag.id}>
+              <div key={i}>
                 <Chip
                   label={tag.tagName}
                   onDelete={() => {
