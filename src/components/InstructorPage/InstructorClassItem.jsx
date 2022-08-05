@@ -81,7 +81,7 @@ swal.fire({
         <strong>Location:</strong> {instructorClass.location}
       </p>
       <p>
-        <strong>Date:</strong> {instructorClass.dateOfWeek}
+        <strong>Date:</strong> {instructorClass.dateOfWeek.join(', ')}
       </p>
       <p>
         <strong>Time:</strong> {instructorClass.startTime}
