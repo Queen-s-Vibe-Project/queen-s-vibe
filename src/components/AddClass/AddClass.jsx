@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./AddClass.css";
 import PlacesAutocomplete, {
@@ -31,12 +31,25 @@ const AddClass = () => {
   const [days, setDays] = useState([]);
   const [time, setTime] = useState("10:00");
 
+  const [addClass,setAddClass] = useState(false)
+
+  useEffect(()=>{
+    if(addClass === true){
+      dispatch({
+        type:"FETCH_INSTRUCTOR_CLASSES",
+        payload: user.id
+      })
+      setAddClass(false)
+    }
+  },[addClass])
+
   const handleSubmit = () => {
     dispatch({
       type: "ADD_NEW_CLASS",
       payload: toSend,
     });
     handleClose();
+    setAddClass(true)
   };
 
   const toSend = {

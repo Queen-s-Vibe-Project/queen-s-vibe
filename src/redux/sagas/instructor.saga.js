@@ -121,6 +121,7 @@ function* deleteTag(action) {
 function* addNewClass(action) {
   try {
     yield axios.post("/instructor/newClass", action.payload);
+    
   } catch (err) {
     console.log("Error in addNewClass", err);
   }
