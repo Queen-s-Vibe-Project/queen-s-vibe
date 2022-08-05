@@ -17,6 +17,8 @@ function SearchItem({ result }) {
 
   return (
     <>
+      {/* <hr></hr> */}
+      <br />
       <div className="search-featured-container">
         {/* Left side */}
         <div>
