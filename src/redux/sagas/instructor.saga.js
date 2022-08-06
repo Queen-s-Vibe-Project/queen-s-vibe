@@ -28,6 +28,7 @@ function* fetchInstructorProfile(action) {
 }
 
 function* fetchInstructorClasses(action) {
+  
   try {
     const res = yield axios.get("/instructor/class/" + action.payload);
     //console.log('fetchInstructorClasses saga', res.data);
@@ -119,8 +120,11 @@ function* deleteTag(action) {
 }
 
 function* addNewClass(action) {
+  
   try {
     yield axios.post("/instructor/newClass", action.payload);
+    yield put({ type: "FETCH_INSTRUCTOR_CLASSES" , payload: action.payload.instructorId })
+
   } catch (err) {
     console.log("Error in addNewClass", err);
   }
