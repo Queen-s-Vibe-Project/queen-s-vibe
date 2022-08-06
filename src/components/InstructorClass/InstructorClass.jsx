@@ -37,7 +37,7 @@ export default function InstructorClass({ session }) {
      })
       }
     }
-  };
+  ;
 
   return (
     <>
