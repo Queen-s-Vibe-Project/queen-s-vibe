@@ -8,6 +8,7 @@ import "./InstructorDetail.css";
 import EditIcon from "@mui/icons-material/Edit";
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import swal from "sweetalert2";
 
 function InstructorProfile({ profile, instructor }) {
   const dispatch = useDispatch();
@@ -25,6 +26,17 @@ function InstructorProfile({ profile, instructor }) {
     });
     setFaveDisable(true);
     setFaveIcon(<FavoriteIcon />);
+    const Toast = swal.mixin({
+      toast: true,
+      position:'top',
+      timer: 3000,
+      timerProgressBar: true,
+    })
+    Toast.fire({
+      icon:'success',
+      title: 'Added to favorites'
+    })
+
   };
 
   return (
