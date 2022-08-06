@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import InstructorClass from "./InstructorClass";
 
 function instructorClasses({ classes, instructor }) {
-  console.log(classes);
+  console.log("Classes is", classes);
 
   const user = useSelector((store) => store.user);
 
@@ -19,7 +19,7 @@ function instructorClasses({ classes, instructor }) {
         <div></div>
       )}
       {classes.map((session) => (
-        <InstructorClass session={session} />
+        <InstructorClass session={session} instructor={instructor} />
       ))}
     </div>
   );

@@ -11,6 +11,11 @@
   gap: 0.5rem;
 }
 
+.css-154xyx0-MuiInputBase-root-MuiOutlinedInput-root {
+padding: 0 !important;
+font-size: .75rem;
+}
+
 .user-type {
   padding-bottom: 5px;
 }

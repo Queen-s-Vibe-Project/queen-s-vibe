@@ -5,11 +5,9 @@ import "../InstructorDetail/InstructorDetail.css";
 import { useParams, useHistory } from "react-router-dom";
 import swal from "sweetalert2";
 export default function InstructorClass({ session }) {
-  // console.log("Session is", session);
-  const params = useParams();
   const dispatch = useDispatch();
-  const instructorProfile = useSelector((store) => store.instructorProfile);
   const user = useSelector((store) => store.user);
+
   const history = useHistory();
 
   // Handle save class click to direct user to login/register view
@@ -18,14 +16,15 @@ export default function InstructorClass({ session }) {
     if (!user.id) {
       history.push("/login");
     } else {
-      if (user.adminLevel === "gym-goer") {
-        dispatch({
-          type: "ATTEND_CLASS",
-          payload: {
-            userId: user.id,
-            classId: session.classId,
-          },
-        });
+
+      dispatch({
+        type: "ATTEND_CLASS",
+        payload: {
+          userId: user.id,
+          classId: session.classId,
+        },
+      });
+
      const Toast = swal.mixin({
        toast: true,
        position:'bottom',
