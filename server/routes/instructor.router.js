@@ -92,9 +92,9 @@ router.post('/class/add/:id', rejectUnauthenticated, (req, res) => {
 
 // GET route to get gym goer classes they added
 router.get('/class/add/:id', (req, res) => {
-  // console.log('gym goer classes req.params.id', req.params.id);
+  console.log('gym goer classes req.params.id', req.params.id);
   const sqlQuery = `
-  SELECT "availableClass"."dateOfWeek", "availableClass"."startTime", "availableClass"."location", "activities"."activity"
+  SELECT "availableClass"."id", "availableClass"."dateOfWeek", "availableClass"."startTime", "availableClass"."location", "activities"."activity"
     FROM "userClass"
     JOIN "availableClass"
     ON "availableClass".id = "userClass"."classId"
