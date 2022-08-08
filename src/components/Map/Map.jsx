@@ -55,13 +55,13 @@ const Map = ({instructors}) => {
     console.log(markers)
     
   
-    const {isLoaded, loadError} = useLoadScript({
-        googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
-        libraries
-    })
+    // const {isLoaded, loadError} = useLoadScript({
+    //     googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
+    //     libraries
+    // })
 
-    if(loadError) return "Loading Error"
-    if(!isLoaded) return "Loading..."
+    // if(loadError) return "Loading Error"
+    // if(!isLoaded) return "Loading..."
 
   return (
     <>

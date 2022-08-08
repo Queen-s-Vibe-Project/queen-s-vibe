@@ -50,7 +50,7 @@ export default function InstructorClass({ session }) {
 
           <div>
             <strong>Day: </strong>
-            {session.dateOfWeek}
+            {session.dateOfWeek.join(', ')}
           </div>
           <div>
             <strong>Location: </strong>

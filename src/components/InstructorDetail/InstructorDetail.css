@@ -49,8 +49,13 @@
 .favoriteHeart {
   margin-left: 14rem;
   margin-top: -4rem;
+  background-color: rgb(236,232,232);
   color: purple;
   border: none;
+}
+
+.favorite-border-icon{
+  background-color: rgb(236,232,232);
 }
 .editIcon {
   margin-left: 327px;
@@ -66,6 +71,7 @@
 .tags {
   display: flex;
   flex-direction: row;
+  gap: .5rem;
   flex-wrap: wrap;
   margin-top: .5rem;
 }

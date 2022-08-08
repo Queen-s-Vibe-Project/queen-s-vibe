@@ -15,7 +15,9 @@ function InstructorProfile({ profile, instructor }) {
   const user = useSelector((store) => store.user);
   // useState to disable favorite button after clicked
   const [faveDisable, setFaveDisable] = useState(false);
-  const [faveIcon, setFaveIcon] = useState(<FavoriteBorderIcon />);
+  const [faveIcon, setFaveIcon] = useState(<FavoriteBorderIcon className='favorite-border-icon' />);
+  
+
 
   // Disable favorite 'heart' icon after user clicks it
   // Gym goer only allowed to favorite instructor one time
