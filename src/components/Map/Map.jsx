@@ -58,7 +58,7 @@ const Map = ({instructors}) => {
     // const {isLoaded, loadError} = useLoadScript({
     //     googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
     //     libraries
-    // })
+    // })d
 
     // if(loadError) return "Loading Error"
     // if(!isLoaded) return "Loading..."
