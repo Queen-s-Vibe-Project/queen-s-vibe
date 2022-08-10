@@ -3,6 +3,8 @@
 
 ## Description
 
+This project was a 2 week sprint. 
+
 ## Prerequisites
 
 Before you get started, make sure you have the following software installed on your computer:
