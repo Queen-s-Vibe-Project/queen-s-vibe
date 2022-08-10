@@ -92,19 +92,32 @@ Directory Structure:
 - `build/` after you build the project, contains the transpiled code from `src/` and `public/` that will be viewed on the production site
 - `server/` contains the Express App
 
-This code is also heavily commented. We recommend reading through the comments, getting a lay of the land, and becoming comfortable with how the code works before you start making too many changes. If you're wondering where to start, consider reading through component file comments in the following order:
-
-- src/components
-  - App/App
-  - Footer/Footer
-  - Nav/Nav
-  - AboutPage/AboutPage
-  - InfoPage/InfoPage
-  - UserPage/UserPage
-  - LoginPage/LoginPage
-  - RegisterPage/RegisterPage
-  - LogOutButton/LogOutButton
-  - ProtectedRoute/ProtectedRoute
+```
+├── PostmanPrimeSoloRoutes.json
+├── PostmanPrimeSoloRoutesv2.json
+├── README.md
+├── database.sql
+├── documentation
+│   └── images
+├── dump.sql
+├── package-lock.json
+├── package.json
+├── public
+│   ├── favicon.ico
+│   ├── index.html
+│   └── uploads
+├── server
+│   ├── constants
+│   ├── modules
+│   ├── routes
+│   ├── server.js
+│   └── strategies
+└── src
+    ├── components
+    ├── hooks
+    ├── index.js
+    └── redux
+```
 
 ## Deployment
 
