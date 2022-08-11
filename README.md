@@ -107,4 +107,4 @@ If you would like to name your database something else, you will need to change 
 
 ## Acknowledgement
 
-We want to thank the Groupie development team, Prime Academy and Olivia DeRusse for the opportunity to work on this exciting project. 
+We want to thank the Groupie development team, Prime Academy and our client for the opportunity to work on this exciting project. 
