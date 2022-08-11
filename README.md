@@ -86,7 +86,7 @@ If you would like to name your database something else, you will need to change 
 
 ## Built With
 
-<img src="{https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white}" />
+![image]({https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white})
 
 ## Acknowledgement
 
