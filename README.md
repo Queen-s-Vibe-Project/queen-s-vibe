@@ -9,6 +9,8 @@ Groupie is a gym app that allows gym goers to search for gym instructors based o
 
 Users do not need to be logged in to search for instructors. Gym goers will need to be logged in to save the class and to favorite the instructor.
 
+This app is best viewed on a mobile device. 
+
 To see the fully functional site, please visit [Groupie](https://dry-crag-81755.herokuapp.com/#/home).
 
 ## Prerequisites
