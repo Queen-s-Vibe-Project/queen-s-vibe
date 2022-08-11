@@ -81,7 +81,7 @@
   }
 
   .instructor-card {
-    width: 8.5rem;
+    width: auto;
     height: auto;
     border-radius: .5rem;
     font-size: .7rem;

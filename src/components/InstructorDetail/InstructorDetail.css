@@ -109,7 +109,7 @@
   flex-direction: column;
   justify-content: center;
   gap: .5rem;
-  width: 12rem;
+  width: 13rem;
   height: 9rem;
   border-radius: .5rem;
   font-size: .85rem;
@@ -120,12 +120,16 @@
 }
 
 .add-instructor-class {
+  display: flex;
   text-align: center;
   margin-top: .5rem;
+  justify-content: center;
+  align-items: center;
+  gap: .5rem;
 }
 
 .add-class-btn {
-  width: 50%;
+  width: auto;
   height: 1.5rem;
   cursor: pointer;
   background-color: #8b8fc3;
@@ -139,3 +143,4 @@
 .instructor-details-header {
   text-align: center;
 }
+

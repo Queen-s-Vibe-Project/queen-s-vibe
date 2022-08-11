@@ -43,13 +43,7 @@ function InstructorProfile({ profile, instructor }) {
 
   return (
     <>
-      {/* {user.adminLevel === "instructor" && user.id === Number(instructor) ? (
-        <div>
-          <EditIcon />
-        </div>
-      ) : (
-        <div></div>
-      )} */}
+
       <div className="instructor-view-container detail-view">
         <div className="instructor-view">
           <div className="profile-card">
