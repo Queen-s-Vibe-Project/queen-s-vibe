@@ -3,7 +3,7 @@
 
 ## Description
 
-This project was a 2 week sprint. 
+**This project was a 2 week sprint.**
 
 ## Prerequisites
 
