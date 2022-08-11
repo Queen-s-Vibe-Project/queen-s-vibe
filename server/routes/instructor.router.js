@@ -313,8 +313,8 @@ router.put('/update/:id', rejectUnauthenticated, (req, res) => {
 router.put('/updateProfile/:id', rejectUnauthenticated, (req, res) => {
   const sqlText = `
     UPDATE "user"
-      SET name = $1, pronouns = $2 , instagram = $3, facebook = $4 , twitter = $5, certification = $6
-      WHERE id = $7
+      SET name = $1, pronouns = $2 , instagram = $3, facebook = $4 , twitter = $5, website = $6, certification = $7
+      WHERE id = $8
       RETURNING "user".id, "user".name, "user".pronouns;
     `;
   const sqlParams = [
@@ -323,6 +323,7 @@ router.put('/updateProfile/:id', rejectUnauthenticated, (req, res) => {
     req.body.instagram,
     req.body.facebook,
     req.body.twitter,
+    req.body.website,
     req.body.certification,
     req.params.id
   ]

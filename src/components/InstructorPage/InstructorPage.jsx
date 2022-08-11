@@ -34,12 +34,13 @@ function InstructorPage() {
       .fire({
         title: "Update your Profile",
         html:
-          `<input id="swal-input1" class="swal2-input" value='${user.name}'>` +
-          `<input id="swal-input2" class="swal2-input" value='${user.pronouns}'>` +
-          `<input id="swal-input3" class="swal2-input" value='${user.facebook}'>` +
-          `<input id="swal-input4" class="swal2-input" value='${user.instagram}'>` +
-          `<input id="swal-input5" class="swal2-input" value='${user.twitter}'>` +
-          `<input id="swal-input6" class="swal2-input" value='${user.certification}'>`,
+          `<input id="swal-input1" placeholder="Name" class="swal2-input" value='${user.name}'>` +
+          `<input id="swal-input2" placeholder="Pronounse" class="swal2-input" value='${user.pronouns}'>` +
+          `<input id="swal-input3" placeholder="Facebook" class="swal2-input" value='${user.facebook}'>` +
+          `<input id="swal-input4" placeholder="Instagram" class="swal2-input" value='${user.instagram}'>` +
+          `<input id="swal-input5" placeholder="Twitter" class="swal2-input" value='${user.twitter}'>` +
+          `<input id="swal-input6" placeholder="Website url" class="swal2-input" value='${user.website}'>` +
+          `<input id="swal-input7" placeholder="Certification" class="swal2-input" value='${user.certification}'>`,
         preConfirm: () => {
           return {
             id: user.id,
@@ -48,7 +49,8 @@ function InstructorPage() {
             facebook: document.getElementById("swal-input3").value,
             instagram: document.getElementById("swal-input4").value,
             twitter: document.getElementById("swal-input5").value,
-            certification: document.getElementById("swal-input6").value,
+            website: document.getElementById("swal-input6").value,
+            certification: document.getElementById("swal-input7").value,
           };
         },
         confirmButtonText: "Save Changes",
