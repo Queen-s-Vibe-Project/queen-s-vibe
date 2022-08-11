@@ -3,7 +3,13 @@
 
 ## Description
 
-**This project was a 2 week sprint.**
+_This project was a 2 week sprint._
+
+Groupie is a gym app that allows gym goers to search for gym instructors based on predefined tags/identify markers such as LGBTQ, Diverse/POC, Senior Fitness. Gym goers can view the gym instructor's profile and 'Save Class', favorite the instructor, or 'Sign Up' that will take the gym goer to the instructor's external website where gym goers can sign up for the instructors' class. 
+
+Users do not need to be logged in to search for instructors. Gym goers will need to be logged in to save the class and to favorite the instructor.
+
+To see the fully functional site, please visit [Groupie](https://dry-crag-81755.herokuapp.com/#/home).
 
 ## Prerequisites
 
