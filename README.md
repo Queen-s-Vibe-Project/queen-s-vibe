@@ -15,7 +15,7 @@ To see the fully functional site, please visit [Groupie](https://dry-crag-81755.
 
 ## Screen Shot
 
-![Aug-10-2022 20-41-36](https://user-images.githubusercontent.com/109628257/184050925-80bfc404-0edd-48df-b1ca-589cd2e1d5df.gif)
+![Groupie GIPHY 2](https://user-images.githubusercontent.com/109628257/184051065-a5c34384-5bd3-4b95-a5ab-d0f11d422175.gif)
 
 
 ![Aug-10-2022 20-38-21](https://user-images.githubusercontent.com/109628257/184050698-3287640d-ca6a-4409-b7fe-f42448ea25c7.gif)
