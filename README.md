@@ -13,6 +13,10 @@ This app is best viewed on a mobile device.
 
 To see the fully functional site, please visit [Groupie](https://dry-crag-81755.herokuapp.com/#/home).
 
+## Screen Shot
+
+![Aug-10-2022 20-38-21](https://user-images.githubusercontent.com/109628257/184050698-3287640d-ca6a-4409-b7fe-f42448ea25c7.gif)
+
 ## Prerequisites
 
 Before you get started, make sure you have the following software installed on your computer:
